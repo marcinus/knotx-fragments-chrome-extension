@@ -30,7 +30,7 @@ to run this plugin.
 
 Refresh the page, open Chrome Dev Tools and check the `Knot.x Fragments` sidebar:
 
-![Knot.x Fragments Sidebar][assets/sidebar-view.png]
+![Knot.x Fragments Sidebar](assets/sidebar-view.png)
 
 #### Samples
 The `samples` folder contains Knot.x responses that expose the Fragment's debug data. You can easily 
