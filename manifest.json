@@ -1,7 +1,0 @@
-{
-  "name": "Knot.x Fragments Extension",
-  "version": "1.0",
-  "description": "Extends the Developer Tools, adding a sidebar that displays the Knotx Fragments data associated with the selected DOM element.",
-  "devtools_page": "devtools.html",
-  "manifest_version": 2
-}

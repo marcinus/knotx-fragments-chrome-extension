@@ -21,3 +21,6 @@ Thumbs.db
 *.iws
 *.ipr
 *.vlt
+
+node_modules
+dist/main.js

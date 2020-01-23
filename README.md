@@ -25,12 +25,22 @@ Knot.x Fragments Chrome Extension reads data from the HTML response and loads
 fragment's debug data and visualize task details.
 
 ### How to use?
+1. go to the project folder
+2. run command: `yarn install`
+3. run command: `yarn run dev`
+
+
+### How to test?
+1. run command to fire all tests: `yarn run test`
+2. run command to fire specific test: `yarn run test [path_to_test]`
+
+
 This extension is not published to the public Chrome web store. Please follow [these instructions](https://developer.chrome.com/extensions/getstarted) 
 to run this plugin.
 
 Refresh the page, open Chrome Dev Tools and check the `Knot.x Fragments` sidebar:
 
-![Knot.x Fragments Sidebar](assets/sidebar-view.png)
+![Knot.x Fragments Sidebar](src/assets/sidebar-view.png)
 
 #### Samples
 The `samples` folder contains Knot.x responses that expose the Fragment's debug data. You can easily 

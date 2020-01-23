@@ -1,0 +1,8 @@
+{
+    "name": "Knot.x Chrome Devtool Extension",
+    "version": "1.0",
+    "description": "Extends the Developer Tools, adding a sidebar that displays the Knotx Fragments data associated with the selected DOM element.",
+    "devtools_page": "index.html",
+    "manifest_version": 2,
+    "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'"
+  }
