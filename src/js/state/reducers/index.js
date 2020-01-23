@@ -14,13 +14,9 @@
  * limitations under the License.
  */
 
-import React from 'react';
-import ExampleGraph from '../components/Graphs/exampleComponent';
+import { combineReducers } from 'redux';
+import pageData from './pageData';
 
-const App = () => (
-  <div className="app">
-    <ExampleGraph />
-  </div>
-);
-
-export default App;
+export default combineReducers({
+  pageData,
+});

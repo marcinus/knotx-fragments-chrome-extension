@@ -14,13 +14,18 @@
  * limitations under the License.
  */
 
-import React from 'react';
-import ExampleGraph from '../components/Graphs/exampleComponent';
+const initState = {
+  fragments: [],
+  url: '',
+};
 
-const App = () => (
-  <div className="app">
-    <ExampleGraph />
-  </div>
-);
-
-export default App;
+export default (state = initState, { type, payload }) => {
+  switch (type) {
+    case 'GET_PAGE_DATA':
+      return {
+        ...payload,
+      };
+    default:
+      return state;
+  }
+};

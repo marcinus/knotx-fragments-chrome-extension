@@ -14,13 +14,23 @@
  * limitations under the License.
  */
 
-import React from 'react';
-import ExampleGraph from '../components/Graphs/exampleComponent';
+// CONSTANTS
+export const REDUX_PORT = 'REDUX_PORT';
+export const PANEL_NAME = 'Knot.x';
+export const status = {
+  succes: 'succes',
+  error: 'error',
+};
 
-const App = () => (
-  <div className="app">
-    <ExampleGraph />
-  </div>
-);
+// MESSAGES
+/* eslint-disable max-len */
 
-export default App;
+export const errorMsgs = {
+  getPageData: 'Knot.x devtool extension: Something gone wrong, or your page does not use Knot.x :( ',
+};
+
+export const succesMsgs = {
+  getPageData: 'Knot.x devtool extension: Succesfully get fragments and page data. You can start using Knot.x extension',
+};
+
+/* eslint-enable max-len */

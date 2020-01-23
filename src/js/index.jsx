@@ -16,19 +16,21 @@
 
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Store } from 'webext-redux';
+import { Provider } from 'react-redux';
 import App from './apps/App';
 import '../sass/style.scss';
-import { knotxNodes } from './helpers/nodesHelper';
+import { REDUX_PORT, PANEL_NAME } from './helpers/constants';
 
-chrome.devtools.panels.create('knotx', null, 'index.html');
-chrome.devtools.panels.elements.createSidebarPane('Knot.x Fragments',
-  (sidebar) => {
-    const updateElementProperties = () => {
-      sidebar.setExpression(`( ${knotxNodes.toString()} )()`);
-    };
+const store = new Store({ portName: REDUX_PORT });
 
-    updateElementProperties();
-    chrome.devtools.panels.elements.onSelectionChanged.addListener(updateElementProperties);
-  });
+chrome.devtools.panels.create(PANEL_NAME, null, 'index.html');
 
-ReactDOM.render(<App />, document.getElementById('root'));
+store.ready().then(() => {
+  ReactDOM.render(
+    <Provider store={store}>
+      <App />
+    </Provider>,
+    document.getElementById('root'),
+  );
+});

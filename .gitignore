@@ -23,4 +23,5 @@ Thumbs.db
 *.vlt
 
 node_modules
-dist/main.js
+dist/js/*
+yarn-error.log

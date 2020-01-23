@@ -14,13 +14,18 @@
  * limitations under the License.
  */
 
-import React from 'react';
-import ExampleGraph from '../components/Graphs/exampleComponent';
+import { knotxNodes } from '../helpers/nodesHelper';
+import { status } from '../helpers/constants';
 
-const App = () => (
-  <div className="app">
-    <ExampleGraph />
-  </div>
-);
-
-export default App;
+window.onload = () => {
+  chrome.runtime.sendMessage({ fragmentsData: knotxNodes() }, (response) => {
+    /* eslint-disable no-console */
+    if (response.status === status.error) {
+      console.warn(response.msg);
+    }
+    if (response.status === status.succes) {
+      console.log(response.msg);
+    }
+    /* eslint-enable no-console */
+  });
+};

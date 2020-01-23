@@ -14,13 +14,7 @@
  * limitations under the License.
  */
 
-import React from 'react';
-import ExampleGraph from '../components/Graphs/exampleComponent';
-
-const App = () => (
-  <div className="app">
-    <ExampleGraph />
-  </div>
-);
-
-export default App;
+export const getPageData = (payload) => ({
+  type: 'GET_PAGE_DATA',
+  payload,
+});
