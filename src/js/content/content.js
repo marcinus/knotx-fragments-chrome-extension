@@ -14,11 +14,11 @@
  * limitations under the License.
  */
 
-import { knotxNodes } from '../helpers/nodesHelper';
+import { findFragmentsInContent } from '../helpers/nodesHelper';
 import { status } from '../helpers/constants';
 
 window.onload = () => {
-  chrome.runtime.sendMessage({ fragmentsData: knotxNodes() }, (response) => {
+  chrome.runtime.sendMessage({ fragmentsData: findFragmentsInContent() }, (response) => {
     /* eslint-disable no-console */
     if (response.status === status.error) {
       console.warn(response.msg);

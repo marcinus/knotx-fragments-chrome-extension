@@ -14,65 +14,71 @@
  * limitations under the License.
  */
 
-export const knotxNodes = () => {
-  const rootElem = document.body;
-  const COMMENTS = [];
-  const COMMENT_NODE_CODE = 8;
-  const HTML_NODE_CODE = 1;
-  // Fourth argument, which is actually obsolete according to the DOM4 standard, is required in IE 11
-  const iterator = document.createNodeIterator(
-    rootElem,
-    NodeFilter.SHOW_ALL,
-  );
+export const isFragmentBoundary = (node) => node.nodeType === Node.COMMENT_NODE
+  && /data-knotx-id="(.*)"/.test(node.data);
 
-  let curNode;
-  let isBetweenComments = false;
-  let curComment = '';
-  // eslint-disable-next-line no-cond-assign
-  while ((curNode = iterator.nextNode())) {
-    if (
-      curNode.nodeType === COMMENT_NODE_CODE
-          && curNode.data.indexOf('data-knotx-id') !== -1
-    ) {
-      isBetweenComments = !isBetweenComments;
-      curComment = isBetweenComments ? curNode.data.match(/"([^']+)"/)[1] : '';
-    }
+export const isFragmentNode = (node) => node.nodeType === Node.ELEMENT_NODE
+  || (node.nodeType === Node.TEXT_NODE && !!node.textContent.trim());
 
-    if (
-      isBetweenComments
-          && curNode.nodeType !== COMMENT_NODE_CODE
-          && curNode.nodeType === HTML_NODE_CODE
-    ) {
-      if (!COMMENTS.length) {
-        curNode.dataset.knotxId = curComment;
-        COMMENTS.push(curNode);
-      } else if (!COMMENTS[COMMENTS.length - 1].contains(curNode)) {
-        curNode.dataset.knotxId = curComment;
-        COMMENTS.push(curNode);
+export const getFragmentId = (node) => (node.data.match(/data-knotx-id="(.*)"/) || [])[1];
+
+export const isFragmentDataNode = (node, fragmentId) => node && node.tagName === 'SCRIPT'
+  && node.dataset.knotxId === fragmentId;
+
+const findBoundaries = (root) => {
+  const iterator = document.createNodeIterator(root, NodeFilter.SHOW_ALL);
+  const boundaries = new Map();
+  let node = iterator.nextNode();
+
+  while (node) {
+    if (isFragmentBoundary(node)) {
+      const id = getFragmentId(node);
+
+      if (boundaries.has(id)) {
+        boundaries.set(id, { ...boundaries.get(id), endNode: node });
+      } else {
+        boundaries.set(id, { startNode: node });
       }
     }
+
+    node = iterator.nextNode();
   }
 
-  /**
-     * Converts list of nodes from all comments to Fragments. Example inputs / outputs:
-     * - [script, node] -> [ { script, node } ]
-     * - [ script, node, script, node, node ] -> [ { script, node }, { script, node, node } ]
-     */
-  const fragments = [];
-  let currentFragment = {};
-  COMMENTS.forEach((node) => {
-    if (node.type === 'application/json') {
-      currentFragment = {};
-      currentFragment.debug = JSON.parse(node.innerText);
-      fragments.push(currentFragment);
-    } else {
-      let { nodes } = currentFragment;
-      if (nodes === undefined) {
-        nodes = [];
-      }
-      nodes.push(node);
-      currentFragment.nodes = nodes;
-    }
-  });
-  return fragments;
+  return Array.from(boundaries.entries())
+    .map(([key, value]) => ({ id: key, ...value }));
 };
+
+const getNodesBetween = (firstNode, lastNode) => {
+  const nodes = [];
+  let node = firstNode.nextSibling;
+
+  while (node && node !== lastNode) {
+    nodes.push(node);
+    node = node ? node.nextSibling : null;
+  }
+
+  return nodes;
+};
+
+const createFragment = (id, nodes) => {
+  const fragmentNodes = nodes.filter(isFragmentNode);
+  let debug = {};
+
+  if (isFragmentDataNode(fragmentNodes[0], id)) {
+    const debugScript = fragmentNodes.shift();
+    debug = JSON.parse(debugScript.textContent.trim() || '{}');
+  }
+
+  fragmentNodes
+    .filter((node) => node.nodeType === Node.ELEMENT_NODE)
+    .forEach((node) => node.setAttribute('data-knotx-id', id));
+
+  return { nodes: fragmentNodes, debug };
+};
+
+const parseFragments = (root) => findBoundaries(root)
+  .filter((boundary) => !!boundary.endNode)
+  .map(({ id, startNode, endNode }) => ({ id, nodes: getNodesBetween(startNode, endNode) }))
+  .map(({ id, nodes }) => createFragment(id, nodes));
+
+export const findFragmentsInContent = () => parseFragments(document.body);
