@@ -37,6 +37,8 @@ steps:
     displayName: Cache Yarn packages
   - script: yarn install --frozen-lockfile
     displayName: "Install dependencies."
+  - script: yarn run lint
+    displayName: "Lint"
   - script: yarn run dev
     displayName: "Build"
   - script: yarn run test

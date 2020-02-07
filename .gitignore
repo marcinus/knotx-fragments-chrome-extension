@@ -22,7 +22,13 @@ Thumbs.db
 *.ipr
 *.vlt
 
-node_modules
-dist/js/*
-yarn-error.log
+# Build              #
+######################
+dist/*
 test-report.xml
+package-lock.json
+
+# Node               #
+######################
+node_modules
+packages/*
