@@ -18,20 +18,15 @@ trigger:
 
 pool:
   vmImage: 'ubuntu-latest'
-strategy:
-  matrix:
-    node_10_x:
-      node_version: 10.x
-    node_12_x:
-      node_version: 12.x
 
 variables:
   YARN_CACHE_FOLDER: $(Pipeline.Workspace)/.yarn
+  NODE_VERSION: 12.x
 
 steps:
   - task: NodeTool@0
     inputs:
-      versionSpec: $(node_version)
+      versionSpec: $(NODE_VERSION)
   - task: Cache@2
     inputs:
       key: 'yarn | "$(Agent.OS)" | "$(node_version)" | yarn.lock'
@@ -46,3 +41,10 @@ steps:
     displayName: "Build"
   - script: yarn run test
     displayName: "Test"
+  - task: PublishTestResults@2
+    displayName: 'Publish Test Results'
+    condition: succeededOrFailed()
+    inputs:
+      testResultsFormat: 'JUnit'
+      testResultsFiles: 'test-report.xml'
+      testRunTitle: 'React tests'
