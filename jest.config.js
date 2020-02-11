@@ -28,5 +28,6 @@ module.exports = {
       branches: 80,
       statements: 80
     }
-  }
+  },
+  setupFilesAfterEnv: ["jest-extended"]
 };
