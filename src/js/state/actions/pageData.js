@@ -14,7 +14,14 @@
  * limitations under the License.
  */
 
-export const getPageData = (payload) => ({
-  type: 'GET_PAGE_DATA',
-  payload,
+import { SET_PAGE_DATA, REMOVE_PAGE_DATA } from '../actionTypes/pageData';
+
+export const setPageData = (pageData) => ({
+  type: SET_PAGE_DATA,
+  pageData,
+});
+
+export const removePageData = (pageData) => ({
+  type: REMOVE_PAGE_DATA,
+  pageData,
 });

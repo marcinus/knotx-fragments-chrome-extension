@@ -31,4 +31,9 @@ package-lock.json
 # Node               #
 ######################
 node_modules
+
+dist/js/*
+yarn-error.log
+.vscode
+test-report.xml
 packages/*

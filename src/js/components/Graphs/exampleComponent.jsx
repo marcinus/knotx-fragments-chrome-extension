@@ -22,7 +22,8 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { drawGraph } from '../../helpers/graphsHelper';
-import { getPageData } from '../../state/actions/pageData';
+import { setPageData } from '../../state/actions/pageData';
+
 
 const exampleGraphDeclaration = {
   nodes: new vis.DataSet([
@@ -65,6 +66,7 @@ const exampleGraphDeclaration = {
 
 const ExampleGraph = ({
   pageUrl,
+  tabId,
   // actions,
 }) => {
   useEffect(() => {
@@ -74,6 +76,7 @@ const ExampleGraph = ({
   return (
     <div className="graphContainer">
       <h1>{ pageUrl }</h1>
+      <h1>{ tabId }</h1>
       <div
         id="exampleGraph"
         className="graph"
@@ -85,17 +88,18 @@ const ExampleGraph = ({
 ExampleGraph.propTypes = {
   pageUrl: PropTypes.string.isRequired,
   actions: PropTypes.shape({
-    getPageData: PropTypes.func.isRequired,
+    setPageData: PropTypes.func.isRequired,
   }).isRequired,
+  tabId: PropTypes.number.isRequired,
 };
 
-const mapStateToProps = ({ pageData }) => ({
-  pageUrl: pageData.url,
+const mapStateToProps = ({ pageData }, ownProps) => ({
+  pageUrl: pageData[ownProps.tabId].url,
 });
 
 const mapDispatchToProps = (dispatch) => ({
   actions: bindActionCreators({
-    getPageData,
+    setPageData,
   },
   dispatch),
 });

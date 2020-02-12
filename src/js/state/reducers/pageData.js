@@ -13,18 +13,27 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+import { SET_PAGE_DATA, REMOVE_PAGE_DATA } from '../actionTypes/pageData';
 
-const initState = {
-  fragments: [],
-  url: '',
-};
+export const initState = {};
 
-export default (state = initState, { type, payload }) => {
+export default (state = initState, { type, pageData }) => {
   switch (type) {
-    case 'GET_PAGE_DATA':
+    case SET_PAGE_DATA:
       return {
-        ...payload,
+        ...state,
+        [pageData.id]: {
+          fragments: pageData.fragments,
+          url: pageData.url,
+        },
       };
+
+    case REMOVE_PAGE_DATA: {
+      const newState = state;
+      if (newState[pageData.id]) delete newState[pageData.id];
+      return newState;
+    }
+
     default:
       return state;
   }

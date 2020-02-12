@@ -14,13 +14,5 @@
  * limitations under the License.
  */
 
-import React from 'react';
-import ExampleGraph from '../components/Graphs/exampleComponent';
-
-const App = () => (
-  <div className="app">
-    <ExampleGraph />
-  </div>
-);
-
-export default App;
+export const SET_PAGE_DATA = 'SET_PAGE_DATA';
+export const REMOVE_PAGE_DATA = 'REMOVE_PAGE_DATA';

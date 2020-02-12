@@ -14,7 +14,18 @@
  * limitations under the License.
  */
 
-import { createStore } from 'redux';
-import reducers from './reducers/index';
+import React from 'react';
+import PropTypes from 'prop-types';
+import ExampleGraph from '../components/Graphs/exampleComponent';
 
-export const store = createStore(reducers);
+const App = ({ tabId }) => (
+  <div className="app">
+    <ExampleGraph tabId={tabId} />
+  </div>
+);
+
+App.propTypes = {
+  tabId: PropTypes.number.isRequired,
+};
+
+export default App;

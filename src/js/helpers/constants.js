@@ -15,22 +15,31 @@
  */
 
 // CONSTANTS
-export const REDUX_PORT = 'REDUX_PORT';
 export const PANEL_NAME = 'Knot.x';
 export const status = {
   succes: 'succes',
   error: 'error',
 };
 
+// CONNECTIONS
+export const chromeConnections = {
+  KNOTX_DEVTOOL_CONNECTION: 'KNOTX_DEVTOOL_CONNECTION',
+};
+
+// CONNECTION ACTIONS
+export const chromeActions = {
+  GET_CURRENT_TAB_INFO: 'GET_CURRENT_TAB_INFO',
+};
+
 // MESSAGES
 /* eslint-disable max-len */
 
 export const errorMsgs = {
-  getPageData: 'Knot.x devtool extension: Something gone wrong, or your page does not use Knot.x :( ',
+  setPageData: 'Knot.x devtool extension: Something gone wrong, or your page does not use Knot.x :( ',
 };
 
 export const succesMsgs = {
-  getPageData: 'Knot.x devtool extension: Succesfully get fragments and page data. You can start using Knot.x extension',
+  setPageData: 'Knot.x devtool extension: Succesfully get fragments and page data. You can start using Knot.x extension',
 };
 
 /* eslint-enable max-len */

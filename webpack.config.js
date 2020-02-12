@@ -2,6 +2,9 @@ const path = require('path');
 
 module.exports = {
   mode: 'development',
+  watchOptions: {
+    ignored: /node_modules/,
+  },
   entry: {
     main: './src/js/index.jsx',
     background: './src/js/background/background.js',

@@ -16,37 +16,71 @@
  */
 
 import { wrapStore } from 'webext-redux';
-import { getPageData } from '../state/actions/pageData';
+import { setPageData, removePageData } from '../state/actions/pageData';
 import { store } from '../state/store';
 import {
   status,
   succesMsgs,
   errorMsgs,
-  REDUX_PORT,
+  chromeConnections,
+  chromeActions,
 } from '../helpers/constants';
 
-wrapStore(store, { portName: REDUX_PORT });
+wrapStore(store);
+
+// reload all tabs (reload pages) when installing extension to reload page data.
+chrome.runtime.onInstalled.addListener(() => {
+  chrome.tabs.query({}, (tabs) => {
+    tabs.forEach((tab) => {
+      chrome.tabs.reload(tab.id);
+    });
+  });
+});
+
+
+chrome.tabs.onRemoved.addListener((tabId) => {
+  store.dispatch(removePageData({ id: tabId }));
+});
+
 
 chrome.runtime.onMessage.addListener(
   (request, sender, sendResponse) => {
     const pageDataObj = {
       fragments: request.fragmentsData,
+      id: sender.tab.id,
       url: sender.tab.url,
     };
 
-    store.dispatch(getPageData(pageDataObj));
+    store.dispatch(setPageData(pageDataObj));
 
     const { pageData } = store.getState();
-    if (pageData.fragments.length > 0 && pageData.url) {
+    if (pageData[pageDataObj.id].fragments.length > 0 && pageData[pageDataObj.id].url) {
       sendResponse({
         status: status.succes,
-        msg: succesMsgs.getPageData,
+        msg: succesMsgs.setPageData,
+        obj: pageData,
       });
     } else {
       sendResponse({
         status: status.error,
-        msg: errorMsgs.getPageData,
+        msg: errorMsgs.setPageData,
       });
     }
   },
 );
+
+
+chrome.runtime.onConnect.addListener((port) => {
+  if (port.name !== chromeConnections.KNOTX_DEVTOOL_CONNECTION) return;
+
+  port.onMessage.addListener((requestType) => {
+    if (requestType === chromeActions.GET_CURRENT_TAB_INFO) {
+      chrome.tabs.query({
+        active: true,
+      },
+      (tabs) => {
+        port.postMessage(tabs[0]);
+      });
+    }
+  });
+});

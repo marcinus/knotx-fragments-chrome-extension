@@ -18,19 +18,29 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Store } from 'webext-redux';
 import { Provider } from 'react-redux';
-import App from './apps/App';
+import App from './devtools/App';
 import '../sass/style.scss';
-import { REDUX_PORT, PANEL_NAME } from './helpers/constants';
+import {
+  PANEL_NAME,
+  chromeConnections,
+  chromeActions,
+} from './helpers/constants';
 
-const store = new Store({ portName: REDUX_PORT });
-
+const store = new Store();
 chrome.devtools.panels.create(PANEL_NAME, null, 'index.html');
 
-store.ready().then(() => {
-  ReactDOM.render(
-    <Provider store={store}>
-      <App />
-    </Provider>,
-    document.getElementById('root'),
-  );
+
+const port = chrome.runtime.connect({ name: chromeConnections.KNOTX_DEVTOOL_CONNECTION });
+
+port.postMessage(chromeActions.GET_CURRENT_TAB_INFO);
+port.onMessage.addListener(({ id }) => {
+  store.ready().then(() => {
+    ReactDOM.render(
+      <Provider store={store}>
+        <App tabId={id} />
+      </Provider>,
+      document.getElementById('root'),
+    );
+    port.disconnect();
+  });
 });
