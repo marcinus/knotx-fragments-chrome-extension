@@ -19,7 +19,6 @@ import ReactDOM from 'react-dom';
 import { Store } from 'webext-redux';
 import { Provider } from 'react-redux';
 import App from './devtools/App';
-import '../sass/style.scss';
 import {
   PANEL_NAME,
   chromeConnections,

@@ -143,7 +143,7 @@ test('Multiple fragments can be parsed', () => {
   expect(fragments).toHaveLength(3);
 });
 
-test('Fragments contain list of root elements with fragment id each', () => {
+test('Fragments contain a tag name and selector', () => {
   document.body.innerHTML = constructMarkupWithFragments(
     { id: 'test', debugData: '{}', nodes: '<div>Another fragment</div>' },
     {
@@ -160,13 +160,13 @@ test('Fragments contain list of root elements with fragment id each', () => {
   expect(fragments).toHaveLength(2);
 
   expect(fragments[0].nodes).toHaveLength(1);
-  expect(fragments[0].nodes[0].dataset).toHaveProperty('knotxId', 'test');
+  expect(fragments[0].nodes[0].tag).toEqual('DIV');
 
   const { nodes } = fragments[1];
   expect(nodes).toHaveLength(2);
   nodes.forEach((element) => {
-    expect(element).toBeInstanceOf(HTMLElement);
-    expect(element.dataset).toHaveProperty('knotxId', 'test2');
+    expect(element.tag).toEqual('DIV');
+    expect(typeof element.selector).toEqual('string');
   });
 });
 
@@ -202,23 +202,6 @@ test('Fragments can exist on different levels of nesting', () => {
 
   const fragments = findFragmentsInContent();
   expect(fragments).toHaveLength(3);
-});
-
-test('Nodes keep original properties', () => {
-  document.body.innerHTML = constructMarkupWithFragment('test', '{}', [
-    '<div data-test="1234" width="100%">Test fragment</div>',
-    '<div height="18px"><span>Lorem ipsum</span></div>',
-  ]);
-
-  const fragments = findFragmentsInContent();
-  expect(fragments).toHaveLength(1);
-  expect(fragments[0].nodes).toHaveLength(2);
-
-  const [node1, node2] = fragments[0].nodes;
-
-  expect(node1.dataset).toHaveProperty('test', '1234');
-  expect(node1.getAttribute('width')).toBe('100%');
-  expect(node2.getAttribute('height')).toBe('18px');
 });
 
 test('Nodes debug data is parsed as is', () => {

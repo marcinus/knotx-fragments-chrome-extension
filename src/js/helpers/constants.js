@@ -20,6 +20,28 @@ export const status = {
   succes: 'succes',
   error: 'error',
 };
+export const ENTER_KEY_CODE = 13;
+
+export const COLORS = {
+  TEXT_COLOR: '#2c2c2c',
+  BUTTON_BG_COLOR: '#c1c1c1',
+  FRAGMENT_HIGHLIGHT: '#0056d827',
+  BORDER_COLOR: '#adadad56',
+  ODD_FRAGMENT_BG_COLOR: '#dcdcdc44',
+  NODE_HIGHLIGHT: '#0e000034',
+  ODD_NODE_BG_COLOR: '#54545414',
+  DARK: {
+    TEXT_COLOR: '#d3d3d3',
+    BUTTON_BG_COLOR: '#6e6e6e',
+    FRAGMENT_HIGHLIGHT: '#0026ff34',
+    BORDER_COLOR: '#dcdcdc44',
+    ODD_FRAGMENT_BG_COLOR: '#ffffff13',
+    NODE_HIGHLIGHT: '#8fe3ff42',
+    ODD_NODE_BG_COLOR: '#add8e60e',
+  },
+};
+
+export const ARROW_DOWN = String.fromCharCode(8595);
 
 // CONNECTIONS
 export const chromeConnections = {

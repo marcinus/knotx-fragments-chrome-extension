@@ -16,23 +16,15 @@ module.exports = {
   },
 
   resolve: {
-    extensions: ['.js', '.jsx', '.css', '.scss'],
+    extensions: ['.js', '.jsx'],
   },
-
+  devtool: 'inline-source-map',
   module: {
     rules: [
       {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
         use: ['babel-loader', 'eslint-loader'],
-      },
-      {
-        test: /\.s[ac]ss$/i,
-        use: [
-          'style-loader',
-          'css-loader',
-          'sass-loader',
-        ],
       },
     ],
   },
