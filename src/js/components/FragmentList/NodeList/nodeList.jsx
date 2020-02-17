@@ -61,6 +61,7 @@ const NodeList = ({ expanded, children }) => {
   );
 };
 
+
 NodeList.defaultProps = {
   expanded: false,
   children: [],

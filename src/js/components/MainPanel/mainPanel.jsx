@@ -15,26 +15,30 @@
  */
 
 import React from 'react';
-import { ThemeProvider } from 'styled-components';
 import PropTypes from 'prop-types';
-import { defaultTheme, darkTheme } from './themes';
-import SidePanel from '../components/SidePanel/sidePanel';
-import MainPanel from '../components/MainPanel/mainPanel';
+import { useSelector } from 'react-redux';
+import { MainPanelWrapper } from './mainPanel.style';
+import GraphComponent from '../Graphs/graph';
+import { graphJson } from '../Graphs/exampleComponent.mock';
 
-const App = ({ tabId }) => {
-  const { themeName: chromeTheme } = chrome.devtools.panels;
-  const theme = chromeTheme === 'default' ? defaultTheme : darkTheme;
+const MainPanel = ({ tabId }) => {
+  const renderedGraph = useSelector(({ pageData }) => pageData[tabId].renderedGraph);
+  const sidebarExpanded = useSelector(({ pageData }) => pageData[tabId].sidebarExpanded);
 
   return (
-    <ThemeProvider theme={theme}>
-      <SidePanel tabId={tabId} />
-      <MainPanel tabId={tabId} />
-    </ThemeProvider>
+    <MainPanelWrapper sidebarExpanded={sidebarExpanded}>
+      <h1>
+        { renderedGraph }
+      </h1>
+      <GraphComponent
+        graphJson={graphJson}
+      />
+    </MainPanelWrapper>
   );
 };
 
-App.propTypes = {
+MainPanel.propTypes = {
   tabId: PropTypes.number.isRequired,
 };
 
-export default App;
+export default MainPanel;

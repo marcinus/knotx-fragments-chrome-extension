@@ -13,7 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { SET_PAGE_DATA, REMOVE_PAGE_DATA } from '../actionTypes/pageData';
+import {
+  SET_PAGE_DATA, REMOVE_PAGE_DATA, SET_SIDEBAR_EXPANDED, SET_RENDERED_GRAPH,
+} from '../actionTypes/pageData';
 
 export const initState = {};
 
@@ -25,6 +27,8 @@ export default (state = initState, { type, pageData }) => {
         [pageData.id]: {
           fragments: pageData.fragments,
           url: pageData.url,
+          sidebarExpanded: true,
+          renderedGraph: null,
         },
       };
 
@@ -33,6 +37,24 @@ export default (state = initState, { type, pageData }) => {
       if (newState[pageData.id]) delete newState[pageData.id];
       return newState;
     }
+
+    case SET_SIDEBAR_EXPANDED:
+      return {
+        ...state,
+        [pageData.id]: {
+          ...state[pageData.id],
+          sidebarExpanded: pageData.sidebarExpanded,
+        },
+      };
+
+    case SET_RENDERED_GRAPH:
+      return {
+        ...state,
+        [pageData.id]: {
+          ...state[pageData.id],
+          renderedGraph: pageData.renderedGraph,
+        },
+      };
 
     default:
       return state;

@@ -23,16 +23,16 @@ import data from './fragmentList.mock';
 import reducer from '../../state/reducers/index';
 import FragmentList, { mapDataToComponents } from './fragmentList';
 import FragmentListItem from './FragmentListItem/fragmentListItem';
+import { ExpandNodeListButton } from './FragmentListItem/fragmentListItem.style';
 import NodeList from './NodeList/nodeList';
 import { SortingButton } from './fragmentList.style';
+import { NodeButton } from './NodeList/nodeList.style';
 
 Enzyme.configure({ adapter: new EnzymeAdapter() });
 
 describe('<FragmentList /> unit test', () => {
-  const mockStore = createStore(reducer, { pageData: data });
-
   const getWrapper = () => mount(
-    <Provider store={mockStore}>
+    <Provider store={createStore(reducer, { pageData: data })}>
       <FragmentList tabId={777} />
     </Provider>,
   );
@@ -88,6 +88,15 @@ describe('<FragmentList /> unit test', () => {
       .toHaveLength(1);
   });
 
+  it('should render duration', () => {
+    const wrapper = getWrapper();
+    expect(wrapper
+      .findWhere(
+        (n) => n.name() === 'FragmentListItem' && n.prop('time') === 158,
+      ))
+      .toHaveLength(1);
+  });
+
   it('should render node list under each fragment', () => {
     const wrapper = getWrapper();
     expect(wrapper
@@ -95,19 +104,10 @@ describe('<FragmentList /> unit test', () => {
       .contains(NodeList)).toEqual(true);
   });
 
-  it('nodelist should not be expanded by default', () => {
-    const wrapper = getWrapper();
-    expect(wrapper
-      .find(FragmentListItem)
-      .first()
-      .find(NodeList)
-      .prop('expanded')).toEqual(false);
-  });
-
-  it('nodelist should be displayed after first click', () => {
+  it('nodelist should be displayed after first click on expand node list button', () => {
     const wrapper = getWrapper();
     wrapper
-      .find(FragmentListItem)
+      .find(ExpandNodeListButton)
       .first()
       .simulate('click');
 
@@ -121,7 +121,7 @@ describe('<FragmentList /> unit test', () => {
   it('nodelist should not be displayed after second click', () => {
     const wrapper = getWrapper();
     wrapper
-      .find(FragmentListItem)
+      .find(ExpandNodeListButton)
       .first()
       .simulate('click')
       .simulate('click');
@@ -138,11 +138,11 @@ describe('<FragmentList /> unit test', () => {
     expect(wrapper
       .find(FragmentListItem)
       .first()
-      .find('button')).toHaveLength(2);
+      .find(NodeButton)).toHaveLength(2);
   });
 
   it('mapDataToComponents should create proper React objects', () => {
-    const generatedComponents = mapDataToComponents(data[777].fragments);
+    const generatedComponents = mapDataToComponents(data[777].fragments, 777);
     expect(generatedComponents).toHaveLength(5);
     generatedComponents.forEach((element) => {
       expect(element).toHaveProperty('props');

@@ -8,7 +8,7 @@
   ],
   "scripts": {
     "dev": "webpack",
-    "watch": "watch 'yarn run dev'",
+    "watch": "webpack --watch",
     "test": "jest -c jest.config.js",
     "lint": "eslint -c .eslintrc.json 'src/js/**'",
     "release": "node ./scripts/build.js",

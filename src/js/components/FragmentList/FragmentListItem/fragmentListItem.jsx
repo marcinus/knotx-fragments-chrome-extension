@@ -16,39 +16,77 @@
 
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import { useDispatch } from 'react-redux';
 import {
-  FragmentListItemWrapper, Id, Status, StatusWrapper, Type,
+  FragmentListItemContainer, Id, Status, StatusWrapper, Type, ExpandNodeListButton, IdHeader, Time, OverflowWrapper,
 } from './fragmentListItem.style';
 import NodeList from '../NodeList/nodeList';
-import { ENTER_KEY_CODE } from '../../../helpers/constants';
+import {
+  ENTER_KEY_CODE, PAGE_BREAK, ARROW_DOWN, ARROW_UP,
+} from '../../../helpers/constants';
+import { setSidebarExpanded, setRenderedGraph } from '../../../state/actions/pageData';
 
 const FragmentListItem = ({
-  status, id, type, nodes,
+  status, id, type, nodes, tabId, time,
 }) => {
   const [expanded, setExpanded] = useState(false);
+  const dispatch = useDispatch();
 
-  function handleEnter(event) {
-    if (event.keyCode === ENTER_KEY_CODE) {
-      setExpanded(!expanded);
+  function renderGraph() {
+    dispatch(
+      setRenderedGraph({
+        id: tabId,
+        renderedGraph: id,
+      }),
+    );
+
+    if (window.innerWidth < PAGE_BREAK) {
+      dispatch(
+        setSidebarExpanded({
+          id: tabId,
+          sidebarExpanded: false,
+        }),
+      );
     }
   }
 
   return (
-    <FragmentListItemWrapper
-      tabIndex="0"
-      onClick={() => setExpanded(!expanded)}
-      onKeyDown={handleEnter}
-      expanded={expanded}
-    >
-      <StatusWrapper>
-        <Status status={status} />
-      </StatusWrapper>
-      <Id>
-        {id}
-        <NodeList expanded={expanded}>{nodes}</NodeList>
-      </Id>
-      <Type>{type}</Type>
-    </FragmentListItemWrapper>
+    <>
+      <FragmentListItemContainer
+        tabIndex="0"
+        onClick={renderGraph}
+        onKeyDown={(e) => {
+          if (e.keyCode === ENTER_KEY_CODE) {
+            renderGraph();
+          }
+        }}
+        expanded={expanded}
+      >
+        <StatusWrapper>
+          <Status status={status} />
+        </StatusWrapper>
+        <Id>
+          <IdHeader>
+            <OverflowWrapper>
+              {id}
+            </OverflowWrapper>
+
+            <ExpandNodeListButton
+              onClick={(e) => {
+                e.stopPropagation();
+                setExpanded(!expanded);
+              }}
+              onKeyDown={(e) => e.stopPropagation()}
+            >
+              {expanded ? ARROW_UP : ARROW_DOWN}
+            </ExpandNodeListButton>
+          </IdHeader>
+        </Id>
+        <Type>{type}</Type>
+        <Time>{`${time}ms`}</Time>
+      </FragmentListItemContainer>
+      <NodeList expanded={expanded}>{nodes}</NodeList>
+    </>
   );
 };
 
@@ -61,6 +99,8 @@ FragmentListItem.propTypes = {
   id: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
   nodes: PropTypes.arrayOf(PropTypes.object),
+  tabId: PropTypes.number.isRequired,
+  time: PropTypes.number.isRequired,
 };
 
 export default FragmentListItem;

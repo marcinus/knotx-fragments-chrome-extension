@@ -24,24 +24,41 @@ export const ENTER_KEY_CODE = 13;
 
 export const COLORS = {
   TEXT_COLOR: '#2c2c2c',
-  BUTTON_BG_COLOR: '#c1c1c1',
+  BUTTON_BG_COLOR: '#a5a5a5',
   FRAGMENT_HIGHLIGHT: '#0056d827',
   BORDER_COLOR: '#adadad56',
   ODD_FRAGMENT_BG_COLOR: '#dcdcdc44',
   NODE_HIGHLIGHT: '#0e000034',
   ODD_NODE_BG_COLOR: '#54545414',
+  SIDE_PANEL_BG_COLOR: '#f5f5f5',
+  BUTTON_HOVER: '#4c4c4c',
+  SUCCESS: '#01a101',
+  ERROR: '##ff0000',
+  UNPROCESSED: '##a7a7a7',
+  WARNING: '#ffbb00',
+  EXPAND_NODE_LIST_BG: 'transparent',
+  EXPAND_NODE_LIST_BG_HOVER: '#8cde9a47',
+  MENU_TOGGLE_BUTTON: '#000',
   DARK: {
-    TEXT_COLOR: '#d3d3d3',
+    TEXT_COLOR: '#fff',
     BUTTON_BG_COLOR: '#6e6e6e',
     FRAGMENT_HIGHLIGHT: '#0026ff34',
     BORDER_COLOR: '#dcdcdc44',
     ODD_FRAGMENT_BG_COLOR: '#ffffff13',
     NODE_HIGHLIGHT: '#8fe3ff42',
     ODD_NODE_BG_COLOR: '#add8e60e',
+    SIDE_PANEL_BG_COLOR: '#3a3a3a',
+    BUTTON_HOVER: '#ffffff42',
+    EXPAND_NODE_LIST_BG_HOVER: '#8cde9a47',
+    MENU_TOGGLE_BUTTON: '#fff',
   },
 };
 
 export const ARROW_DOWN = String.fromCharCode(8595);
+export const ARROW_UP = String.fromCharCode(8593);
+export const CROSS = String.fromCharCode(10007);
+export const HAMBURGER = String.fromCharCode(9776);
+export const PAGE_BREAK = 700;
 
 // CONNECTIONS
 export const chromeConnections = {

@@ -18,12 +18,15 @@ import styled from 'styled-components';
 
 export const NodeListWrapper = styled.div`
     display: ${({ expanded }) => (expanded ? 'block' : 'none')};
+    margin-left: 25px;
+    border-left: 1px solid grey;
 `;
 
 export const NodeButton = styled.button`
     background-color: transparent;
     border: 0;
     width: 100%;
+    font-size: 12px;
     color: ${({ theme }) => theme.textColor};
     text-align: start;
     border-bottom: 1px solid ${({ theme }) => theme.borderColor};

@@ -23,9 +23,10 @@ import {
 import FragmentListItem from './FragmentListItem/fragmentListItem';
 import { ARROW_DOWN } from '../../helpers/constants';
 
-export function mapDataToComponents(fragments) {
+export function mapDataToComponents(fragments, tabId) {
   return fragments.map(({ debug, nodes }) => {
     const { fragment } = debug;
+    const duration = debug.finishTime - debug.startTime;
     return (
       <FragmentListItem
         key={fragment.id}
@@ -33,6 +34,8 @@ export function mapDataToComponents(fragments) {
         status={debug.status.toLowerCase()}
         type={fragment.type}
         nodes={nodes}
+        tabId={tabId}
+        time={duration}
       />
     );
   });
@@ -55,7 +58,7 @@ export function sortFragmentsByStatus(fragments) {
 
 const FragmentList = ({ tabId }) => {
   const data = useSelector((state) => state.pageData[tabId].fragments);
-  const parsedData = mapDataToComponents(data);
+  const parsedData = mapDataToComponents(data, tabId);
   const [fragments, setFragments] = useState(parsedData);
 
   const typeSortComparator = (a, b) => a.props.type.localeCompare(b.props.type);
@@ -85,6 +88,12 @@ const FragmentList = ({ tabId }) => {
           {ARROW_DOWN}
         </SortingButton>
 
+        <SortingButton
+          onClick={() => setFragments(fragments.concat().sort())}
+        >
+          TIME
+          {ARROW_DOWN}
+        </SortingButton>
       </SortingWrapper>
       {fragments}
     </FragmentListWrapper>

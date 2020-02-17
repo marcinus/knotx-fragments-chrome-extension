@@ -15,28 +15,13 @@
  */
 
 import styled from 'styled-components';
+import { PAGE_BREAK } from '../../helpers/constants';
 
-export const FragmentListWrapper = styled.div`
-    display: flex;
-    flex-direction: column;
-    align-items: stretch;
-`;
-
-export const SortingWrapper = styled.div`
-    display: flex;
-    min-height: 25px;
-`;
-
-export const SortingButton = styled.button`
-    border: 0;
-    margin: 1px;
-    padding: 2px;
-    font-size: 14px;
-    flex: ${({ status }) => (status ? '' : 1)};
-    width: ${({ status }) => (status ? '25px' : '')};
-    color: ${({ theme }) => theme.textColor};
-    background-color: ${({ theme }) => theme.buttonBgColor};
-    &:active {
-        background-color: ${({ theme }) => theme.fragmentHighlight};
+export const MainPanelWrapper = styled.div`
+    margin-top: 40px;
+    @media (min-width: ${PAGE_BREAK}px) {
+        position: ${({ sidebarExpanded }) => (sidebarExpanded ? 'relative' : '')};
+        left: ${({ sidebarExpanded }) => (sidebarExpanded ? '40%' : '0')};
+        width: ${({ sidebarExpanded }) => (sidebarExpanded ? '60%' : '100vw')};
     }
 `;

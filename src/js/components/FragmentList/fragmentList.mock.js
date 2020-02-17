@@ -24,6 +24,8 @@ export default {
             type: 'E',
           },
           status: 'ERROR',
+          finishTime: 1582806545315,
+          startTime: 1582806545157,
         },
         nodes: [
           {
@@ -43,6 +45,8 @@ export default {
             type: 'D',
           },
           status: 'SUCCESS',
+          finishTime: 2,
+          startTime: 1,
         },
         nodes: [
           {
@@ -62,6 +66,8 @@ export default {
             type: 'C',
           },
           status: 'OTHER',
+          finishTime: 2,
+          startTime: 1,
         },
         nodes: [
           {
@@ -81,6 +87,8 @@ export default {
             type: 'B',
           },
           status: 'UNPROCESSED',
+          finishTime: 2,
+          startTime: 1,
         },
         nodes: [
           {
@@ -100,6 +108,8 @@ export default {
             type: 'A',
           },
           status: 'MISSING',
+          finishTime: 2,
+          startTime: 1,
         },
         nodes: [
           {
