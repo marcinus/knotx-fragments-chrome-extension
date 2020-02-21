@@ -28,14 +28,16 @@ import {
 
 wrapStore(store);
 
-// reload all tabs (reload pages) when installing extension to reload page data.
-chrome.runtime.onInstalled.addListener(() => {
+const reloadAllPages = () => {
   chrome.tabs.query({}, (tabs) => {
     tabs.forEach((tab) => {
       chrome.tabs.reload(tab.id);
     });
   });
-});
+};
+
+chrome.runtime.onInstalled.addListener(() => reloadAllPages());
+chrome.management.onEnabled.addListener(() => reloadAllPages());
 
 
 chrome.tabs.onRemoved.addListener((tabId) => {

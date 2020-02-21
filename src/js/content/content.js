@@ -21,7 +21,7 @@ window.onload = () => {
   chrome.runtime.sendMessage({ fragmentsData: findFragmentsInContent() }, (response) => {
     /* eslint-disable no-console */
     if (response.status === status.error) {
-      console.warn(response.msg);
+      console.log(response.msg);
     }
     if (response.status === status.succes) {
       console.log(response.msg);
