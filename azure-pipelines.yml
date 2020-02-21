@@ -48,5 +48,5 @@ steps:
     condition: succeededOrFailed()
     inputs:
       testResultsFormat: 'JUnit'
-      testResultsFiles: 'test-report.xml'
+      testResultsFiles: 'build/test/test-report.xml'
       testRunTitle: 'React tests'

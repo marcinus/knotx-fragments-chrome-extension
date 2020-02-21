@@ -9,7 +9,7 @@
   "scripts": {
     "dev": "webpack",
     "watch": "watch 'yarn run dev'",
-    "test": "jest",
+    "test": "jest -c jest.config.js",
     "lint": "eslint -c .eslintrc.json 'src/js/**'",
     "release": "node ./scripts/build.js",
     "release:minor": "node ./scripts/build.js minor",
@@ -57,8 +57,5 @@
     "semver": "^7.1.2",
     "vis-network": "^7.2.0",
     "webext-redux": "^2.1.6"
-  },
-  "jest": {
-    "testResultsProcessor": "./node_modules/jest-junit-reporter"
   }
 }

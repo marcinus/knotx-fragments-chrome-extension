@@ -55,7 +55,7 @@ const getNodesBetween = (firstNode, lastNode) => {
 
   while (node && node !== lastNode) {
     nodes.push(node);
-    node = node ? node.nextSibling : null;
+    node = node.nextSibling;
   }
 
   return nodes;
