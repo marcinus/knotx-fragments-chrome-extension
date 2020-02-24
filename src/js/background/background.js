@@ -21,7 +21,6 @@ import { store } from '../state/store';
 import {
   status,
   succesMsgs,
-  errorMsgs,
   chromeConnections,
   chromeActions,
 } from '../helpers/constants';
@@ -61,11 +60,6 @@ chrome.runtime.onMessage.addListener(
         status: status.succes,
         msg: succesMsgs.setPageData,
         obj: pageData,
-      });
-    } else {
-      sendResponse({
-        status: status.error,
-        msg: errorMsgs.setPageData,
       });
     }
   },

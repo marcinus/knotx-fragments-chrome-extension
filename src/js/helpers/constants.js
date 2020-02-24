@@ -55,11 +55,6 @@ export const chromeActions = {
 
 // MESSAGES
 /* eslint-disable max-len */
-
-export const errorMsgs = {
-  setPageData: 'Knot.x devtool extension: Something gone wrong, or your page does not use Knot.x :( ',
-};
-
 export const succesMsgs = {
   setPageData: 'Knot.x devtool extension: Succesfully get fragments and page data. You can start using Knot.x extension',
 };

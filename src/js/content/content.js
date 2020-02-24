@@ -19,13 +19,9 @@ import { status } from '../helpers/constants';
 
 window.onload = () => {
   chrome.runtime.sendMessage({ fragmentsData: findFragmentsInContent() }, (response) => {
-    /* eslint-disable no-console */
-    if (response.status === status.error) {
-      console.log(response.msg);
-    }
     if (response.status === status.succes) {
+      // eslint-disable-next-line no-console
       console.log(response.msg);
     }
-    /* eslint-enable no-console */
   });
 };
