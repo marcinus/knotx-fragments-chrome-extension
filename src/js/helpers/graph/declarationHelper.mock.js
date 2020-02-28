@@ -146,6 +146,115 @@ export const compositeNodeWithTransitions = {
   },
 };
 
+export const compositeWithMultipleLevelEndNodes = {
+  id: 'A',
+  label: 'A label',
+  status: 'error',
+  type: 'composite',
+  subtasks: [
+    {
+      id: 'A-A',
+      label: 'A-A label',
+      status: 'error',
+      type: 'single',
+      response: {
+        invocations: {},
+        transition: '_error',
+      },
+    },
+    {
+      id: 'A-B',
+      label: 'A-B label',
+      status: 'success',
+      type: 'single',
+      on: {
+        _error: {
+          id: 'A-B A',
+          label: 'A-B A label',
+          status: 'success',
+          type: 'single',
+          response: {
+            invocations: {},
+            transition: '_success',
+          },
+        },
+      },
+      response: {
+        invocations: {},
+        transition: '_error',
+      },
+    },
+  ],
+  on: {
+    _success: {
+      id: 'B',
+      label: 'B label',
+      status: 'error',
+      type: 'single',
+      response: {
+        invocations: {},
+        transition: '_error',
+      },
+    },
+  },
+  response: {
+    invocations: {},
+    transition: '_success',
+  },
+};
+
+export const compositeWithNodeWithAllTransitions = {
+  id: 'A',
+  label: 'A label',
+  status: 'success',
+  type: 'composite',
+  subtasks: [
+    {
+      id: 'A-A',
+      label: 'A-A label',
+      status: 'success',
+      type: 'single',
+      on: {
+        _success: {
+          id: 'A-A-A',
+          label: 'A-A-A label',
+          status: 'success',
+          type: 'single',
+          response: {
+            invocations: {},
+            transition: 'success',
+          },
+        },
+        _error: {
+          id: 'A-A-B',
+          label: 'A-A-B label',
+          status: 'unprocessed',
+          type: 'single',
+        },
+      },
+      response: {
+        invocations: {},
+        transition: 'success',
+      },
+    },
+  ],
+  response: {
+    transition: '_success',
+  },
+  on: {
+    _success: {
+      id: 'A A',
+      label: 'A A label',
+      status: 'success',
+      type: 'single',
+      response: {
+        invocations: {},
+        transition: 'success',
+      },
+    },
+  },
+};
+
 export const compositeWithComplexTransitions = {
   id: 'A',
   label: 'A label',

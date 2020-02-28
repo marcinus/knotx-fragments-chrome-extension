@@ -111,15 +111,13 @@ export const defaultGraphConfiguration = {
     hierarchical: {
       levelSeparation: 80,
       direction: 'UD',
-      nodeSpacing: 150,
+      nodeSpacing: 200,
       sortMethod: 'directed',
       blockShifting: false,
       shakeTowards: 'roots',
     },
   },
-  interaction: {
-    dragNodes: false,
-  },
+  physics: false,
 };
 
 export const drawGraph = (graph, element, options = defaultGraphConfiguration) => new Network(element, graph, options);

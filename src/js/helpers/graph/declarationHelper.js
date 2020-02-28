@@ -15,6 +15,9 @@
  */
 
 import GraphLayers from './graphLayers';
+import {
+  isReference, hasTransitions, hasPreDefinedTransitions, hasTransition, isComposite, getReference,
+} from './nodeRecognitionHelper';
 
 export const getNodeGroup = (node) => {
   if (node.type === 'virtual_start') {
@@ -28,40 +31,31 @@ export const getNodeGroup = (node) => {
   return node.status.toLowerCase();
 };
 
-export const isComposite = (node) => node.type.toLowerCase() === 'composite';
-
-const isEmptyObject = (object) => object.constructor === Object && Object.entries(object).length === 0;
-
-export const hasTransitions = (node) => !!node.on && !isEmptyObject(node.on);
-
-const isReference = (node) => typeof node === 'string';
-
-const getReference = (node) => node.id;
-
 const createVisNode = (node) => ({
   id: node.id,
   label: node.label,
   group: getNodeGroup(node),
 });
 
-const getLeafs = (root, depth = 0) => {
+const getEndNodes = (root, depth = 0) => {
   if (!hasTransitions(root)) {
     return { node: root, depth };
   }
 
-  return Object.entries(root.on).flatMap(([, child]) => getLeafs(child, depth + 1));
+  if (!hasPreDefinedTransitions(root) && root.type !== 'virtual_start') {
+    return [
+      ...Object.values(root.on).flatMap((child) => getEndNodes(child, depth + 1)),
+      { node: root, depth },
+    ];
+  }
+
+  return Object.values(root.on).flatMap((child) => getEndNodes(child, depth + 1));
 };
 
 const createTransitionTo = (node, name) => ({ name, node, isReference: typeof node === 'string' });
 
-const getTransitions = (node) => {
-  if (hasTransitions(node)) {
-    return Object.entries(node.on)
-      .map(([transitionName, child]) => createTransitionTo(child, transitionName));
-  }
-
-  return [];
-};
+const getTransitions = (node) => Object.entries(node.on || {})
+  .map(([transitionName, child]) => createTransitionTo(child, transitionName));
 
 const createVirtualStartNode = (composite, transitions) => ({
   ...composite,
@@ -82,18 +76,24 @@ const createVirtualEndNode = (composite, transitions) => ({
 const createTransitionsToSubtasks = (subtasks) => subtasks
   .reduce((total, current, index) => ({ ...total, [`_subtask_${index}`]: current }), {});
 
-const sortDeepestFirst = (leaf1, leaf2) => leaf2.depth - leaf1.depth;
+const getNodeWithTransitionInEndNodes = (root, transitionName, transitionTo) => {
+  const newRoot = JSON.parse(JSON.stringify(root));
 
-const putTransitionInLeafs = (root, transitionName, transitionTo) => getLeafs(root)
-  .sort(sortDeepestFirst)
-  .map((leaf) => leaf.node)
-  .filter((leaf) => !isReference(leaf))
-  .forEach((leaf, index) => {
-    const node = leaf;
-    const to = index === 0 ? { ...transitionTo } : getReference(transitionTo);
+  getEndNodes(newRoot)
+    .sort((leaf1, leaf2) => leaf2.depth - leaf1.depth)
+    .map((leaf) => leaf.node)
+    .filter((leaf) => !isReference(leaf))
+    .forEach((leaf, index) => {
+      const node = leaf;
 
-    node.on = { [transitionName]: to };
-  });
+      if (!hasTransition(node, transitionName)) {
+        const to = index === 0 ? { ...transitionTo } : getReference(transitionTo);
+        node.on = { ...node.on, [transitionName]: to };
+      }
+    });
+
+  return newRoot;
+};
 
 export const flattenComposites = (node) => {
   let flattenedNode;
@@ -110,12 +110,11 @@ export const flattenComposites = (node) => {
         startNode.on[transition] = flattenComposites(child);
       });
 
-      putTransitionInLeafs(startNode, '_subtask_end', endNode);
+      flattenedNode = getNodeWithTransitionInEndNodes(startNode, '_subtask_end', endNode);
     } else {
       startNode.on = { _subtask_end: endNode };
+      flattenedNode = startNode;
     }
-
-    flattenedNode = startNode;
   } else {
     flattenedNode = { ...node };
 

@@ -14,9 +14,7 @@
  * limitations under the License.
  */
 
-import {
-  constructGraph, flattenComposites, hasTransitions, isComposite,
-} from './declarationHelper';
+import { constructGraph, flattenComposites } from './declarationHelper';
 import * as mock from './declarationHelper.mock';
 import {
   COLOR_OTHER, COLOR_SUCCESS, COLOR_ERROR, COLOR_DEFAULT_EDGE, COLOR_UNPROCESSED_EDGE,
@@ -37,28 +35,6 @@ const createEdge = (from, to, unprocessed = false, label = '', fontColor = COLOR
     color: fontColor,
   },
   color: unprocessed ? COLOR_UNPROCESSED_EDGE : COLOR_DEFAULT_EDGE,
-});
-
-// ************************
-// utility tests
-// ************************
-
-test('Node transision existance is correctly identified', () => {
-  expect(hasTransitions({})).toBeFalse();
-  expect(hasTransitions({ on: {} })).toBeFalse();
-  expect(hasTransitions({ on: { _success: {} } })).toBeTrue();
-});
-
-test('Composites are correctly identified', () => {
-  const lowercaseComposite = { type: 'composite' };
-  const uppercaseComposite = { type: 'COMPOSITE' };
-  const lowercaseSingle = { type: 'single' };
-  const uppercaseSingle = { type: 'SINGLE' };
-
-  expect(isComposite(lowercaseComposite)).toBeTrue();
-  expect(isComposite(uppercaseComposite)).toBeTrue();
-  expect(isComposite(lowercaseSingle)).toBeFalse();
-  expect(isComposite(uppercaseSingle)).toBeFalse();
 });
 
 // ************************
@@ -103,6 +79,40 @@ test('Flattened subtasks have properly assigned transitions to the end node', ()
 
   expect(subtask1.on._subtask_end).toBeInstanceOf(Object); // the deepest subtask-leaf
   expect(typeof subtask2.on._subtask_end).toBe('string'); // only reference
+});
+
+test('Flattening doesn\'t mutate the original graph', () => {
+  const mocked = mock.compositeWithNodeWithAllTransitions;
+  const original = JSON.parse(JSON.stringify(mocked));
+
+  flattenComposites(mocked);
+
+  expect(mocked).toStrictEqual(original);
+});
+
+test('Flattened nested composited have properly assigned transitions to the end node', () => {
+  const flattenedGraph = flattenComposites(mock.nestedComposites);
+
+  const nestedSubtask = flattenedGraph.on._subtask_0.on._subtask_0;
+
+  expect(nestedSubtask.on).toHaveProperty('_subtask_end');
+  expect(nestedSubtask.on._subtask_end).toBeInstanceOf(Object); // not a reference
+});
+
+test('All subtasks\' nodes without explicit success or error connections are connected to the end node', () => {
+  const flattenedGraph = flattenComposites(mock.compositeWithMultipleLevelEndNodes);
+
+  const [subtask1, subtask2] = [flattenedGraph.on._subtask_0, flattenedGraph.on._subtask_1];
+
+  expect(subtask1.on).toHaveProperty('_subtask_end');
+  expect(subtask2.on).toHaveProperty('_subtask_end');
+  expect(subtask2.on._error.on).toHaveProperty('_subtask_end');
+});
+
+test('Non-leaf subtasks\' nodes with both success and error transitions are not connected to the end node', () => {
+  const flattenedGraph = flattenComposites(mock.compositeWithNodeWithAllTransitions);
+
+  expect(flattenedGraph.on._subtask_0.on).not.toHaveProperty('_subtask_end');
 });
 
 // ************************
@@ -198,6 +208,7 @@ test('Composite\'s transitions are one level below it\'s virtual node', () => {
       createEdge('A_virtual', 'A-B'),
       createEdge('A-A', 'A_virtual2'),
       createEdge('A-B', 'A-B A', false, '_error', COLOR_ERROR),
+      createEdge('A-B', 'A_virtual2', true),
       createEdge('A-B A', 'A_virtual2'),
       createEdge('A_virtual2', 'B', false, '_success', COLOR_SUCCESS),
     ],
@@ -244,6 +255,7 @@ test('Missing subtasks have proper transition to virtual composite node', () => 
     edges: [
       createEdge('A_virtual', 'A-A'),
       createEdge('A-A', 'A-A A', false, 'custom', COLOR_OTHER),
+      createEdge('A-A', 'A_virtual2', true),
       createEdge('A-A A', 'A_virtual2'),
     ],
   };

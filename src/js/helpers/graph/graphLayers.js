@@ -18,6 +18,8 @@ import {
   COLOR_SUCCESS, COLOR_ERROR, COLOR_OTHER, COLOR_UNPROCESSED_EDGE, COLOR_DEFAULT_EDGE,
 } from './drawingHelper';
 
+import { hasProcessedTransitions } from './nodeRecognitionHelper';
+
 const getEdgeLabel = (label) => (/^_subtask_([0-9+]|end)$/.test(label) ? '' : label);
 
 const getEdgeLabelColor = (label) => {
@@ -42,7 +44,15 @@ const getTransitionType = (from, transition) => {
     return 'unprocessed';
   }
 
-  if (from.type === 'virtual_start' || to.type === 'virtual_end' || transition.isReference) {
+  if (to.type === 'virtual_end' || transition.isReference) {
+    if (Object.entries(from.on).length === 1 || !hasProcessedTransitions(from)) {
+      return 'processed';
+    }
+
+    return 'unprocessed';
+  }
+
+  if (from.type === 'virtual_start') {
     return 'processed';
   }
 
