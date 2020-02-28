@@ -16,7 +16,7 @@
 
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import {
   FragmentListItemContainer, Id, Status, StatusWrapper, Type, ExpandNodeListButton, IdHeader, Time, OverflowWrapper,
 } from './fragmentListItem.style';
@@ -31,6 +31,7 @@ const FragmentListItem = ({
 }) => {
   const [expanded, setExpanded] = useState(false);
   const dispatch = useDispatch();
+  const activeFragment = useSelector(({ pageData }) => pageData[tabId].renderedGraph);
 
   function renderGraph() {
     dispatch(
@@ -61,6 +62,7 @@ const FragmentListItem = ({
           }
         }}
         expanded={expanded}
+        active={id === activeFragment}
       >
         <StatusWrapper>
           <Status status={status} />

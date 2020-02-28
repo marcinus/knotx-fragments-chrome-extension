@@ -19,22 +19,32 @@ import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
 import { MainPanelWrapper } from './mainPanel.style';
 import GraphComponent from '../Graphs/graph';
-import { graphJson } from '../Graphs/exampleComponent.mock';
 
 const MainPanel = ({ tabId }) => {
-  const renderedGraph = useSelector(({ pageData }) => pageData[tabId].renderedGraph);
+  const renderedGraphId = useSelector(({ pageData }) => pageData[tabId].renderedGraph);
   const sidebarExpanded = useSelector(({ pageData }) => pageData[tabId].sidebarExpanded);
+  const graphData = useSelector(({ pageData }) => (renderedGraphId
+    ? pageData[tabId].fragments.find((el) => el.debug.fragment.id === renderedGraphId).debug.graph
+    : null));
 
-  return (
-    <MainPanelWrapper sidebarExpanded={sidebarExpanded}>
-      <h1>
-        { renderedGraph }
-      </h1>
-      <GraphComponent
-        graphJson={graphJson}
-      />
-    </MainPanelWrapper>
-  );
+  return graphData
+    ? (
+      <MainPanelWrapper sidebarExpanded={sidebarExpanded}>
+        <h1>
+          { renderedGraphId }
+        </h1>
+        <GraphComponent
+          graphJson={graphData}
+        />
+      </MainPanelWrapper>
+    )
+    : (
+      <MainPanelWrapper sidebarExpanded={sidebarExpanded}>
+        <h1>
+          Please Choose any fragment
+        </h1>
+      </MainPanelWrapper>
+    );
 };
 
 MainPanel.propTypes = {

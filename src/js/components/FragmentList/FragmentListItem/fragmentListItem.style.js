@@ -20,7 +20,7 @@ export const FragmentListItemContainer = styled.div`
     display: flex;
     border-bottom: 1px solid ${({ theme }) => theme.borderColor};
     color: ${({ theme }) => theme.textColor};
-    background-color: ${({ expanded, theme }) => (expanded ? theme.fragmentHighlight : '')};
+    background-color: ${({ active, theme }) => (active ? theme.fragmentActive : '')};
     margin: 1px;
     min-height: 40px;
     align-items: center;

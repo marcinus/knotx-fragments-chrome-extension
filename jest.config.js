@@ -25,8 +25,11 @@ module.exports = {
       statements: 100,
     },
     './src/js/components/': {
-      branches: 80,
-      statements: 80,
+      branches: 70,
+      statements: 70,
+      // TODO https://github.com/Knotx/knotx-fragments-chrome-extension/issues/35
+      // branches: 80,
+      // statements: 80,
     },
   },
   setupFilesAfterEnv: ['jest-extended'],

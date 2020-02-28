@@ -38,7 +38,7 @@ const getTransitionType = (from, transition) => {
     return 'processed';
   }
 
-  if (from.status === 'unprocessed') {
+  if (from.status.toLowerCase() === 'unprocessed') {
     return 'unprocessed';
   }
 
@@ -75,8 +75,8 @@ export default class GraphLayers {
       font: {
         color: getEdgeLabelColor(transition.name),
       },
-      dashes: type === 'unprocessed',
-      color: type === 'unprocessed' ? COLOR_UNPROCESSED_EDGE : COLOR_DEFAULT_EDGE,
+      dashes: type.toLowerCase() === 'unprocessed',
+      color: type.toLowerCase() === 'unprocessed' ? COLOR_UNPROCESSED_EDGE : COLOR_DEFAULT_EDGE,
     });
   }
 

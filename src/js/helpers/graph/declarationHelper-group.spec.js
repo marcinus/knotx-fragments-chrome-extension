@@ -14,10 +14,8 @@
  * limitations under the License.
  */
 
-import { constructGraph } from './declarationHelper';
+import { constructGraph, getNodeGroup } from './declarationHelper';
 import * as mock from './declarationHelper-group.mock';
-
-/* eslint-disable no-underscore-dangle */
 
 test('Single nodes belong to proper groups', () => {
   const { nodes: successNodes } = constructGraph(mock.successNode);
@@ -58,4 +56,16 @@ test('Composite nodes belong to proper groups', () => {
   expect(unprocessedNodes).toHaveLength(3);
   expect(unprocessedNodes[0]).toHaveProperty('group', 'virtual');
   expect(unprocessedNodes[2]).toHaveProperty('group', 'virtual_unprocessed');
+});
+
+test('Group name is always lowercase', () => {
+  expect(getNodeGroup({ status: 'SUCCESS' })).toBe('success');
+  expect(getNodeGroup({ status: 'ERROR' })).toBe('error');
+  expect(getNodeGroup({ status: 'MISSING' })).toBe('missing');
+  expect(getNodeGroup({ status: 'UNPROCESSED' })).toBe('unprocessed');
+  expect(getNodeGroup({ status: 'OTHER' })).toBe('other');
+
+  expect(getNodeGroup({ type: 'virtual_end', status: 'SUCCESS' })).toBe('virtual_success');
+  expect(getNodeGroup({ type: 'virtual_end', status: 'ERROR' })).toBe('virtual_error');
+  expect(getNodeGroup({ type: 'virtual_end', status: 'UNPROCESSED' })).toBe('virtual_unprocessed');
 });

@@ -28,7 +28,7 @@ Enzyme.configure({ adapter: new EnzymeAdapter() });
 
 describe('<NodeList /> unit test', () => {
   const getWrapper = () => mount(
-    <Provider store={createStore(reducer, { pageData: {} })}>
+    <Provider store={createStore(reducer, { pageData: { 1: {} } })}>
       <FragmentListItem
         key={1}
         id="1"

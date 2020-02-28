@@ -16,21 +16,23 @@
 
 import GraphLayers from './graphLayers';
 
-const getNodeGroup = (node) => {
+export const getNodeGroup = (node) => {
   if (node.type === 'virtual_start') {
     return 'virtual';
   }
 
   if (node.type === 'virtual_end') {
-    return `virtual_${node.status}`;
+    return `virtual_${node.status.toLowerCase()}`;
   }
 
-  return node.status;
+  return node.status.toLowerCase();
 };
 
-const isComposite = (node) => node.type === 'composite';
+export const isComposite = (node) => node.type.toLowerCase() === 'composite';
 
-const hasTransitions = (node) => !!node.on;
+const isEmptyObject = (object) => object.constructor === Object && Object.entries(object).length === 0;
+
+export const hasTransitions = (node) => !!node.on && !isEmptyObject(node.on);
 
 const isReference = (node) => typeof node === 'string';
 

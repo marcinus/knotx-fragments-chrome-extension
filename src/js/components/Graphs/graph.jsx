@@ -33,9 +33,11 @@ const GraphComponent = ({
   graphJson,
 }) => {
   useEffect(() => {
-    const exampleGraphDeclaration = constructGraph(graphJson);
-    drawGraph(exampleGraphDeclaration, document.querySelector(selectors.GRAPH));
-  }, []);
+    if (graphJson) {
+      const graphDeclaration = constructGraph(graphJson);
+      drawGraph(graphDeclaration, document.querySelector(selectors.GRAPH));
+    }
+  }, [graphJson]);
 
   return (
     <GraphContainer className="graphContainer">
@@ -44,9 +46,14 @@ const GraphComponent = ({
   );
 };
 
+
+GraphComponent.defaultProps = {
+  graphJson: null,
+};
+
 GraphComponent.propTypes = {
   // eslint-disable-next-line react/forbid-prop-types
-  graphJson: PropTypes.object.isRequired,
+  graphJson: PropTypes.object,
 };
 
 

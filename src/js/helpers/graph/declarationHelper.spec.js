@@ -14,7 +14,9 @@
  * limitations under the License.
  */
 
-import { constructGraph, flattenComposites } from './declarationHelper';
+import {
+  constructGraph, flattenComposites, hasTransitions, isComposite,
+} from './declarationHelper';
 import * as mock from './declarationHelper.mock';
 import {
   COLOR_OTHER, COLOR_SUCCESS, COLOR_ERROR, COLOR_DEFAULT_EDGE, COLOR_UNPROCESSED_EDGE,
@@ -35,6 +37,28 @@ const createEdge = (from, to, unprocessed = false, label = '', fontColor = COLOR
     color: fontColor,
   },
   color: unprocessed ? COLOR_UNPROCESSED_EDGE : COLOR_DEFAULT_EDGE,
+});
+
+// ************************
+// utility tests
+// ************************
+
+test('Node transision existance is correctly identified', () => {
+  expect(hasTransitions({})).toBeFalse();
+  expect(hasTransitions({ on: {} })).toBeFalse();
+  expect(hasTransitions({ on: { _success: {} } })).toBeTrue();
+});
+
+test('Composites are correctly identified', () => {
+  const lowercaseComposite = { type: 'composite' };
+  const uppercaseComposite = { type: 'COMPOSITE' };
+  const lowercaseSingle = { type: 'single' };
+  const uppercaseSingle = { type: 'SINGLE' };
+
+  expect(isComposite(lowercaseComposite)).toBeTrue();
+  expect(isComposite(uppercaseComposite)).toBeTrue();
+  expect(isComposite(lowercaseSingle)).toBeFalse();
+  expect(isComposite(uppercaseSingle)).toBeFalse();
 });
 
 // ************************
