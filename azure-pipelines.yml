@@ -14,7 +14,11 @@
 
 trigger:
   - master
-  - milestone/extension-with-graph-status-panel
+
+pr:
+  branches:
+    include:
+      - '*'
 
 pool:
   vmImage: 'ubuntu-latest'
