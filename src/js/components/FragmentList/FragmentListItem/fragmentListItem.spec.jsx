@@ -15,16 +15,13 @@
  */
 
 import React from 'react';
-import Enzyme, { mount } from 'enzyme';
-import EnzymeAdapter from 'enzyme-adapter-react-16';
+import { mount } from 'enzyme';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 import FragmentListItem from './fragmentListItem';
 import { Status, Type } from './fragmentListItem.style';
 import reducer from '../../../state/reducers/index';
 import { NodeButton } from '../NodeList/nodeList.style';
-
-Enzyme.configure({ adapter: new EnzymeAdapter() });
 
 describe('<NodeList /> unit test', () => {
   const getWrapper = () => mount(

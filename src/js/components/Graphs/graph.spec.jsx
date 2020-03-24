@@ -1,26 +1,50 @@
 import React from 'react';
-import EnzymeAdapter from 'enzyme-adapter-react-16';
-import Enzyme, { shallow } from 'enzyme';
+import { mount } from 'enzyme';
 import GraphComponent from './graph';
+
 import {
-  GraphContainer,
+  GraphHeader,
   Graph,
+  PerformanceTimeLine,
+  GraphNavigationWrapper,
+  GraphToogleViewButton,
 } from './graph.style';
+import RightNavBar from '../Navbars/rightNavbar/navbar';
+import { singleNode } from '../../helpers/graph/declarationHelper.mock';
 
+describe('Graph component', () => {
+  const reactapp = document.createElement('div');
+  document.body.appendChild(reactapp);
 
-Enzyme.configure({ adapter: new EnzymeAdapter() });
+  const wrapper = mount(
+    <>
+      <RightNavBar />
+      <GraphComponent fragmentId="1" graphJson={singleNode} />
+    </>,
+    { attachTo: reactapp },
+  );
 
-describe('A suite', () => {
-  it('should render without throwing an error', () => {
-    expect(shallow(<GraphComponent />).contains(
-      <GraphContainer className="graphContainer">
-        <Graph className="graph" />
-      </GraphContainer>,
-    )).toBe(true);
+  it('should render correctly without throwing an error', () => {
+    expect(wrapper.find(GraphHeader).text()).toEqual('ID: 1');
+    expect(wrapper.find(Graph).getDOMNode()).toBeVisible();
+    expect(wrapper.find(PerformanceTimeLine).getDOMNode()).not.toBeVisible();
+    expect(wrapper.find(GraphNavigationWrapper).getDOMNode()).toBeVisible();
+    expect(wrapper.find(GraphToogleViewButton).at(0).text()).toEqual('PERFORMANCE VIEW');
+    expect(wrapper.find(GraphToogleViewButton).at(1).text()).toEqual('GRAPH VIEW');
   });
 
-  // TODO https://github.com/Knotx/knotx-fragments-chrome-extension/issues/35
-  // it('should render  throwing an error', () => {
-  //   expect(mount(<GraphComponent graphJson={singleNode} />).find('.vis-network')).toHaveLength(1);
-  // });
+  it('should correctly switch between graph and timeline view', () => {
+    expect(wrapper.find(PerformanceTimeLine).getDOMNode()).not.toBeVisible();
+    expect(wrapper.find(Graph).getDOMNode()).toBeVisible();
+
+    wrapper.find(GraphToogleViewButton).at(0).simulate('click');
+
+    expect(wrapper.find(PerformanceTimeLine).getDOMNode()).toBeVisible();
+    expect(wrapper.find(Graph).getDOMNode()).not.toBeVisible();
+
+    wrapper.find(GraphToogleViewButton).at(1).simulate('click');
+
+    expect(wrapper.find(PerformanceTimeLine).getDOMNode()).not.toBeVisible();
+    expect(wrapper.find(Graph).getDOMNode()).toBeVisible();
+  });
 });

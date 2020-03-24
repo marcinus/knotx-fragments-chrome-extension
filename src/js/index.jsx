@@ -24,6 +24,7 @@ import {
   chromeConnections,
   chromeActions,
 } from './helpers/constants';
+import { GlobalStyle } from './styling/globalStyle';
 
 const store = new Store();
 chrome.devtools.panels.create(PANEL_NAME, null, 'index.html');
@@ -37,6 +38,7 @@ port.onMessage.addListener(({ id }) => {
     ReactDOM.render(
       <Provider store={store}>
         <App tabId={id} />
+        <GlobalStyle />
       </Provider>,
       document.getElementById('root'),
     );

@@ -55,7 +55,9 @@ chrome.runtime.onMessage.addListener(
     store.dispatch(setPageData(pageDataObj));
 
     const { pageData } = store.getState();
-    if (pageData[pageDataObj.id].fragments.length > 0 && pageData[pageDataObj.id].url) {
+    const currentPageData = pageData[pageDataObj.id];
+
+    if (currentPageData?.fragments?.length && currentPageData.url) {
       sendResponse({
         status: status.succes,
         msg: succesMsgs.setPageData,

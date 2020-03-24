@@ -14,14 +14,18 @@
  * limitations under the License.
  */
 
-import { Timeline } from 'vis-timeline';
+import React from 'react';
+import LegendSection from './LegendSection';
+import { LegendContainer } from './legend.style';
+import { legendArrays } from './legendHelper';
 
-const options = {
-  width: '100%',
-  height: '100%',
-  margin: {
-    item: 20,
-  },
-};
+const Legend = () => (
+  <LegendContainer id="legend">
+    <LegendSection title="Nodes" items={legendArrays.nodes} />
+    <LegendSection title="Composites" items={legendArrays.composites} />
+    <LegendSection title="Labels" items={legendArrays.labels} />
+    <LegendSection title="Edges" items={legendArrays.edges} />
+  </LegendContainer>
+);
 
-export const drawTimeline = (element, data) => new Timeline(element, data.items, data.groups, options);
+export default Legend;

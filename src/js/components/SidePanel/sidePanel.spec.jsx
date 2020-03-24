@@ -15,8 +15,7 @@
  */
 
 import React from 'react';
-import Enzyme, { mount } from 'enzyme';
-import EnzymeAdapter from 'enzyme-adapter-react-16';
+import { mount } from 'enzyme';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 import data from '../FragmentList/fragmentList.mock';
@@ -25,8 +24,6 @@ import SidePanel from './sidePanel';
 import { SidePanelWrapper, ToggleSidePanelButton } from './sidePanel.style';
 import { FragmentListItemContainer } from '../FragmentList/FragmentListItem/fragmentListItem.style';
 
-Enzyme.configure({ adapter: new EnzymeAdapter() });
-
 describe('<SidePanel /> unit test', () => {
   const getWrapper = () => mount(
     <Provider store={createStore(reducer, { pageData: data })}>
@@ -34,20 +31,7 @@ describe('<SidePanel /> unit test', () => {
     </Provider>,
   );
 
-  it('toggle sidebar button should not be rendered by default', () => {
-    const wrapper = getWrapper();
-    expect(wrapper
-      .find(ToggleSidePanelButton)
-      .prop('shouldDisplay')).toBe(false);
-
-    wrapper.find(FragmentListItemContainer).first().simulate('click');
-
-    expect(wrapper
-      .find(ToggleSidePanelButton)
-      .prop('shouldDisplay')).toBe(true);
-  });
-
-  it('click on fragment should hide sidebar when screen width is less than 700px', () => {
+  it('click on non active fragment should hide sidebar when screen width is less than 700px', () => {
     Object.defineProperty(window, 'innerWidth', {
       configurable: true,
       writable: true,
@@ -55,7 +39,7 @@ describe('<SidePanel /> unit test', () => {
     });
     const wrapper = getWrapper();
     wrapper.find(FragmentListItemContainer);
-    expect(wrapper.find(SidePanelWrapper).prop('expanded')).toEqual(undefined);
+    expect(wrapper.find(SidePanelWrapper).prop('expanded')).toEqual(true);
     wrapper.find(FragmentListItemContainer).first().simulate('click');
     expect(wrapper.find(SidePanelWrapper).prop('expanded')).toEqual(false);
     wrapper.find(ToggleSidePanelButton).first().simulate('click');
@@ -70,22 +54,22 @@ describe('<SidePanel /> unit test', () => {
       value: 1024,
     });
     const wrapper = getWrapper();
-    expect(wrapper.find(SidePanelWrapper).prop('expanded')).toEqual(undefined);
+    expect(wrapper.find(SidePanelWrapper).prop('expanded')).toEqual(true);
     wrapper.find(FragmentListItemContainer).first().simulate('click');
-    expect(wrapper.find(SidePanelWrapper).prop('expanded')).toEqual(undefined);
+    expect(wrapper.find(SidePanelWrapper).prop('expanded')).toEqual(true);
   });
 
   it('toggle button should open and close sidebar', () => {
     const wrapper = getWrapper();
     expect(wrapper
-      .find(SidePanelWrapper).prop('expanded')).toBe(undefined);
-    wrapper
-      .find(ToggleSidePanelButton).simulate('click');
-    expect(wrapper
-      .find(SidePanelWrapper).prop('expanded')).toEqual(true);
+      .find(SidePanelWrapper).prop('expanded')).toBe(true);
     wrapper
       .find(ToggleSidePanelButton).simulate('click');
     expect(wrapper
       .find(SidePanelWrapper).prop('expanded')).toEqual(false);
+    wrapper
+      .find(ToggleSidePanelButton).simulate('click');
+    expect(wrapper
+      .find(SidePanelWrapper).prop('expanded')).toEqual(true);
   });
 });

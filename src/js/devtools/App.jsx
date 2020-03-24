@@ -15,22 +15,30 @@
  */
 
 import React from 'react';
+import { useSelector } from 'react-redux';
 import { ThemeProvider } from 'styled-components';
 import PropTypes from 'prop-types';
 import { defaultTheme, darkTheme } from './themes';
 import SidePanel from '../components/SidePanel/sidePanel';
 import MainPanel from '../components/MainPanel/mainPanel';
+import 'vis-timeline/dist/vis-timeline-graph2d.min.css';
 
 const App = ({ tabId }) => {
   const { themeName: chromeTheme } = chrome.devtools.panels;
   const theme = chromeTheme === 'default' ? defaultTheme : darkTheme;
 
-  return (
-    <ThemeProvider theme={theme}>
-      <SidePanel tabId={tabId} />
-      <MainPanel tabId={tabId} />
-    </ThemeProvider>
-  );
+  const detectKnotxFragments = useSelector(({ pageData }) => (pageData[tabId]?.fragments || false));
+
+  return detectKnotxFragments.length
+    ? (
+      <ThemeProvider theme={theme}>
+        <SidePanel tabId={tabId} />
+        <MainPanel tabId={tabId} />
+      </ThemeProvider>
+    )
+    : (
+      <h1>Sorry, your page does not use Knot.x </h1>
+    );
 };
 
 App.propTypes = {

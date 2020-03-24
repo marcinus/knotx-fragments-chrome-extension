@@ -16,32 +16,79 @@
 
 /* eslint no-new: 0 */
 
-import React, { useEffect } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import PropTypes from 'prop-types';
+import renderjson from 'renderjson';
 import { drawGraph } from '../../helpers/graph/drawingHelper';
 import { constructGraph } from '../../helpers/graph/declarationHelper';
 import {
   GraphContainer,
   Graph,
+  PerformanceTimeLine,
+  GraphHeader,
+  GraphToogleViewButton,
+  GraphNavigationWrapper,
 } from './graph.style';
+import TimelineComponent from './Timeline/timeline';
 
-const selectors = {
-  GRAPH: '.graphContainer .graph',
+renderjson.set_icons('+', '-');
+renderjson.set_show_to_level(1);
+
+const displayOptions = {
+  graph: 'graph',
+  performanceTimeLine: 'performanceTimeLine',
 };
 
 const GraphComponent = ({
   graphJson,
+  fragmentId,
 }) => {
+  const [displayOption, setDisplayOption] = useState(displayOptions.graph);
+  const graphRef = useRef(null);
+
   useEffect(() => {
     if (graphJson) {
       const graphDeclaration = constructGraph(graphJson);
-      drawGraph(graphDeclaration, document.querySelector(selectors.GRAPH));
+      const network = drawGraph(graphDeclaration, graphRef.current);
+
+      setDisplayOption(displayOptions.graph);
+
+      const nodeInfoContainer = document.getElementById('nodeInfo');
+      nodeInfoContainer.innerHTML = '';
+
+      network.on('click', (e) => {
+        const nodeId = e.nodes[0];
+        nodeInfoContainer.innerHTML = '';
+        if (nodeId) {
+          const { info } = graphDeclaration.nodes.find((el) => el.id === nodeId);
+
+          nodeInfoContainer.appendChild(renderjson(info));
+        }
+      });
     }
   }, [graphJson]);
 
   return (
     <GraphContainer className="graphContainer">
-      <Graph className="graph" />
+      <GraphHeader>
+        <h2>{`ID: ${fragmentId}`}</h2>
+      </GraphHeader>
+      <Graph ref={graphRef} shouldDisplay={displayOption} />
+      <PerformanceTimeLine shouldDisplay={displayOption}>
+        <TimelineComponent graphJson={graphJson} shouldDisplay={displayOption} />
+      </PerformanceTimeLine>
+      <GraphNavigationWrapper>
+        <GraphToogleViewButton
+          onClick={() => setDisplayOption(displayOptions.performanceTimeLine)}
+        >
+          PERFORMANCE VIEW
+        </GraphToogleViewButton>
+        <GraphToogleViewButton
+          onClick={() => setDisplayOption(displayOptions.graph)}
+        >
+          GRAPH VIEW
+        </GraphToogleViewButton>
+      </GraphNavigationWrapper>
     </GraphContainer>
   );
 };
@@ -49,11 +96,12 @@ const GraphComponent = ({
 
 GraphComponent.defaultProps = {
   graphJson: null,
+  fragmentId: null,
 };
 
 GraphComponent.propTypes = {
-  // eslint-disable-next-line react/forbid-prop-types
-  graphJson: PropTypes.object,
+  graphJson: PropTypes.instanceOf(Object),
+  fragmentId: PropTypes.string,
 };
 
 

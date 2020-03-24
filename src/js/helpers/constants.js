@@ -60,7 +60,7 @@ export const ARROW_DOWN = String.fromCharCode(8595);
 export const ARROW_UP = String.fromCharCode(8593);
 export const CROSS = String.fromCharCode(10007);
 export const HAMBURGER = String.fromCharCode(9776);
-export const PAGE_BREAK = 700;
+export const PAGE_BREAK = 1024;
 
 // CONNECTIONS
 export const chromeConnections = {

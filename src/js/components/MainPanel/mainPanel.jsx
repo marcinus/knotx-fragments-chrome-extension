@@ -17,32 +17,36 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
-import { MainPanelWrapper } from './mainPanel.style';
+import { MainPanelWrapper, MainPanelContent } from './mainPanel.style';
 import GraphComponent from '../Graphs/graph';
+import RightNavBar from '../Navbars/rightNavbar/navbar';
 
 const MainPanel = ({ tabId }) => {
   const renderedGraphId = useSelector(({ pageData }) => pageData[tabId].renderedGraph);
-  const sidebarExpanded = useSelector(({ pageData }) => pageData[tabId].sidebarExpanded);
   const graphData = useSelector(({ pageData }) => (renderedGraphId
     ? pageData[tabId].fragments.find((el) => el.debug.fragment.id === renderedGraphId).debug.graph
     : null));
 
-  return graphData
+  return renderedGraphId
     ? (
-      <MainPanelWrapper sidebarExpanded={sidebarExpanded}>
-        <h1>
-          { renderedGraphId }
-        </h1>
-        <GraphComponent
-          graphJson={graphData}
-        />
+      <MainPanelWrapper>
+        <MainPanelContent>
+          <GraphComponent
+            graphJson={graphData}
+            fragmentId={renderedGraphId}
+          />
+          <RightNavBar
+            tabId={tabId}
+            graphData={graphData}
+          />
+        </MainPanelContent>
       </MainPanelWrapper>
     )
     : (
-      <MainPanelWrapper sidebarExpanded={sidebarExpanded}>
-        <h1>
-          Please Choose any fragment
-        </h1>
+      <MainPanelWrapper>
+        <MainPanelContent>
+          <h1>Please choose any fragment</h1>
+        </MainPanelContent>
       </MainPanelWrapper>
     );
 };

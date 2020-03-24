@@ -14,13 +14,9 @@
  * limitations under the License.
  */
 
-import {
-  SET_PAGE_DATA, REMOVE_PAGE_DATA, SET_SIDEBAR_EXPANDED, SET_RENDERED_GRAPH,
-} from '../actionTypes/pageData';
+import { SET_PAGE_DATA, REMOVE_PAGE_DATA, SET_RENDERED_GRAPH } from '../actionTypes/pageData';
 
-import {
-  setPageData, removePageData, setSidebarExpanded, setRenderedGraph,
-} from './pageData';
+import { setPageData, removePageData, setRenderedGraph } from './pageData';
 
 test('Validate setPageData type.', () => {
   const pageData = {};
@@ -35,14 +31,6 @@ test('Validate removePageData type.', () => {
   const result = removePageData(pageData);
 
   expect(result.type).toBe(REMOVE_PAGE_DATA);
-  expect(result.pageData).toBe(pageData);
-});
-
-test('Validate setSidebarExpanded type.', () => {
-  const pageData = {};
-  const result = setSidebarExpanded(pageData);
-
-  expect(result.type).toBe(SET_SIDEBAR_EXPANDED);
   expect(result.pageData).toBe(pageData);
 });
 

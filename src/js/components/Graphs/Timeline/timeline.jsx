@@ -14,37 +14,38 @@
  * limitations under the License.
  */
 
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
-import { constructTimeline } from '../../helpers/timeline/declarationHelper';
-import { drawTimeline } from '../../helpers/timeline/drawHelper';
-import { TimelineContainer, Timeline } from './timeline.style';
-
-import 'vis-timeline/dist/vis-timeline-graph2d.min.css';
-
-const selectors = {
-  TIMELINE: '.timelineContainer .timeline',
-};
+import { constructTimeline } from '../../../helpers/timeline/declarationHelper';
+import { drawTimeline } from '../../../helpers/timeline/drawHelper';
+import { Timeline } from './timeline.style';
 
 const TimelineComponent = ({
   graphJson,
 }) => {
+  const timelineRef = useRef(null);
+
   useEffect(() => {
-    const timelineContainer = document.querySelector(selectors.TIMELINE);
-    const timelineDeclaration = constructTimeline(graphJson);
-    drawTimeline(timelineContainer, timelineDeclaration);
-  }, []);
+    timelineRef.current.innerHTML = '';
+    if (graphJson) {
+      const timelineDeclaration = constructTimeline(graphJson);
+      drawTimeline(timelineRef.current, timelineDeclaration);
+    }
+  }, [graphJson]);
 
   return (
-    <TimelineContainer className="timelineContainer">
-      <Timeline className="timeline" />
-    </TimelineContainer>
+    <Timeline ref={timelineRef} />
   );
+};
+
+
+TimelineComponent.defaultProps = {
+  graphJson: null,
 };
 
 TimelineComponent.propTypes = {
   // eslint-disable-next-line react/forbid-prop-types
-  graphJson: PropTypes.object.isRequired,
+  graphJson: PropTypes.object,
 };
 
 export default TimelineComponent;

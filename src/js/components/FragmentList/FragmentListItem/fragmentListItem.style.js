@@ -27,7 +27,7 @@ export const FragmentListItemContainer = styled.div`
     font-size: 14px;
 
     &:nth-child(2n + 1) {
-        background-color: ${({ theme }) => theme.oddFragmentBgColor};;
+        background-color: ${({ theme }) => theme.oddFragmentBgColor};
         background-color: ${({ expanded, theme }) => (expanded ? theme.fragmentHighlight : '')};
     }
 

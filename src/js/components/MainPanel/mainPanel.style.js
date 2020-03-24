@@ -18,10 +18,14 @@ import styled from 'styled-components';
 import { PAGE_BREAK } from '../../helpers/constants';
 
 export const MainPanelWrapper = styled.div`
-    margin-top: 40px;
-    @media (min-width: ${PAGE_BREAK}px) {
-        position: ${({ sidebarExpanded }) => (sidebarExpanded ? 'relative' : '')};
-        left: ${({ sidebarExpanded }) => (sidebarExpanded ? '40%' : '0')};
-        width: ${({ sidebarExpanded }) => (sidebarExpanded ? '60%' : '100vw')};
+    flex: 1 1 auto;
+`;
+
+export const MainPanelContent = styled.div`
+    display: flex;
+    height: 100vh;
+
+    @media (max-width: ${PAGE_BREAK}px) {
+        flex-direction: column;
     }
 `;

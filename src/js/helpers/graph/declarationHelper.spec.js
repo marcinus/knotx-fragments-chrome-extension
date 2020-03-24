@@ -44,7 +44,7 @@ const createEdge = (from, to, unprocessed = false, label = '', fontColor = COLOR
 test('Single node is left as is when flattened', () => {
   const flattenedGraph = flattenComposites(mock.singleNode);
 
-  expect(flattenedGraph).toStrictEqual(mock.singleNode);
+  expect(flattenedGraph).toMatchObject(mock.singleNode);
 });
 
 test('Composite node is flattened into two virtual nodes with subtasks in-between', () => {
@@ -87,7 +87,7 @@ test('Flattening doesn\'t mutate the original graph', () => {
 
   flattenComposites(mocked);
 
-  expect(mocked).toStrictEqual(original);
+  expect(mocked).toMatchObject(original);
 });
 
 test('Flattened nested composited have properly assigned transitions to the end node', () => {
@@ -127,7 +127,7 @@ test('Single node is parsed correctly', () => {
 
   const graph = constructGraph(mock.singleNode);
 
-  expect(graph).toStrictEqual(expectedGraph);
+  expect(graph).toMatchObject(expectedGraph);
 });
 
 test('Single node can have multiple transitions', () => {
@@ -159,7 +159,7 @@ test('Composites can have no subtasks', () => {
 
   const graph = constructGraph(mock.compositeNodeWithNoSubtasks);
 
-  expect(graph.nodes).toStrictEqual(expectedGraph.nodes);
+  expect(graph.nodes).toMatchObject(expectedGraph.nodes);
   expect(graph.edges).toIncludeSameMembers(expectedGraph.edges);
 });
 
@@ -190,7 +190,7 @@ test('Composite end is one level below the deepest subtask', () => {
 
   const graph = constructGraph(mock.compositeWithUnevenSubtasks);
 
-  expect(graph.nodes).toStrictEqual(expectedNodes);
+  expect(graph.nodes).toMatchObject(expectedNodes);
 });
 
 test('Composite\'s transitions are one level below it\'s virtual node', () => {
@@ -216,7 +216,7 @@ test('Composite\'s transitions are one level below it\'s virtual node', () => {
 
   const graph = constructGraph(mock.compositeWithComplexTransitions);
 
-  expect(graph.nodes).toStrictEqual(expectedGraph.nodes);
+  expect(graph.nodes).toMatchObject(expectedGraph.nodes);
   expect(graph.edges).toIncludeSameMembers(expectedGraph.edges);
 });
 
@@ -240,7 +240,7 @@ test('Unprocessed subtasks have proper transition to virtual composite node', ()
 
   const graph = constructGraph(mock.compositeWithUnprocessedNodeInSubtask);
 
-  expect(graph.nodes).toStrictEqual(expectedGraph.nodes);
+  expect(graph.nodes).toMatchObject(expectedGraph.nodes);
   expect(graph.edges).toIncludeSameMembers(expectedGraph.edges);
 });
 
@@ -262,7 +262,7 @@ test('Missing subtasks have proper transition to virtual composite node', () => 
 
   const graph = constructGraph(mock.compositeWithMissingNodeInSubtask);
 
-  expect(graph.nodes).toStrictEqual(expectedGraph.nodes);
+  expect(graph.nodes).toMatchObject(expectedGraph.nodes);
   expect(graph.edges).toIncludeSameMembers(expectedGraph.edges);
 });
 
@@ -285,6 +285,6 @@ test('Composites can be nested', () => {
 
   const graph = constructGraph(mock.nestedComposites);
 
-  expect(graph.nodes).toStrictEqual(expectedGraph.nodes);
+  expect(graph.nodes).toMatchObject(expectedGraph.nodes);
   expect(graph.edges).toIncludeSameMembers(expectedGraph.edges);
 });

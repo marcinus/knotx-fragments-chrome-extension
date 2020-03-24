@@ -15,13 +15,11 @@
  */
 
 import React from 'react';
-import Enzyme, { shallow } from 'enzyme';
-import EnzymeAdapter from 'enzyme-adapter-react-16';
+import { shallow } from 'enzyme';
 import NodeList from './nodeList';
 import { nodes } from './nodeList.mock';
 import { NodeButton } from './nodeList.style';
 
-Enzyme.configure({ adapter: new EnzymeAdapter() });
 
 describe('<NodeList /> unit test', () => {
   const getWrapper = () => shallow(
