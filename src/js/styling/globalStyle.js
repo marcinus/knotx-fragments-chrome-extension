@@ -10,6 +10,7 @@ export const GlobalStyle = createGlobalStyle`
   #root {
     display: flex;
     overflow-y: hidden;
+    overflow-x: hidden;
     height: 100vh;
   }
 

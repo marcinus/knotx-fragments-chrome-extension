@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import { findFragmentsInContent } from '../helpers/nodesHelper';
+import { findFragmentsInContent } from '../helpers/nodes/nodesHelper';
 import { status } from '../helpers/constants';
 
 window.onload = () => {

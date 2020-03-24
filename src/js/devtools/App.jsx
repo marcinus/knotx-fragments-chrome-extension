@@ -23,6 +23,7 @@ import SidePanel from '../components/SidePanel/sidePanel';
 import MainPanel from '../components/MainPanel/mainPanel';
 import 'vis-timeline/dist/vis-timeline-graph2d.min.css';
 
+
 const App = ({ tabId }) => {
   const { themeName: chromeTheme } = chrome.devtools.panels;
   const theme = chromeTheme === 'default' ? defaultTheme : darkTheme;

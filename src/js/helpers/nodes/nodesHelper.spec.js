@@ -13,16 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
-import {
-  findFragmentsInContent, isFragmentBoundary, isFragmentNode, getFragmentId, isFragmentDataNode,
-} from './nodesHelper';
+import * as helper from './nodesHelper';
 
 const constructMarkupWithFragment = (id, debugData = '{}', nodes = '') => `
         <span>Not in fragment</span> 
         <!-- data-knotx-id="${id}" -->
         <script data-knotx-id="${id}" type="application/json">
-        ${debugData}
+        ${typeof debugData === 'string' ? debugData : JSON.stringify(debugData)}
         </script>
         ${Array.isArray(nodes) ? nodes.join('') : nodes}
         <!-- data-knotx-id="${id}" -->
@@ -46,9 +43,9 @@ test('Only comment nodes with KnotX id are recognized as fragment boundaries', (
 
   spanWithId.appendChild(document.createTextNode('data-knotx-id="test"'));
 
-  expect(isFragmentBoundary(comment)).toBe(false);
-  expect(isFragmentBoundary(commentWithId)).toBe(true);
-  expect(isFragmentBoundary(spanWithId)).toBe(false);
+  expect(helper.isFragmentBoundary(comment)).toBe(false);
+  expect(helper.isFragmentBoundary(commentWithId)).toBe(true);
+  expect(helper.isFragmentBoundary(spanWithId)).toBe(false);
 });
 
 test('Only elements and non-empty text nodes are considered correct nodes', () => {
@@ -57,18 +54,18 @@ test('Only elements and non-empty text nodes are considered correct nodes', () =
   const emptyText = document.createTextNode('\n\t ');
   const comment = document.createComment('Some comment');
 
-  expect(isFragmentNode(emptyElement)).toBe(true);
-  expect(isFragmentNode(text)).toBe(true);
-  expect(isFragmentNode(emptyText)).toBe(false);
-  expect(isFragmentNode(comment)).toBe(false);
+  expect(helper.isFragmentNode(emptyElement)).toBe(true);
+  expect(helper.isFragmentNode(text)).toBe(true);
+  expect(helper.isFragmentNode(emptyText)).toBe(false);
+  expect(helper.isFragmentNode(comment)).toBe(false);
 });
 
 test('KnotX id can be extracted from comments', () => {
   const commentWithId = document.createComment('data-knotx-id="ID"');
   const commentWithoutId = document.createComment('Some comment');
 
-  expect(getFragmentId(commentWithId)).toBe('ID');
-  expect(getFragmentId(commentWithoutId)).toBeUndefined();
+  expect(helper.getFragmentId(commentWithId)).toBe('ID');
+  expect(helper.getFragmentId(commentWithoutId)).toBeUndefined();
 });
 
 test('Only script elements with KnotX id are considered data nodes', () => {
@@ -78,22 +75,22 @@ test('Only script elements with KnotX id are considered data nodes', () => {
 
   scriptWithId.setAttribute('data-knotx-id', 'ID');
 
-  expect(isFragmentDataNode(div, 'ID')).toBe(false);
-  expect(isFragmentDataNode(script, 'ID')).toBe(false);
-  expect(isFragmentDataNode(scriptWithId, 'ID')).toBe(true);
-  expect(isFragmentDataNode(scriptWithId, 'different id')).toBe(false);
+  expect(helper.isFragmentDataNode(div, 'ID')).toBe(false);
+  expect(helper.isFragmentDataNode(script, 'ID')).toBe(false);
+  expect(helper.isFragmentDataNode(scriptWithId, 'ID')).toBe(true);
+  expect(helper.isFragmentDataNode(scriptWithId, 'different id')).toBe(false);
 });
 
 test('Empty DOM results in empty fragment array', () => {
   document.body.innerHTML = '';
 
-  expect(findFragmentsInContent()).toStrictEqual([]);
+  expect(helper.findFragmentsInContent()).toStrictEqual([]);
 });
 
 test('DOM without fragments results in empty array', () => {
   document.body.innerHTML = '<div><span>Test</span></div>';
 
-  expect(findFragmentsInContent()).toStrictEqual([]);
+  expect(helper.findFragmentsInContent()).toStrictEqual([]);
 });
 
 test('Fragment without data script tag is parsed', () => {
@@ -102,25 +99,25 @@ test('Fragment without data script tag is parsed', () => {
         <div>Test fragment</div>
         <!-- data-knotx-id="test" -->`;
 
-  expect(findFragmentsInContent()).toHaveLength(1);
+  expect(helper.findFragmentsInContent()).toHaveLength(1);
 });
 
 test('Fragment with empty data is parsed', () => {
   document.body.innerHTML = constructMarkupWithFragment('test', '{}', '<div>Test fragment</div>');
 
-  expect(findFragmentsInContent()).toHaveLength(1);
+  expect(helper.findFragmentsInContent()).toHaveLength(1);
 });
 
 test('Empty fragment is parsed', () => {
   document.body.innerHTML = constructMarkupWithFragment('test');
 
-  expect(findFragmentsInContent()).toHaveLength(1);
+  expect(helper.findFragmentsInContent()).toHaveLength(1);
 });
 
 test('Fragment without json have empty object as debug property', () => {
   document.body.innerHTML = constructMarkupWithFragment('test', '', '<div>Test fragment</div>');
 
-  const fragments = findFragmentsInContent();
+  const fragments = helper.findFragmentsInContent();
   expect(fragments).toHaveLength(1);
   expect(fragments[0]).toHaveProperty('debug', {});
 });
@@ -128,7 +125,7 @@ test('Fragment without json have empty object as debug property', () => {
 test('Fragment with incorrect json throws syntax error', () => {
   document.body.innerHTML = constructMarkupWithFragment('test', '{"test": "test"]', '<div>Test fragment</div>');
 
-  const execution = () => findFragmentsInContent();
+  const execution = () => helper.findFragmentsInContent();
   expect(execution).toThrow(SyntaxError);
 });
 
@@ -139,11 +136,11 @@ test('Multiple fragments can be parsed', () => {
     { id: 'frag3', debugData: '{}', nodes: '<div>Fragment 3</div>' },
   );
 
-  const fragments = findFragmentsInContent();
+  const fragments = helper.findFragmentsInContent();
   expect(fragments).toHaveLength(3);
 });
 
-test('Fragments contain a tag name and selector', () => {
+test('Fragments\' nodes contain a tag name and selector', () => {
   document.body.innerHTML = constructMarkupWithFragments(
     { id: 'test', debugData: '{}', nodes: '<div>Another fragment</div>' },
     {
@@ -156,7 +153,7 @@ test('Fragments contain a tag name and selector', () => {
     },
   );
 
-  const fragments = findFragmentsInContent();
+  const fragments = helper.findFragmentsInContent();
   expect(fragments).toHaveLength(2);
 
   expect(fragments[0].nodes).toHaveLength(1);
@@ -173,7 +170,7 @@ test('Fragments contain a tag name and selector', () => {
 test('Empty fragment has empty nodes array', () => {
   document.body.innerHTML = constructMarkupWithFragment('test');
 
-  const fragments = findFragmentsInContent();
+  const fragments = helper.findFragmentsInContent();
   expect(fragments).toHaveLength(1);
   expect(fragments[0].nodes).toHaveLength(0);
 });
@@ -186,7 +183,7 @@ test('Fragment includes text nodes', () => {
     'Another text node',
   ]);
 
-  const fragments = findFragmentsInContent();
+  const fragments = helper.findFragmentsInContent();
   expect(fragments).toHaveLength(1);
   expect(fragments[0].nodes).toHaveLength(4);
 });
@@ -200,7 +197,7 @@ test('Fragments can exist on different levels of nesting', () => {
         <div>
     `;
 
-  const fragments = findFragmentsInContent();
+  const fragments = helper.findFragmentsInContent();
   expect(fragments).toHaveLength(3);
 });
 
@@ -225,7 +222,7 @@ test('Nodes debug data is parsed as is', () => {
 
   document.body.innerHTML = constructMarkupWithFragment('test', JSON.stringify(debugData));
 
-  const fragments = findFragmentsInContent();
+  const fragments = helper.findFragmentsInContent();
   expect(fragments).toHaveLength(1);
   expect(fragments).toHaveLength(1);
   expect(fragments[0].debug).toStrictEqual(debugData);
@@ -236,7 +233,7 @@ test('Allow top level arrays as debug data', () => {
 
   document.body.innerHTML = constructMarkupWithFragment('test', JSON.stringify(debugData));
 
-  const fragments = findFragmentsInContent();
+  const fragments = helper.findFragmentsInContent();
   expect(fragments).toHaveLength(1);
   expect(fragments[0].debug).toStrictEqual(debugData);
 });
@@ -254,6 +251,29 @@ test('Fragments need to be closed', () => {
         <span>This is also not in a correct fragment</span>
     `;
 
-  const fragments = findFragmentsInContent();
+  const fragments = helper.findFragmentsInContent();
   expect(fragments).toHaveLength(0);
+});
+
+test('VisTimeline items are constructed correctly', () => {
+  const fragments = [
+    { id: 'f1', debugData: { fragment: { id: 'f1' }, startTime: 1000, finishTime: 2000 }, nodes: '<div>F1</div>' },
+    { id: 'f1', debugData: { fragment: { id: 'f2' }, startTime: 2000, finishTime: 3000 }, nodes: '<div>F2</div>' },
+    { id: 'f1', debugData: { fragment: { id: 'f3' }, startTime: 3000, finishTime: 4000 }, nodes: '<div>F3</div>' },
+  ];
+
+  document.body.innerHTML = constructMarkupWithFragments(fragments[0], fragments[1], fragments[2]);
+
+  const { items, groups } = helper.constructFragmentsTimeline(helper.findFragmentsInContent());
+
+  items.get().forEach((item, i) => {
+    expect(item).toHaveProperty('id', fragments[i].debugData.fragment.id);
+    expect(item).toHaveProperty('content', fragments[i].debugData.fragment.id);
+    expect(item).toHaveProperty('start', fragments[i].debugData.startTime);
+    expect(item).toHaveProperty('end', fragments[i].debugData.finishTime);
+    expect(item).toHaveProperty('group', 1);
+  });
+
+  // a dummy group has to exist for items to be able to display
+  expect(groups.get()).toStrictEqual([{ id: 1, content: '' }]);
 });

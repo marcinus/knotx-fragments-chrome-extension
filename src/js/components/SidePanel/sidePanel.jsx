@@ -20,6 +20,7 @@ import { useSelector } from 'react-redux';
 import { SidePanelWrapper, ToggleSidePanelButton } from './sidePanel.style';
 import FragmentList from '../FragmentList/fragmentList';
 import { HAMBURGER, CROSS, PAGE_BREAK } from '../../helpers/constants';
+import FragmentGannt from '../FragmentGannt/fragmentGannt';
 
 const SidePanel = ({ tabId }) => {
   const [expanded, setExpanded] = useState(true);
@@ -46,6 +47,7 @@ const SidePanel = ({ tabId }) => {
         {expanded ? CROSS : HAMBURGER}
       </ToggleSidePanelButton>
       <FragmentList tabId={tabId} />
+      <FragmentGannt tabId={tabId} />
     </SidePanelWrapper>
   );
 };

@@ -13,6 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
+import { DataSet } from 'vis-timeline';
 import uniqueSelector from 'unique-selector';
 
 export const isFragmentBoundary = (node) => node.nodeType === Node.COMMENT_NODE
@@ -90,3 +92,21 @@ const parseFragments = (root) => findBoundaries(root)
   .map(({ id, nodes }) => createFragment(id, nodes));
 
 export const findFragmentsInContent = () => parseFragments(document.body);
+
+const createVisItem = ({ debug }) => ({
+  id: debug.fragment.id,
+  content: debug.fragment.id,
+  start: debug.startTime,
+  end: debug.finishTime,
+  group: 1,
+});
+
+export const constructFragmentsTimeline = (fragments) => ({
+  items: new DataSet(fragments.map(createVisItem)),
+  groups: new DataSet([
+    {
+      id: 1,
+      content: '',
+    },
+  ]),
+});
