@@ -45,7 +45,6 @@ export const GraphToogleViewButton = styled.button`
     padding: 5px;
     font-size: 18px;
     color: red;
-    z-index: 10;
     margin: 0 10px;
 `;
 

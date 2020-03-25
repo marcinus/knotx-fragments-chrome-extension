@@ -22,11 +22,15 @@ export const SidePanelWrapper = styled.div`
     margin-left: ${({ expanded }) => (expanded ? '0' : '-100%')};
     top: 0;
     padding-top: 40px;
-    height: 100vh;
+    height: calc(100vh - 40px);
     width: 100%;
     z-index: 10;
     background-color: ${({ theme }) => theme.sidePanelBgColor};
     transition: left .1s, width .1s;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 
     @media (min-width: ${PAGE_BREAK}px) {
         position: ${({ expanded, renderedGraph }) => {
