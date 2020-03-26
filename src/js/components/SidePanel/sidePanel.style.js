@@ -51,12 +51,13 @@ export const ToggleSidePanelButton = styled.button`
     left: ${({ expanded }) => (expanded ? '5px' : '0')};
     top: 0px;
     left: 0px;
-    padding: 5px;
-    width: 30px;
-    font-size: 25px;
+    padding: 0;
+    width: 41px;
+    height: 41px;
+    font-size: 18px;
     border: none;
     background-color: transparent;
-    color: ${({ theme }) => theme.menuToggleButton};
+    color: ${({ theme }) => theme.MENU_TOGGLE_BUTTON};
     display: flex;
     justify-content: center;
 

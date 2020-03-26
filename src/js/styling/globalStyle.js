@@ -1,6 +1,8 @@
 import { createGlobalStyle } from 'styled-components';
 
 export const GlobalStyle = createGlobalStyle`
+  @import url('https://fonts.googleapis.com/css?family=Lato:400,900&display=swap');
+
   /* NORMALIZE */
   body {
     margin: 0;
@@ -12,6 +14,7 @@ export const GlobalStyle = createGlobalStyle`
     overflow-y: hidden;
     overflow-x: hidden;
     height: 100vh;
+    font-family: 'Lato', sans-serif;
   }
 
   /* JSON */

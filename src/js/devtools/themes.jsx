@@ -17,6 +17,11 @@
 import { COLORS } from '../helpers/constants';
 
 export const defaultTheme = {
+  TEXT: '#707070',
+  MENU_TOGGLE_BUTTON: '#707070',
+  BORDER: '#707070',
+  BACKGROUND: '#F5F5F5',
+
   textColor: COLORS.TEXT_COLOR,
   buttonBgColor: COLORS.BUTTON_BG_COLOR,
   fragmentHighlight: COLORS.FRAGMENT_HIGHLIGHT,
@@ -33,7 +38,7 @@ export const defaultTheme = {
   warning: COLORS.WARNING,
   expandNodeListBgHover: COLORS.EXPAND_NODE_LIST_BG_HOVER,
   expandNodeListBg: COLORS.EXPAND_NODE_LIST_BG,
-  menuToggleButton: COLORS.MENU_TOGGLE_BUTTON,
+
 };
 
 export const darkTheme = {

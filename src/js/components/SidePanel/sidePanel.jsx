@@ -17,9 +17,11 @@
 import React, { useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowAltCircleLeft } from '@fortawesome/free-solid-svg-icons';
 import { SidePanelWrapper, ToggleSidePanelButton } from './sidePanel.style';
 import FragmentList from '../FragmentList/fragmentList';
-import { HAMBURGER, CROSS, PAGE_BREAK } from '../../helpers/constants';
+import { PAGE_BREAK } from '../../helpers/constants';
 import FragmentGannt from '../FragmentGannt/fragmentGannt';
 
 const SidePanel = ({ tabId }) => {
@@ -40,12 +42,17 @@ const SidePanel = ({ tabId }) => {
       expanded={expanded}
       renderedGraph={renderedGraph}
     >
-      <ToggleSidePanelButton
-        expanded={expanded}
-        onClick={() => setExpanded(!expanded)}
-      >
-        {expanded ? CROSS : HAMBURGER}
-      </ToggleSidePanelButton>
+      {expanded
+        ? null
+        : (
+          <ToggleSidePanelButton
+            expanded={expanded}
+            onClick={() => setExpanded(true)}
+          >
+            <FontAwesomeIcon icon={faArrowAltCircleLeft} />
+          </ToggleSidePanelButton>
+        )}
+
       <FragmentList tabId={tabId} />
       <FragmentGannt tabId={tabId} />
     </SidePanelWrapper>

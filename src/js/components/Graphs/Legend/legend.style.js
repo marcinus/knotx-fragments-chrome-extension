@@ -1,9 +1,7 @@
 import styled from 'styled-components';
 
 export const LegendContainer = styled.div`
-    height: 30%;
     width: 100%;
-    overflow: scroll;
 `;
 
 export const LegendHeader = styled.h3`
