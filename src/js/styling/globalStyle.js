@@ -24,41 +24,42 @@ export const GlobalStyle = createGlobalStyle`
 
   .renderjson a {
     text-decoration: none;
+    color: #3FA7D6;
   }
 
   .renderjson .disclosure {
-    color: crimson;
+    color: #3FA7D6;
   }
 
   .renderjson .syntax {
-    color: grey;
+    color: #707070;
   }
 
   .renderjson .string {
-    color: red;
+    color: #DE3C4B;
   }
 
   .renderjson .number {
-    color: cyan;
+    color: #59CD90;
   }
 
   .renderjson .boolean {
-    color: plum;
+    color: #964BE5;
   }
 
   .renderjson .key {
-    color: lightblue;
+    color: #87A9B5;
   }
 
   .renderjson .keyword {
-    color: lightgoldenrodyellow;
+    color: #E2799F;
   }
 
   .renderjson .object.syntax {
-    color: lightseagreen;
+    color: #87A9B5;
   }
 
   .renderjson .array.syntax {
-    color: lightsalmon;
+    color: #FAC05E;
   }
 `;
