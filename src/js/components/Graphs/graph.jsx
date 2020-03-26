@@ -40,11 +40,14 @@ import {
 import TimelineComponent from './Timeline/timeline';
 import Legend from './Legend/Legend';
 import NodeInfo from './NodeInfo/nodesInfo';
+import { nodeInfoToIcon } from './graphHelper';
+
 
 const displayOptions = {
   graph: 'graph',
   performanceTimeLine: 'performanceTimeLine',
 };
+
 
 const GraphComponent = ({
   graphJson,
@@ -74,6 +77,12 @@ const GraphComponent = ({
     }
   }, [graphJson]);
 
+  const handleSwitchView = (option) => {
+    setDisplayOption(option);
+    setDisplayNodeInfo(false);
+    setDisplayLegend(false);
+  };
+
   return (
     <GraphWrapper className="graphWrapper">
       <GraphHeaderContainer>
@@ -85,13 +94,13 @@ const GraphComponent = ({
       <GraphNavigationWrapper>
         <GraphToogleViewButton
           active={displayOption === displayOptions.graph}
-          onClick={() => setDisplayOption(displayOptions.graph)}
+          onClick={() => handleSwitchView(displayOptions.graph)}
         >
           GRAPH VIEW
         </GraphToogleViewButton>
         <GraphToogleViewButton
           active={displayOption === displayOptions.performanceTimeLine}
-          onClick={() => setDisplayOption(displayOptions.performanceTimeLine)}
+          onClick={() => handleSwitchView(displayOptions.performanceTimeLine)}
         >
           PERFORMANCE VIEW
         </GraphToogleViewButton>
@@ -125,7 +134,10 @@ const GraphComponent = ({
           <FontAwesomeIcon icon={faTimes} />
         </GraphAdditionalPanelCloseButton>
         <GraphAdditionalPanelHeader>
-          <h2> Node info </h2>
+          <h2>
+            {nodeInfoToIcon(nodeInfo)}
+            <span>Node info</span>
+          </h2>
         </GraphAdditionalPanelHeader>
         <GraphAdditionalPanelContent>
           <NodeInfo nodeJson={nodeInfo} />

@@ -82,6 +82,7 @@ const createVirtualEndNode = (composite, transitions) => ({
   info: {
     hasAdditionalInfo: false,
     label: 'compositeEnd',
+    type: 'COMPOSITE',
   },
 });
 

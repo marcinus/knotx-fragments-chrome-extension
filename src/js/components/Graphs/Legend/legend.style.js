@@ -2,45 +2,54 @@ import styled from 'styled-components';
 
 export const LegendContainer = styled.div`
     width: 100%;
+    display: flex;
+    flex-wrap: wrap;
 `;
 
 export const LegendHeader = styled.h3`
-    margin: 45px 15px 10px 15px;
+    margin-bottom: 10px;
+    margin-top: 0;
+    font-size: 12px;
+    font-weight: 400;
+    color: ${({ theme }) => theme.TEXT};
 `;
+
+export const LegendSectionContainer = styled.div`
+    margin: 20px;
+`;
+
 
 export const LegendItem = styled.div`
     display: flex;
     align-items: center;
-    margin: 5px;
+    margin-bottom: 10px;
 `;
 
 export const LegendItemIcon = styled.div`
     width: 20px;
     height: 20px;
-    margin: 0 10px;
 `;
 
 export const SquareIcon = styled.div`
     background-color: ${({ color }) => color};
     width: 100%;
     height: 100%;
-    border: 1px solid black;
+    border-radius: 4px;
 `;
 
 export const CircleIcon = styled.div`
     background-color: ${({ color }) => color};
     width: 100%;
     height: 100%;
-    border: 1px solid black;
+    border: ${({ theme }) => `1px solid ${theme.BORDER}`};
     border-radius: 50%;
 `;
 
 export const RectangleIcon = styled.div`
     background-color: ${({ color }) => color};
     width: 100%;
-    height: 50%;
-    border: 1px solid black;
-    margin-top: 25%;
+    height: 100%;
+    border-radius: 4px;
 `;
 
 export const LineIcon = styled.div`
@@ -52,5 +61,7 @@ export const LineIcon = styled.div`
 `;
 
 export const LegendItemDescription = styled.span`
-    font-weight: bold;
+    font-size: 12px;
+    margin-left: 5px;
+    color: ${({ theme }) => theme.TEXT};
 `;

@@ -18,8 +18,13 @@ import React, { useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faArrowAltCircleLeft } from '@fortawesome/free-solid-svg-icons';
-import { SidePanelWrapper, ToggleSidePanelButton } from './sidePanel.style';
+import { faArrowAltCircleLeft, faTimes, faBars } from '@fortawesome/free-solid-svg-icons';
+import {
+  SidePanelWrapper,
+  ToogleArrow,
+  ToogleBurger,
+  CloseSidePanelButton,
+} from './sidePanel.style';
 import FragmentList from '../FragmentList/fragmentList';
 import { PAGE_BREAK } from '../../helpers/constants';
 import FragmentGannt from '../FragmentGannt/fragmentGannt';
@@ -37,21 +42,35 @@ const SidePanel = ({ tabId }) => {
     }
   }, [renderedGraph]);
 
+
   return (
     <SidePanelWrapper
       expanded={expanded}
       renderedGraph={renderedGraph}
     >
-      {expanded
-        ? null
-        : (
-          <ToggleSidePanelButton
-            expanded={expanded}
+      {!expanded
+        ? (
+          <ToogleArrow
             onClick={() => setExpanded(true)}
           >
             <FontAwesomeIcon icon={faArrowAltCircleLeft} />
-          </ToggleSidePanelButton>
-        )}
+          </ToogleArrow>
+        )
+        : null }
+
+      {!expanded
+        ? (
+          <ToogleBurger
+            onClick={() => setExpanded(true)}
+          >
+            <FontAwesomeIcon icon={faBars} />
+          </ToogleBurger>
+        )
+        : null}
+
+      <CloseSidePanelButton onClick={() => setExpanded(false)}>
+        <FontAwesomeIcon icon={faTimes} />
+      </CloseSidePanelButton>
 
       <FragmentList tabId={tabId} />
       <FragmentGannt tabId={tabId} />

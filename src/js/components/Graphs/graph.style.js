@@ -27,6 +27,7 @@ export const PerformanceTimeLineContainer = styled.div`
      height: 50%;
      flex: 1 1 auto;
      display: ${({ shouldDisplay }) => (shouldDisplay === 'performanceTimeLine' ? 'block' : 'none')};
+     padding-top: 5px;
 `;
 
 export const GraphHeaderContainer = styled.div`
@@ -98,11 +99,18 @@ export const GraphAdditionalPanelHeader = styled.div`
     background-color: white;
     width: 100%;
     color: ${({ theme }) => theme.TEXT};
+    display: inline-flex;
+    align-items: center;
 
     h2 {
+      display: inline-flex;
       font-size: 18px;
       font-weight: 400;
       margin: 10px;
+
+      span {
+        padding: 0 10px;
+      }
     }
 `;
 
