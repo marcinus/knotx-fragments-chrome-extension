@@ -116,20 +116,7 @@ const GraphComponent = ({
         <TimelineComponent graphJson={graphJson} shouldDisplay={displayOption} />
       </PerformanceTimeLineContainer>
 
-      <GraphAdditionalPanel display={displayLegend}>
-        <GraphAdditionalPanelCloseButton onClick={() => setDisplayLegend(false)}>
-          <FontAwesomeIcon icon={faTimes} />
-        </GraphAdditionalPanelCloseButton>
-        <GraphAdditionalPanelHeader>
-          <h2> Legend </h2>
-        </GraphAdditionalPanelHeader>
-        <GraphAdditionalPanelContent>
-          <Legend />
-        </GraphAdditionalPanelContent>
-
-      </GraphAdditionalPanel>
-
-      <GraphAdditionalPanel display={displayNodeInfo}>
+      <GraphAdditionalPanel shouldDisplay={displayNodeInfo}>
         <GraphAdditionalPanelCloseButton onClick={() => setDisplayNodeInfo(false)}>
           <FontAwesomeIcon icon={faTimes} />
         </GraphAdditionalPanelCloseButton>
@@ -142,7 +129,18 @@ const GraphComponent = ({
         <GraphAdditionalPanelContent>
           <NodeInfo nodeJson={nodeInfo} />
         </GraphAdditionalPanelContent>
+      </GraphAdditionalPanel>
 
+      <GraphAdditionalPanel shouldDisplay={displayLegend}>
+        <GraphAdditionalPanelCloseButton onClick={() => setDisplayLegend(false)}>
+          <FontAwesomeIcon icon={faTimes} />
+        </GraphAdditionalPanelCloseButton>
+        <GraphAdditionalPanelHeader>
+          <h2> Legend </h2>
+        </GraphAdditionalPanelHeader>
+        <GraphAdditionalPanelContent>
+          <Legend />
+        </GraphAdditionalPanelContent>
       </GraphAdditionalPanel>
 
     </GraphWrapper>

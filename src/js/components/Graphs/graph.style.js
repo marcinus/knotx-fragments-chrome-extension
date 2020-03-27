@@ -89,7 +89,7 @@ export const GraphAdditionalPanel = styled.div`
     width: 100%;
     overflow: scroll;
     border-top: ${({ theme }) => `1px solid ${theme.BORDER}`};
-    display: ${({ display }) => (display ? 'block' : 'none')};
+    display: ${({ shouldDisplay }) => (shouldDisplay ? 'block' : 'none')};
     min-height: 25%;
     height: 50%;
 `;
