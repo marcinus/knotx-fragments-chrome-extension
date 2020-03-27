@@ -1,6 +1,10 @@
 import React from 'react';
 import {
-  COLOR_SUCCESS, COLOR_ERROR, COLOR_OTHER, COLOR_UNPROCESSED, COLOR_MISSING,
+  COLOR_SUCCESS,
+  COLOR_ERROR,
+  COLOR_OTHER,
+  COLOR_UNPROCESSED,
+  COLOR_MISSING,
 } from '../../helpers/graph/drawingHelper';
 import { SquareIcon, CircleIcon, LegendItemIcon } from './Legend/legend.style';
 

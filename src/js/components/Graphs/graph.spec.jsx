@@ -15,9 +15,7 @@ import {
 import Legend from './Legend/Legend';
 import { CircleIcon, SquareIcon } from './Legend/legend.style';
 import { singleNode } from '../../helpers/graph/declarationHelper.mock';
-import {
-  COLOR_SUCCESS, COLOR_ERROR,
-} from '../../helpers/graph/drawingHelper';
+import { COLOR_SUCCESS, COLOR_ERROR } from '../../helpers/graph/drawingHelper';
 
 describe('Graph component', () => {
   const reactapp = document.createElement('div');
@@ -74,7 +72,6 @@ describe('Graph component', () => {
         status: 'ERROR',
       },
     };
-
 
     expect(shallow(nodeInfoToIcon(exampeNodeInfo.set_1)).contains(
       <SquareIcon color={COLOR_SUCCESS} />,
