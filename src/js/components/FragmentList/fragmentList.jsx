@@ -23,6 +23,7 @@ import {
   SortingWrapper,
   StatusSortingButton,
   EmptySortingCell,
+  ListItemContainer,
 } from './fragmentList.style';
 import FragmentListItem from './FragmentListItem/fragmentListItem';
 import { ARROW_DOWN } from '../../helpers/constants';
@@ -103,7 +104,16 @@ const FragmentList = ({ tabId }) => {
 
         <EmptySortingCell />
       </SortingWrapper>
-      {fragments}
+      <ListItemContainer>
+        {fragments}
+        {fragments}
+        {fragments}
+        {fragments}
+        {fragments}
+        {fragments}
+        {fragments}
+        {fragments}
+      </ListItemContainer>
     </FragmentListWrapper>
   );
 };
