@@ -50,6 +50,14 @@ export const defaultTheme = {
 };
 
 export const darkTheme = {
+  TEXT: '#FFFFFF',
+  MENU_TOGGLE_BUTTON: '#FFFFFF',
+  BACKGROUND: '#3A3A3A',
+  TABLE_HEADER_BG: '#707070',
+  TABLE_CELL_BG: '#505050',
+  TABLE_CELL_HOVER_BG: '#617888',
+  TABLE_CELL_ACTIVE_BG: '#50626F',
+
   textColor: COLORS.DARK.TEXT_COLOR,
   buttonBgColor: COLORS.DARK.BUTTON_BG_COLOR,
   fragmentHighlight: COLORS.DARK.FRAGMENT_HIGHLIGHT,
