@@ -23,9 +23,9 @@ export const COLOR_ERROR = '#DE3C4B';
 export const COLOR_MISSING = '#FAC05E';
 export const COLOR_OTHER = '#3FA7D6';
 
-export const COLOR_DEFAULT_NODE_FONT = '#000';
-export const COLOR_UNPROCESSED_NODE_FONT = '#FFF';
-export const COLOR_DEFAULT_EDGE = '#000';
+export const COLOR_DEFAULT_NODE_FONT = '#FFF';
+export const COLOR_DEFAULT_BORDER = '#000';
+export const COLOR_DEFAULT_EDGE = '#909090';
 export const COLOR_UNPROCESSED_EDGE = '#606060';
 
 const defaultVirtualNode = {
@@ -61,11 +61,13 @@ const groups = {
   success: {
     color: {
       background: COLOR_SUCCESS,
+      border: COLOR_SUCCESS,
     },
   },
   error: {
     color: {
       background: COLOR_ERROR,
+      border: COLOR_ERROR,
     },
   },
   unprocessed: {
@@ -73,20 +75,19 @@ const groups = {
     borderWidthSelected: 1,
     color: {
       background: COLOR_UNPROCESSED,
-      border: '#FFF',
-    },
-    font: {
-      color: COLOR_UNPROCESSED_NODE_FONT,
+      border: COLOR_UNPROCESSED,
     },
   },
   missing: {
     color: {
       background: COLOR_MISSING,
+      border: COLOR_MISSING,
     },
   },
   other: {
     color: {
       background: COLOR_OTHER,
+      border: COLOR_OTHER,
     },
   },
 };
@@ -96,21 +97,18 @@ export const defaultGraphConfiguration = {
     ...groups,
   },
   nodes: {
-    borderWidth: 0,
-    borderWidthSelected: 0,
+    borderWidth: 2,
+    borderWidthSelected: 1,
     shape: 'box',
     font: {
       color: COLOR_DEFAULT_NODE_FONT,
     },
     color: {
-      border: COLOR_DEFAULT_EDGE,
+      border: COLOR_DEFAULT_BORDER,
     },
   },
   edges: {
     color: COLOR_DEFAULT_EDGE,
-    font: {
-      background: 'white',
-    },
   },
   layout: {
     hierarchical: {

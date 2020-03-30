@@ -17,10 +17,18 @@
 import { COLORS } from '../helpers/constants';
 
 export const defaultTheme = {
+  WHITE_BLACK: '#FFF', // White on light theme | Black on dark theme
+  BLACK_WHITE: '#FFF', // Black on light theme | White on dark theme
+
   TEXT: '#707070',
   MENU_TOGGLE_BUTTON: '#707070',
   BORDER: '#707070',
   BACKGROUND: '#F5F5F5',
+  TABLE_HEADER_BG: '#707070',
+  TABLE_CELL_BG: '#FFF',
+  TABLE_CELL_HOVER_BG: '#D0ECFF',
+  TABLE_CELL_ACTIVE_BG: '#BFD6E5',
+  NODE_LIST_ITEM_BG: '#E8E8E8',
 
   textColor: COLORS.TEXT_COLOR,
   buttonBgColor: COLORS.BUTTON_BG_COLOR,

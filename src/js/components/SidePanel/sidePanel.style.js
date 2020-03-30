@@ -21,8 +21,7 @@ export const SidePanelWrapper = styled.div`
     position: fixed;
     margin-left: ${({ expanded }) => (expanded ? '0' : '-100%')};
     top: 0;
-    padding-top: 40px;
-    height: calc(100vh - 40px);
+    height: 100vh;
     width: 100%;
     z-index: 10;
     background-color: ${({ theme }) => theme.sidePanelBgColor};

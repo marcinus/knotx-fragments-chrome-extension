@@ -72,6 +72,7 @@ const SidePanel = ({ tabId }) => {
         <FontAwesomeIcon icon={faTimes} />
       </CloseSidePanelButton>
 
+
       <FragmentList tabId={tabId} />
       <FragmentGannt tabId={tabId} />
     </SidePanelWrapper>

@@ -18,7 +18,11 @@ import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import propTypes from 'prop-types';
 import {
-  FragmentListWrapper, SortingButton, SortingWrapper,
+  FragmentListWrapper,
+  SortingButton,
+  SortingWrapper,
+  StatusSortingButton,
+  EmptySortingCell,
 } from './fragmentList.style';
 import FragmentListItem from './FragmentListItem/fragmentListItem';
 import { ARROW_DOWN } from '../../helpers/constants';
@@ -66,34 +70,38 @@ const FragmentList = ({ tabId }) => {
 
   return (
     <FragmentListWrapper>
+      <h1>List of fragments</h1>
+
       <SortingWrapper>
-        <SortingButton
-          status
+        <StatusSortingButton
           onClick={() => setFragments(sortFragmentsByStatus(fragments))}
         >
           {ARROW_DOWN}
-        </SortingButton>
+        </StatusSortingButton>
 
         <SortingButton
           onClick={() => setFragments(fragments.concat().sort(idSortComparator))}
         >
-          ID
-          {ARROW_DOWN}
+          <span className="tableHeaderName">ID</span>
+          <span className="tableHeaderID">{ARROW_DOWN}</span>
         </SortingButton>
 
         <SortingButton
           onClick={() => setFragments(fragments.concat().sort(typeSortComparator))}
         >
-          TYPE
-          {ARROW_DOWN}
+
+          <span className="tableHeaderName">TYPE</span>
+          <span className="tableHeaderID">{ARROW_DOWN}</span>
         </SortingButton>
 
         <SortingButton
           onClick={() => setFragments(fragments.concat().sort())}
         >
-          TIME
-          {ARROW_DOWN}
+          <span className="tableHeaderName">TIME</span>
+          <span className="tableHeaderID">{ARROW_DOWN}</span>
         </SortingButton>
+
+        <EmptySortingCell />
       </SortingWrapper>
       {fragments}
     </FragmentListWrapper>
