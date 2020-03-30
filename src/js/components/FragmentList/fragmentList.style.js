@@ -20,6 +20,8 @@ export const FragmentListWrapper = styled.div`
     display: flex;
     flex-direction: column;
     align-items: stretch;
+    height: 50vh;
+    flex: 1 1 auto;
 
     h1 {
       font-size: 18px;
@@ -55,3 +57,8 @@ export const StatusSortingButton = styled(SortingButton)`
 `;
 
 export const EmptySortingCell = styled(StatusSortingButton)``;
+
+export const ListItemContainer = styled.div`
+    height: 100%;
+    overflow: scroll;
+`;
