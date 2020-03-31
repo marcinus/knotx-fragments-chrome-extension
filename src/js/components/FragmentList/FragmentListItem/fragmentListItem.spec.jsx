@@ -19,7 +19,7 @@ import { mount } from 'enzyme';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 import FragmentListItem from './fragmentListItem';
-import { Status, Type } from './fragmentListItem.style';
+import { Status, TableItem, TableItemId } from './fragmentListItem.style';
 import reducer from '../../../state/reducers/index';
 import { NodeButton } from '../NodeList/nodeList.style';
 
@@ -44,9 +44,14 @@ describe('<NodeList /> unit test', () => {
     expect(wrapper.find(Status).prop('status')).toBe('success');
   });
 
+  it('Should have proper ID', () => {
+    const wrapper = getWrapper();
+    expect(wrapper.find(TableItemId).at(0).text()).toBe('1');
+  });
+
   it('Should have proper type', () => {
     const wrapper = getWrapper();
-    expect(wrapper.find(Type).prop('children')).toBe('snippet');
+    expect(wrapper.find(TableItem).at(0).text()).toBe('snippet');
   });
 
   it('Should have proper Id', () => {

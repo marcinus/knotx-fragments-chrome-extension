@@ -18,7 +18,7 @@ import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import propTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faLongArrowAltDown } from '@fortawesome/free-solid-svg-icons';
+import { faLongArrowAltDown, faLongArrowAltUp } from '@fortawesome/free-solid-svg-icons';
 import {
   FragmentListWrapper,
   SortingButton,
@@ -62,13 +62,22 @@ export function sortFragmentsByStatus(fragments) {
   return sortedFragments;
 }
 
+const sortingOptions = {
+  status: 'status',
+  id: 'id',
+  type: 'type',
+  time: 'time',
+};
+
 const FragmentList = ({ tabId }) => {
   const data = useSelector((state) => state.pageData[tabId].fragments);
   const parsedData = mapDataToComponents(data, tabId);
   const [fragments, setFragments] = useState(parsedData);
+  const [currentSorting, setCurrentSorting] = useState(null);
 
   const typeSortComparator = (a, b) => a.props.type.localeCompare(b.props.type);
   const idSortComparator = (a, b) => a.props.id.localeCompare(b.props.id);
+  const timeSortComparator = (a, b) => a.props.time - b.props.time;
 
   return (
     <FragmentListWrapper>
@@ -76,36 +85,75 @@ const FragmentList = ({ tabId }) => {
 
       <SortingWrapper>
         <StatusSortingButton
-          onClick={() => setFragments(sortFragmentsByStatus(fragments))}
+          onClick={() => {
+            if (!(currentSorting === sortingOptions.status)) {
+              setFragments(sortFragmentsByStatus(fragments));
+              setCurrentSorting(sortingOptions.status);
+            } else {
+              setFragments(parsedData);
+              setCurrentSorting(null);
+            }
+          }}
         >
-          <FontAwesomeIcon icon={faLongArrowAltDown} />
+          {currentSorting === sortingOptions.status
+            ? (<FontAwesomeIcon icon={faLongArrowAltUp} />)
+            : (<FontAwesomeIcon icon={faLongArrowAltDown} />)}
         </StatusSortingButton>
 
         <SortingButton
-          onClick={() => setFragments(fragments.concat().sort(idSortComparator))}
+          onClick={() => {
+            if (!(currentSorting === sortingOptions.id)) {
+              setFragments(fragments.concat().sort(idSortComparator));
+              setCurrentSorting(sortingOptions.id);
+            } else {
+              setFragments(parsedData);
+              setCurrentSorting(null);
+            }
+          }}
         >
           <span className="tableHeaderName">ID</span>
           <span className="tableHeaderIcon">
-            <FontAwesomeIcon icon={faLongArrowAltDown} />
+            {currentSorting === sortingOptions.id
+              ? (<FontAwesomeIcon icon={faLongArrowAltUp} />)
+              : (<FontAwesomeIcon icon={faLongArrowAltDown} />)}
           </span>
         </SortingButton>
 
         <SortingButton
-          onClick={() => setFragments(fragments.concat().sort(typeSortComparator))}
+          onClick={() => {
+            if (!(currentSorting === sortingOptions.type)) {
+              setFragments(fragments.concat().sort(typeSortComparator));
+              setCurrentSorting(sortingOptions.type);
+            } else {
+              setFragments(parsedData);
+              setCurrentSorting(null);
+            }
+          }}
         >
-
           <span className="tableHeaderName">TYPE</span>
           <span className="tableHeaderIcon">
-            <FontAwesomeIcon icon={faLongArrowAltDown} />
+            {currentSorting === sortingOptions.type
+              ? (<FontAwesomeIcon icon={faLongArrowAltUp} />)
+              : (<FontAwesomeIcon icon={faLongArrowAltDown} />)}
           </span>
         </SortingButton>
 
         <SortingButton
-          onClick={() => setFragments(fragments.concat().sort())}
+          onClick={() => {
+            if (!(currentSorting === sortingOptions.time)) {
+              setFragments(fragments.concat().sort(timeSortComparator));
+              setCurrentSorting(sortingOptions.time);
+            } else {
+              setFragments(parsedData);
+              setCurrentSorting(null);
+            }
+          }}
         >
           <span className="tableHeaderName">TIME</span>
           <span className="tableHeaderIcon">
-            <FontAwesomeIcon icon={faLongArrowAltDown} />
+            {currentSorting === sortingOptions.time
+              ? (<FontAwesomeIcon icon={faLongArrowAltUp} />)
+              : (<FontAwesomeIcon icon={faLongArrowAltDown} />)}
           </span>
         </SortingButton>
 
