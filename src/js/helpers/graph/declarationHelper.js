@@ -68,8 +68,9 @@ const createVirtualStartNode = (composite, transitions) => ({
   id: `${composite.id}_virtual`,
   on: transitions,
   info: {
-    hasAdditionalInfo: true,
-    ...composite.info,
+    hasAdditionalInfo: false,
+    label: 'compositeStart',
+    type: composite.type,
   },
 });
 
@@ -80,9 +81,9 @@ const createVirtualEndNode = (composite, transitions) => ({
   id: `${composite.id}_virtual2`,
   on: transitions,
   info: {
-    hasAdditionalInfo: false,
+    hasAdditionalInfo: true,
+    ...composite,
     label: 'compositeEnd',
-    type: 'COMPOSITE',
   },
 });
 
@@ -138,7 +139,9 @@ export const flattenComposites = (node) => {
     }
   }
 
-  flattenedNode.info = node;
+  if (!(flattenedNode.info && flattenedNode.info.hasAdditionalInfo === false)) {
+    flattenedNode.info = node;
+  }
 
   return flattenedNode;
 };
