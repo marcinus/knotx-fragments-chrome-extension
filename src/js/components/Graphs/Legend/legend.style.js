@@ -15,7 +15,12 @@ export const LegendHeader = styled.h3`
 `;
 
 export const LegendSectionContainer = styled.div`
+    width: calc(25% - 40px);
     margin: 20px;
+
+    @media (max-width: 512px) {
+      width: calc(50% - 40px);
+    }
 `;
 
 
