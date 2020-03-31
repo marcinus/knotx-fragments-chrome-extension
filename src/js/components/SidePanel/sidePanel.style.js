@@ -24,7 +24,7 @@ export const SidePanelWrapper = styled.div`
     height: 100vh;
     width: 100%;
     z-index: 10;
-    background-color: ${({ theme }) => theme.sidePanelBgColor};
+    background-color: ${({ theme }) => theme.BACKGROUND};
     transition: left .1s, width .1s;
 
     display: flex;

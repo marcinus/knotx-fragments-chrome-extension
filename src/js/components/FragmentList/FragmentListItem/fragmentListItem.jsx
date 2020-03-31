@@ -18,7 +18,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faArrowCircleRight } from '@fortawesome/free-solid-svg-icons';
+import { faArrowCircleRight, faArrowDown, faArrowUp } from '@fortawesome/free-solid-svg-icons';
 import {
   FragmentListItemContainer,
   Status,
@@ -29,7 +29,7 @@ import {
   ShowGraphButton,
 } from './fragmentListItem.style';
 import NodeList from '../NodeList/nodeList';
-import { ENTER_KEY_CODE, ARROW_DOWN, ARROW_UP } from '../../../helpers/constants';
+import { ENTER_KEY_CODE } from '../../../helpers/constants';
 import { setRenderedGraph } from '../../../state/actions/pageData';
 
 const FragmentListItem = ({
@@ -82,7 +82,9 @@ const FragmentListItem = ({
               setExpanded(!expanded);
             }}
           >
-            {expanded ? ARROW_UP : ARROW_DOWN}
+            {expanded
+              ? (<FontAwesomeIcon icon={faArrowUp} />)
+              : (<FontAwesomeIcon icon={faArrowDown} />)}
           </span>
         </TableItemId>
 

@@ -14,66 +14,34 @@
  * limitations under the License.
  */
 
-import { COLORS } from '../helpers/constants';
-
 export const defaultTheme = {
-  WHITE_BLACK: '#FFF', // White on light theme | Black on dark theme
-  BLACK_WHITE: '#FFF', // Black on light theme | White on dark theme
-
+  THEME_COLOR: '#FFF',
   TEXT: '#707070',
   MENU_TOGGLE_BUTTON: '#707070',
   BORDER: '#707070',
   BACKGROUND: '#F5F5F5',
   TABLE_HEADER_BG: '#707070',
+  TABLE_HEADER_TEXT: '#FFF',
   TABLE_CELL_BG: '#FFF',
   TABLE_CELL_HOVER_BG: '#D0ECFF',
   TABLE_CELL_ACTIVE_BG: '#BFD6E5',
   NODE_LIST_ITEM_BG: '#E8E8E8',
-
-  textColor: COLORS.TEXT_COLOR,
-  buttonBgColor: COLORS.BUTTON_BG_COLOR,
-  fragmentHighlight: COLORS.FRAGMENT_HIGHLIGHT,
-  fragmentActive: COLORS.FRAGMENT_ACTIVE,
-  borderColor: COLORS.BORDER_COLOR,
-  oddFragmentBgColor: COLORS.ODD_FRAGMENT_BG_COLOR,
-  nodeHighlight: COLORS.NODE_HIGHLIGHT,
-  oddNodeBgColor: COLORS.ODD_NODE_BG_COLOR,
-  sidePanelBgColor: COLORS.SIDE_PANEL_BG_COLOR,
-  buttonHover: COLORS.BUTTON_HOVER,
-  success: COLORS.SUCCESS,
-  error: COLORS.ERROR,
-  unprocessed: COLORS.UNPROCESSED,
-  warning: COLORS.WARNING,
-  expandNodeListBgHover: COLORS.EXPAND_NODE_LIST_BG_HOVER,
-  expandNodeListBg: COLORS.EXPAND_NODE_LIST_BG,
-
+  ADDITIONAL_PANEL_CONTENT_BG: '#F5F5F5',
+  ADDITIONAL_PANEL_HEADER_BG: '#FFF',
 };
 
 export const darkTheme = {
-  TEXT: '#FFFFFF',
-  MENU_TOGGLE_BUTTON: '#FFFFFF',
+  THEME_COLOR: '#242424',
+  TEXT: '#FFF',
+  MENU_TOGGLE_BUTTON: '#FFF',
+  BORDER: '#FFF',
   BACKGROUND: '#3A3A3A',
   TABLE_HEADER_BG: '#707070',
+  TABLE_HEADER_TEXT: '#FFF',
   TABLE_CELL_BG: '#505050',
   TABLE_CELL_HOVER_BG: '#617888',
   TABLE_CELL_ACTIVE_BG: '#50626F',
   NODE_LIST_ITEM_BG: '#9A9A9A',
-
-  textColor: COLORS.DARK.TEXT_COLOR,
-  buttonBgColor: COLORS.DARK.BUTTON_BG_COLOR,
-  fragmentHighlight: COLORS.DARK.FRAGMENT_HIGHLIGHT,
-  fragmentActive: COLORS.DARK.FRAGMENT_ACTIVE,
-  borderColor: COLORS.DARK.BORDER_COLOR,
-  oddFragmentBgColor: COLORS.DARK.ODD_FRAGMENT_BG_COLOR,
-  nodeHighlight: COLORS.DARK.NODE_HIGHLIGHT,
-  oddNodeBgColor: COLORS.DARK.ODD_NODE_BG_COLOR,
-  sidePanelBgColor: COLORS.DARK.SIDE_PANEL_BG_COLOR,
-  buttonHover: COLORS.DARK.BUTTON_HOVER,
-  success: COLORS.SUCCESS,
-  error: COLORS.ERROR,
-  unprocessed: COLORS.UNPROCESSED,
-  warning: COLORS.WARNING,
-  expandNodeListBgHover: COLORS.EXPAND_NODE_LIST_BG_HOVER,
-  expandNodeListBg: COLORS.EXPAND_NODE_LIST_BG,
-  menuToggleButton: COLORS.DARK.MENU_TOGGLE_BUTTON,
+  ADDITIONAL_PANEL_CONTENT_BG: '#242424',
+  ADDITIONAL_PANEL_HEADER_BG: '#3A3A3A',
 };

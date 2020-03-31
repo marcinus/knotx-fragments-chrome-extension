@@ -16,12 +16,12 @@ export const TimelineBar = styled.div`
   span {
     font-size: 12px;
     font-weight: bold;
-    color: ${({ theme }) => theme.WHITE_BLACK};
+    color: ${({ theme }) => theme.TABLE_HEADER_TEXT};
     margin: 0 10px;
   }
 
   svg {
-    color: ${({ theme }) => theme.WHITE_BLACK};
+    color: ${({ theme }) => theme.TABLE_HEADER_TEXT};
     font-size: 14px;
     margin: 0 5px;
   }
@@ -29,5 +29,9 @@ export const TimelineBar = styled.div`
 
 export const Timeline = styled.div`
   height: calc(50vh - 30px);
-  display: ${({ expanded }) => (expanded ? 'block' : 'none')}
+  display: ${({ expanded }) => (expanded ? 'block' : 'none')};
+
+  .vis-time-axis .vis-text {
+    color: ${({ theme }) => theme.TEXT};
+  }
 `;

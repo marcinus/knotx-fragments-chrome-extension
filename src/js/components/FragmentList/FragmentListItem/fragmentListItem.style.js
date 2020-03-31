@@ -90,50 +90,6 @@ export const TableItemId = styled(TableItem)`
   .tableItemIcon:hover {
     cursor: pointer;
   }
-
-`;
-
-export const Id = styled.div`
-    overflow: hidden;
-    flex: 1;
-    border-right: 1px solid ${({ theme }) => theme.borderColor};
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    word-break: break-all;
-`;
-
-export const IdHeader = styled.div`
-    display: flex;
-    justify-content: center;
-    max-height: 20px;
-`;
-
-export const Type = styled.div`
-    flex: 1;
-    display: flex;
-    justify-content: center;
-    border-right: 1px solid ${({ theme }) => theme.borderColor};
-`;
-
-export const Time = styled.div`
-    flex: 1;
-    display: flex;
-    justify-content: center;
-`;
-
-export const ExpandNodeListButton = styled.button`
-    height: 19px;
-    color: ${({ theme }) => theme.textColor};
-    font-weight: bold;
-    background-color: ${({ theme }) => theme.expandNodeListBg};;
-    border: none;
-    margin-left: 5px;
-
-    &:hover {
-        cursor: pointer;
-        background-color: ${({ theme }) => theme.expandNodeListBgHover};
-    }
 `;
 
 export const OverflowWrapper = styled.p`

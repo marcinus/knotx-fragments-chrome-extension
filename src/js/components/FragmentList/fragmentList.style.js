@@ -43,10 +43,10 @@ export const SortingButton = styled.button`
     margin: 1px;
     font-size: 12px;
     flex: 1;
-    color: ${({ theme }) => theme.WHITE_BLACK};
+    color: ${({ theme }) => theme.TABLE_HEADER_TEXT};
     background-color: ${({ theme }) => theme.TABLE_HEADER_BG};
 
-    .tableHeaderID {
+    .tableHeaderIcon {
         float: right;
     }
 `;

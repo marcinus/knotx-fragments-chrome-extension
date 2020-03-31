@@ -17,6 +17,8 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import propTypes from 'prop-types';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faLongArrowAltDown } from '@fortawesome/free-solid-svg-icons';
 import {
   FragmentListWrapper,
   SortingButton,
@@ -26,7 +28,6 @@ import {
   ListItemContainer,
 } from './fragmentList.style';
 import FragmentListItem from './FragmentListItem/fragmentListItem';
-import { ARROW_DOWN } from '../../helpers/constants';
 
 export function mapDataToComponents(fragments, tabId) {
   return fragments.map(({ debug, nodes }) => {
@@ -77,14 +78,16 @@ const FragmentList = ({ tabId }) => {
         <StatusSortingButton
           onClick={() => setFragments(sortFragmentsByStatus(fragments))}
         >
-          {ARROW_DOWN}
+          <FontAwesomeIcon icon={faLongArrowAltDown} />
         </StatusSortingButton>
 
         <SortingButton
           onClick={() => setFragments(fragments.concat().sort(idSortComparator))}
         >
           <span className="tableHeaderName">ID</span>
-          <span className="tableHeaderID">{ARROW_DOWN}</span>
+          <span className="tableHeaderIcon">
+            <FontAwesomeIcon icon={faLongArrowAltDown} />
+          </span>
         </SortingButton>
 
         <SortingButton
@@ -92,26 +95,23 @@ const FragmentList = ({ tabId }) => {
         >
 
           <span className="tableHeaderName">TYPE</span>
-          <span className="tableHeaderID">{ARROW_DOWN}</span>
+          <span className="tableHeaderIcon">
+            <FontAwesomeIcon icon={faLongArrowAltDown} />
+          </span>
         </SortingButton>
 
         <SortingButton
           onClick={() => setFragments(fragments.concat().sort())}
         >
           <span className="tableHeaderName">TIME</span>
-          <span className="tableHeaderID">{ARROW_DOWN}</span>
+          <span className="tableHeaderIcon">
+            <FontAwesomeIcon icon={faLongArrowAltDown} />
+          </span>
         </SortingButton>
 
         <EmptySortingCell />
       </SortingWrapper>
       <ListItemContainer>
-        {fragments}
-        {fragments}
-        {fragments}
-        {fragments}
-        {fragments}
-        {fragments}
-        {fragments}
         {fragments}
       </ListItemContainer>
     </FragmentListWrapper>

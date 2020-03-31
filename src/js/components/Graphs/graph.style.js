@@ -56,6 +56,7 @@ export const GraphToogleViewButton = styled.button`
     border-color: ${({ theme }) => theme.BORDER};
     border-bottom: ${({ theme, active }) => (active ? 'none' : `1px solid ${theme.BORDER}`)};
     border-top: ${({ theme, active }) => (active ? `1px solid ${theme.BORDER}` : 'none')};
+    background-color: transparent;
 
     &:nth-child(1) {
       border-left: none;
@@ -78,6 +79,8 @@ export const LegendIcon = styled.button`
     padding: 0;
     font-size: 18px;
     color: ${({ theme }) => theme.TEXT};
+    background-color: ${({ theme }) => theme.THEME_COLOR};
+
 
     &:hover {
         cursor: pointer;
@@ -85,7 +88,7 @@ export const LegendIcon = styled.button`
 `;
 
 export const GraphAdditionalPanel = styled.div`
-    background-color: ${({ theme }) => theme.BACKGROUND};
+    background-color: ${({ theme }) => theme.ADDITIONAL_PANEL_CONTENT_BG};
     width: 100%;
     overflow: scroll;
     border-top: ${({ theme }) => `1px solid ${theme.BORDER}`};
@@ -96,7 +99,7 @@ export const GraphAdditionalPanel = styled.div`
 
 export const GraphAdditionalPanelHeader = styled.div`
     position: fixed;
-    background-color: white;
+    background-color: ${({ theme }) => theme.ADDITIONAL_PANEL_HEADER_BG};
     width: 100%;
     color: ${({ theme }) => theme.TEXT};
     display: inline-flex;

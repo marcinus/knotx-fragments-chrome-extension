@@ -18,7 +18,7 @@ import React, { useEffect, useState, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faArrowCircleUp, faArrowCircleDown } from '@fortawesome/free-solid-svg-icons';
+import { faChevronUp, faChevronDown } from '@fortawesome/free-solid-svg-icons';
 import { constructFragmentsTimeline } from '../../helpers/nodes/nodesHelper';
 import { drawTimeline } from '../../helpers/timeline/drawHelper';
 import { GanntContainer, Timeline, TimelineBar } from './fragmentGannt.style';
@@ -68,8 +68,8 @@ const FragmentGannt = ({ tabId }) => {
       >
         <span>Fragments performance</span>
         {expanded
-          ? (<FontAwesomeIcon icon={faArrowCircleDown} />)
-          : (<FontAwesomeIcon icon={faArrowCircleUp} />) }
+          ? (<FontAwesomeIcon icon={faChevronDown} />)
+          : (<FontAwesomeIcon icon={faChevronUp} />) }
       </TimelineBar>
       <Timeline
         className="timeline"
