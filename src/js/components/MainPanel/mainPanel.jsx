@@ -19,6 +19,7 @@ import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
 import { MainPanelWrapper, MainPanelContent } from './mainPanel.style';
 import GraphComponent from '../Graphs/graph';
+import { NoKnotxPage } from '../../devtools/app.style';
 
 const MainPanel = ({ tabId }) => {
   const renderedGraphId = useSelector(({ pageData }) => pageData[tabId].renderedGraph);
@@ -40,7 +41,10 @@ const MainPanel = ({ tabId }) => {
     : (
       <MainPanelWrapper>
         <MainPanelContent>
-          <h1>Please choose any fragment</h1>
+          <NoKnotxPage>
+            <h1>Please choose any fragment</h1>
+          </NoKnotxPage>
+
         </MainPanelContent>
       </MainPanelWrapper>
     );
