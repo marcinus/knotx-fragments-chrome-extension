@@ -1,3 +1,4 @@
+
 /*
  * Copyright (C) 2020 Knot.x Project
  *
@@ -14,31 +15,35 @@
  * limitations under the License.
  */
 
+import {
+  COLOR_SUCCESS, COLOR_ERROR, COLOR_OTHER, COLOR_UNPROCESSED, COLOR_MISSING,
+} from '../../../helpers/graph/drawingHelper';
+
 export const legendArrays = {
   nodes: [
     {
       desc: 'missing',
-      color: 'yellow',
+      color: COLOR_MISSING,
       shape: 'square',
     },
     {
       desc: 'unprocessed',
-      color: 'grey',
+      color: COLOR_UNPROCESSED,
       shape: 'square',
     },
     {
       desc: 'success',
-      color: 'green',
+      color: COLOR_SUCCESS,
       shape: 'square',
     },
     {
       desc: 'error',
-      color: 'red',
+      color: COLOR_ERROR,
       shape: 'square',
     },
     {
       desc: 'other',
-      color: 'blue',
+      color: COLOR_OTHER,
       shape: 'square',
     },
   ],
@@ -57,17 +62,17 @@ export const legendArrays = {
   labels: [
     {
       desc: '_success',
-      color: 'green',
+      color: COLOR_SUCCESS,
       shape: 'rectangle',
     },
     {
       desc: '_error',
-      color: 'red',
+      color: COLOR_ERROR,
       shape: 'rectangle',
     },
     {
       desc: '_[custom]',
-      color: 'blue',
+      color: COLOR_OTHER,
       shape: 'rectangle',
     },
   ],

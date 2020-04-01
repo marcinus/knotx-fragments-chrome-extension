@@ -21,7 +21,12 @@ import { createStore } from 'redux';
 import data from '../FragmentList/fragmentList.mock';
 import reducer from '../../state/reducers/index';
 import SidePanel from './sidePanel';
-import { SidePanelWrapper, ToggleSidePanelButton } from './sidePanel.style';
+import {
+  SidePanelWrapper,
+  ToogleArrow,
+  ToogleBurger,
+  CloseSidePanelButton,
+} from './sidePanel.style';
 import { FragmentListItemContainer } from '../FragmentList/FragmentListItem/fragmentListItem.style';
 
 describe('<SidePanel /> unit test', () => {
@@ -42,9 +47,8 @@ describe('<SidePanel /> unit test', () => {
     expect(wrapper.find(SidePanelWrapper).prop('expanded')).toEqual(true);
     wrapper.find(FragmentListItemContainer).first().simulate('click');
     expect(wrapper.find(SidePanelWrapper).prop('expanded')).toEqual(false);
-    wrapper.find(ToggleSidePanelButton).first().simulate('click');
+    wrapper.find(ToogleArrow).first().simulate('click');
     expect(wrapper.find(SidePanelWrapper).prop('expanded')).toEqual(true);
-    wrapper.find(ToggleSidePanelButton).first().simulate('click');
   });
 
   it('click on fragment should not hide sidebar when screen width is higher than 700px', () => {
@@ -64,11 +68,11 @@ describe('<SidePanel /> unit test', () => {
     expect(wrapper
       .find(SidePanelWrapper).prop('expanded')).toBe(true);
     wrapper
-      .find(ToggleSidePanelButton).simulate('click');
+      .find(CloseSidePanelButton).simulate('click');
     expect(wrapper
       .find(SidePanelWrapper).prop('expanded')).toEqual(false);
     wrapper
-      .find(ToggleSidePanelButton).simulate('click');
+      .find(ToogleBurger).simulate('click');
     expect(wrapper
       .find(SidePanelWrapper).prop('expanded')).toEqual(true);
   });

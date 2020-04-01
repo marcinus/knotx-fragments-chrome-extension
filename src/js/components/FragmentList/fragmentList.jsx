@@ -17,11 +17,17 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import propTypes from 'prop-types';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faLongArrowAltDown, faLongArrowAltUp } from '@fortawesome/free-solid-svg-icons';
 import {
-  FragmentListWrapper, SortingButton, SortingWrapper,
+  FragmentListWrapper,
+  SortingButton,
+  SortingWrapper,
+  StatusSortingButton,
+  EmptySortingCell,
+  ListItemContainer,
 } from './fragmentList.style';
 import FragmentListItem from './FragmentListItem/fragmentListItem';
-import { ARROW_DOWN } from '../../helpers/constants';
 
 export function mapDataToComponents(fragments, tabId) {
   return fragments.map(({ debug, nodes }) => {
@@ -56,46 +62,106 @@ export function sortFragmentsByStatus(fragments) {
   return sortedFragments;
 }
 
+const sortingOptions = {
+  status: 'status',
+  id: 'id',
+  type: 'type',
+  time: 'time',
+};
+
 const FragmentList = ({ tabId }) => {
   const data = useSelector((state) => state.pageData[tabId].fragments);
   const parsedData = mapDataToComponents(data, tabId);
   const [fragments, setFragments] = useState(parsedData);
+  const [currentSorting, setCurrentSorting] = useState(null);
 
   const typeSortComparator = (a, b) => a.props.type.localeCompare(b.props.type);
   const idSortComparator = (a, b) => a.props.id.localeCompare(b.props.id);
+  const timeSortComparator = (a, b) => a.props.time - b.props.time;
 
   return (
     <FragmentListWrapper>
+      <h1>List of fragments</h1>
+
       <SortingWrapper>
-        <SortingButton
-          status
-          onClick={() => setFragments(sortFragmentsByStatus(fragments))}
+        <StatusSortingButton
+          onClick={() => {
+            if (currentSorting !== sortingOptions.status) {
+              setFragments(sortFragmentsByStatus(fragments));
+              setCurrentSorting(sortingOptions.status);
+            } else {
+              setFragments(parsedData);
+              setCurrentSorting(null);
+            }
+          }}
         >
-          {ARROW_DOWN}
+          {currentSorting === sortingOptions.status
+            ? (<FontAwesomeIcon icon={faLongArrowAltUp} />)
+            : (<FontAwesomeIcon icon={faLongArrowAltDown} />)}
+        </StatusSortingButton>
+
+        <SortingButton
+          onClick={() => {
+            if (currentSorting !== sortingOptions.id) {
+              setFragments(fragments.concat().sort(idSortComparator));
+              setCurrentSorting(sortingOptions.id);
+            } else {
+              setFragments(parsedData);
+              setCurrentSorting(null);
+            }
+          }}
+        >
+          <span className="tableHeaderName">ID</span>
+          <span className="tableHeaderIcon">
+            {currentSorting === sortingOptions.id
+              ? (<FontAwesomeIcon icon={faLongArrowAltUp} />)
+              : (<FontAwesomeIcon icon={faLongArrowAltDown} />)}
+          </span>
         </SortingButton>
 
         <SortingButton
-          onClick={() => setFragments(fragments.concat().sort(idSortComparator))}
+          onClick={() => {
+            if (currentSorting !== sortingOptions.type) {
+              setFragments(fragments.concat().sort(typeSortComparator));
+              setCurrentSorting(sortingOptions.type);
+            } else {
+              setFragments(parsedData);
+              setCurrentSorting(null);
+            }
+          }}
         >
-          ID
-          {ARROW_DOWN}
+          <span className="tableHeaderName">TYPE</span>
+          <span className="tableHeaderIcon">
+            {currentSorting === sortingOptions.type
+              ? (<FontAwesomeIcon icon={faLongArrowAltUp} />)
+              : (<FontAwesomeIcon icon={faLongArrowAltDown} />)}
+          </span>
         </SortingButton>
 
         <SortingButton
-          onClick={() => setFragments(fragments.concat().sort(typeSortComparator))}
+          onClick={() => {
+            if (currentSorting !== sortingOptions.time) {
+              setFragments(fragments.concat().sort(timeSortComparator));
+              setCurrentSorting(sortingOptions.time);
+            } else {
+              setFragments(parsedData);
+              setCurrentSorting(null);
+            }
+          }}
         >
-          TYPE
-          {ARROW_DOWN}
+          <span className="tableHeaderName">TIME</span>
+          <span className="tableHeaderIcon">
+            {currentSorting === sortingOptions.time
+              ? (<FontAwesomeIcon icon={faLongArrowAltUp} />)
+              : (<FontAwesomeIcon icon={faLongArrowAltDown} />)}
+          </span>
         </SortingButton>
 
-        <SortingButton
-          onClick={() => setFragments(fragments.concat().sort())}
-        >
-          TIME
-          {ARROW_DOWN}
-        </SortingButton>
+        <EmptySortingCell />
       </SortingWrapper>
-      {fragments}
+      <ListItemContainer>
+        {fragments}
+      </ListItemContainer>
     </FragmentListWrapper>
   );
 };

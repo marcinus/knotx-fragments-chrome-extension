@@ -18,32 +18,45 @@
 
 import React, { useEffect, useState, useRef } from 'react';
 import PropTypes from 'prop-types';
-import renderjson from 'renderjson';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTimes, faInfoCircle } from '@fortawesome/free-solid-svg-icons';
 import { drawGraph } from '../../helpers/graph/drawingHelper';
 import { constructGraph } from '../../helpers/graph/declarationHelper';
 import {
+  GraphWrapper,
   GraphContainer,
   Graph,
-  PerformanceTimeLine,
+  PerformanceTimeLineContainer,
   GraphHeader,
+  GraphHeaderContainer,
   GraphToogleViewButton,
   GraphNavigationWrapper,
+  GraphAdditionalPanel,
+  GraphAdditionalPanelHeader,
+  GraphAdditionalPanelCloseButton,
+  GraphAdditionalPanelContent,
+  LegendIcon,
 } from './graph.style';
 import TimelineComponent from './Timeline/timeline';
+import Legend from './Legend/Legend';
+import NodeInfo from './NodeInfo/nodesInfo';
+import { nodeInfoToIcon } from './graphHelper';
 
-renderjson.set_icons('+', '-');
-renderjson.set_show_to_level(1);
 
 const displayOptions = {
   graph: 'graph',
   performanceTimeLine: 'performanceTimeLine',
 };
 
+
 const GraphComponent = ({
   graphJson,
   fragmentId,
 }) => {
   const [displayOption, setDisplayOption] = useState(displayOptions.graph);
+  const [displayLegend, setDisplayLegend] = useState(false);
+  const [nodeInfo, setNodeInfo] = useState(null);
+  const [displayNodeInfo, setDisplayNodeInfo] = useState(false);
   const graphRef = useRef(null);
 
   useEffect(() => {
@@ -53,43 +66,84 @@ const GraphComponent = ({
 
       setDisplayOption(displayOptions.graph);
 
-      const nodeInfoContainer = document.getElementById('nodeInfo');
-      nodeInfoContainer.innerHTML = '';
-
       network.on('click', (e) => {
         const nodeId = e.nodes[0];
-        nodeInfoContainer.innerHTML = '';
         if (nodeId) {
           const { info } = graphDeclaration.nodes.find((el) => el.id === nodeId);
-
-          nodeInfoContainer.appendChild(renderjson(info));
+          setDisplayNodeInfo(true);
+          setNodeInfo(info);
         }
       });
     }
   }, [graphJson]);
 
+  const handleSwitchView = (option) => {
+    setDisplayOption(option);
+    setDisplayNodeInfo(false);
+    setDisplayLegend(false);
+  };
+
   return (
-    <GraphContainer className="graphContainer">
-      <GraphHeader>
-        <h2>{`ID: ${fragmentId}`}</h2>
-      </GraphHeader>
-      <Graph ref={graphRef} shouldDisplay={displayOption} />
-      <PerformanceTimeLine shouldDisplay={displayOption}>
-        <TimelineComponent graphJson={graphJson} shouldDisplay={displayOption} />
-      </PerformanceTimeLine>
+    <GraphWrapper className="graphWrapper">
+      <GraphHeaderContainer>
+        <GraphHeader>
+          {`ID: ${fragmentId}`}
+        </GraphHeader>
+      </GraphHeaderContainer>
+
       <GraphNavigationWrapper>
         <GraphToogleViewButton
-          onClick={() => setDisplayOption(displayOptions.performanceTimeLine)}
-        >
-          PERFORMANCE VIEW
-        </GraphToogleViewButton>
-        <GraphToogleViewButton
-          onClick={() => setDisplayOption(displayOptions.graph)}
+          isActive={displayOption === displayOptions.graph}
+          onClick={() => handleSwitchView(displayOptions.graph)}
         >
           GRAPH VIEW
         </GraphToogleViewButton>
+        <GraphToogleViewButton
+          isActive={displayOption === displayOptions.performanceTimeLine}
+          onClick={() => handleSwitchView(displayOptions.performanceTimeLine)}
+        >
+          PERFORMANCE VIEW
+        </GraphToogleViewButton>
       </GraphNavigationWrapper>
-    </GraphContainer>
+
+      <GraphContainer shouldDisplay={displayOption}>
+        <Graph ref={graphRef} />
+        <LegendIcon onClick={() => setDisplayLegend(true)}>
+          <FontAwesomeIcon icon={faInfoCircle} />
+        </LegendIcon>
+      </GraphContainer>
+      <PerformanceTimeLineContainer shouldDisplay={displayOption}>
+        <TimelineComponent graphJson={graphJson} shouldDisplay={displayOption} />
+      </PerformanceTimeLineContainer>
+
+      <GraphAdditionalPanel shouldDisplay={displayNodeInfo}>
+        <GraphAdditionalPanelCloseButton onClick={() => setDisplayNodeInfo(false)}>
+          <FontAwesomeIcon icon={faTimes} />
+        </GraphAdditionalPanelCloseButton>
+        <GraphAdditionalPanelHeader>
+          <h2>
+            {nodeInfoToIcon(nodeInfo)}
+            <span>Node info</span>
+          </h2>
+        </GraphAdditionalPanelHeader>
+        <GraphAdditionalPanelContent>
+          <NodeInfo nodeJson={nodeInfo} />
+        </GraphAdditionalPanelContent>
+      </GraphAdditionalPanel>
+
+      <GraphAdditionalPanel shouldDisplay={displayLegend}>
+        <GraphAdditionalPanelCloseButton onClick={() => setDisplayLegend(false)}>
+          <FontAwesomeIcon icon={faTimes} />
+        </GraphAdditionalPanelCloseButton>
+        <GraphAdditionalPanelHeader>
+          <h2> Legend </h2>
+        </GraphAdditionalPanelHeader>
+        <GraphAdditionalPanelContent>
+          <Legend />
+        </GraphAdditionalPanelContent>
+      </GraphAdditionalPanel>
+
+    </GraphWrapper>
   );
 };
 

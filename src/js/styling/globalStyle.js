@@ -28,6 +28,7 @@ export const GlobalStyle = createGlobalStyle`
     overflow-y: hidden;
     overflow-x: hidden;
     height: 100vh;
+    font-family: 'Lato', sans-serif;
   }
 
   /* JSON */

@@ -21,11 +21,10 @@ export const SidePanelWrapper = styled.div`
     position: fixed;
     margin-left: ${({ expanded }) => (expanded ? '0' : '-100%')};
     top: 0;
-    padding-top: 40px;
-    height: calc(100vh - 40px);
+    height: 100vh;
     width: 100%;
     z-index: 10;
-    background-color: ${({ theme }) => theme.sidePanelBgColor};
+    background-color: ${({ theme }) => theme.BACKGROUND};
     transition: left .1s, width .1s;
 
     display: flex;
@@ -48,17 +47,53 @@ export const SidePanelWrapper = styled.div`
 
 export const ToggleSidePanelButton = styled.button`
     position: fixed;
-    left: ${({ expanded }) => (expanded ? '5px' : '0')};
-    top: 0px;
-    left: 0px;
-    padding: 5px;
-    width: 30px;
-    font-size: 25px;
+    padding: 0;
+    width: 41px;
+    height: 41px;
+    font-size: 18px;
     border: none;
     background-color: transparent;
-    color: ${({ theme }) => theme.menuToggleButton};
+    color: ${({ theme }) => theme.MENU_TOGGLE_BUTTON};
     display: flex;
     justify-content: center;
+
+    &:hover {
+        cursor: pointer;
+    }
+`;
+
+export const ToogleArrow = styled(ToggleSidePanelButton)`
+    top: 0px;
+    left: 0px;
+
+    @media (min-width: ${PAGE_BREAK}px) {
+        display: none;
+    }
+`;
+
+export const ToogleBurger = styled(ToggleSidePanelButton)`
+    top: 0px;
+    left: 0px;
+
+    @media (max-width: ${PAGE_BREAK}px) {
+        display: none;
+    }
+`;
+
+export const CloseSidePanelButton = styled.button`
+    position: absolute;
+    width: 41px;
+    height: 41px;
+    right: 0px;
+    top: 0;
+    border: none;
+    background: ${({ theme }) => theme.BACKGROUND};
+    color: ${({ theme }) => theme.TEXT};
+    font-size: 18px;
+
+    @media (max-width: ${PAGE_BREAK}px) {
+      display: none;
+    }
 
     &:hover {
         cursor: pointer;
