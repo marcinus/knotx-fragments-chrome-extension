@@ -61,4 +61,9 @@ export const EmptySortingCell = styled(StatusSortingButton)``;
 export const ListItemContainer = styled.div`
     height: 100%;
     overflow: scroll;
+    -ms-overflow-style: none;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
 `;
