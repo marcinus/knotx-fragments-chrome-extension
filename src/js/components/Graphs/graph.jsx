@@ -41,6 +41,7 @@ import TimelineComponent from './Timeline/timeline';
 import Legend from './Legend/Legend';
 import NodeInfo from './NodeInfo/nodesInfo';
 import { nodeInfoToIcon } from './graphHelper';
+import { LEGEND_PANEL_HEADER, NODE_INFO_PANEL_HEADER, graphNavigation } from '../../helpers/constants';
 
 
 const displayOptions = {
@@ -96,13 +97,13 @@ const GraphComponent = ({
           isActive={displayOption === displayOptions.graph}
           onClick={() => handleSwitchView(displayOptions.graph)}
         >
-          GRAPH VIEW
+          {graphNavigation.GRAPH_VIEW}
         </GraphToogleViewButton>
         <GraphToogleViewButton
           isActive={displayOption === displayOptions.performanceTimeLine}
           onClick={() => handleSwitchView(displayOptions.performanceTimeLine)}
         >
-          PERFORMANCE VIEW
+          {graphNavigation.PERFORMANCE_VIEW}
         </GraphToogleViewButton>
       </GraphNavigationWrapper>
 
@@ -123,7 +124,7 @@ const GraphComponent = ({
         <GraphAdditionalPanelHeader>
           <h2>
             {nodeInfoToIcon(nodeInfo)}
-            <span>Node info</span>
+            <span>{NODE_INFO_PANEL_HEADER}</span>
           </h2>
         </GraphAdditionalPanelHeader>
         <GraphAdditionalPanelContent>
@@ -136,7 +137,7 @@ const GraphComponent = ({
           <FontAwesomeIcon icon={faTimes} />
         </GraphAdditionalPanelCloseButton>
         <GraphAdditionalPanelHeader>
-          <h2> Legend </h2>
+          <h2>{LEGEND_PANEL_HEADER }</h2>
         </GraphAdditionalPanelHeader>
         <GraphAdditionalPanelContent>
           <Legend />

@@ -28,6 +28,7 @@ import {
   ListItemContainer,
 } from './fragmentList.style';
 import FragmentListItem from './FragmentListItem/fragmentListItem';
+import { FRAGMENT_LIST_HEADER, fragmentListTablesHeaders } from '../../helpers/constants';
 
 export function mapDataToComponents(fragments, tabId) {
   return fragments.map(({ debug, nodes }) => {
@@ -81,7 +82,7 @@ const FragmentList = ({ tabId }) => {
 
   return (
     <FragmentListWrapper>
-      <h1>List of fragments</h1>
+      <h1>{FRAGMENT_LIST_HEADER}</h1>
 
       <SortingWrapper>
         <StatusSortingButton
@@ -111,7 +112,7 @@ const FragmentList = ({ tabId }) => {
             }
           }}
         >
-          <span className="tableHeaderName">ID</span>
+          <span className="tableHeaderName">{fragmentListTablesHeaders.ID}</span>
           <span className="tableHeaderIcon">
             {currentSorting === sortingOptions.id
               ? (<FontAwesomeIcon icon={faLongArrowAltUp} />)
@@ -130,7 +131,7 @@ const FragmentList = ({ tabId }) => {
             }
           }}
         >
-          <span className="tableHeaderName">TYPE</span>
+          <span className="tableHeaderName">{fragmentListTablesHeaders.TYPE}</span>
           <span className="tableHeaderIcon">
             {currentSorting === sortingOptions.type
               ? (<FontAwesomeIcon icon={faLongArrowAltUp} />)
@@ -149,7 +150,7 @@ const FragmentList = ({ tabId }) => {
             }
           }}
         >
-          <span className="tableHeaderName">TIME</span>
+          <span className="tableHeaderName">{fragmentListTablesHeaders.TIME}</span>
           <span className="tableHeaderIcon">
             {currentSorting === sortingOptions.time
               ? (<FontAwesomeIcon icon={faLongArrowAltUp} />)
