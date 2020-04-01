@@ -174,7 +174,6 @@ describe('<FragmentList /> unit test', () => {
       .find(FragmentListItem)
       .first()
       .prop('status')).toEqual('error');
-
   });
 
   it('sorting by type works', () => {
