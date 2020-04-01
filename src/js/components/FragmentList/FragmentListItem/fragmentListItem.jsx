@@ -59,7 +59,7 @@ const FragmentListItem = ({
           }
         }}
         expanded={expanded}
-        active={id === activeFragment}
+        isActive={id === activeFragment}
       >
         <StatusWrapper>
           <Status status={status} />

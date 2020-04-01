@@ -30,7 +30,8 @@ export const GraphWrapper = styled.div`
 `;
 
 export const GraphContainer = styled.div`
-     height: calc(50% - 87px);
+    /* 88px = GraphHeader height + NavigationButtons Height */
+     height: calc(50% - 88px);
      flex: 1 1 auto;
      display: ${({ shouldDisplay }) => (shouldDisplay === 'graph' ? 'block' : 'none')};
 `;
@@ -70,8 +71,8 @@ export const GraphToogleViewButton = styled.button`
     border-width: 1px;
     border-style: solid;
     border-color: ${({ theme }) => theme.BORDER};
-    border-bottom: ${({ theme, active }) => (active ? 'none' : `1px solid ${theme.BORDER}`)};
-    border-top: ${({ theme, active }) => (active ? `1px solid ${theme.BORDER}` : 'none')};
+    border-bottom: ${({ theme, isActive }) => (isActive ? 'none' : `1px solid ${theme.BORDER}`)};
+    border-top: ${({ theme, isActive }) => (isActive ? `1px solid ${theme.BORDER}` : 'none')};
     background-color: transparent;
 
     &:nth-child(1) {
@@ -96,7 +97,6 @@ export const LegendIcon = styled.button`
     font-size: 18px;
     color: ${({ theme }) => theme.TEXT};
     background-color: ${({ theme }) => theme.THEME_COLOR};
-
 
     &:hover {
         cursor: pointer;

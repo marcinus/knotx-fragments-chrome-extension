@@ -93,13 +93,13 @@ const GraphComponent = ({
 
       <GraphNavigationWrapper>
         <GraphToogleViewButton
-          active={displayOption === displayOptions.graph}
+          isActive={displayOption === displayOptions.graph}
           onClick={() => handleSwitchView(displayOptions.graph)}
         >
           GRAPH VIEW
         </GraphToogleViewButton>
         <GraphToogleViewButton
-          active={displayOption === displayOptions.performanceTimeLine}
+          isActive={displayOption === displayOptions.performanceTimeLine}
           onClick={() => handleSwitchView(displayOptions.performanceTimeLine)}
         >
           PERFORMANCE VIEW

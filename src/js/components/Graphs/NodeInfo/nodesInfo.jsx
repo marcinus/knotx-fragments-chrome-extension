@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import React, { useEffect } from 'react';
+import React, { useLayoutEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import renderjson from 'renderjson';
 import { NodeIndoContainer } from './nodeInfo.style';
@@ -23,14 +23,15 @@ renderjson.set_icons('+', '-');
 renderjson.set_show_to_level(1);
 
 const NodeInfo = ({ nodeJson }) => {
-  useEffect(() => {
-    const nodeInfoContainer = document.getElementById('nodeInfo');
-    nodeInfoContainer.innerHTML = '';
-    nodeInfoContainer.appendChild(renderjson(nodeJson));
+  const nodeInfo = useRef(null);
+
+  useLayoutEffect(() => {
+    nodeInfo.current.innerHTML = '';
+    nodeInfo.current.appendChild(renderjson(nodeJson));
   }, [nodeJson]);
 
   return (
-    <NodeIndoContainer id="nodeInfo" />
+    <NodeIndoContainer ref={nodeInfo} />
   );
 };
 

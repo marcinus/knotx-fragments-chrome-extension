@@ -86,7 +86,7 @@ const FragmentList = ({ tabId }) => {
       <SortingWrapper>
         <StatusSortingButton
           onClick={() => {
-            if (!(currentSorting === sortingOptions.status)) {
+            if (currentSorting !== sortingOptions.status) {
               setFragments(sortFragmentsByStatus(fragments));
               setCurrentSorting(sortingOptions.status);
             } else {
@@ -102,7 +102,7 @@ const FragmentList = ({ tabId }) => {
 
         <SortingButton
           onClick={() => {
-            if (!(currentSorting === sortingOptions.id)) {
+            if (currentSorting !== sortingOptions.id) {
               setFragments(fragments.concat().sort(idSortComparator));
               setCurrentSorting(sortingOptions.id);
             } else {
@@ -121,7 +121,7 @@ const FragmentList = ({ tabId }) => {
 
         <SortingButton
           onClick={() => {
-            if (!(currentSorting === sortingOptions.type)) {
+            if (currentSorting !== sortingOptions.type) {
               setFragments(fragments.concat().sort(typeSortComparator));
               setCurrentSorting(sortingOptions.type);
             } else {
@@ -140,7 +140,7 @@ const FragmentList = ({ tabId }) => {
 
         <SortingButton
           onClick={() => {
-            if (!(currentSorting === sortingOptions.time)) {
+            if (currentSorting !== sortingOptions.time) {
               setFragments(fragments.concat().sort(timeSortComparator));
               setCurrentSorting(sortingOptions.time);
             } else {

@@ -33,7 +33,7 @@ export const FragmentListItemContainer = styled.div`
     font-size: 12px;
 
     & > * {
-       background-color: ${({ active, theme }) => (active ? theme.TABLE_CELL_ACTIVE_BG : theme.TABLE_CELL_BG)};
+       background-color: ${({ isActive, theme }) => (isActive ? theme.TABLE_CELL_ACTIVE_BG : theme.TABLE_CELL_BG)};
     }
 
     &:hover, &:focus {

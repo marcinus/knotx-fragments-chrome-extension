@@ -24,7 +24,6 @@ import MainPanel from '../components/MainPanel/mainPanel';
 import 'vis-timeline/dist/vis-timeline-graph2d.min.css';
 import { NoKnotxPage } from './app.style';
 
-
 const App = ({ tabId }) => {
   const { themeName: chromeTheme } = chrome.devtools.panels;
   const theme = chromeTheme === 'default' ? defaultTheme : darkTheme;

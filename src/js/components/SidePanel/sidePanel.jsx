@@ -50,28 +50,25 @@ const SidePanel = ({ tabId }) => {
     >
       {!expanded
         ? (
-          <ToogleArrow
-            onClick={() => setExpanded(true)}
-          >
-            <FontAwesomeIcon icon={faArrowAltCircleLeft} />
-          </ToogleArrow>
+          <>
+            <ToogleArrow
+              onClick={() => setExpanded(true)}
+            >
+              <FontAwesomeIcon icon={faArrowAltCircleLeft} />
+            </ToogleArrow>
+
+            <ToogleBurger
+              onClick={() => setExpanded(true)}
+            >
+              <FontAwesomeIcon icon={faBars} />
+            </ToogleBurger>
+          </>
         )
         : null }
-
-      {!expanded
-        ? (
-          <ToogleBurger
-            onClick={() => setExpanded(true)}
-          >
-            <FontAwesomeIcon icon={faBars} />
-          </ToogleBurger>
-        )
-        : null}
 
       <CloseSidePanelButton onClick={() => setExpanded(false)}>
         <FontAwesomeIcon icon={faTimes} />
       </CloseSidePanelButton>
-
 
       <FragmentList tabId={tabId} />
       <FragmentGannt tabId={tabId} />
