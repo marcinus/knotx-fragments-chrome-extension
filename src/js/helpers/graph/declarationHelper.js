@@ -36,7 +36,6 @@ const createVisNode = (node) => ({
   label: node.label,
   group: getNodeGroup(node),
   info: {
-    hasAdditionalInfo: true,
     ...node.info,
   },
 });
@@ -68,7 +67,6 @@ const createVirtualStartNode = (composite, transitions) => ({
   id: `${composite.id}_virtual`,
   on: transitions,
   info: {
-    hasAdditionalInfo: false,
     label: 'compositeStart',
     type: composite.type,
   },
@@ -81,7 +79,6 @@ const createVirtualEndNode = (composite, transitions) => ({
   id: `${composite.id}_virtual2`,
   on: transitions,
   info: {
-    hasAdditionalInfo: true,
     ...composite,
     label: 'compositeEnd',
   },
@@ -139,7 +136,7 @@ export const flattenComposites = (node) => {
     }
   }
 
-  if (!(flattenedNode.info && flattenedNode.info.hasAdditionalInfo === false)) {
+  if (flattenedNode.info) {
     flattenedNode.info = node;
   }
 
