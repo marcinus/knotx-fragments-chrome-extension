@@ -20,6 +20,7 @@ import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 import reducer from '../../state/reducers/index';
 import MainPanel from './mainPanel';
+import { FRAGMENT_NOT_SELECTED_MSG } from '../../helpers/constants';
 
 const store = {
   pageData: {
@@ -38,6 +39,6 @@ describe('Main panel component', () => {
         />
       </Provider>,
     );
-    expect(wrapper.text()).toEqual('Please choose any fragment');
+    expect(wrapper.text()).toEqual(FRAGMENT_NOT_SELECTED_MSG);
   });
 });

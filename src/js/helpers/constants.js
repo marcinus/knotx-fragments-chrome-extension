@@ -33,10 +33,24 @@ export const chromeActions = {
   GET_CURRENT_TAB_INFO: 'GET_CURRENT_TAB_INFO',
 };
 
-// MESSAGES
+// STATIC ELEMENTS
 /* eslint-disable max-len */
-export const succesMsgs = {
-  setPageData: 'Knot.x devtool extension: Succesfully get fragments and page data. You can start using Knot.x extension',
+export const succesLoadExtensionMsgs = 'Knot.x devtool extension: Succesfully get fragments and page data. You can start using Knot.x extension';
+export const FRAGMENT_LIST_HEADER = 'List of fragments';
+export const fragmentListTablesHeaders = {
+  ID: 'ID',
+  TYPE: 'TYPE',
+  TIME: 'TIME',
 };
 
+export const graphNavigation = {
+  GRAPH_VIEW: 'GRAPH VIEW',
+  PERFORMANCE_VIEW: 'PERFORMANCE VIEW',
+};
+
+export const NODE_INFO_PANEL_HEADER = 'Node info';
+export const LEGEND_PANEL_HEADER = 'Legend';
+export const NO_KNOTX_PAGE_MSG = 'Sorry, your page does not use Knot.x, or use Knot.x version older then 2.2';
+export const FRAGMENT_NOT_SELECTED_MSG = 'Please choose any fragment';
+export const FRAGMENTS_PERFORMANCE = 'Fragments performance';
 /* eslint-enable max-len */

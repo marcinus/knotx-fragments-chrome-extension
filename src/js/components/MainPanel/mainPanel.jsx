@@ -20,6 +20,7 @@ import { useSelector } from 'react-redux';
 import { MainPanelWrapper, MainPanelContent } from './mainPanel.style';
 import GraphComponent from '../Graphs/graph';
 import { NoKnotxPage } from '../../devtools/app.style';
+import { FRAGMENT_NOT_SELECTED_MSG } from '../../helpers/constants';
 
 const MainPanel = ({ tabId }) => {
   const renderedGraphId = useSelector(({ pageData }) => pageData[tabId].renderedGraph);
@@ -42,7 +43,7 @@ const MainPanel = ({ tabId }) => {
       <MainPanelWrapper>
         <MainPanelContent>
           <NoKnotxPage>
-            <h1>Please choose any fragment</h1>
+            <h1>{FRAGMENT_NOT_SELECTED_MSG}</h1>
           </NoKnotxPage>
 
         </MainPanelContent>
