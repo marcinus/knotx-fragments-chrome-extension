@@ -17,11 +17,19 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowCircleRight, faArrowDown, faArrowUp } from '@fortawesome/free-solid-svg-icons';
 import {
-  FragmentListItemContainer, Id, Status, StatusWrapper, Type, ExpandNodeListButton, IdHeader, Time, OverflowWrapper,
+  FragmentListItemContainer,
+  Status,
+  StatusWrapper,
+  OverflowWrapper,
+  TableItem,
+  TableItemId,
+  ShowGraphButton,
 } from './fragmentListItem.style';
 import NodeList from '../NodeList/nodeList';
-import { ENTER_KEY_CODE, ARROW_DOWN, ARROW_UP } from '../../../helpers/constants';
+import { ENTER_KEY_CODE } from '../../../helpers/constants';
 import { setRenderedGraph } from '../../../state/actions/pageData';
 
 const FragmentListItem = ({
@@ -51,30 +59,55 @@ const FragmentListItem = ({
           }
         }}
         expanded={expanded}
-        active={id === activeFragment}
+        isActive={id === activeFragment}
       >
         <StatusWrapper>
           <Status status={status} />
         </StatusWrapper>
-        <Id>
-          <IdHeader>
-            <OverflowWrapper>
-              {id}
-            </OverflowWrapper>
 
-            <ExpandNodeListButton
-              onClick={(e) => {
-                e.stopPropagation();
-                setExpanded(!expanded);
-              }}
-              onKeyDown={(e) => e.stopPropagation()}
-            >
-              {expanded ? ARROW_UP : ARROW_DOWN}
-            </ExpandNodeListButton>
-          </IdHeader>
-        </Id>
-        <Type>{type}</Type>
-        <Time>{`${time}ms`}</Time>
+        <TableItemId>
+          <OverflowWrapper>
+            <span className="tableItemContent">
+              {id}
+            </span>
+          </OverflowWrapper>
+
+          <span
+            role="button"
+            tabIndex="0"
+            onKeyDown={(e) => e.stopPropagation()}
+            className="tableItemIcon"
+            onClick={(e) => {
+              e.stopPropagation();
+              setExpanded(!expanded);
+            }}
+          >
+            {expanded
+              ? (<FontAwesomeIcon icon={faArrowUp} />)
+              : (<FontAwesomeIcon icon={faArrowDown} />)}
+          </span>
+        </TableItemId>
+
+        <TableItem>
+          <OverflowWrapper>
+            <span className="tableItemContent">
+              {type}
+            </span>
+          </OverflowWrapper>
+        </TableItem>
+
+        <TableItem>
+          <OverflowWrapper>
+            <span className="tableItemContent">
+              {`${time}ms`}
+            </span>
+          </OverflowWrapper>
+        </TableItem>
+
+        <ShowGraphButton>
+          <FontAwesomeIcon icon={faArrowCircleRight} />
+        </ShowGraphButton>
+
       </FragmentListItemContainer>
       <NodeList expanded={expanded}>{nodes}</NodeList>
     </>

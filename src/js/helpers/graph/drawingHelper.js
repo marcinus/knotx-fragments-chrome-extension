@@ -16,19 +16,21 @@
 
 import { Network } from 'vis-network';
 
-export const COLOR_VIRTUAL = '#FFFFFF';
-export const COLOR_UNPROCESSED = '#F5F5F5';
-export const COLOR_SUCCESS = '#00CC00';
-export const COLOR_ERROR = '#FF0000';
-export const COLOR_MISSING = '#FFFF00';
-export const COLOR_OTHER = '#0080FF';
+export const COLOR_VIRTUAL = '#FFF';
+export const COLOR_UNPROCESSED = '#707070';
+export const COLOR_SUCCESS = '#59CD90';
+export const COLOR_ERROR = '#DE3C4B';
+export const COLOR_MISSING = '#FAC05E';
+export const COLOR_OTHER = '#3FA7D6';
 
-export const COLOR_DEFAULT_NODE_FONT = '#000000';
-export const COLOR_UNPROCESSED_NODE_FONT = '#A0A0A0';
-export const COLOR_DEFAULT_EDGE = '#000000';
+export const COLOR_DEFAULT_NODE_FONT = '#FFF';
+export const COLOR_DEFAULT_BORDER = '#000';
+export const COLOR_DEFAULT_EDGE = '#909090';
 export const COLOR_UNPROCESSED_EDGE = '#606060';
 
 const defaultVirtualNode = {
+  borderWidth: 1,
+  borderWidthSelected: 1,
   shape: 'dot',
   size: 10,
   color: {
@@ -59,29 +61,33 @@ const groups = {
   success: {
     color: {
       background: COLOR_SUCCESS,
+      border: COLOR_SUCCESS,
     },
   },
   error: {
     color: {
       background: COLOR_ERROR,
+      border: COLOR_ERROR,
     },
   },
   unprocessed: {
+    borderWidth: 1,
+    borderWidthSelected: 1,
     color: {
       background: COLOR_UNPROCESSED,
-    },
-    font: {
-      color: COLOR_UNPROCESSED_NODE_FONT,
+      border: COLOR_UNPROCESSED,
     },
   },
   missing: {
     color: {
       background: COLOR_MISSING,
+      border: COLOR_MISSING,
     },
   },
   other: {
     color: {
       background: COLOR_OTHER,
+      border: COLOR_OTHER,
     },
   },
 };
@@ -91,21 +97,18 @@ export const defaultGraphConfiguration = {
     ...groups,
   },
   nodes: {
-    borderWidth: 1,
+    borderWidth: 2,
     borderWidthSelected: 1,
     shape: 'box',
     font: {
       color: COLOR_DEFAULT_NODE_FONT,
     },
     color: {
-      border: COLOR_DEFAULT_EDGE,
+      border: COLOR_DEFAULT_BORDER,
     },
   },
   edges: {
     color: COLOR_DEFAULT_EDGE,
-    font: {
-      background: 'white',
-    },
   },
   layout: {
     hierarchical: {

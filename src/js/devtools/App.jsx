@@ -22,7 +22,7 @@ import { defaultTheme, darkTheme } from './themes';
 import SidePanel from '../components/SidePanel/sidePanel';
 import MainPanel from '../components/MainPanel/mainPanel';
 import 'vis-timeline/dist/vis-timeline-graph2d.min.css';
-
+import { NoKnotxPage } from './app.style';
 
 const App = ({ tabId }) => {
   const { themeName: chromeTheme } = chrome.devtools.panels;
@@ -38,7 +38,12 @@ const App = ({ tabId }) => {
       </ThemeProvider>
     )
     : (
-      <h1>Sorry, your page does not use Knot.x </h1>
+      <ThemeProvider theme={theme}>
+        <NoKnotxPage>
+          <h1>Sorry, your page does not use Knot.x </h1>
+        </NoKnotxPage>
+      </ThemeProvider>
+
     );
 };
 

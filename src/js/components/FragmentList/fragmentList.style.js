@@ -20,23 +20,50 @@ export const FragmentListWrapper = styled.div`
     display: flex;
     flex-direction: column;
     align-items: stretch;
+    height: 50vh;
+    flex: 1 1 auto;
+
+    h1 {
+      font-size: 18px;
+      font-weight: bold;
+      padding: 10px;
+      margin: 0;
+      color: ${({ theme }) => theme.TEXT};
+    }
+
 `;
 
 export const SortingWrapper = styled.div`
     display: flex;
-    min-height: 25px;
+    height: 30px;
 `;
 
 export const SortingButton = styled.button`
     border: 0;
     margin: 1px;
-    padding: 2px;
-    font-size: 14px;
-    flex: ${({ status }) => (status ? '' : 1)};
-    width: ${({ status }) => (status ? '25px' : '')};
-    color: ${({ theme }) => theme.textColor};
-    background-color: ${({ theme }) => theme.buttonBgColor};
-    &:active {
-        background-color: ${({ theme }) => theme.fragmentHighlight};
+    font-size: 12px;
+    flex: 1;
+    color: ${({ theme }) => theme.TABLE_HEADER_TEXT};
+    background-color: ${({ theme }) => theme.TABLE_HEADER_BG};
+
+    .tableHeaderIcon {
+        float: right;
+    }
+`;
+
+export const StatusSortingButton = styled(SortingButton)`
+    flex: none;
+    width: 30px;
+`;
+
+export const EmptySortingCell = styled(StatusSortingButton)``;
+
+export const ListItemContainer = styled.div`
+    height: 100%;
+    overflow: scroll;
+    -ms-overflow-style: none;
+
+    &::-webkit-scrollbar {
+      display: none;
     }
 `;

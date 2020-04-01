@@ -22,10 +22,11 @@ export default {
           fragment: {
             id: 'E',
             type: 'E',
+            time: 5,
           },
           status: 'ERROR',
-          finishTime: 1582806545315,
-          startTime: 1582806545157,
+          finishTime: 10,
+          startTime: 5,
         },
         nodes: [
           {
@@ -43,6 +44,7 @@ export default {
           fragment: {
             id: 'D',
             type: 'D',
+            time: 1,
           },
           status: 'SUCCESS',
           finishTime: 2,
@@ -64,9 +66,10 @@ export default {
           fragment: {
             id: 'C',
             type: 'C',
+            time: 3,
           },
           status: 'OTHER',
-          finishTime: 2,
+          finishTime: 4,
           startTime: 1,
         },
         nodes: [
@@ -85,10 +88,11 @@ export default {
           fragment: {
             id: 'B',
             type: 'B',
+            time: 2,
           },
           status: 'UNPROCESSED',
-          finishTime: 2,
-          startTime: 1,
+          finishTime: 4,
+          startTime: 2,
         },
         nodes: [
           {
@@ -106,10 +110,11 @@ export default {
           fragment: {
             id: 'A',
             type: 'A',
+            time: 4,
           },
           status: 'MISSING',
-          finishTime: 2,
-          startTime: 1,
+          finishTime: 8,
+          startTime: 4,
         },
         nodes: [
           {

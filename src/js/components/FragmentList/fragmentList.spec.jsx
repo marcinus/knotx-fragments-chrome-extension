@@ -22,9 +22,9 @@ import data from './fragmentList.mock';
 import reducer from '../../state/reducers/index';
 import FragmentList, { mapDataToComponents } from './fragmentList';
 import FragmentListItem from './FragmentListItem/fragmentListItem';
-import { ExpandNodeListButton } from './FragmentListItem/fragmentListItem.style';
+import { TableItemId } from './FragmentListItem/fragmentListItem.style';
 import NodeList from './NodeList/nodeList';
-import { SortingButton } from './fragmentList.style';
+import { SortingButton, StatusSortingButton } from './fragmentList.style';
 import { NodeButton } from './NodeList/nodeList.style';
 
 
@@ -90,7 +90,7 @@ describe('<FragmentList /> unit test', () => {
     const wrapper = getWrapper();
     expect(wrapper
       .findWhere(
-        (n) => n.name() === 'FragmentListItem' && n.prop('time') === 158,
+        (n) => n.name() === 'FragmentListItem' && n.prop('time') === 5,
       ))
       .toHaveLength(1);
   });
@@ -105,7 +105,8 @@ describe('<FragmentList /> unit test', () => {
   it('nodelist should be displayed after first click on expand node list button', () => {
     const wrapper = getWrapper();
     wrapper
-      .find(ExpandNodeListButton)
+      .find(TableItemId)
+      .find('.tableItemIcon')
       .first()
       .simulate('click');
 
@@ -119,7 +120,8 @@ describe('<FragmentList /> unit test', () => {
   it('nodelist should not be displayed after second click', () => {
     const wrapper = getWrapper();
     wrapper
-      .find(ExpandNodeListButton)
+      .find(TableItemId)
+      .find('.tableItemIcon')
       .first()
       .simulate('click')
       .simulate('click');
@@ -152,55 +154,96 @@ describe('<FragmentList /> unit test', () => {
 
   it('sorting by status works', () => {
     const wrapper = getWrapper();
+    const sortingButton = wrapper.find(StatusSortingButton).at(0);
+
     expect(wrapper
       .find(FragmentListItem)
       .first()
       .prop('status')).toEqual('error');
 
-    wrapper
-      .find(SortingButton)
-      .at(0)
-      .simulate('click');
+    sortingButton.simulate('click');
 
     expect(wrapper
       .find(FragmentListItem)
       .first()
       .prop('status')).toEqual('success');
+
+    sortingButton.simulate('click');
+
+    expect(wrapper
+      .find(FragmentListItem)
+      .first()
+      .prop('status')).toEqual('error');
   });
 
   it('sorting by type works', () => {
     const wrapper = getWrapper();
+    const sortingButton = wrapper.find(SortingButton).at(1);
+
     expect(wrapper
       .find(FragmentListItem)
       .first()
       .prop('type')).toEqual('E');
 
-    wrapper
-      .find(SortingButton)
-      .at(1)
-      .simulate('click');
+    sortingButton.simulate('click');
 
     expect(wrapper
       .find(FragmentListItem)
       .first()
       .prop('type')).toEqual('A');
+
+    sortingButton.simulate('click');
+
+    expect(wrapper
+      .find(FragmentListItem)
+      .first()
+      .prop('type')).toEqual('E');
   });
 
   it('sorting by id works', () => {
     const wrapper = getWrapper();
+    const sortingButton = wrapper.find(SortingButton).at(0);
     expect(wrapper
       .find(FragmentListItem)
       .first()
       .prop('id')).toEqual('E');
 
-    wrapper
-      .find(SortingButton)
-      .at(2)
-      .simulate('click');
+    sortingButton.simulate('click');
 
     expect(wrapper
       .find(FragmentListItem)
       .first()
       .prop('id')).toEqual('A');
+
+    sortingButton.simulate('click');
+
+    expect(wrapper
+      .find(FragmentListItem)
+      .first()
+      .prop('id')).toEqual('E');
+  });
+
+  it('sorting by time works', () => {
+    const wrapper = getWrapper();
+    const sortingButton = wrapper.find(SortingButton).at(2);
+
+    expect(wrapper
+      .find(FragmentListItem)
+      .first()
+      .prop('time')).toEqual(5);
+
+    sortingButton.simulate('click');
+
+    expect(wrapper
+      .find(FragmentListItem)
+      .first()
+      .prop('time')).toEqual(1);
+
+    sortingButton.simulate('click');
+
+    expect(wrapper
+      .find(FragmentListItem)
+      .first()
+      .prop('time')).toEqual(5);
   });
 });

@@ -18,28 +18,22 @@ import styled from 'styled-components';
 
 export const NodeListWrapper = styled.div`
     display: ${({ expanded }) => (expanded ? 'block' : 'none')};
-    margin-left: 25px;
-    border-left: 1px solid grey;
+    margin-left: 32px;
+    background-color: transparent;
 `;
 
 export const NodeButton = styled.button`
-    background-color: transparent;
     border: 0;
+    padding: 0 10px;
     width: 100%;
     font-size: 12px;
-    color: ${({ theme }) => theme.textColor};
     text-align: start;
-    border-bottom: 1px solid ${({ theme }) => theme.borderColor};
+    height: 20px;
+    margin: 1px;
+    color: ${({ theme }) => theme.TEXT};
+    background-color: ${({ theme }) => theme.NODE_LIST_ITEM_BG};
 
     &:hover {
-        background-color: ${({ theme }) => theme.nodeHighlight};
-    }
-
-    &:nth-child(2n + 1) {
-        background-color: ${({ theme }) => theme.oddNodeBgColor};
-
-        &:hover {
-            background-color: ${({ theme }) => theme.nodeHighlight};
-        }
+        cursor: pointer;
     }
 `;

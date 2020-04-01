@@ -15,88 +15,81 @@
  */
 
 import styled from 'styled-components';
+import {
+  COLOR_SUCCESS,
+  COLOR_ERROR,
+  COLOR_OTHER,
+  COLOR_UNPROCESSED,
+  COLOR_MISSING,
+} from '../../../helpers/graph/drawingHelper';
 
 export const FragmentListItemContainer = styled.div`
     display: flex;
-    border-bottom: 1px solid ${({ theme }) => theme.borderColor};
-    color: ${({ theme }) => theme.textColor};
-    background-color: ${({ active, theme }) => (active ? theme.fragmentActive : '')};
+    color: ${({ theme }) => theme.TEXT};
+    background-color: transparent;
     margin: 1px;
-    min-height: 40px;
+    height: 30px;
     align-items: center;
-    font-size: 14px;
+    font-size: 12px;
 
-    &:nth-child(2n + 1) {
-        background-color: ${({ theme }) => theme.oddFragmentBgColor};
-        background-color: ${({ expanded, theme }) => (expanded ? theme.fragmentHighlight : '')};
+    & > * {
+       background-color: ${({ isActive, theme }) => (isActive ? theme.TABLE_CELL_ACTIVE_BG : theme.TABLE_CELL_BG)};
     }
 
-    &:hover, &:focus{
-        background-color: ${({ theme }) => theme.fragmentHighlight};
+    &:hover, &:focus {
+      & > * {
+        background-color: ${({ theme }) => theme.TABLE_CELL_HOVER_BG};
+      }
     }
 `;
 
 export const StatusWrapper = styled.div`
-    height: 25px;
-    width: 25px;
-    margin: 2px;
+    height: 30px;
+    width: 30px;
+    margin: 1px;
     display: flex;
     align-items: center;
     justify-content: center;
 `;
 
+export const ShowGraphButton = styled(StatusWrapper)`
+    cursor: pointer;
+`;
+
 export const Status = styled.div`
-    width: 15px;
-    height: 15px;
-    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    border-radius: 4px;
 
-    background-color: ${({ status, theme }) => (status === 'success' ? theme.success : '')};
-    background-color: ${({ status, theme }) => (status === 'error' ? theme.error : '')};
-    background-color: ${({ status, theme }) => (status === 'unprocessed' ? theme.unprocessed : '')};
-    background-color: ${({ status, theme }) => ((status === 'other' || status === 'missing') ? theme.warning : '')};
+    background-color: ${({ status }) => (status === 'success' ? COLOR_SUCCESS : '')};
+    background-color: ${({ status }) => (status === 'error' ? COLOR_ERROR : '')};
+    background-color: ${({ status }) => (status === 'unprocessed' ? COLOR_UNPROCESSED : '')};
+    background-color: ${({ status }) => ((status === 'missing') ? COLOR_MISSING : '')};
+    background-color: ${({ status }) => ((status === 'other') ? COLOR_OTHER : '')};
 `;
 
-export const Id = styled.div`
-    overflow: hidden;
+export const TableItem = styled.div`
     flex: 1;
-    border-right: 1px solid ${({ theme }) => theme.borderColor};
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
+    display: inline-flex;
+    height: 30px;
+    margin: 1px;
     word-break: break-all;
-`;
-
-export const IdHeader = styled.div`
-    display: flex;
+    overflow: hidden;
     justify-content: center;
-    max-height: 20px;
+    align-items: center;
 `;
 
-export const Type = styled.div`
-    flex: 1;
-    display: flex;
-    justify-content: center;
-    border-right: 1px solid ${({ theme }) => theme.borderColor};
-`;
+export const TableItemId = styled(TableItem)`
+  justify-content: space-between;
 
-export const Time = styled.div`
-    flex: 1;
-    display: flex;
-    justify-content: center;
-`;
+  .tableItemIcon,
+  .tableItemContent {
+    padding: 8px;
+  }
 
-export const ExpandNodeListButton = styled.button`
-    height: 19px;
-    color: ${({ theme }) => theme.textColor};
-    font-weight: bold;
-    background-color: ${({ theme }) => theme.expandNodeListBg};;
-    border: none;
-    margin-left: 5px;
-
-    &:hover {
-        cursor: pointer;
-        background-color: ${({ theme }) => theme.expandNodeListBgHover};
-    }
+  .tableItemIcon:hover {
+    cursor: pointer;
+  }
 `;
 
 export const OverflowWrapper = styled.p`
@@ -104,4 +97,6 @@ margin: 0;
 text-overflow: ellipsis;
 white-space: nowrap;
 overflow: hidden;
+width: 100%;
+text-align: center;
 `;

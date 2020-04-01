@@ -25,6 +25,7 @@ import {
   LineIcon,
   LegendItemDescription,
   LegendItem,
+  LegendSectionContainer,
 } from './legend.style';
 
 
@@ -51,10 +52,10 @@ const LegendSection = ({ title, items }) => {
   ));
 
   return (
-    <div className="legendSection">
+    <LegendSectionContainer>
       <LegendHeader>{title}</LegendHeader>
       {sectionItems}
-    </div>
+    </LegendSectionContainer>
   );
 };
 
