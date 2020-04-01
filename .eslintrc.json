@@ -16,9 +16,10 @@
     },
     "sourceType": "module"
   },
-  "plugins": ["react", "jest"],
+  "plugins": ["react", "jest", "header"],
   "rules": {
     "max-len": ["error", { "code": 120 }],
-    "import/prefer-default-export": "off"
+    "import/prefer-default-export": "off",
+    "header/header": [2, "header.config.js"]
   }
 }
