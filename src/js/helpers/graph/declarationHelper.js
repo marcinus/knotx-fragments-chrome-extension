@@ -136,7 +136,7 @@ export const flattenComposites = (node) => {
     }
   }
 
-  if (flattenedNode.info) {
+  if (!flattenedNode.info) {
     flattenedNode.info = node;
   }
 
