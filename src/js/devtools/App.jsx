@@ -23,6 +23,7 @@ import SidePanel from '../components/SidePanel/sidePanel';
 import MainPanel from '../components/MainPanel/mainPanel';
 import 'vis-timeline/dist/vis-timeline-graph2d.min.css';
 import { NoKnotxPage } from './app.style';
+import { NO_KNOTX_PAGE_MSG } from '../helpers/constants';
 
 const App = ({ tabId }) => {
   const { themeName: chromeTheme } = chrome.devtools.panels;
@@ -40,7 +41,7 @@ const App = ({ tabId }) => {
     : (
       <ThemeProvider theme={theme}>
         <NoKnotxPage>
-          <h1>Sorry, your page does not use Knot.x </h1>
+          <h1>{NO_KNOTX_PAGE_MSG}</h1>
         </NoKnotxPage>
       </ThemeProvider>
 

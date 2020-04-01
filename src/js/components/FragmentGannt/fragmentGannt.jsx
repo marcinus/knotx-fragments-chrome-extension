@@ -23,7 +23,7 @@ import { constructFragmentsTimeline } from '../../helpers/nodes/nodesHelper';
 import { drawTimeline } from '../../helpers/timeline/drawHelper';
 import { GanntContainer, Timeline, TimelineBar } from './fragmentGannt.style';
 import { setRenderedGraph } from '../../state/actions/pageData';
-
+import { FRAGMENTS_PERFORMANCE } from '../../helpers/constants';
 
 const FragmentGannt = ({ tabId }) => {
   const [timeline, setTimeline] = useState(null);
@@ -68,7 +68,7 @@ const FragmentGannt = ({ tabId }) => {
       <TimelineBar
         onClick={() => setExpanded(!expanded)}
       >
-        <span>Fragments performance</span>
+        <span>{FRAGMENTS_PERFORMANCE}</span>
         {expanded
           ? (<FontAwesomeIcon icon={faChevronDown} />)
           : (<FontAwesomeIcon icon={faChevronUp} />) }
