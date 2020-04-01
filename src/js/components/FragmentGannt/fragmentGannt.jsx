@@ -40,10 +40,12 @@ const FragmentGannt = ({ tabId }) => {
     const onSelect = (properties) => {
       const selectedId = properties.items[properties.items.length - 1];
 
-      dispatch(setRenderedGraph({
-        id: tabId,
-        renderedGraph: selectedId,
-      }));
+      if (selectedId) {
+        dispatch(setRenderedGraph({
+          id: tabId,
+          renderedGraph: selectedId,
+        }));
+      }
     };
 
     newTimeline.on('select', onSelect);
