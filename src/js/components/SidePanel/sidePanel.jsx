@@ -64,7 +64,7 @@ const SidePanel = ({ tabId }) => {
             </ToogleBurger>
           </>
         )
-        : null }
+        : null}
 
       <CloseSidePanelButton onClick={() => setExpanded(false)}>
         <FontAwesomeIcon icon={faTimes} />
