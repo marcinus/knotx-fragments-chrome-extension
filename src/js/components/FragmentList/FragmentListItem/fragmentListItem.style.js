@@ -27,7 +27,7 @@ export const FragmentListItemContainer = styled.div`
     display: flex;
     color: ${({ theme }) => theme.TEXT};
     background-color: transparent;
-    margin: 1px;
+    margin: 2px 0;
     height: 30px;
     align-items: center;
     font-size: 12px;

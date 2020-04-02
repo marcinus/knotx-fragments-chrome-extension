@@ -48,6 +48,7 @@ export const SortingButton = styled.button`
 
     .tableHeaderIcon {
         float: right;
+        cursor: pointer;
     }
 `;
 
