@@ -24,16 +24,13 @@ import { FRAGMENT_NOT_SELECTED_MSG } from '../../helpers/constants';
 
 const MainPanel = ({ tabId }) => {
   const renderedGraphId = useSelector(({ pageData }) => pageData[tabId].renderedGraph);
-  const graphData = useSelector(({ pageData }) => (renderedGraphId
-    ? pageData[tabId].fragments.find((el) => el.debug.fragment.id === renderedGraphId).debug.graph
-    : null));
 
   return renderedGraphId
     ? (
       <MainPanelWrapper>
         <MainPanelContent>
           <GraphComponent
-            graphJson={graphData}
+            tabId={tabId}
             fragmentId={renderedGraphId}
           />
         </MainPanelContent>

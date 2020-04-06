@@ -49,7 +49,7 @@ export const PerformanceTimeLineContainer = styled.div`
 
 export const GraphHeaderContainer = styled.div`
     padding: 0 5px;
-    margin-left: 40px;
+    margin-left: ${({ shouldHasMargin }) => (shouldHasMargin ? '40px' : 'inherit')};;
 `;
 
 export const GraphHeader = styled.h2`

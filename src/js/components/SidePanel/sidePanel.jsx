@@ -14,9 +14,9 @@
  * limitations under the License.
  */
 
-import React, { useState, useEffect, useRef } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowAltCircleLeft, faTimes, faBars } from '@fortawesome/free-solid-svg-icons';
 import {
@@ -26,39 +26,31 @@ import {
   CloseSidePanelButton,
 } from './sidePanel.style';
 import FragmentList from '../FragmentList/fragmentList';
-import { PAGE_BREAK } from '../../helpers/constants';
 import FragmentGannt from '../FragmentGannt/fragmentGannt';
+import { setSidePanelExpanded } from '../../state/actions/pageData';
 
 const SidePanel = ({ tabId }) => {
-  const [expanded, setExpanded] = useState(true);
   const renderedGraph = useSelector(({ pageData }) => pageData[tabId].renderedGraph);
+  const sidePanelExpanded = useSelector(({ pageData }) => pageData[tabId].sidebarExpanded);
 
-  const isInitialMount = useRef(true);
-  useEffect(() => {
-    if (isInitialMount.current) {
-      isInitialMount.current = false;
-    } else if (window.innerWidth < PAGE_BREAK) {
-      setExpanded(false);
-    }
-  }, [renderedGraph]);
-
+  const dispatch = useDispatch();
 
   return (
     <SidePanelWrapper
-      expanded={expanded}
+      expanded={sidePanelExpanded}
       renderedGraph={renderedGraph}
     >
-      {!expanded
+      {!sidePanelExpanded
         ? (
           <>
             <ToogleArrow
-              onClick={() => setExpanded(true)}
+              onClick={() => dispatch(setSidePanelExpanded({ id: tabId, sidebarExpanded: true }))}
             >
               <FontAwesomeIcon icon={faArrowAltCircleLeft} />
             </ToogleArrow>
 
             <ToogleBurger
-              onClick={() => setExpanded(true)}
+              onClick={() => dispatch(setSidePanelExpanded({ id: tabId, sidebarExpanded: true }))}
             >
               <FontAwesomeIcon icon={faBars} />
             </ToogleBurger>
@@ -66,7 +58,7 @@ const SidePanel = ({ tabId }) => {
         )
         : null}
 
-      <CloseSidePanelButton onClick={() => setExpanded(false)}>
+      <CloseSidePanelButton onClick={() => dispatch(setSidePanelExpanded({ id: tabId, sidebarExpanded: false }))}>
         <FontAwesomeIcon icon={faTimes} />
       </CloseSidePanelButton>
 

@@ -129,5 +129,6 @@ export default {
       },
     ],
     url: 'http://localhost:5500/samples/books.html',
+    sidebarExpanded: true,
   },
 };

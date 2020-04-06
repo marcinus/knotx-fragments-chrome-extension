@@ -13,7 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { SET_PAGE_DATA, REMOVE_PAGE_DATA, SET_RENDERED_GRAPH } from '../actionTypes/pageData';
+
+import {
+  SET_PAGE_DATA,
+  REMOVE_PAGE_DATA,
+  SET_RENDERED_GRAPH,
+  SET_SIDEPANEL_EXPANDED,
+} from '../actionTypes/pageData';
 
 export const initState = {};
 
@@ -45,6 +51,14 @@ export default (state = initState, { type, pageData }) => {
         },
       };
 
+    case SET_SIDEPANEL_EXPANDED:
+      return {
+        ...state,
+        [pageData.id]: {
+          ...state[pageData.id],
+          sidebarExpanded: pageData.sidebarExpanded,
+        },
+      };
     default:
       return state;
   }
