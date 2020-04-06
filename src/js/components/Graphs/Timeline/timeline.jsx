@@ -34,10 +34,9 @@ const TimelineComponent = ({
   }, [graphJson]);
 
   return (
-    <Timeline ref={timelineRef} />
+    <Timeline tabIndex="0" ref={timelineRef} />
   );
 };
-
 
 TimelineComponent.defaultProps = {
   graphJson: null,

@@ -30,10 +30,17 @@ describe('<SidePanel /> unit test', () => {
     </Provider>,
   );
 
-  it('Gannt chart chould hide and show correctly', () => {
+  it('Gantt chart should hide and show correctly after click on bar', () => {
     const wrapper = getWrapper();
     expect(wrapper.find(Timeline).getDOMNode()).toBeVisible();
     wrapper.find(TimelineBar).first().simulate('click');
+    expect(wrapper.find(Timeline).getDOMNode()).not.toBeVisible();
+  });
+
+  it('Gantt chart should hide and show correctly after key press on bar', () => {
+    const wrapper = getWrapper();
+    expect(wrapper.find(Timeline).getDOMNode()).toBeVisible();
+    wrapper.find(TimelineBar).first().simulate('keydown', { keyCode: 13 });
     expect(wrapper.find(Timeline).getDOMNode()).not.toBeVisible();
   });
 });

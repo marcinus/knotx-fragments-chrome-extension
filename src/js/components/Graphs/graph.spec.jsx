@@ -88,13 +88,23 @@ describe('Graph component', () => {
     expect(wrapper.find(GraphContainer).getDOMNode()).toBeVisible();
   });
 
-  it('should correctly display Legend', () => {
+  it('should correctly display and hide Legend on click', () => {
     expect(wrapper.find(Legend).getDOMNode()).not.toBeVisible();
     wrapper.find(LegendIcon).at(0).simulate('click');
 
     expect(wrapper.find(Legend).getDOMNode()).toBeVisible();
 
     wrapper.find(GraphAdditionalPanelCloseButton).at(1).simulate('click');
+    expect(wrapper.find(Legend).getDOMNode()).not.toBeVisible();
+  });
+
+  it('should correctly display and hide Legend on EnterPress', () => {
+    expect(wrapper.find(Legend).getDOMNode()).not.toBeVisible();
+    wrapper.find(LegendIcon).at(0).simulate('click');
+
+    expect(wrapper.find(Legend).getDOMNode()).toBeVisible();
+
+    wrapper.find(GraphAdditionalPanelCloseButton).at(1).simulate('keydown', { keyCode: 13 });
     expect(wrapper.find(Legend).getDOMNode()).not.toBeVisible();
   });
 

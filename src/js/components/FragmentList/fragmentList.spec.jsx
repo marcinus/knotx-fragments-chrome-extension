@@ -117,6 +117,21 @@ describe('<FragmentList /> unit test', () => {
       .prop('expanded')).toEqual(true);
   });
 
+  it('nodelist should be displayed after first Enter press on expand node list button', () => {
+    const wrapper = getWrapper();
+    wrapper
+      .find(TableItemId)
+      .find('.tableItemIcon')
+      .first()
+      .simulate('keydown', { keyCode: 13 });
+
+    expect(wrapper
+      .find(FragmentListItem)
+      .first()
+      .find(NodeList)
+      .prop('expanded')).toEqual(true);
+  });
+
   it('nodelist should not be displayed after second click', () => {
     const wrapper = getWrapper();
     wrapper
@@ -132,6 +147,23 @@ describe('<FragmentList /> unit test', () => {
       .find(NodeList)
       .prop('expanded')).toEqual(false);
   });
+
+  it('nodelist should not be displayed after second Enter press', () => {
+    const wrapper = getWrapper();
+    wrapper
+      .find(TableItemId)
+      .find('.tableItemIcon')
+      .first()
+      .simulate('keydown', { keyCode: 13 })
+      .simulate('keydown', { keyCode: 13 });
+
+    expect(wrapper
+      .find(FragmentListItem)
+      .first()
+      .find(NodeList)
+      .prop('expanded')).toEqual(false);
+  });
+
 
   it('first fragment should render exactly 2 nodes in nodelist', () => {
     const wrapper = getWrapper();

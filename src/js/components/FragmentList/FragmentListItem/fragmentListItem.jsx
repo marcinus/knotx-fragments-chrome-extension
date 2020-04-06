@@ -113,7 +113,7 @@ const FragmentListItem = ({
         </TableItem>
 
         <ShowGraphButton>
-          <FontAwesomeIcon icon={faArrowCircleRight} />
+          <FontAwesomeIcon icon={faArrowCircleRight} tabIndex="0" />
         </ShowGraphButton>
 
       </FragmentListItemContainer>

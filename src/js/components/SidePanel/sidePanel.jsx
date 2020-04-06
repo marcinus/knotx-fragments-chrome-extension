@@ -24,6 +24,7 @@ import {
   ToogleArrow,
   ToogleBurger,
   CloseSidePanelButton,
+  SidePanelContent,
 } from './sidePanel.style';
 import FragmentList from '../FragmentList/fragmentList';
 import FragmentGannt from '../FragmentGannt/fragmentGannt';
@@ -62,8 +63,10 @@ const SidePanel = ({ tabId }) => {
         <FontAwesomeIcon icon={faTimes} />
       </CloseSidePanelButton>
 
-      <FragmentList tabId={tabId} />
-      <FragmentGannt tabId={tabId} />
+      <SidePanelContent shouldDisplay={sidePanelExpanded}>
+        <FragmentList tabId={tabId} />
+        <FragmentGannt tabId={tabId} />
+      </SidePanelContent>
     </SidePanelWrapper>
   );
 };
