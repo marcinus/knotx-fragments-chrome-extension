@@ -16,8 +16,11 @@
 
 import React from 'react';
 import { mount, shallow } from 'enzyme';
+import { Provider } from 'react-redux';
+import { createStore } from 'redux';
 import GraphComponent from './graph';
 import { nodeInfoToIcon } from './graphHelper';
+import reducer from '../../state/reducers/index';
 
 import {
   GraphHeader,
@@ -33,12 +36,31 @@ import { CircleIcon, SquareIcon } from './Legend/legend.style';
 import { singleNode } from '../../helpers/graph/declarationHelper.mock';
 import { COLOR_SUCCESS, COLOR_ERROR } from '../../helpers/graph/drawingHelper';
 
+const store = {
+  pageData: {
+    1: {
+      fragments: [
+        {
+          debug: {
+            fragment: {
+              id: '1',
+            },
+            graph: singleNode,
+          },
+        },
+      ],
+    },
+  },
+};
+
 describe('Graph component', () => {
   const reactapp = document.createElement('div');
   document.body.appendChild(reactapp);
 
   const wrapper = mount(
-    <GraphComponent fragmentId="1" graphJson={singleNode} />,
+    <Provider store={createStore(reducer, store)}>
+      <GraphComponent fragmentId="1" tabId={1} />
+    </Provider>,
     { attachTo: reactapp },
   );
 

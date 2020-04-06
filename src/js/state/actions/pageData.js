@@ -14,7 +14,12 @@
  * limitations under the License.
  */
 
-import { SET_PAGE_DATA, REMOVE_PAGE_DATA, SET_RENDERED_GRAPH } from '../actionTypes/pageData';
+import {
+  SET_PAGE_DATA,
+  REMOVE_PAGE_DATA,
+  SET_RENDERED_GRAPH,
+  SET_SIDEPANEL_EXPANDED,
+} from '../actionTypes/pageData';
 
 export const setPageData = (pageData) => ({
   type: SET_PAGE_DATA,
@@ -28,5 +33,10 @@ export const removePageData = (pageData) => ({
 
 export const setRenderedGraph = (pageData) => ({
   type: SET_RENDERED_GRAPH,
+  pageData,
+});
+
+export const setSidePanelExpanded = (pageData) => ({
+  type: SET_SIDEPANEL_EXPANDED,
   pageData,
 });

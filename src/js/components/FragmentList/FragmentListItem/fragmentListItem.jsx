@@ -29,8 +29,8 @@ import {
   ShowGraphButton,
 } from './fragmentListItem.style';
 import NodeList from '../NodeList/nodeList';
-import { ENTER_KEY_CODE } from '../../../helpers/constants';
-import { setRenderedGraph } from '../../../state/actions/pageData';
+import { ENTER_KEY_CODE, PAGE_BREAK } from '../../../helpers/constants';
+import { setRenderedGraph, setSidePanelExpanded } from '../../../state/actions/pageData';
 
 const FragmentListItem = ({
   status, id, type, nodes, tabId, time,
@@ -46,6 +46,9 @@ const FragmentListItem = ({
         renderedGraph: id,
       }),
     );
+    if (window.innerWidth < PAGE_BREAK) {
+      dispatch(setSidePanelExpanded({ id: tabId, sidebarExpanded: false }));
+    }
   }
 
   return (
@@ -75,8 +78,13 @@ const FragmentListItem = ({
           <span
             role="button"
             tabIndex="0"
-            onKeyDown={(e) => e.stopPropagation()}
             className="tableItemIcon"
+            onKeyDown={(e) => {
+              e.stopPropagation();
+              if (e.keyCode === ENTER_KEY_CODE) {
+                setExpanded(!expanded);
+              }
+            }}
             onClick={(e) => {
               e.stopPropagation();
               setExpanded(!expanded);
