@@ -158,7 +158,8 @@ const FragmentList = ({ tabId }) => {
           </span>
         </SortingButton>
 
-        <EmptySortingCell />
+        <EmptySortingCell tabIndex="-1" />
+
       </SortingWrapper>
       <ListItemContainer>
         {fragments}

@@ -24,10 +24,11 @@ import { FRAGMENT_NOT_SELECTED_MSG } from '../../helpers/constants';
 
 const MainPanel = ({ tabId }) => {
   const renderedGraphId = useSelector(({ pageData }) => pageData[tabId].renderedGraph);
+  const sidebarExpanded = useSelector(({ pageData }) => pageData[tabId].sidebarExpanded);
 
   return renderedGraphId
     ? (
-      <MainPanelWrapper>
+      <MainPanelWrapper sidePanelExpaned={sidebarExpanded}>
         <MainPanelContent>
           <GraphComponent
             tabId={tabId}

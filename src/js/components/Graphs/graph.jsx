@@ -37,12 +37,15 @@ import {
   GraphAdditionalPanelCloseButton,
   GraphAdditionalPanelContent,
   LegendIcon,
+  GraphContent,
 } from './graph.style';
 import TimelineComponent from './Timeline/timeline';
 import Legend from './Legend/Legend';
 import NodeInfo from './NodeInfo/nodesInfo';
 import { nodeInfoToIcon } from './graphHelper';
-import { LEGEND_PANEL_HEADER, NODE_INFO_PANEL_HEADER, graphNavigation } from '../../helpers/constants';
+import {
+  LEGEND_PANEL_HEADER, NODE_INFO_PANEL_HEADER, ENTER_KEY_CODE, graphNavigation,
+} from '../../helpers/constants';
 
 const displayOptions = {
   graph: 'graph',
@@ -67,6 +70,7 @@ const GraphComponent = ({
   useEffect(() => {
     const graphDeclaration = constructGraph(graphData);
     const network = drawGraph(graphDeclaration, graphRef.current);
+    document.querySelector('.vis-network').tabIndex = 0;
 
     setDisplayOption(displayOptions.graph);
     setDisplayNodeInfo(false);
@@ -110,18 +114,28 @@ const GraphComponent = ({
         </GraphToogleViewButton>
       </GraphNavigationWrapper>
 
-      <GraphContainer shouldDisplay={displayOption}>
-        <Graph ref={graphRef} />
-        <LegendIcon onClick={() => setDisplayLegend(true)}>
-          <FontAwesomeIcon icon={faInfoCircle} />
-        </LegendIcon>
-      </GraphContainer>
-      <PerformanceTimeLineContainer shouldDisplay={displayOption}>
-        <TimelineComponent graphJson={graphData} shouldDisplay={displayOption} />
-      </PerformanceTimeLineContainer>
+      <GraphContent shouldDisplay={displayOption}>
+        <GraphContainer shouldDisplay={displayOption}>
+          <Graph ref={graphRef} />
+          <LegendIcon onClick={() => setDisplayLegend(true)}>
+            <FontAwesomeIcon icon={faInfoCircle} />
+          </LegendIcon>
+        </GraphContainer>
+        <PerformanceTimeLineContainer shouldDisplay={displayOption}>
+          <TimelineComponent graphJson={graphData} />
+        </PerformanceTimeLineContainer>
+      </GraphContent>
 
       <GraphAdditionalPanel shouldDisplay={displayNodeInfo}>
-        <GraphAdditionalPanelCloseButton onClick={() => setDisplayNodeInfo(false)}>
+        <GraphAdditionalPanelCloseButton
+          onClick={() => setDisplayNodeInfo(false)}
+          onKeyDown={(e) => {
+            if (e.keyCode === ENTER_KEY_CODE) {
+              setDisplayNodeInfo(false);
+            }
+          }}
+          tabIndex="0"
+        >
           <FontAwesomeIcon icon={faTimes} />
         </GraphAdditionalPanelCloseButton>
         <GraphAdditionalPanelHeader>
@@ -136,7 +150,15 @@ const GraphComponent = ({
       </GraphAdditionalPanel>
 
       <GraphAdditionalPanel shouldDisplay={displayLegend}>
-        <GraphAdditionalPanelCloseButton onClick={() => setDisplayLegend(false)}>
+        <GraphAdditionalPanelCloseButton
+          onClick={() => setDisplayLegend(false)}
+          onKeyDown={(e) => {
+            if (e.keyCode === ENTER_KEY_CODE) {
+              setDisplayLegend(false);
+            }
+          }}
+          tabIndex="0"
+        >
           <FontAwesomeIcon icon={faTimes} />
         </GraphAdditionalPanelCloseButton>
         <GraphAdditionalPanelHeader>

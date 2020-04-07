@@ -29,11 +29,18 @@ export const GraphWrapper = styled.div`
     }
 `;
 
-export const GraphContainer = styled.div`
-    /* 88px = GraphHeader height + NavigationButtons Height */
+export const GraphContent = styled.div`
      height: calc(50% - 88px);
      flex: 1 1 auto;
-     display: ${({ shouldDisplay }) => (shouldDisplay === 'graph' ? 'block' : 'none')};
+     display: flex;
+     margin-left: ${({ shouldDisplay }) => (shouldDisplay === 'performanceTimeLine' ? '-100%' : '0')};
+     margin-right: ${({ shouldDisplay }) => (shouldDisplay === 'graph' ? '-100%' : '0')};
+`;
+
+export const GraphContainer = styled.div`
+     height: 100%;
+     width: 100%;
+     visibility: ${({ shouldDisplay }) => (shouldDisplay === 'graph' ? 'visible' : 'hidden')};
 `;
 
 export const Graph = styled.div`
@@ -41,19 +48,19 @@ export const Graph = styled.div`
 `;
 
 export const PerformanceTimeLineContainer = styled.div`
-     height: 50%;
+     height: 100%;
+     width: 100%;
      flex: 1 1 auto;
-     display: ${({ shouldDisplay }) => (shouldDisplay === 'performanceTimeLine' ? 'block' : 'none')};
-     padding-top: 5px;
+     visibility: ${({ shouldDisplay }) => (shouldDisplay === 'performanceTimeLine' ? 'visible' : 'hidden')};
 `;
 
 export const GraphHeaderContainer = styled.div`
-    padding: 0 5px;
     margin-left: ${({ shouldHasMargin }) => (shouldHasMargin ? '40px' : 'inherit')};;
 `;
 
 export const GraphHeader = styled.h2`
     color: ${({ theme }) => theme.TEXT};
+    padding-left: 5px;
     margin: 10px 0;
 `;
 
@@ -106,7 +113,6 @@ export const LegendIcon = styled.button`
 export const GraphAdditionalPanel = styled.div`
     background-color: ${({ theme }) => theme.ADDITIONAL_PANEL_CONTENT_BG};
     width: 100%;
-    overflow: scroll;
     border-top: ${({ theme }) => `1px solid ${theme.BORDER}`};
     display: ${({ shouldDisplay }) => (shouldDisplay ? 'block' : 'none')};
     min-height: 25%;
@@ -135,6 +141,7 @@ export const GraphAdditionalPanelHeader = styled.div`
 
 export const GraphAdditionalPanelContent = styled.div`
     margin-top: 41px;
+    height: calc(100% - 41px);
 `;
 
 export const GraphAdditionalPanelCloseButton = styled.div`

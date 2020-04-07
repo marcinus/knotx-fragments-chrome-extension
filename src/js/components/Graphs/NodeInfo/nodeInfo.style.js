@@ -17,6 +17,7 @@
 import styled from 'styled-components';
 
 export const NodeIndoContainer = styled.div`
-    width: 100%;
-    padding: 15px;
+    padding: 5px;
+    height: 100%;
+    box-sizing: border-box;
 `;

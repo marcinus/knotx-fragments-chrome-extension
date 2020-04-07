@@ -99,3 +99,10 @@ export const CloseSidePanelButton = styled.button`
         cursor: pointer;
     }
 `;
+
+export const SidePanelContent = styled.div`
+    display: ${({ shouldDisplay }) => (shouldDisplay ? 'flex' : 'none')};
+    height: 100vh;
+    width: 100%;
+    flex-direction: column;
+`;

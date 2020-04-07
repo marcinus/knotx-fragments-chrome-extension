@@ -23,7 +23,7 @@ import { constructFragmentsTimeline } from '../../helpers/nodes/nodesHelper';
 import { drawTimeline } from '../../helpers/timeline/drawHelper';
 import { GanntContainer, Timeline, TimelineBar } from './fragmentGannt.style';
 import { setRenderedGraph } from '../../state/actions/pageData';
-import { FRAGMENTS_PERFORMANCE } from '../../helpers/constants';
+import { FRAGMENTS_PERFORMANCE, ENTER_KEY_CODE } from '../../helpers/constants';
 
 const FragmentGannt = ({ tabId }) => {
   const [timeline, setTimeline] = useState(null);
@@ -66,7 +66,13 @@ const FragmentGannt = ({ tabId }) => {
   return (
     <GanntContainer className="fragmentGanntContainer">
       <TimelineBar
+        tabIndex="0"
         onClick={() => setExpanded(!expanded)}
+        onKeyDown={(e) => {
+          if (e.keyCode === ENTER_KEY_CODE) {
+            setExpanded(!expanded);
+          }
+        }}
       >
         <span>{FRAGMENTS_PERFORMANCE}</span>
         {expanded
