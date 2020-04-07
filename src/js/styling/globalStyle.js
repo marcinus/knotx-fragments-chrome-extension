@@ -37,6 +37,10 @@ export const GlobalStyle = createGlobalStyle`
     height: 100%;
     overflow: scroll;
     margin: 0;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
   }
 
   .renderjson a {

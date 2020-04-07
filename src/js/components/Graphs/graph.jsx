@@ -37,6 +37,7 @@ import {
   GraphAdditionalPanelCloseButton,
   GraphAdditionalPanelContent,
   LegendIcon,
+  GraphContent,
 } from './graph.style';
 import TimelineComponent from './Timeline/timeline';
 import Legend from './Legend/Legend';
@@ -113,15 +114,17 @@ const GraphComponent = ({
         </GraphToogleViewButton>
       </GraphNavigationWrapper>
 
-      <GraphContainer shouldDisplay={displayOption}>
-        <Graph ref={graphRef} />
-        <LegendIcon onClick={() => setDisplayLegend(true)}>
-          <FontAwesomeIcon icon={faInfoCircle} />
-        </LegendIcon>
-      </GraphContainer>
-      <PerformanceTimeLineContainer shouldDisplay={displayOption}>
-        <TimelineComponent graphJson={graphData} shouldDisplay={displayOption} />
-      </PerformanceTimeLineContainer>
+      <GraphContent shouldDisplay={displayOption}>
+        <GraphContainer shouldDisplay={displayOption}>
+          <Graph ref={graphRef} />
+          <LegendIcon onClick={() => setDisplayLegend(true)}>
+            <FontAwesomeIcon icon={faInfoCircle} />
+          </LegendIcon>
+        </GraphContainer>
+        <PerformanceTimeLineContainer shouldDisplay={displayOption}>
+          <TimelineComponent graphJson={graphData} />
+        </PerformanceTimeLineContainer>
+      </GraphContent>
 
       <GraphAdditionalPanel shouldDisplay={displayNodeInfo}>
         <GraphAdditionalPanelCloseButton

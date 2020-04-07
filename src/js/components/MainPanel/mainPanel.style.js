@@ -19,6 +19,7 @@ import { PAGE_BREAK } from '../../helpers/constants';
 
 export const MainPanelWrapper = styled.div`
     flex: 1 1 auto;
+    width:${({ sidePanelExpaned }) => (sidePanelExpaned ? '65vw' : '100vw')};
 `;
 
 export const MainPanelContent = styled.div`
