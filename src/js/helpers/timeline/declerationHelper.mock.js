@@ -22,7 +22,7 @@ export const singleNode = {
   started: 12345,
   finished: 54321,
   response: {
-    invocations: {},
+    invocations: [],
     transition: '_success',
   },
 };
@@ -43,13 +43,13 @@ export const singleNodeWithTransition = {
       started: 54321,
       finished: 65432,
       response: {
-        invocations: {},
+        invocations: [],
         transition: '_success',
       },
     },
   },
   response: {
-    invocations: {},
+    invocations: [],
     transition: '_success',
   },
 };
@@ -86,25 +86,25 @@ export const singleNodeWithMultipleChildrenLevels = {
               started: 76543,
               finished: 87654,
               response: {
-                invocations: {},
+                invocations: [],
                 transition: '_success',
               },
             },
           },
           response: {
-            invocations: {},
+            invocations: [],
             transition: '_success',
           },
         },
       },
       response: {
-        invocations: {},
+        invocations: [],
         transition: '_success',
       },
     },
   },
   response: {
-    invocations: {},
+    invocations: [],
     transition: '_success',
   },
 };
@@ -125,7 +125,7 @@ export const compositeNode = {
       started: 12345,
       finished: 54321,
       response: {
-        invocations: {},
+        invocations: [],
         transition: '_success',
       },
     },
@@ -137,13 +137,13 @@ export const compositeNode = {
       started: 12345,
       finished: 20000,
       response: {
-        invocations: {},
+        invocations: [],
         transition: '_success',
       },
     },
   ],
   response: {
-    invocations: {},
+    invocations: [],
     transition: '_success',
   },
 };
@@ -174,13 +174,13 @@ export const compositeNodeWithSubtaskTransitions = {
         },
       },
       response: {
-        invocations: {},
+        invocations: [],
         transition: '_success',
       },
     },
   ],
   response: {
-    invocations: {},
+    invocations: [],
     transition: '_success',
   },
 };
@@ -194,7 +194,7 @@ export const compositeNodeWithoutSubtasks = {
   finished: 54321,
   subtasks: [],
   response: {
-    invocations: {},
+    invocations: [],
     transition: '_success',
   },
 };
@@ -223,19 +223,19 @@ export const nestedCompositeNodes = {
           started: 12345,
           finished: 54321,
           response: {
-            invocations: {},
+            invocations: [],
             transition: '_success',
           },
         },
       ],
       response: {
-        invocations: {},
+        invocations: [],
         transition: '_success',
       },
     },
   ],
   response: {
-    invocations: {},
+    invocations: [],
     transition: '_success',
   },
 };

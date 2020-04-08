@@ -23,7 +23,7 @@ test('One-node-graph is returned with uniqueLabel', () => {
     status: 'success',
     type: 'single',
     response: {
-      invocations: {},
+      invocations: [],
       transition: '_success',
     },
   };
@@ -43,7 +43,7 @@ test('Multiple transition are parsed correctly', () => {
     status: 'success',
     type: 'single',
     response: {
-      invocations: {},
+      invocations: [],
       transition: '_success',
     },
   };
@@ -57,7 +57,7 @@ test('Multiple transition are parsed correctly', () => {
       _success: grandChild,
     },
     response: {
-      invocations: {},
+      invocations: [],
       transition: '_success',
     },
   };
@@ -71,7 +71,7 @@ test('Multiple transition are parsed correctly', () => {
       _success: child,
     },
     response: {
-      invocations: {},
+      invocations: [],
       transition: '_success',
     },
   };
@@ -107,7 +107,7 @@ test('Processed child nodes are returned', () => {
     status: 'success',
     type: 'single',
     response: {
-      invocations: {},
+      invocations: [],
       transition: '_success',
     },
   };
@@ -121,7 +121,7 @@ test('Processed child nodes are returned', () => {
       _success: child,
     },
     response: {
-      invocations: {},
+      invocations: [],
       transition: '_success',
     },
   };
@@ -159,7 +159,7 @@ test('Unprocessed child nodes are not returned', () => {
       _success: child,
     },
     response: {
-      invocations: {},
+      invocations: [],
       transition: '_error',
     },
   };
@@ -193,13 +193,13 @@ test('Top level composites are treated as a whole', () => {
         status: 'success',
         type: 'single',
         response: {
-          invocations: {},
+          invocations: [],
           transition: '_success',
         },
       },
     ],
     response: {
-      invocations: {},
+      invocations: [],
       transition: '_success',
     },
   };
@@ -227,13 +227,13 @@ test('Below top level composites are treated as a whole', () => {
         status: 'success',
         type: 'single',
         response: {
-          invocations: {},
+          invocations: [],
           transition: '_success',
         },
       },
     ],
     response: {
-      invocations: {},
+      invocations: [],
       transition: '_success',
     },
   };
@@ -247,7 +247,7 @@ test('Below top level composites are treated as a whole', () => {
       _success: compositeChild,
     },
     response: {
-      invocations: {},
+      invocations: [],
       transition: '_success',
     },
   };
@@ -279,7 +279,7 @@ test('Transitions from composite nodes are handled correctly', () => {
     status: 'success',
     type: 'single',
     response: {
-      invocations: {},
+      invocations: [],
       transition: '_success',
     },
   };
@@ -296,7 +296,7 @@ test('Transitions from composite nodes are handled correctly', () => {
         status: 'success',
         type: 'single',
         response: {
-          invocations: {},
+          invocations: [],
           transition: '_success',
         },
       },
@@ -305,7 +305,7 @@ test('Transitions from composite nodes are handled correctly', () => {
       _success: singleChild,
     },
     response: {
-      invocations: {},
+      invocations: [],
       transition: '_success',
     },
   };

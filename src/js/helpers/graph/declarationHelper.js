@@ -18,6 +18,7 @@ import GraphLayers from './graphLayers';
 import {
   isReference, hasTransitions, hasPreDefinedTransitions, hasTransition, isComposite, getReference,
 } from './nodeRecognitionHelper';
+import { postProcessNode } from './nodePostProcessor';
 
 export const getNodeGroup = (node) => {
   if (node.type === 'virtual_start') {
@@ -137,7 +138,7 @@ export const flattenComposites = (node) => {
   }
 
   if (!flattenedNode.info) {
-    flattenedNode.info = node;
+    flattenedNode.info = postProcessNode(node);
   }
 
   return flattenedNode;
