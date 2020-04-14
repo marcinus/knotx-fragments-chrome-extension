@@ -1,17 +1,17 @@
 # Knot.x Fragments Chrome Extension
-Extends the Developer Tools, adding a sidebar that displays Fragments data associated with the 
+Extends the Developer Tools, adding a sidebar that displays Fragments data associated with the
 selected DOM element.
 
 // TODO why do we need this?
 
 ## How to start?
-You can easily build the extension and select `dist` directory from Chrome extensions page. Follow 
+You can easily build the extension and select `dist` directory from Chrome extensions page. Follow
 the instructions below:
 
 - Build the extension:
   - go to the project folder
   - run command: `yarn install`
-  - run command: `yarn run dev`
+  - run command: `yarn run dev` or `yarn run watch` if you want to enable auto detect changes in code.
 - Load the extension from disk (more details [here](https://developer.chrome.com/extensions/getstarted) )
   - open the Chrome Extension Management page by navigating to `chrome://extensions`.
   - enable Developer Mode by clicking the toggle switch next to *Developer mode*.
@@ -32,9 +32,9 @@ the instructions below:
 Knot.x Fragments, when run in debug mode, injects information about fragments into the output.
 This information can then be read, parsed and displayed by various tools. Knot.x Fragments Chrome Extension is the official tool for this purpose.
 
-Of course fragments' outputs can have various formats. Currently, Knot.x supports injecting debug information into HTML only. 
-Therefore, this tool only works for fragment-generated HTML pages. 
-JSON support is planned for the near future. 
+Of course fragments' outputs can have various formats. Currently, Knot.x supports injecting debug information into HTML only.
+Therefore, this tool only works for fragment-generated HTML pages.
+JSON support is planned for the near future.
 
 ### HTML structure
 
@@ -47,7 +47,7 @@ For example, a page like this:
   <header>
     Weather Service
   </header>
-  
+
   <knotx:snippet data-knotx-task="weather-task">
     <span>
       {{fetch-weather-info._result.temperatue}} in {{fetch-weather-info._result.location}}
@@ -63,7 +63,7 @@ could result in:
   <header>
     Weather Service
   </header>
-  
+
   <!-- data-knotx-id="auto-generated-id" -->
   <script data-knotx-debug="log" data-knotx-id="auto-generated-id" type="application/json">{ debug-data-here }</script>
 
@@ -262,30 +262,135 @@ Parser consists of the following phases:
 ## Used technologies
 
 ### Extensions / Plugins
+main plugins:
+
+* [React](https://reactjs.org/)
+* [Redux](https://redux.js.org/)
+* [Webext](https://github.com/tshaddix/webext-redux)
+* [styled-components](https://styled-components.com/)
+* [vis-network](https://visjs.github.io/vis-network/docs/network/)
+* [vis-timeline](https://visjs.github.io/vis-timeline/docs/timeline/)
+* [unique-selector](https://github.com/ericclemmons/unique-selector)
+* [renderjson](https://github.com/caldwell/renderjson)
+* [react-fontawesome](https://github.com/FortAwesome/react-fontawesome)
+* [Jest](https://jestjs.io/docs/en/cli.html)
+* [Enzyme](https://enzymejs.github.io/enzyme/)
+* [semver](https://github.com/npm/node-semver#readme)
+* [Babel](https://babeljs.io/)
+* [Eslint](https://eslint.org/)
+* [Webpack](https://webpack.js.org/)
 
 ### CI
+The GitHub repository is integrated with Azure Pipelines (CI) to validate both new PRs and the master branch. Check the azure-pipelines.yml file for configuration details. So we check:
 
-### Testing
+* code conventions with Eslint
+* code logic with unit tests using Jest
+* test coverage level with preconfigured thresholds (see jest.config.js for more details).
+
+## Testing
+We believe that unit tests remain the best documentation. All React components, processing logic (helpers) and actions (such as a button click) are validated with unit tests. We use Jest and Enzyme frameworks to validate both components (React) with combination with mocked storage (Redux).
+
+
+All JS files (components & helpers) have their own tests that are placed next to the tested sources. We follow the convention:
+* ```*.mock.js``` - it is configuration containing mocks for our tests
+* ```*.spec.jsx``` - it contains unit tests
+
+
+Additionally, we placed tests coverage verification in our CI. We use the jest-coverage tool for that. We decided to keep the coverage level at truly high levels (80 - 100%). It should enable future refactoring and code changes.
+
+
+When tests are executed, then we generate the report (test-report.xml) file in the build/test folder. Moreover, there is the coverage directory that contains the index.html file with unit tests coverage report.
+
+
+### How to run tests?
+1. run command to fire all tests: `yarn run test`
+2. run command to fire the specific test: `yarn run test [path_to_test]`
 
 ## Implementation details
 
-### Parsing HTML
+### Data flow
+An extension's architecture includes such components as:
+
+background script that contains listeners for browser events and communication with Redux
+content script that contains JavaScript that executes in the context of a page that has been loaded in the browser.
+Depending on the format (JSON or HTML markup), fragments' debug data is processed by the content script first and then stored in Redux with the background script (which basically wraps Redux store). Content script transformations are described [here](https://github.com/Knotx/knotx-fragments-chrome-extension#debug-fragment-data).
+
+```
+KNOT.x -> HTML MARKUP -> CONTENT SCRIPT -> BACKGROUND SCRIPT -> REDUX -> COMPONENTS
+                               ^
+                               |
+                         Parsing helper
+```
 
 ### Components
+The components structure in the main concept look like this:
 
-#### Graph
+```
+•
+└── App:
+    ├── SidePanel
+    │   ├── FragmenList
+    │   │   └── FragmentListItem
+    │   │       └── NodeList
+    │   └── FragmentGannt
+    │
+    └── MainPanel
+        └── Graph
+            ├──  Timeline
+            ├──  Legend
+            │    └── LegendSection
+            └──  NodeInfo
+```
 
-#### Timelines
+#### Graph && timelines
+We use `vis.js` library to visualise [fragments](https://github.com/Knotx/knotx-fragments/tree/master/api#fragment)' processing details. See the following components:
+- Timeline showing the processing time of  all fragments (`SidePanel `: `FragmentGantt` component)
+- Chart presenting the logic of processing a particular fragment (`MainPanel `: `Graph` component)
+- Timeline showing the processing times of all steps performed while processing a specific fragment (`MainPanel `: `Timeline` component)
+
+### Styling
+We don't use any grid system to make our app beautiful. Everything is flex. To show and hide elements we try to use a react state, without saving this information in the redux store. SidePanelExpanded info is currently the only one exception.
+
+To create styles we use styling-component. We follow the convention to create a style file next to js file.
+
+ ```
+•
+├── exampleComponent.js
+└── exampleComponent.style.js
+```
+
+some global styling and styling for renderjson markupwe store in
+ ```
+/src/js/styling/globalStyle.js
+  ```
+
 
 ### Data storage
+We use Redux as storage. It keeps details about:
+- parsed list of fragments
+- application state such as details which panel was expanded/hidden etc.
+
+Once loaded page data is stored in a map where:
+- key is a Chrome tab identifier 
+- value contains fragments, page data and application state per tab.
+
+Such storage solution makes it easy to analyse many pages at the same time, switching between them, and running many Chrome Dev Tools Console instances.
+
+The example below presents how data is stored in Redux:
+
+
+```
+•
+└── pageData:
+    ├── 78: // tab id
+    │   ├── fragments: [] // list of fragments
+    │   ├── url: "https://example.com // page url
+    │   ├── sidebarExpanded: true // side panel expanded switch
+    │   └── renderedGraph: null // id of the currently selected fragment
+    └── 110:
+        └── ...
+```
+
+The pageData entry is created on page load and destroyed when we close the tab. If the page does not contain Knot.x fragments, fragments property is empty.
 
 ## Contributors
-
-### How to run?
-1. go to the project folder
-2. run command: `yarn install`
-3. run command: `yarn run dev`
-
-### How to test?
-1. run command to fire all tests: `yarn run test`
-2. run command to fire specific test: `yarn run test [path_to_test]`

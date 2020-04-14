@@ -20,7 +20,7 @@ export const successNode = {
   status: 'success',
   type: 'single',
   response: {
-    invocations: {},
+    invocations: [],
     transition: '_success',
   },
 };
@@ -31,7 +31,7 @@ export const errorNode = {
   status: 'error',
   type: 'single',
   response: {
-    invocations: {},
+    invocations: [],
     transition: '_error',
   },
 };
@@ -56,7 +56,7 @@ export const otherNode = {
   status: 'other',
   type: 'single',
   response: {
-    invocations: {},
+    invocations: [],
     transition: 'custom',
   },
 };
@@ -73,13 +73,13 @@ export const successCompositeNode = {
       status: 'success',
       type: 'single',
       response: {
-        invocations: {},
+        invocations: [],
         transition: '_success',
       },
     },
   ],
   response: {
-    invocations: {},
+    invocations: [],
     transition: '_success',
   },
 };
@@ -96,13 +96,13 @@ export const errorCompositeNode = {
       status: 'error',
       type: 'single',
       response: {
-        invocations: {},
+        invocations: [],
         transition: '_error',
       },
     },
   ],
   response: {
-    invocations: {},
+    invocations: [],
     transition: '_error',
   },
 };

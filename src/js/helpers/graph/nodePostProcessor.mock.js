@@ -14,37 +14,51 @@
  * limitations under the License.
  */
 
-export const nodeWithAllTransitionTypes = {
+export const nodeWithJsonResponseBody = {
   id: 'A',
   label: 'A label',
-  status: 'error',
+  status: 'success',
   type: 'single',
-  on: {
-    _success: {
-      id: 'A A',
-      label: 'A A label',
-      status: 'unprocessed',
-      type: 'single',
-    },
-    _error: {
-      id: 'A B',
-      label: 'A B label',
-      status: 'success',
-      type: 'single',
-      response: {
-        invocations: [],
-        transition: '_success',
-      },
-    },
-    different_transition: {
-      id: 'A C',
-      label: 'A C label',
-      status: 'unprocessed',
-      type: 'single',
-    },
-  },
   response: {
-    invocations: [],
-    transition: '_error',
+    transition: '_success',
+    invocations: [
+      {
+        logs: {
+          responseBody: '{ "prop": "value" }',
+        },
+      },
+    ],
+  },
+};
+
+export const nodeWithNonJsonResponseBody = {
+  id: 'A',
+  label: 'A label',
+  status: 'success',
+  type: 'single',
+  response: {
+    transition: '_success',
+    invocations: [
+      {
+        logs: {
+          responseBody: 'A body',
+        },
+      },
+    ],
+  },
+};
+
+export const nodeWithoutResponseBody = {
+  id: 'A',
+  label: 'A label',
+  status: 'success',
+  type: 'single',
+  response: {
+    transition: '_success',
+    invocations: [
+      {
+        logs: {},
+      },
+    ],
   },
 };
