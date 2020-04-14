@@ -16,7 +16,7 @@
 
 import React from 'react';
 import { shallow } from 'enzyme';
-import NodeList from './nodeList';
+import NodeList from './NodeList';
 import { nodes } from './nodeList.mock';
 import { NodeButton } from './nodeList.style';
 

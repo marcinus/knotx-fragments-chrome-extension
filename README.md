@@ -342,6 +342,12 @@ The components structure in the main concept look like this:
             └──  NodeInfo
 ```
 
+You can find interactive documentation for all components in our [storybook](https://storybook.js.org/).
+
+To open the storybook follow the steps below:
+- run command ``` yarn storybook ```
+- go to [localhost:6006](http://localhost:6006/)
+
 #### Graph && timelines
 We use `vis.js` library to visualise [fragments](https://github.com/Knotx/knotx-fragments/tree/master/api#fragment)' processing details. See the following components:
 - Timeline showing the processing time of  all fragments (`SidePanel `: `FragmentGantt` component)
@@ -364,14 +370,13 @@ some global styling and styling for renderjson markupwe store in
 /src/js/styling/globalStyle.js
   ```
 
-
 ### Data storage
 We use Redux as storage. It keeps details about:
 - parsed list of fragments
 - application state such as details which panel was expanded/hidden etc.
 
 Once loaded page data is stored in a map where:
-- key is a Chrome tab identifier 
+- key is a Chrome tab identifier
 - value contains fragments, page data and application state per tab.
 
 Such storage solution makes it easy to analyse many pages at the same time, switching between them, and running many Chrome Dev Tools Console instances.

@@ -43,7 +43,7 @@ export const GraphContainer = styled.div`
      visibility: ${({ shouldDisplay }) => (shouldDisplay === 'graph' ? 'visible' : 'hidden')};
 `;
 
-export const Graph = styled.div`
+export const NodesGraph = styled.div`
      height: 100%;
 `;
 

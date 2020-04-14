@@ -18,7 +18,7 @@ import React from 'react';
 import { mount } from 'enzyme';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
-import FragmentListItem from './fragmentListItem';
+import FragmentListItem from './FragmentListItem';
 import { Status, TableItem, TableItemId } from './fragmentListItem.style';
 import reducer from '../../../state/reducers/index';
 import { NodeButton } from '../NodeList/nodeList.style';

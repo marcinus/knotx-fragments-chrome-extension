@@ -20,7 +20,7 @@ import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 import data from '../FragmentList/fragmentList.mock';
 import reducer from '../../state/reducers/index';
-import SidePanel from './sidePanel';
+import SidePanel from './SidePanel';
 import {
   SidePanelWrapper,
   ToogleArrow,
