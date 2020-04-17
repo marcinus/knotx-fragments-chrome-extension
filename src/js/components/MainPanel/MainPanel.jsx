@@ -18,7 +18,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
 import { MainPanelWrapper, MainPanelContent } from './mainPanel.style';
-import GraphComponent from '../Graphs/graph';
+import Graph from '../Graphs/Graph';
 import { NoKnotxPage } from '../../devtools/app.style';
 import { FRAGMENT_NOT_SELECTED_MSG } from '../../helpers/constants';
 
@@ -30,7 +30,7 @@ const MainPanel = ({ tabId }) => {
     ? (
       <MainPanelWrapper sidePanelExpaned={sidebarExpanded}>
         <MainPanelContent>
-          <GraphComponent
+          <Graph
             tabId={tabId}
             fragmentId={renderedGraphId}
           />

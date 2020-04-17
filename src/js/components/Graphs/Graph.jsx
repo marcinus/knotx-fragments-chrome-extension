@@ -26,7 +26,7 @@ import { constructGraph } from '../../helpers/graph/declarationHelper';
 import {
   GraphWrapper,
   GraphContainer,
-  Graph,
+  NodesGraph,
   PerformanceTimeLineContainer,
   GraphHeader,
   GraphHeaderContainer,
@@ -39,9 +39,9 @@ import {
   LegendIcon,
   GraphContent,
 } from './graph.style';
-import TimelineComponent from './Timeline/timeline';
+import NodePerformanceTimeline from './Timeline/Timeline';
 import Legend from './Legend/Legend';
-import NodeInfo from './NodeInfo/nodesInfo';
+import NodeInfo from './NodeInfo/NodeInfo';
 import { nodeInfoToIcon } from './graphHelper';
 import {
   LEGEND_PANEL_HEADER, NODE_INFO_PANEL_HEADER, ENTER_KEY_CODE, graphNavigation,
@@ -52,7 +52,7 @@ const displayOptions = {
   performanceTimeLine: 'performanceTimeLine',
 };
 
-const GraphComponent = ({
+const Graph = ({
   fragmentId,
   tabId,
 }) => {
@@ -116,13 +116,13 @@ const GraphComponent = ({
 
       <GraphContent shouldDisplay={displayOption}>
         <GraphContainer shouldDisplay={displayOption}>
-          <Graph ref={graphRef} />
+          <NodesGraph ref={graphRef} />
           <LegendIcon onClick={() => setDisplayLegend(true)}>
             <FontAwesomeIcon icon={faInfoCircle} />
           </LegendIcon>
         </GraphContainer>
         <PerformanceTimeLineContainer shouldDisplay={displayOption}>
-          <TimelineComponent graphJson={graphData} />
+          <NodePerformanceTimeline graphJson={graphData} />
         </PerformanceTimeLineContainer>
       </GraphContent>
 
@@ -173,9 +173,9 @@ const GraphComponent = ({
   );
 };
 
-GraphComponent.propTypes = {
+Graph.propTypes = {
   fragmentId: PropTypes.string.isRequired,
   tabId: PropTypes.number.isRequired,
 };
 
-export default GraphComponent;
+export default Graph;

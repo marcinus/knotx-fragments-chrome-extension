@@ -107,12 +107,16 @@ export const compositeNodeWithTransitions = {
   label: 'A label',
   status: 'success',
   type: 'composite',
+  started: 12345,
+  finished: 54321,
   subtasks: [
     {
       id: 'A-A',
       label: 'A-A label',
       status: 'success',
       type: 'single',
+      started: 54321,
+      finished: 65432,
       response: {
         invocations: [],
         transition: 'success',
@@ -123,6 +127,8 @@ export const compositeNodeWithTransitions = {
       label: 'A-B label',
       status: 'success',
       type: 'single',
+      started: 54321,
+      finished: 65432,
       response: {
         invocations: [],
         transition: 'success',
@@ -138,6 +144,8 @@ export const compositeNodeWithTransitions = {
       label: 'A A label',
       status: 'success',
       type: 'single',
+      started: 54321,
+      finished: 65432,
       response: {
         invocations: [],
         transition: 'success',

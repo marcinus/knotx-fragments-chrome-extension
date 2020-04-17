@@ -14,8 +14,15 @@
  * limitations under the License.
  */
 
-import { createStore } from 'redux';
-import withReduxEnhancer from 'addon-redux/enhancer';
-import reducers from './reducers/index';
+import React from 'react';
+import { storiesOf } from '@storybook/react';
+import { withKnobs, object } from '@storybook/addon-knobs';
+import NodePerformanceTimeline from './Timeline';
+import { singleNodeWithTransition } from '../../../helpers/timeline/declerationHelper.mock';
+import 'vis-timeline/dist/vis-timeline-graph2d.min.css';
 
-export const store = createStore(reducers, withReduxEnhancer);
+storiesOf('Logic Components | MainPanel.Graph.NodePerformanceTimeline', module)
+  .addDecorator(withKnobs)
+  .add('NodePerformanceTimeline', () => (
+    <NodePerformanceTimeline graphJson={object('graphJson', singleNodeWithTransition)} />
+  ));

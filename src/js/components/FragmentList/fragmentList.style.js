@@ -30,7 +30,6 @@ export const FragmentListWrapper = styled.div`
       margin: 0;
       color: ${({ theme }) => theme.TEXT};
     }
-
 `;
 
 export const SortingWrapper = styled.div`

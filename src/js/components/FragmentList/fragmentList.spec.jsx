@@ -20,10 +20,10 @@ import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 import data from './fragmentList.mock';
 import reducer from '../../state/reducers/index';
-import FragmentList, { mapDataToComponents } from './fragmentList';
-import FragmentListItem from './FragmentListItem/fragmentListItem';
+import FragmentList, { mapDataToComponents } from './FragmentList';
+import FragmentListItem from './FragmentListItem/FragmentListItem';
 import { TableItemId } from './FragmentListItem/fragmentListItem.style';
-import NodeList from './NodeList/nodeList';
+import NodeList from './NodeList/NodeList';
 import { SortingButton, StatusSortingButton } from './fragmentList.style';
 import { NodeButton } from './NodeList/nodeList.style';
 

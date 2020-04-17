@@ -28,7 +28,7 @@ import {
   TableItemId,
   ShowGraphButton,
 } from './fragmentListItem.style';
-import NodeList from '../NodeList/nodeList';
+import NodeList from '../NodeList/NodeList';
 import { ENTER_KEY_CODE, PAGE_BREAK } from '../../../helpers/constants';
 import { setRenderedGraph, setSidePanelExpanded } from '../../../state/actions/pageData';
 

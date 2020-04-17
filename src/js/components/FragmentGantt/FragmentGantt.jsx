@@ -21,11 +21,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronUp, faChevronDown } from '@fortawesome/free-solid-svg-icons';
 import { constructFragmentsTimeline } from '../../helpers/nodes/nodesHelper';
 import { drawTimeline } from '../../helpers/timeline/drawHelper';
-import { GanntContainer, Timeline, TimelineBar } from './fragmentGannt.style';
+import { GanntContainer, Timeline, TimelineBar } from './fragmentGantt.style';
 import { setRenderedGraph } from '../../state/actions/pageData';
 import { FRAGMENTS_PERFORMANCE, ENTER_KEY_CODE } from '../../helpers/constants';
 
-const FragmentGannt = ({ tabId }) => {
+const FragmentGantt = ({ tabId }) => {
   const [timeline, setTimeline] = useState(null);
   const [expanded, setExpanded] = useState(true);
   const timelineContainer = useRef(null);
@@ -88,8 +88,8 @@ const FragmentGannt = ({ tabId }) => {
   );
 };
 
-FragmentGannt.propTypes = {
+FragmentGantt.propTypes = {
   tabId: PropTypes.number.isRequired,
 };
 
-export default FragmentGannt;
+export default FragmentGantt;

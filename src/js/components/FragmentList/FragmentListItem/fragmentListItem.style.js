@@ -62,7 +62,7 @@ export const Status = styled.div`
     border-radius: 4px;
 
     background-color: ${({ status }) => (status === 'success' ? COLOR_SUCCESS : '')};
-    background-color: ${({ status }) => (status === 'error' ? COLOR_ERROR : '')};
+    background-color: ${({ status }) => (status === 'failure' ? COLOR_ERROR : '')};
     background-color: ${({ status }) => (status === 'unprocessed' ? COLOR_UNPROCESSED : '')};
     background-color: ${({ status }) => ((status === 'missing') ? COLOR_MISSING : '')};
     background-color: ${({ status }) => ((status === 'other') ? COLOR_OTHER : '')};

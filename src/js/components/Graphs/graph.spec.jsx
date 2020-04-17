@@ -18,7 +18,7 @@ import React from 'react';
 import { mount, shallow } from 'enzyme';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
-import GraphComponent from './graph';
+import Graph from './Graph';
 import { nodeInfoToIcon } from './graphHelper';
 import reducer from '../../state/reducers/index';
 
@@ -59,7 +59,7 @@ describe('Graph component', () => {
 
   const wrapper = mount(
     <Provider store={createStore(reducer, store)}>
-      <GraphComponent fragmentId="1" tabId={1} />
+      <Graph fragmentId="1" tabId={1} />
     </Provider>,
     { attachTo: reactapp },
   );

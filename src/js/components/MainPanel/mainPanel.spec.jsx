@@ -19,7 +19,7 @@ import { mount } from 'enzyme';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 import reducer from '../../state/reducers/index';
-import MainPanel from './mainPanel';
+import MainPanel from './MainPanel';
 import { FRAGMENT_NOT_SELECTED_MSG } from '../../helpers/constants';
 
 const store = {

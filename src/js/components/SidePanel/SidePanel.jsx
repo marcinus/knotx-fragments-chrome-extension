@@ -26,8 +26,8 @@ import {
   CloseSidePanelButton,
   SidePanelContent,
 } from './sidePanel.style';
-import FragmentList from '../FragmentList/fragmentList';
-import FragmentGannt from '../FragmentGannt/fragmentGannt';
+import FragmentList from '../FragmentList/FragmentList';
+import FragmentGannt from '../FragmentGantt/FragmentGantt';
 import { setSidePanelExpanded } from '../../state/actions/pageData';
 
 const SidePanel = ({ tabId }) => {

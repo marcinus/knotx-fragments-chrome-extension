@@ -20,9 +20,7 @@ import { constructTimeline } from '../../../helpers/timeline/declarationHelper';
 import { drawTimeline } from '../../../helpers/timeline/drawHelper';
 import { Timeline } from './timeline.style';
 
-const TimelineComponent = ({
-  graphJson,
-}) => {
+const NodePerformanceTimeline = ({ graphJson }) => {
   const timelineRef = useRef(null);
 
   useEffect(() => {
@@ -38,13 +36,13 @@ const TimelineComponent = ({
   );
 };
 
-TimelineComponent.defaultProps = {
+NodePerformanceTimeline.defaultProps = {
   graphJson: null,
 };
 
-TimelineComponent.propTypes = {
+NodePerformanceTimeline.propTypes = {
   // eslint-disable-next-line react/forbid-prop-types
   graphJson: PropTypes.object,
 };
 
-export default TimelineComponent;
+export default NodePerformanceTimeline;

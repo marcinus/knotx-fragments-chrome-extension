@@ -14,8 +14,12 @@
  * limitations under the License.
  */
 
-import { createStore } from 'redux';
-import withReduxEnhancer from 'addon-redux/enhancer';
-import reducers from './reducers/index';
+import React from 'react';
+import { storiesOf } from '@storybook/react';
+import { withKnobs, object } from '@storybook/addon-knobs';
+import NodeInfo from './NodeInfo';
+import { singleNodeWithTransitions } from '../../../helpers/graph/declarationHelper.mock';
 
-export const store = createStore(reducers, withReduxEnhancer);
+storiesOf('Logic Components | MainPanel.Graph.NodeInfo', module)
+  .addDecorator(withKnobs)
+  .add('NodeInfo', () => <NodeInfo nodeJson={object('nodeJson', singleNodeWithTransitions)} />);

@@ -27,7 +27,7 @@ import {
   EmptySortingCell,
   ListItemContainer,
 } from './fragmentList.style';
-import FragmentListItem from './FragmentListItem/fragmentListItem';
+import FragmentListItem from './FragmentListItem/FragmentListItem';
 import { FRAGMENT_LIST_HEADER, fragmentListTablesHeaders } from '../../helpers/constants';
 
 export function mapDataToComponents(fragments, tabId) {

@@ -15,6 +15,7 @@
  */
 
 export const defaultTheme = {
+  name: 'DEFAULT',
   THEME_COLOR: '#FFF',
   TEXT: '#707070',
   MENU_TOGGLE_BUTTON: '#707070',
@@ -31,6 +32,7 @@ export const defaultTheme = {
 };
 
 export const darkTheme = {
+  name: 'DARK',
   THEME_COLOR: '#242424',
   TEXT: '#FFF',
   MENU_TOGGLE_BUTTON: '#FFF',
