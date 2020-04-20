@@ -28,7 +28,9 @@ Thumbs.db
 
 # Build              #
 ######################
-dist/*
+dist/background.js
+dist/content.js
+dist/main.js
 test-report.xml
 package-lock.json
 yarn-error.log
