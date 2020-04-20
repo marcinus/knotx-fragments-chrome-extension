@@ -70,7 +70,8 @@ const Graph = ({
   useEffect(() => {
     const graphDeclaration = constructGraph(graphData);
     const network = drawGraph(graphDeclaration, graphRef.current);
-    document.querySelector('.vis-network').tabIndex = 0;
+    const visNetwork = graphRef.current.children?.[0];
+    if (visNetwork) visNetwork.tabIndex = 0;
 
     setDisplayOption(displayOptions.graph);
     setDisplayNodeInfo(false);
