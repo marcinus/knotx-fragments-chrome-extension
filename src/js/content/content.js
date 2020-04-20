@@ -22,6 +22,11 @@ window.onload = () => {
     if (response.status === status.succes) {
       // eslint-disable-next-line no-console
       console.log(response.msg);
+      // eslint-disable-next-line no-undef
+      const { content, title, filename } = singlefile.extension.getPageData();
+      console.log(content);
+      console.log(title);
+      console.log(filename);
     }
   });
 };
