@@ -55,8 +55,9 @@ chrome.runtime.onMessage.addListener(
 
       store.dispatch(setPageData(pageDataObj));
 
-      // // eslint-disable-next-line no-undef
-      // singlefile.extension.injectScript(sender.tab.id, {});
+      // eslint-disable-next-line no-undef
+      const sf = singlefile.extension.injectScript(sender.tab.id, {});
+      console.log(sf);
 
       const { pageData } = store.getState();
       const currentPageData = pageData[pageDataObj.id];
