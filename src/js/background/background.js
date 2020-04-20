@@ -46,23 +46,25 @@ chrome.tabs.onRemoved.addListener((tabId) => {
 
 chrome.runtime.onMessage.addListener(
   (request, sender, sendResponse) => {
-    const pageDataObj = {
-      fragments: request.fragmentsData,
-      id: sender.tab.id,
-      url: sender.tab.url,
-    };
+    if (sender.tab) {
+      const pageDataObj = {
+        fragments: request.fragmentsData,
+        id: sender.tab.id,
+        url: sender.tab.url,
+      };
 
-    store.dispatch(setPageData(pageDataObj));
+      store.dispatch(setPageData(pageDataObj));
 
-    const { pageData } = store.getState();
-    const currentPageData = pageData[pageDataObj.id];
+      const { pageData } = store.getState();
+      const currentPageData = pageData[pageDataObj.id];
 
-    if (currentPageData?.fragments?.length && currentPageData.url) {
-      sendResponse({
-        status: status.succes,
-        msg: succesLoadExtensionMsgs,
-        obj: pageData,
-      });
+      if (currentPageData?.fragments?.length && currentPageData.url) {
+        sendResponse({
+          status: status.succes,
+          msg: succesLoadExtensionMsgs,
+          obj: pageData,
+        });
+      }
     }
   },
 );
