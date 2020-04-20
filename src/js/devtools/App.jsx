@@ -31,6 +31,8 @@ const App = ({ tabId }) => {
 
   const detectKnotxFragments = useSelector(({ pageData }) => (pageData[tabId]?.fragments || false));
 
+
+  /* eslint-disable react/no-danger */
   return detectKnotxFragments.length
     ? (
       <ThemeProvider theme={theme}>
@@ -41,7 +43,7 @@ const App = ({ tabId }) => {
     : (
       <ThemeProvider theme={theme}>
         <NoKnotxPage>
-          <h1>{NO_KNOTX_PAGE_MSG}</h1>
+          <h1 dangerouslySetInnerHTML={{ __html: NO_KNOTX_PAGE_MSG }} />
         </NoKnotxPage>
       </ThemeProvider>
 
