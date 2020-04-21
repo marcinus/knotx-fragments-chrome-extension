@@ -55,10 +55,6 @@ chrome.runtime.onMessage.addListener(
 
       store.dispatch(setPageData(pageDataObj));
 
-      // eslint-disable-next-line no-undef
-      const sf = singlefile.extension.injectScript(sender.tab.id, {});
-      console.log(sf);
-
       const { pageData } = store.getState();
       const currentPageData = pageData[pageDataObj.id];
 
@@ -88,3 +84,45 @@ chrome.runtime.onConnect.addListener((port) => {
     }
   });
 });
+
+
+const options = {
+  removeHiddenElements: true,
+  removeUnusedStyles: true,
+  removeUnusedFonts: true,
+  removeFrames: false,
+  removeImports: true,
+  removeScripts: true,
+  compressHTML: true,
+  compressCSS: true,
+  loadDeferredImages: true,
+  loadDeferredImagesMaxIdleTime: 1500,
+  loadDeferredImagesBlockCookies: true,
+  loadDeferredImagesBlockStorage: false,
+  filenameTemplate: '{page-title} ({date-iso} {time-locale}).html',
+  infobarTemplate: '',
+  filenameMaxLength: 192,
+  filenameReplacementCharacter: '_',
+  maxResourceSizeEnabled: false,
+  maxResourceSize: 10,
+  removeAudioSrc: true,
+  removeVideoSrc: true,
+  removeAlternativeFonts: true,
+  removeAlternativeMedias: true,
+  removeAlternativeImages: true,
+  groupDuplicateImages: true,
+  saveRawPage: false,
+};
+
+
+async function onTabUpdated(tabId, changeInfo) {
+  if (changeInfo.status === 'complete') {
+    const contentScript = `singlefile.extension.getPageData(${JSON.stringify(options)}).then(console.log)`;
+
+    // eslint-disable-next-line no-undef
+    await singlefile.extension.injectScript(tabId, options);
+    await browser.tabs.executeScript(tabId, { code: contentScript, allFrames: false, runAt: 'document_idle' });
+  }
+}
+
+browser.tabs.onUpdated.addListener((tabId, changeInfo, tab) => onTabUpdated(tabId, changeInfo, tab));
