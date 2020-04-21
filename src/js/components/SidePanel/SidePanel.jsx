@@ -29,6 +29,15 @@ import {
 import FragmentList from '../FragmentList/FragmentList';
 import FragmentGannt from '../FragmentGantt/FragmentGantt';
 import { setSidePanelExpanded } from '../../state/actions/pageData';
+import {
+  chromeConnections,
+  chromeActions,
+} from '../../helpers/constants';
+
+const dumpPage = (tabId) => {
+  const port = chrome.runtime.connect({ name: chromeConnections.KNOTX_DEVTOOL_CONNECTION });
+  port.postMessage({ type: chromeActions.DUMP_PAGE, data: { tabId } });
+};
 
 const SidePanel = ({ tabId }) => {
   const renderedGraph = useSelector(({ pageData }) => pageData[tabId].renderedGraph);
@@ -65,6 +74,7 @@ const SidePanel = ({ tabId }) => {
 
       <SidePanelContent shouldDisplay={sidePanelExpanded}>
         <FragmentList tabId={tabId} />
+        <button onClick={() => dumpPage(tabId)} type="button">DUMP</button>
         <FragmentGannt tabId={tabId} />
       </SidePanelContent>
     </SidePanelWrapper>

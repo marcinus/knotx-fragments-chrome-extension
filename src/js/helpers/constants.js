@@ -31,6 +31,7 @@ export const chromeConnections = {
 // CONNECTION ACTIONS
 export const chromeActions = {
   GET_CURRENT_TAB_INFO: 'GET_CURRENT_TAB_INFO',
+  DUMP_PAGE: 'DUMP_PAGE',
 };
 
 // STATIC ELEMENTS

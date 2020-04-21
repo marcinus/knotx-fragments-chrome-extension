@@ -16,6 +16,7 @@
  */
 
 import { wrapStore } from 'webext-redux';
+// import zip from 'jszip';
 import { setPageData, removePageData } from '../state/actions/pageData';
 import { store } from '../state/store';
 import {
@@ -24,6 +25,35 @@ import {
   chromeConnections,
   chromeActions,
 } from '../helpers/constants';
+
+const options = {
+  removeHiddenElements: false,
+  removeUnusedStyles: false,
+  removeUnusedFonts: false,
+  removeFrames: false,
+  removeImports: false,
+  removeScripts: false,
+  compressHTML: false,
+  compressCSS: false,
+  loadDeferredImages: true,
+  loadDeferredImagesMaxIdleTime: 1500,
+  loadDeferredImagesBlockCookies: true,
+  loadDeferredImagesBlockStorage: false,
+  filenameTemplate: '{page-title} ({date-iso} {time-locale}).html',
+  infobarTemplate: '',
+  filenameMaxLength: 192,
+  filenameReplacementCharacter: '_',
+  maxResourceSizeEnabled: false,
+  maxResourceSize: 10,
+  removeAudioSrc: false,
+  removeVideoSrc: false,
+  removeAlternativeFonts: false,
+  removeAlternativeMedias: false,
+  removeAlternativeImages: false,
+  groupDuplicateImages: false,
+  saveRawPage: false,
+};
+
 
 wrapStore(store);
 
@@ -53,7 +83,9 @@ chrome.runtime.onMessage.addListener(
         url: sender.tab.url,
       };
 
+
       store.dispatch(setPageData(pageDataObj));
+      console.log(store.getState());
 
       const { pageData } = store.getState();
       const currentPageData = pageData[pageDataObj.id];
@@ -73,8 +105,8 @@ chrome.runtime.onMessage.addListener(
 chrome.runtime.onConnect.addListener((port) => {
   if (port.name !== chromeConnections.KNOTX_DEVTOOL_CONNECTION) return;
 
-  port.onMessage.addListener((requestType) => {
-    if (requestType === chromeActions.GET_CURRENT_TAB_INFO) {
+  port.onMessage.addListener((request) => {
+    if (request.type === chromeActions.GET_CURRENT_TAB_INFO) {
       chrome.tabs.query({
         active: true,
       },
@@ -83,46 +115,28 @@ chrome.runtime.onConnect.addListener((port) => {
       });
     }
   });
+
+  port.onMessage.addListener(async (request) => {
+    if (request.type === chromeActions.DUMP_PAGE) {
+      const contentScript = `singlefile.extension.getPageData(${JSON.stringify(options)}).then(console.log)`;
+
+      // eslint-disable-next-line no-undef
+      await singlefile.extension.injectScript(request.data.tabId, options);
+      await chrome.tabs.executeScript(
+        request.data.tabId,
+        { code: contentScript, allFrames: false, runAt: 'document_idle' },
+      );
+    }
+  });
 });
 
 
-const options = {
-  removeHiddenElements: true,
-  removeUnusedStyles: true,
-  removeUnusedFonts: true,
-  removeFrames: false,
-  removeImports: true,
-  removeScripts: true,
-  compressHTML: true,
-  compressCSS: true,
-  loadDeferredImages: true,
-  loadDeferredImagesMaxIdleTime: 1500,
-  loadDeferredImagesBlockCookies: true,
-  loadDeferredImagesBlockStorage: false,
-  filenameTemplate: '{page-title} ({date-iso} {time-locale}).html',
-  infobarTemplate: '',
-  filenameMaxLength: 192,
-  filenameReplacementCharacter: '_',
-  maxResourceSizeEnabled: false,
-  maxResourceSize: 10,
-  removeAudioSrc: true,
-  removeVideoSrc: true,
-  removeAlternativeFonts: true,
-  removeAlternativeMedias: true,
-  removeAlternativeImages: true,
-  groupDuplicateImages: true,
-  saveRawPage: false,
-};
+// chrome.tabs.onUpdated.addListener(async (tabId, changeInfo) => {
+//   if (changeInfo.status === 'complete') {
+//     const contentScript = `singlefile.extension.getPageData(${JSON.stringify(options)}).then(console.log)`;
 
-
-async function onTabUpdated(tabId, changeInfo) {
-  if (changeInfo.status === 'complete') {
-    const contentScript = `singlefile.extension.getPageData(${JSON.stringify(options)}).then(console.log)`;
-
-    // eslint-disable-next-line no-undef
-    await singlefile.extension.injectScript(tabId, options);
-    await browser.tabs.executeScript(tabId, { code: contentScript, allFrames: false, runAt: 'document_idle' });
-  }
-}
-
-browser.tabs.onUpdated.addListener((tabId, changeInfo, tab) => onTabUpdated(tabId, changeInfo, tab));
+//     // eslint-disable-next-line no-undef
+//     await singlefile.extension.injectScript(tabId, options);
+//     await chrome.tabs.executeScript(tabId, { code: contentScript, allFrames: false, runAt: 'document_idle' });
+//   }
+// });

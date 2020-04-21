@@ -31,7 +31,7 @@ chrome.devtools.panels.create(PANEL_NAME, null, 'index.html');
 
 const port = chrome.runtime.connect({ name: chromeConnections.KNOTX_DEVTOOL_CONNECTION });
 
-port.postMessage(chromeActions.GET_CURRENT_TAB_INFO);
+port.postMessage({ type: chromeActions.GET_CURRENT_TAB_INFO });
 port.onMessage.addListener(({ id }) => {
   store.ready().then(() => {
     ReactDOM.render(
