@@ -1,3 +1,4 @@
+
 /*
  * Copyright (C) 2020 Knot.x Project
  *
@@ -15,18 +16,6 @@
  */
 
 import JSZip from 'jszip';
-import { saveAs } from 'file-saver';
-import { findFragmentsInContent } from '../helpers/nodes/nodesHelper';
-import { status } from '../helpers/constants';
-
-window.onload = () => {
-  chrome.runtime.sendMessage({ fragmentsData: findFragmentsInContent() }, (response) => {
-    if (response.status === status.succes) {
-      // eslint-disable-next-line no-console
-      console.log(response.msg);
-    }
-  });
-};
 
 export const dumpOptions = {
   removeHiddenElements: false,
@@ -56,17 +45,14 @@ export const dumpOptions = {
   saveRawPage: false,
 };
 
-// eslint-disable-next-line no-unused-vars
-window.dump = () => {
-  // eslint-disable-next-line no-undef
-  singlefile.extension.getPageData(dumpOptions).then((response) => {
-    console.log(response);
-    const zip = new JSZip();
-    zip.file('dump.html', response.content);
-    zip.generateAsync({ type: 'blob' })
-      .then((content) => {
-        // eslint-disable-next-line no-undef
-        saveAs(content, 'dump.zip');
-      });
-  });
-};
+
+// eslint-disable-next-line no-undef
+singlefile.extension.getPageData(options).then((response) => {
+  const zip = new JSZip();
+  zip.file('dump.html', response.cotent);
+  zip.generateAsync({ type: 'blob' })
+    .then((content) => {
+      // eslint-disable-next-line no-undef
+      saveAs(content, 'dump.zip');
+    });
+});

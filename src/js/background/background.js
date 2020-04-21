@@ -16,7 +16,6 @@
  */
 
 import { wrapStore } from 'webext-redux';
-// import zip from 'jszip';
 import { setPageData, removePageData } from '../state/actions/pageData';
 import { store } from '../state/store';
 import {
@@ -25,35 +24,6 @@ import {
   chromeConnections,
   chromeActions,
 } from '../helpers/constants';
-
-const options = {
-  removeHiddenElements: false,
-  removeUnusedStyles: false,
-  removeUnusedFonts: false,
-  removeFrames: false,
-  removeImports: false,
-  removeScripts: false,
-  compressHTML: false,
-  compressCSS: false,
-  loadDeferredImages: true,
-  loadDeferredImagesMaxIdleTime: 1500,
-  loadDeferredImagesBlockCookies: true,
-  loadDeferredImagesBlockStorage: false,
-  filenameTemplate: '{page-title} ({date-iso} {time-locale}).html',
-  infobarTemplate: '',
-  filenameMaxLength: 192,
-  filenameReplacementCharacter: '_',
-  maxResourceSizeEnabled: false,
-  maxResourceSize: 10,
-  removeAudioSrc: false,
-  removeVideoSrc: false,
-  removeAlternativeFonts: false,
-  removeAlternativeMedias: false,
-  removeAlternativeImages: false,
-  groupDuplicateImages: false,
-  saveRawPage: false,
-};
-
 
 wrapStore(store);
 
@@ -116,27 +86,43 @@ chrome.runtime.onConnect.addListener((port) => {
     }
   });
 
+  const dumpOptions = {
+    removeHiddenElements: false,
+    removeUnusedStyles: false,
+    removeUnusedFonts: false,
+    removeFrames: false,
+    removeImports: false,
+    removeScripts: false,
+    compressHTML: false,
+    compressCSS: false,
+    loadDeferredImages: true,
+    loadDeferredImagesMaxIdleTime: 1500,
+    loadDeferredImagesBlockCookies: true,
+    loadDeferredImagesBlockStorage: false,
+    filenameTemplate: '{page-title} ({date-iso} {time-locale}).html',
+    infobarTemplate: '',
+    filenameMaxLength: 192,
+    filenameReplacementCharacter: '_',
+    maxResourceSizeEnabled: false,
+    maxResourceSize: 10,
+    removeAudioSrc: false,
+    removeVideoSrc: false,
+    removeAlternativeFonts: false,
+    removeAlternativeMedias: false,
+    removeAlternativeImages: false,
+    groupDuplicateImages: false,
+    saveRawPage: false,
+  };
+
   port.onMessage.addListener(async (request) => {
     if (request.type === chromeActions.DUMP_PAGE) {
-      const contentScript = `singlefile.extension.getPageData(${JSON.stringify(options)}).then(console.log)`;
-
       // eslint-disable-next-line no-undef
-      await singlefile.extension.injectScript(request.data.tabId, options);
+      await singlefile.extension.injectScript(request.data.tabId, dumpOptions);
       await chrome.tabs.executeScript(
         request.data.tabId,
-        { code: contentScript, allFrames: false, runAt: 'document_idle' },
+        // { file: `${window.location.origin}/content/dump.js`, allFrames: false, runAt: 'document_idle' },
+        { code: 'dump()', allFrames: false, runAt: 'document_idle' },
       );
     }
   });
 });
-
-
-// chrome.tabs.onUpdated.addListener(async (tabId, changeInfo) => {
-//   if (changeInfo.status === 'complete') {
-//     const contentScript = `singlefile.extension.getPageData(${JSON.stringify(options)}).then(console.log)`;
-
-//     // eslint-disable-next-line no-undef
-//     await singlefile.extension.injectScript(tabId, options);
-//     await chrome.tabs.executeScript(tabId, { code: contentScript, allFrames: false, runAt: 'document_idle' });
-//   }
-// });
