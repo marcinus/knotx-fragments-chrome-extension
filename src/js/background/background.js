@@ -55,7 +55,6 @@ chrome.runtime.onMessage.addListener(
       };
 
       store.dispatch(setPageData(pageDataObj));
-      console.log(store.getState());
 
       const { pageData } = store.getState();
       const currentPageData = pageData[pageDataObj.id];

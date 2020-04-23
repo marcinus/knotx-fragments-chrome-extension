@@ -45,6 +45,6 @@ storiesOf('Logic Components | SidePanel.FragmentList.FragmentListItem', module)
         },
       ])}
       tabId={number('tabId', 777)}
-      time={text('time', '100')}
+      time={text('time', 100)}
     />
   ));
