@@ -24,6 +24,7 @@ import {
   chromeConnections,
   chromeActions,
 } from '../helpers/constants';
+import { dumpOptions } from '../content/dump';
 
 wrapStore(store);
 
@@ -46,13 +47,12 @@ chrome.tabs.onRemoved.addListener((tabId) => {
 
 chrome.runtime.onMessage.addListener(
   (request, sender, sendResponse) => {
-    if (sender.tab) {
+    if (!store.getState().pageData[sender.tab?.id]) {
       const pageDataObj = {
         fragments: request.fragmentsData,
         id: sender.tab.id,
         url: sender.tab.url,
       };
-
 
       store.dispatch(setPageData(pageDataObj));
       console.log(store.getState());
@@ -86,41 +86,12 @@ chrome.runtime.onConnect.addListener((port) => {
     }
   });
 
-  const dumpOptions = {
-    removeHiddenElements: false,
-    removeUnusedStyles: false,
-    removeUnusedFonts: false,
-    removeFrames: false,
-    removeImports: false,
-    removeScripts: false,
-    compressHTML: false,
-    compressCSS: false,
-    loadDeferredImages: true,
-    loadDeferredImagesMaxIdleTime: 1500,
-    loadDeferredImagesBlockCookies: true,
-    loadDeferredImagesBlockStorage: false,
-    filenameTemplate: '{page-title} ({date-iso} {time-locale}).html',
-    infobarTemplate: '',
-    filenameMaxLength: 192,
-    filenameReplacementCharacter: '_',
-    maxResourceSizeEnabled: false,
-    maxResourceSize: 10,
-    removeAudioSrc: false,
-    removeVideoSrc: false,
-    removeAlternativeFonts: false,
-    removeAlternativeMedias: false,
-    removeAlternativeImages: false,
-    groupDuplicateImages: false,
-    saveRawPage: false,
-  };
-
   port.onMessage.addListener(async (request) => {
     if (request.type === chromeActions.DUMP_PAGE) {
       // eslint-disable-next-line no-undef
       await singlefile.extension.injectScript(request.data.tabId, dumpOptions);
       await chrome.tabs.executeScript(
         request.data.tabId,
-        // { file: `${window.location.origin}/content/dump.js`, allFrames: false, runAt: 'document_idle' },
         { code: 'dump()', allFrames: false, runAt: 'document_idle' },
       );
     }

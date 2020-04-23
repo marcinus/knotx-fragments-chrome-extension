@@ -16,6 +16,7 @@
  */
 
 import JSZip from 'jszip';
+import { saveAs } from 'file-saver';
 
 export const dumpOptions = {
   removeHiddenElements: false,
@@ -45,14 +46,28 @@ export const dumpOptions = {
   saveRawPage: false,
 };
 
+const getFullDate = () => {
+  const today = new Date();
+  const day = String(today.getDate()).padStart(2, '0');
+  const month = String(today.getMonth() + 1).padStart(2, '0'); // January is 0!
+  const year = today.getFullYear();
+  const hour = today.getHours();
+  const min = today.getMinutes();
+  const sec = today.getSeconds();
 
-// eslint-disable-next-line no-undef
-singlefile.extension.getPageData(options).then((response) => {
-  const zip = new JSZip();
-  zip.file('dump.html', response.cotent);
-  zip.generateAsync({ type: 'blob' })
-    .then((content) => {
-      // eslint-disable-next-line no-undef
-      saveAs(content, 'dump.zip');
-    });
-});
+  return `${day}-${month}-${year}_${hour}-${min}-${sec}`;
+};
+
+
+// eslint-disable-next-line no-unused-vars
+export const dump = () => {
+  // eslint-disable-next-line no-undef
+  singlefile.extension.getPageData(dumpOptions).then((response) => {
+    const zip = new JSZip();
+    zip.file(`${response.title}.html`, response.content);
+    zip.generateAsync({ type: 'blob' })
+      .then((content) => {
+        saveAs(content, `dump_${getFullDate()}.zip`);
+      });
+  });
+};
