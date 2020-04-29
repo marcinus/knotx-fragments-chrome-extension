@@ -22,6 +22,10 @@ export const GlobalStyle = createGlobalStyle`
     margin: 0;
   }
 
+  #popup {
+    width: 150px;
+  }
+
   /* GLOBAL */
   #root {
     display: flex;

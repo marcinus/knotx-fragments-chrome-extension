@@ -25,6 +25,7 @@ module.exports = {
     main: './src/js/index.jsx',
     background: './src/js/background/background.js',
     content: './src/js/content/content.js',
+    popup: './src/js/popup/index.jsx',
   },
   output: {
     filename: '[name].js',

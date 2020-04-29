@@ -33,7 +33,7 @@ const App = ({ tabId }) => {
 
 
   /* eslint-disable react/no-danger */
-  return detectKnotxFragments.length
+  return detectKnotxFragments?.length
     ? (
       <ThemeProvider theme={theme}>
         <SidePanel tabId={tabId} />
