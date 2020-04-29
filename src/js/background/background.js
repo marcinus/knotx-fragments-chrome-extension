@@ -93,6 +93,7 @@ chrome.runtime.onConnect.addListener((port) => {
         request.data.tabId,
         { code: 'dump()', allFrames: false, runAt: 'document_idle' },
       );
+      await port.postMessage('dump_complete');
     }
   });
 });

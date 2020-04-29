@@ -14,27 +14,43 @@
  * limitations under the License.
  */
 
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import {
   chromeConnections,
   chromeActions,
 } from '../../helpers/constants';
-import { DumpBtn } from './dumpButton.styled';
+import { DumpBtn, Spinner } from './dumpButton.styled';
 
-const dumpPage = (tabId) => {
-  const port = chrome.runtime.connect({ name: chromeConnections.KNOTX_DEVTOOL_CONNECTION });
-  port.postMessage({ type: chromeActions.DUMP_PAGE, data: { tabId } });
+
+const DumpButton = ({ tabId }) => {
+  const [inProgressStatus, setInProgressStatus] = useState(false);
+
+  const dumpPage = () => {
+    const portConnection = chrome.runtime.connect({ name: chromeConnections.KNOTX_DEVTOOL_CONNECTION });
+    portConnection.postMessage({ type: chromeActions.DUMP_PAGE, data: { tabId } });
+    setInProgressStatus(true);
+    chrome.runtime.onConnect.addListener((port) => {
+      port.onMessage.addListener((request) => {
+        if (request.status === 'dump_complete') {
+          setInProgressStatus(false);
+        }
+      });
+    });
+  };
+
+  return (
+    <DumpBtn
+      type="button"
+      onClick={() => dumpPage()}
+    >
+      DUMP PAGE
+      { inProgressStatus
+        ? (<Spinner />)
+        : '' }
+    </DumpBtn>
+  );
 };
-
-const DumpButton = ({ tabId }) => (
-  <DumpBtn
-    type="button"
-    onClick={() => dumpPage(tabId)}
-  >
-    DUMP PAGE
-  </DumpBtn>
-);
 
 DumpButton.propTypes = {
   tabId: PropTypes.number.isRequired,

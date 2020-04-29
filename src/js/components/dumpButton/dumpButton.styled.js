@@ -21,9 +21,28 @@ export const DumpBtn = styled.button`
   border: 1px solid black;
   width: 100%;
   padding: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
   &:hover {
     cursor: pointer;
     opacity: 0.7
   }
+`;
+
+export const Spinner = styled.div`
+  @keyframes spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  width: 10px;
+  height: 10px;
+  margin: 0 5px;
+  border-radius: 50%;
+  border: 3px solid #242424;
+  border-top-color: #9A9A9A;
+  animation: 1.5s spin infinite linear;
 `;

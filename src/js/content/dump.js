@@ -17,6 +17,9 @@
 
 import JSZip from 'jszip';
 import { saveAs } from 'file-saver';
+import {
+  chromeConnections,
+} from '../helpers/constants';
 
 export const dumpOptions = {
   removeHiddenElements: false,
@@ -68,6 +71,8 @@ export const dump = () => {
     zip.generateAsync({ type: 'blob' })
       .then((content) => {
         saveAs(content, `dump_${getFullDate()}.zip`);
+        const port = chrome.runtime.connect({ name: chromeConnections.KNOTX_DEVTOOL_CONNECTION });
+        port.postMessage({ status: 'dump_complete' });
       });
   });
 };
