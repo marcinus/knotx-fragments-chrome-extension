@@ -15,11 +15,14 @@
  */
 
 import { findFragmentsInContent } from '../helpers/nodes/nodesHelper';
-import { status } from '../helpers/constants';
+import { status, chromeActions } from '../helpers/constants';
 import { dump } from './dump';
 
 window.onload = () => {
-  chrome.runtime.sendMessage({ fragmentsData: findFragmentsInContent(), type: 'INIT_STORE' }, (response) => {
+  chrome.runtime.sendMessage({
+    fragmentsData: findFragmentsInContent(),
+    type: chromeActions.INIT_STORE,
+  }, (response) => {
     if (response.status === status.succes) {
       // eslint-disable-next-line no-console
       console.log(response.msg);
