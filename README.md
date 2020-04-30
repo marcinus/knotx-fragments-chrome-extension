@@ -279,6 +279,7 @@ main plugins:
 * [Babel](https://babeljs.io/)
 * [Eslint](https://eslint.org/)
 * [Webpack](https://webpack.js.org/)
+* [SingleFile](https://github.com/gildas-lormeau/SingleFileyg )
 
 ### CI
 The GitHub repository is integrated with Azure Pipelines (CI) to validate both new PRs and the master branch. Check the azure-pipelines.yml file for configuration details. So we check:
@@ -397,5 +398,20 @@ The example below presents how data is stored in Redux:
 ```
 
 The pageData entry is created on page load and destroyed when we close the tab. If the page does not contain Knot.x fragments, fragments property is empty.
+
+## Page dump functionality
+We provide page dump functionality to allow easier bug reproducing on another machine. User can downlad current state of page when he find a bug, instead of refreshing the page in hope that the bug disappear.
+
+To provide this functionality we include SingleFile extension in our extension. Information about how to include SingleFile API into extension you can find [here](https://github.com/gildas-lormeau/SingleFile/wiki/How-to-integrate-the-API-of-SingleFile-into-an-extension)
+
+
+User can dump page by click on 'dump page button' in extention popup. This click fire the following data flow:
+
+```
+popup -> background -> content -> popup
+
+```
+
+dump function you can find in ```/src/js/content/dump.js```
 
 ## Contributors
