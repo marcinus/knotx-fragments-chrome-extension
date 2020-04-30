@@ -19,7 +19,7 @@ import { status } from '../helpers/constants';
 import { dump } from './dump';
 
 window.onload = () => {
-  chrome.runtime.sendMessage({ fragmentsData: findFragmentsInContent() }, (response) => {
+  chrome.runtime.sendMessage({ fragmentsData: findFragmentsInContent(), type: 'INIT_STORE' }, (response) => {
     if (response.status === status.succes) {
       // eslint-disable-next-line no-console
       console.log(response.msg);

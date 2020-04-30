@@ -47,7 +47,7 @@ chrome.tabs.onRemoved.addListener((tabId) => {
 
 chrome.runtime.onMessage.addListener(
   (request, sender, sendResponse) => {
-    if (sender.tab && !store.getState().pageData[sender.tab?.id]) {
+    if (sender.tab && request.type === 'INIT_STORE') {
       const pageDataObj = {
         fragments: request.fragmentsData,
         id: sender.tab.id,
