@@ -405,7 +405,7 @@ We provide page dump functionality to allow easier bug reproducing on another ma
 To provide this functionality we include SingleFile extension in our extension. Information about how to include SingleFile API into extension you can find [here](https://github.com/gildas-lormeau/SingleFile/wiki/How-to-integrate-the-API-of-SingleFile-into-an-extension)
 
 
-User can dump page by click on 'dump page button' in extention popup. This click fire the following data flow:
+Users can dump a page by clicking on the 'dump page button' in the extension popup. It fires the following data flow:
 
 ```
 popup -> background -> content -> popup
