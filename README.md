@@ -400,7 +400,7 @@ The example below presents how data is stored in Redux:
 The pageData entry is created on page load and destroyed when we close the tab. If the page does not contain Knot.x fragments, fragments property is empty.
 
 ## Page dump functionality
-We provide page dump functionality to allow easier bug reproducing on another machine. User can downlad current state of page when he find a bug, instead of refreshing the page in hope that the bug disappear.
+We provide a page dump functionality to allow easier bug reproducing on different machines. Users can download the current state of the page when a bug occurs. It's especially useful for nondeterministic bugs that can disappear after refreshing the page.
 
 To provide this functionality we include the SingleFile extension. The documentation on integrating the SingleFile API with other extensions can be found [here](https://github.com/gildas-lormeau/SingleFile/wiki/How-to-integrate-the-API-of-SingleFile-into-an-extension)
 
