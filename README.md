@@ -402,7 +402,7 @@ The pageData entry is created on page load and destroyed when we close the tab. 
 ## Page dump functionality
 We provide page dump functionality to allow easier bug reproducing on another machine. User can downlad current state of page when he find a bug, instead of refreshing the page in hope that the bug disappear.
 
-To provide this functionality we include SingleFile extension in our extension. Information about how to include SingleFile API into extension you can find [here](https://github.com/gildas-lormeau/SingleFile/wiki/How-to-integrate-the-API-of-SingleFile-into-an-extension)
+To provide this functionality we include the SingleFile extension. The documentation on integrating the SingleFile API with other extensions can be found [here](https://github.com/gildas-lormeau/SingleFile/wiki/How-to-integrate-the-API-of-SingleFile-into-an-extension)
 
 
 Users can dump a page by clicking on the 'dump page button' in the extension popup. It fires the following data flow:
