@@ -279,7 +279,7 @@ main plugins:
 * [Babel](https://babeljs.io/)
 * [Eslint](https://eslint.org/)
 * [Webpack](https://webpack.js.org/)
-* [SingleFile](https://github.com/gildas-lormeau/SingleFileyg )
+* [SingleFile](https://github.com/gildas-lormeau/SingleFile )
 
 ### CI
 The GitHub repository is integrated with Azure Pipelines (CI) to validate both new PRs and the master branch. Check the azure-pipelines.yml file for configuration details. So we check:
