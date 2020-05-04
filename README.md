@@ -412,6 +412,6 @@ popup -> background -> content -> popup
 
 ```
 
-dump function you can find in ```/src/js/content/dump.js```
+Dump implementation can be found in ```/src/js/content/dump.js```
 
 ## Contributors
