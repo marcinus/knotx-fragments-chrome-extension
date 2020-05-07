@@ -14,6 +14,9 @@
  * limitations under the License.
  */
 
+/* eslint-disable max-len */
+
+import { Observable } from 'rxjs';
 import GraphLayers from './graphLayers';
 import {
   isReference, hasTransitions, hasPreDefinedTransitions, hasTransition, isComposite, getReference,
@@ -32,14 +35,54 @@ export const getNodeGroup = (node) => {
   return node.status.toLowerCase();
 };
 
-const createVisNode = (node) => ({
-  id: node.id,
-  label: node.label,
-  group: getNodeGroup(node),
-  info: {
-    ...node.info,
-  },
-});
+const loadImage = (url) => {
+  const img = new Image();
+
+  img.crossOrigin = 'anonymous';
+  img.src = url;
+
+  return Observable.fromEvent(img, 'load')
+    .map((e) => {
+      const canvas = document.createElement('canvas');
+      canvas.getContext('2d').drawImage(e.target, 0, 0);
+      const dataURL = canvas.toDataURL();
+      return dataURL;
+    });
+};
+
+const createVisNode = (node) => {
+  let url = '';
+  loadImage('https://developer.mozilla.org/static/img/web-docs-sprite.22a6a085cf14.svg')
+    .subscribe((dataUrl) => {
+      const svg = `${'<svg xmlns="http://www.w3.org/2000/svg" width="390" height="65">'
+      + '<rect x="0" y="0" width="100%" height="100%" fill="#7890A7" stroke-width="20" stroke="#ffffff" ></rect>'
+      + '<foreignObject x="15" y="10" width="100%" height="100%">'
+      + '<div xmlns="http://www.w3.org/1999/xhtml" style="font-family:Arial; font-size:30px">'
+      + ' <em>I</em> am'
+      + '<span style="color:white; text-shadow:0 0 20px #000000;">'
+        + ' HTML in SVG!</span>'
+
+      // * THIS IMAGE IS NOT RENDERING *
+      + '<i style="background-image: url('}${dataUrl}); display: inline-block; width: 80px; height: 40px; background-size: contain;"></i>`
+
+      + '</div>'
+      + '</foreignObject>'
+      + '</svg>';
+
+
+      url = `data:image/svg+xml;charset=utf-8,${encodeURIComponent(svg)}`;
+    });
+  return {
+    id: node.id,
+    label: `${node.label} xxx`,
+    image: url,
+    shape: 'image',
+    group: getNodeGroup(node),
+    info: {
+      ...node.info,
+    },
+  };
+};
 
 const getEndNodes = (root, depth = 0) => {
   if (!hasTransitions(root)) {
