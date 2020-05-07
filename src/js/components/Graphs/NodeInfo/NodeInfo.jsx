@@ -17,7 +17,7 @@
 import React, { useLayoutEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import renderjson from 'renderjson';
-import { NodeIndoContainer } from './nodeInfo.style';
+import { NodeIndoContainer, NodeInfoOptionsBar, NodeInfoOption } from './nodeInfo.style';
 
 renderjson.set_icons('+', '-');
 renderjson.set_show_to_level(1);
@@ -31,7 +31,15 @@ const NodeInfo = ({ nodeJson }) => {
   }, [nodeJson]);
 
   return (
-    <NodeIndoContainer ref={nodeInfo} />
+    <>
+      <NodeIndoContainer ref={nodeInfo} />
+      <NodeInfoOptionsBar>
+        <NodeInfoOption type="button">RAW</NodeInfoOption>
+        <NodeInfoOption type="button">PREVIEW</NodeInfoOption>
+        <NodeInfoOption type="button" active>PAYLOAD</NodeInfoOption>
+        <NodeInfoOption type="button">BODY</NodeInfoOption>
+      </NodeInfoOptionsBar>
+    </>
   );
 };
 
