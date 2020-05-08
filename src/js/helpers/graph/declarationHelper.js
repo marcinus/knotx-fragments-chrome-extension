@@ -35,6 +35,7 @@ export const getNodeGroup = (node) => {
   return node.status.toLowerCase();
 };
 
+/* ************************** */
 const loadImage = (url) => {
   const img = new Image();
 
@@ -50,11 +51,12 @@ const loadImage = (url) => {
     });
 };
 
-const createVisNode = (node) => {
-  let url = '';
-  loadImage('https://developer.mozilla.org/static/img/web-docs-sprite.22a6a085cf14.svg')
+const returnPromise = () => new Promise((resolve) => {
+  loadImage('post.svg')
+    .take(1)
     .subscribe((dataUrl) => {
-      const svg = `${'<svg xmlns="http://www.w3.org/2000/svg" width="390" height="65">'
+      // eslint-disable-next-line prefer-template
+      const svg = '<svg xmlns="http://www.w3.org/2000/svg" width="390" height="65">'
       + '<rect x="0" y="0" width="100%" height="100%" fill="#7890A7" stroke-width="20" stroke="#ffffff" ></rect>'
       + '<foreignObject x="15" y="10" width="100%" height="100%">'
       + '<div xmlns="http://www.w3.org/1999/xhtml" style="font-family:Arial; font-size:30px">'
@@ -63,26 +65,36 @@ const createVisNode = (node) => {
         + ' HTML in SVG!</span>'
 
       // * THIS IMAGE IS NOT RENDERING *
-      + '<i style="background-image: url('}${dataUrl}); display: inline-block; width: 80px; height: 40px; background-size: contain;"></i>`
+      + '<i style="background-image: url(' + dataUrl + '); display: inline-block; width: 80px; height: 40px; background-size: contain;"></i>'
 
       + '</div>'
       + '</foreignObject>'
       + '</svg>';
 
 
-      url = `data:image/svg+xml;charset=utf-8,${encodeURIComponent(svg)}`;
+      const url = `data:image/svg+xml;charset=utf-8,${encodeURIComponent(svg)}`;
+      resolve(url);
     });
+});
+
+const createVisNode = async (node) => {
+  const result = await returnPromise();
+
+  console.log(result);
+
   return {
     id: node.id,
     label: `${node.label} xxx`,
-    image: url,
-    shape: 'image',
+    // image: url,
+    // shape: 'image',
     group: getNodeGroup(node),
     info: {
       ...node.info,
     },
   };
 };
+
+/* ************************** */
 
 const getEndNodes = (root, depth = 0) => {
   if (!hasTransitions(root)) {
