@@ -45,28 +45,56 @@ const loadImage = (url) => {
   return Observable.fromEvent(img, 'load')
     .map((e) => {
       const canvas = document.createElement('canvas');
-      canvas.getContext('2d').drawImage(e.target, 0, 0);
+      const ctx = canvas.getContext('2d');
+      ctx.canvas.width = window.innerWidth;
+      ctx.canvas.height = window.innerHeight;
+      ctx.drawImage(e.target, 0, 0, window.innerWidth, window.innerHeight);
       const dataURL = canvas.toDataURL();
+      console.log(dataURL);
       return dataURL;
     });
 };
 
-const returnPromise = () => new Promise((resolve) => {
-  loadImage('post.svg')
+const createNode = (label) => new Promise((resolve) => {
+  loadImage('js/cache.svg')
     .take(1)
     .subscribe((dataUrl) => {
+      function measure(el, fn) {
+        const pV = el.style.visibility;
+        const pP = el.style.position;
+
+        el.style.visibility = 'hidden';
+        el.style.position = 'absolute';
+
+        document.body.appendChild(el);
+        const result = fn(el);
+        el.parentNode.removeChild(el);
+
+        el.style.visibility = pV;
+        el.style.position = pP;
+        return result;
+      }
+      const el = document.createElement('div');
+      el.innerHTML = `<div xmlns="http://www.w3.org/1999/xhtml" style="font-family:Arial; font-size:18px; justify-content :center; display: flex; align-items: center; height: 35px;">
+      <span style="color:white;">${label}</span>
+      <i style="background-image: url(${dataUrl}); background-repeat: no-repeat; background-position: center; display: inline-block; width: 35px; height: 35px; background-size: 75%;"></i>
+      </div>
+      `;
+
+
+      // console.log(measure(el, (element) => element.offsetWidth));
+      const nodeWidth = measure(el, (element) => element.offsetWidth);
       // eslint-disable-next-line prefer-template
-      const svg = '<svg xmlns="http://www.w3.org/2000/svg" width="390" height="65">'
-      + '<rect x="0" y="0" width="100%" height="100%" fill="#7890A7" stroke-width="20" stroke="#ffffff" ></rect>'
-      + '<foreignObject x="15" y="10" width="100%" height="100%">'
-      + '<div xmlns="http://www.w3.org/1999/xhtml" style="font-family:Arial; font-size:30px">'
-      + ' <em>I</em> am'
-      + '<span style="color:white; text-shadow:0 0 20px #000000;">'
-        + ' HTML in SVG!</span>'
+      const svg = '<svg xmlns="http://www.w3.org/2000/svg" width="' + (nodeWidth + 10) + '" height="35">'
+      + '<rect x="0" y="0" rx="8" width="100%" height="100%" fill="blue" ></rect>'
+      + '<foreignObject width="100%" height="100%">'
+      + '<div xmlns="http://www.w3.org/1999/xhtml" style="font-family:Arial; font-size:18px; justify-content :center; display: flex; align-items: center; height: 35px;">'
+      + '<span style="color:white;">'
+      + label
+      + '</span>'
 
       // * THIS IMAGE IS NOT RENDERING *
-      + '<i style="background-image: url(' + dataUrl + '); display: inline-block; width: 80px; height: 40px; background-size: contain;"></i>'
-
+      + '<i style="background-image: url(' + dataUrl + '); background-repeat: no-repeat; background-position: center; display: inline-block; width: 35px; height: 35px; background-size: 75%;"></i>'
       + '</div>'
       + '</foreignObject>'
       + '</svg>';
@@ -78,11 +106,12 @@ const returnPromise = () => new Promise((resolve) => {
 });
 
 const createVisNode = async (node) => {
-  const url = await returnPromise();
+  const url = await createNode(node.label);
+
+  console.log(url);
 
   return {
     id: node.id,
-    label: `${node.label} xxx`,
     image: url,
     shape: 'image',
     group: getNodeGroup(node),
