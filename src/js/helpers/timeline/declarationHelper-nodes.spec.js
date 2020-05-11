@@ -180,6 +180,44 @@ test('Unprocessed child nodes are not returned', () => {
   expect(getProcessedNodes(graph)).toStrictEqual([expectedGraph]);
 });
 
+test('Missing nodes are not returned', () => {
+  const child = {
+    id: 'AA',
+    label: '!',
+    status: 'missing',
+    type: 'single',
+  };
+
+  const graph = {
+    id: 'A',
+    label: 'A label',
+    status: 'error',
+    type: 'single',
+    on: {
+      _error: child,
+    },
+    response: {
+      invocations: [],
+      transition: '_error',
+    },
+  };
+
+  const expectedChild = {
+    ...child,
+    uniqueLabel: '!',
+  };
+
+  const expectedGraph = {
+    ...graph,
+    uniqueLabel: 'A label',
+    on: {
+      _error: expectedChild,
+    },
+  };
+
+  expect(getProcessedNodes(graph)).toStrictEqual([expectedGraph]);
+});
+
 test('Top level composites are treated as a whole', () => {
   const compositeRoot = {
     id: 'A',
