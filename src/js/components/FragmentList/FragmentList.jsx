@@ -47,7 +47,7 @@ export const mapDataToComponents = (fragments, tabId) => fragments.map(({ debug,
 });
 
 export const sortFragmentsByStatus = (fragments) => {
-  const sortOrder = ['success', 'other', 'missing', 'unprocessed', 'error'];
+  const sortOrder = ['success', 'other', 'missing', 'unprocessed', 'failure'];
   const ordering = sortOrder.reduce((result, current, index) => (
     {
       ...result,
