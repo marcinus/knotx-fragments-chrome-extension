@@ -68,22 +68,26 @@ const Graph = ({
   const sidePanelExpanded = useSelector(({ pageData }) => pageData[tabId].sidebarExpanded);
 
   useEffect(() => {
-    const graphDeclaration = constructGraph(graphData);
-    const network = drawGraph(graphDeclaration, graphRef.current);
-    const visNetwork = graphRef.current.children?.[0];
-    if (visNetwork) visNetwork.tabIndex = 0;
+    const x = async () => {
+      const graphDeclaration = await constructGraph(graphData);
+      // console.log(graphDeclaration);
+      const network = drawGraph(graphDeclaration, graphRef.current);
+      const visNetwork = graphRef.current.children?.[0];
+      if (visNetwork) visNetwork.tabIndex = 0;
 
-    setDisplayOption(displayOptions.graph);
-    setDisplayNodeInfo(false);
+      setDisplayOption(displayOptions.graph);
+      setDisplayNodeInfo(false);
 
-    network.on('click', (e) => {
-      const nodeId = e.nodes[0];
-      if (nodeId) {
-        const { info } = graphDeclaration.nodes.find((el) => el.id === nodeId);
-        setDisplayNodeInfo(true);
-        setNodeInfo(info);
-      }
-    });
+      network.on('click', (e) => {
+        const nodeId = e.nodes[0];
+        if (nodeId) {
+          const { info } = graphDeclaration.nodes.find((el) => el.id === nodeId);
+          setDisplayNodeInfo(true);
+          setNodeInfo(info);
+        }
+      });
+    };
+    x();
   }, [fragmentId]);
 
   const handleSwitchView = (option) => {

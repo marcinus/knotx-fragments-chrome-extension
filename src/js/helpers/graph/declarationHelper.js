@@ -78,15 +78,13 @@ const returnPromise = () => new Promise((resolve) => {
 });
 
 const createVisNode = async (node) => {
-  const result = await returnPromise();
-
-  console.log(result);
+  const url = await returnPromise();
 
   return {
     id: node.id,
     label: `${node.label} xxx`,
-    // image: url,
-    // shape: 'image',
+    image: url,
+    shape: 'image',
     group: getNodeGroup(node),
     info: {
       ...node.info,
@@ -199,25 +197,24 @@ export const flattenComposites = (node) => {
   return flattenedNode;
 };
 
-const constructDatasets = (node, graphLayers = new GraphLayers(), layer = 0) => {
-  const visNode = createVisNode(node);
+const constructDatasets = async (node, graphLayers = new GraphLayers(), layer = 0) => {
+  const visNode = await createVisNode(node);
 
   graphLayers.addVisNode(visNode, layer);
 
   const transitions = getTransitions(node);
 
-  transitions.forEach((transition) => {
-    if (!transition.isReference) {
-      constructDatasets(transition.node, graphLayers, layer + 1);
-    }
-
-    graphLayers.addVisEdge(node, transition);
-  });
-
-  return {
+  return Promise.all(
+    transitions.map((transition) => {
+      graphLayers.addVisEdge(node, transition);
+      if (!transition.isReference) {
+        return constructDatasets(transition.node, graphLayers, layer + 1);
+      }
+    }),
+  ).then(() => ({
     nodes: graphLayers.nodesDataset,
     edges: graphLayers.edgesDataset,
-  };
+  }));
 };
 
 export const constructGraph = (jsonGraph) => {
