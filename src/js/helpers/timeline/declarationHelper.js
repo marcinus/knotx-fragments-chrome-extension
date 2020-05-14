@@ -56,9 +56,15 @@ export const getGraphWithUniqueLabels = (root, takenLabels = {}) => ({
 export const getProcessedNodes = (root, generateUniqueLabels = true) => {
   const rootNode = generateUniqueLabels ? getGraphWithUniqueLabels(root) : root;
 
-  return (hasProcessedTransition(rootNode)
-    ? [rootNode, ...getProcessedNodes(getNextNodes(rootNode), false)]
-    : [rootNode]);
+  if (hasProcessedTransition(rootNode)) {
+    return [rootNode, ...getProcessedNodes(getNextNodes(rootNode), false)];
+  }
+
+  if (rootNode.status.toLowerCase() !== 'missing') {
+    return [rootNode];
+  }
+
+  return [];
 };
 
 const generateGroupName = (node) => node.uniqueLabel;

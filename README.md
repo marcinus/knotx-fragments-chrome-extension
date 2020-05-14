@@ -1,8 +1,21 @@
 # Knot.x Fragments Chrome Extension
-Extends the Developer Tools, adding a sidebar that displays Fragments data associated with the
-selected DOM element.
+Extends the Developer Tools, adding a sidebar that displays [Fragments](https://github.com/Knotx/knotx-fragments) 
+data associated with the selected DOM element.
 
-// TODO why do we need this?
+<p align="center">
+  <img src="assets/images/preview.gif" alt="Knot.x Fragments Chrome Extension"/>
+</p>
+
+It is a bridge between the business logic (domain) and the solution. Domain experts can 
+easily verify the implementation of business logic, define new scenarios and deal with network problems 
+(defining fallbacks) gradually. Developers and QAs can easily learn business logic, verify API 
+responses/delays, and check page rendering performance issues.
+
+See the main benefits:
+
+| Developer   | Quality Assurance | Business |
+|:------------|:------------------|:---------|
+| - Easier debugging.​ <br> - New developers can quickly understand the backend data flow. <br>​ - Developers can easier identify the bug root cause (service/backend/frontend layer).​ <br> - Tool can be helpful during QA demo sessions.​ |  - Easier to analyse weak points in the backend logic​ <br> - Enable inspecting for root causes of page rendering performance issues | - Business can easily analyse/verify the business logic implementation <br> - Visualization can be used in always up-to-date documentation.​ |
 
 ## How to start?
 You can easily build the extension and select `dist` directory from Chrome extensions page. Follow
@@ -17,7 +30,7 @@ the instructions below:
   - enable Developer Mode by clicking the toggle switch next to *Developer mode*.
   - click the *LOAD UNPACKED* button and select the `dist` directory.
 - Run `samples`
-  - go to the `samples` folder
+  - go to the `assets/samples` folder
   - run command: `npm install http-server -g`
   - run command: `npx http-server`
 - See the extension in action
@@ -397,5 +410,3 @@ The example below presents how data is stored in Redux:
 ```
 
 The pageData entry is created on page load and destroyed when we close the tab. If the page does not contain Knot.x fragments, fragments property is empty.
-
-## Contributors

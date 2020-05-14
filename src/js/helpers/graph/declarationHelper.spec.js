@@ -64,6 +64,30 @@ test('Composite node is flattened into two virtual nodes with subtasks in-betwee
   expect(end.on).toBeUndefined();
 });
 
+test('All flattened nodes contain "info" property', () => {
+  const root = flattenComposites(mock.compositeNodeWithTransitions);
+
+  expect(root).toHaveProperty('info');
+  expect(root.info).not.toBeEmpty();
+
+  const { _subtask_0: subtask1, _subtask_1: subtask2 } = root.on;
+
+  expect(subtask1).toHaveProperty('info');
+  expect(subtask1.info).not.toBeEmpty();
+  expect(subtask2).toHaveProperty('info');
+  expect(subtask2.info).not.toBeEmpty();
+
+  const compositeEnd = subtask1.on._subtask_end;
+
+  expect(compositeEnd).toHaveProperty('info');
+  expect(compositeEnd.info).not.toBeEmpty();
+
+  const endNode = compositeEnd.on._success;
+
+  expect(endNode).toHaveProperty('info');
+  expect(endNode.info).not.toBeEmpty();
+});
+
 /**
  * Only the (first) deepest subtask-leaf should have transition to the actual end (virtual) node.
  * All other leafs should only hold id of the node they're supposed to be connected to.

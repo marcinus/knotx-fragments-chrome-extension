@@ -85,8 +85,8 @@ const createVirtualEndNode = (composite, transitions) => ({
   },
 });
 
-const createTransitionsToSubtasks = (subtasks) => subtasks
-  .reduce((total, current, index) => ({ ...total, [`_subtask_${index}`]: current }), {});
+const createTransitionsToSubtasks = (subtasks) => Object
+  .fromEntries(subtasks.map((task, index) => [`_subtask_${index}`, task]));
 
 const getNodeWithTransitionInEndNodes = (root, transitionName, transitionTo) => {
   const newRoot = JSON.parse(JSON.stringify(root));
@@ -115,7 +115,7 @@ export const flattenComposites = (node) => {
     const startNodeTransitions = createTransitionsToSubtasks(node.subtasks);
 
     const startNode = createVirtualStartNode(node, startNodeTransitions);
-    const endNode = createVirtualEndNode(node, compositeTransitions);
+    const endNode = flattenComposites(createVirtualEndNode(node, compositeTransitions));
 
     if (node.subtasks.length > 0) {
       Object.entries(startNode.on).forEach(([transition, child]) => {
