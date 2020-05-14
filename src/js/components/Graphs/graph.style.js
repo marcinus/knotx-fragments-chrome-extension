@@ -22,6 +22,7 @@ export const GraphWrapper = styled.div`
     height: 100vh;
     flex-direction: column;
     width: 100%;
+    overflow-x: hidden;
 
     @media (max-width: ${PAGE_BREAK}px) {
       height: 50%;

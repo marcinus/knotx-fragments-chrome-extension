@@ -118,7 +118,7 @@ const Graph = ({
       <GraphContent shouldDisplay={displayOption}>
         <GraphContainer shouldDisplay={displayOption}>
           <NodesGraph ref={graphRef} />
-          <LegendIcon onClick={() => setDisplayLegend(true)}>
+          <LegendIcon onClick={() => setDisplayLegend(!displayLegend)}>
             <FontAwesomeIcon icon={faInfoCircle} />
           </LegendIcon>
         </GraphContainer>

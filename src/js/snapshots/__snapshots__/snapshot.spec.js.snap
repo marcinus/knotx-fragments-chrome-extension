@@ -2,7 +2,7 @@
 
 exports[`Storyshots Logic Components | MainPanel.Graph Graph 1`] = `
 <div
-  className="graphstyle__GraphWrapper-q2z1zw-0 hXDfLB graphWrapper"
+  className="graphstyle__GraphWrapper-q2z1zw-0 isiZCT graphWrapper"
 >
   <div
     className="graphstyle__GraphHeaderContainer-q2z1zw-5 hFeNAF"
@@ -837,7 +837,7 @@ exports[`Storyshots Logic Components | SidePanel SidePanel 1`] = `
             className="fragmentListItemstyle__StatusWrapper-sc-1leslat-1 honGAR"
           >
             <div
-              className="fragmentListItemstyle__Status-sc-1leslat-3 dcIOQN"
+              className="fragmentListItemstyle__Status-sc-1leslat-3 bhyqIJ"
             />
           </div>
           <div
@@ -1647,7 +1647,7 @@ exports[`Storyshots Logic Components | SidePanel.FragmentList FragmentList 1`] =
         className="fragmentListItemstyle__StatusWrapper-sc-1leslat-1 honGAR"
       >
         <div
-          className="fragmentListItemstyle__Status-sc-1leslat-3 dcIOQN"
+          className="fragmentListItemstyle__Status-sc-1leslat-3 bhyqIJ"
         />
       </div>
       <div
