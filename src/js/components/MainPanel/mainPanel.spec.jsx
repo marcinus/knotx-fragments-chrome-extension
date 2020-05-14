@@ -19,26 +19,59 @@ import { mount } from 'enzyme';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 import reducer from '../../state/reducers/index';
+import { singleNode } from '../../helpers/graph/declarationHelper.mock';
 import MainPanel from './MainPanel';
-import { FRAGMENT_NOT_SELECTED_MSG } from '../../helpers/constants';
+import Graph from '../Graphs/Graph';
 
-const store = {
+const store = (renderedGraph) => ({
   pageData: {
     1: {
-      renderedGraph: null,
+      fragments: [
+        {
+          debug: {
+            fragment: {
+              id: '1',
+            },
+            graph: singleNode,
+          },
+        },
+        {
+          debug: {
+            fragment: {
+              id: '2',
+            },
+            graph: singleNode,
+          },
+        },
+      ],
+      renderedGraph,
     },
   },
-};
+});
 
 describe('Main panel component', () => {
-  it('should render message if fragment is not selected', () => {
-    const wrapper = mount(
-      <Provider store={createStore(reducer, store)}>
-        <MainPanel
-          tabId={1}
-        />
-      </Provider>,
-    );
-    expect(wrapper.text()).toEqual(FRAGMENT_NOT_SELECTED_MSG);
+  const wrapper = (renderedGraph) => mount(
+    <Provider store={createStore(reducer, store(renderedGraph))}>
+      <MainPanel
+        tabId={1}
+      />
+    </Provider>,
+  );
+  it('should render first fragments graph if graph is not selected', () => {
+    expect(wrapper(null).find(Graph)).toHaveLength(1);
+    expect(
+      wrapper(null).find(Graph)
+        .first()
+        .prop('fragmentId'),
+    ).toEqual('1');
+  });
+
+  it('should render selected fragment graph.', () => {
+    expect(wrapper('2').find(Graph)).toHaveLength(1);
+    expect(
+      wrapper('2').find(Graph)
+        .first()
+        .prop('fragmentId'),
+    ).toEqual('2');
   });
 });

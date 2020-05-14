@@ -19,34 +19,23 @@ import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
 import { MainPanelWrapper, MainPanelContent } from './mainPanel.style';
 import Graph from '../Graphs/Graph';
-import { NoKnotxPage } from '../../devtools/app.style';
-import { FRAGMENT_NOT_SELECTED_MSG } from '../../helpers/constants';
 
 const MainPanel = ({ tabId }) => {
-  const renderedGraphId = useSelector(({ pageData }) => pageData[tabId].renderedGraph);
+  const renderedGraphId = useSelector(({ pageData }) => (pageData[tabId].renderedGraph
+    ? pageData[tabId].renderedGraph
+    : pageData[tabId].fragments[0].debug.fragment.id));
   const sidebarExpanded = useSelector(({ pageData }) => pageData[tabId].sidebarExpanded);
 
-  return renderedGraphId
-    ? (
-      <MainPanelWrapper sidePanelExpaned={sidebarExpanded}>
-        <MainPanelContent>
-          <Graph
-            tabId={tabId}
-            fragmentId={renderedGraphId}
-          />
-        </MainPanelContent>
-      </MainPanelWrapper>
-    )
-    : (
-      <MainPanelWrapper>
-        <MainPanelContent>
-          <NoKnotxPage>
-            <h1>{FRAGMENT_NOT_SELECTED_MSG}</h1>
-          </NoKnotxPage>
-
-        </MainPanelContent>
-      </MainPanelWrapper>
-    );
+  return (
+    <MainPanelWrapper sidePanelExpaned={sidebarExpanded}>
+      <MainPanelContent>
+        <Graph
+          tabId={tabId}
+          fragmentId={renderedGraphId}
+        />
+      </MainPanelContent>
+    </MainPanelWrapper>
+  );
 };
 
 MainPanel.propTypes = {

@@ -34,7 +34,7 @@ export const getNodeGroup = (node) => {
 
 const createVisNode = (node) => ({
   id: node.id,
-  label: `${node.label} \ue90c`,
+  label: `${node.label}`,
   group: getNodeGroup(node),
   info: {
     ...node.info,

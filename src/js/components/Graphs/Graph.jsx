@@ -69,7 +69,6 @@ const Graph = ({
   const renderedGraphId = useSelector(({ pageData }) => pageData[tabId].renderedGraph);
 
   useEffect(() => {
-    console.log('redraw');
     const graphDeclaration = constructGraph(graphData);
     const network = drawGraph(graphDeclaration, graphRef.current);
     const visNetwork = graphRef.current.children?.[0];
