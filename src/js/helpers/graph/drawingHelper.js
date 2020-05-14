@@ -101,8 +101,10 @@ export const defaultGraphConfiguration = {
     borderWidthSelected: 1,
     shape: 'box',
     font: {
+      multi: 'html',
       face: 'KnotxIcons',
       color: COLOR_DEFAULT_NODE_FONT,
+      bold: '14px Lato white',
     },
     color: {
       border: COLOR_DEFAULT_BORDER,
