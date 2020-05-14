@@ -66,8 +66,10 @@ const Graph = ({
     pageData[tabId].fragments.find((el) => el.debug.fragment.id === fragmentId).debug.graph
   ));
   const sidePanelExpanded = useSelector(({ pageData }) => pageData[tabId].sidebarExpanded);
+  const renderedGraphId = useSelector(({ pageData }) => pageData[tabId].renderedGraph);
 
   useEffect(() => {
+    console.log('redraw');
     const graphDeclaration = constructGraph(graphData);
     const network = drawGraph(graphDeclaration, graphRef.current);
     const visNetwork = graphRef.current.children?.[0];
@@ -84,7 +86,7 @@ const Graph = ({
         setNodeInfo(info);
       }
     });
-  }, [fragmentId]);
+  }, [renderedGraphId]);
 
   const handleSwitchView = (option) => {
     setDisplayOption(option);
