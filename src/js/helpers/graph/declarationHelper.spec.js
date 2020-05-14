@@ -145,7 +145,7 @@ test('Non-leaf subtasks\' nodes with both success and error transitions are not 
 
 test('Single node is parsed correctly', () => {
   const expectedGraph = {
-    nodes: [createNode('A', 'A label', 'success', 0)],
+    nodes: [createNode('A', '<b>A label</b>', 'success', 0)],
     edges: [],
   };
 
@@ -173,8 +173,8 @@ test('Composites have to have "subtasks" field defined', () => {
 test('Composites can have no subtasks', () => {
   const expectedGraph = {
     nodes: [
-      createNode('A_virtual', '', 'virtual', 0),
-      createNode('A_virtual2', '', 'virtual_unprocessed', 1),
+      createNode('A_virtual', '<b></b>', 'virtual', 0),
+      createNode('A_virtual2', '<b></b>', 'virtual_unprocessed', 1),
     ],
     edges: [
       createEdge('A_virtual', 'A_virtual2', true),
@@ -203,13 +203,13 @@ test('Composite\'s have proper transitions to subtasks', () => {
 
 test('Composite end is one level below the deepest subtask', () => {
   const expectedNodes = [
-    createNode('A_virtual', '', 'virtual', 0),
-    createNode('A-A', 'A-A label', 'success', 1),
-    createNode('A-B', 'A-B label', 'success', 1),
-    createNode('A-A A', 'A-A A label', 'success', 2),
-    createNode('A-A B', 'A-A B label', 'unprocessed', 2),
-    createNode('A-A A A', 'A-A A A label', 'success', 3),
-    createNode('A_virtual2', '', 'virtual_success', 4),
+    createNode('A_virtual', '<b></b>', 'virtual', 0),
+    createNode('A-A', '<b>A-A label</b>', 'success', 1),
+    createNode('A-B', '<b>A-B label</b>', 'success', 1),
+    createNode('A-A A', '<b>A-A A label</b>', 'success', 2),
+    createNode('A-A B', '<b>A-A B label</b>', 'unprocessed', 2),
+    createNode('A-A A A', '<b>A-A A A label</b>', 'success', 3),
+    createNode('A_virtual2', '<b></b>', 'virtual_success', 4),
   ];
 
   const graph = constructGraph(mock.compositeWithUnevenSubtasks);
@@ -220,12 +220,12 @@ test('Composite end is one level below the deepest subtask', () => {
 test('Composite\'s transitions are one level below it\'s virtual node', () => {
   const expectedGraph = {
     nodes: [
-      createNode('A_virtual', '', 'virtual', 0),
-      createNode('A-A', 'A-A label', 'error', 1),
-      createNode('A-B', 'A-B label', 'success', 1),
-      createNode('A-B A', 'A-B A label', 'success', 2),
-      createNode('A_virtual2', '', 'virtual_error', 3),
-      createNode('B', 'B label', 'error', 4),
+      createNode('A_virtual', '<b></b>', 'virtual', 0),
+      createNode('A-A', '<b>A-A label</b>', 'error', 1),
+      createNode('A-B', '<b>A-B label</b>', 'success', 1),
+      createNode('A-B A', '<b>A-B A label</b>', 'success', 2),
+      createNode('A_virtual2', '<b></b>', 'virtual_error', 3),
+      createNode('B', '<b>B label</b>', 'error', 4),
     ],
     edges: [
       createEdge('A_virtual', 'A-A'),
@@ -247,11 +247,11 @@ test('Composite\'s transitions are one level below it\'s virtual node', () => {
 test('Unprocessed subtasks have proper transition to virtual composite node', () => {
   const expectedGraph = {
     nodes: [
-      createNode('A_virtual', '', 'virtual', 0),
-      createNode('A-A', 'A-A label', 'success', 1),
-      createNode('A-A A', 'A-A A label', 'error', 2),
-      createNode('A-A B', 'A-A B label', 'unprocessed', 2),
-      createNode('A_virtual2', '', 'virtual_error', 3),
+      createNode('A_virtual', '<b></b>', 'virtual', 0),
+      createNode('A-A', '<b>A-A label</b>', 'success', 1),
+      createNode('A-A A', '<b>A-A A label</b>', 'error', 2),
+      createNode('A-A B', '<b>A-A B label</b>', 'unprocessed', 2),
+      createNode('A_virtual2', '<b></b>', 'virtual_error', 3),
     ],
     edges: [
       createEdge('A_virtual', 'A-A'),
@@ -271,10 +271,10 @@ test('Unprocessed subtasks have proper transition to virtual composite node', ()
 test('Missing subtasks have proper transition to virtual composite node', () => {
   const expectedGraph = {
     nodes: [
-      createNode('A_virtual', '', 'virtual', 0),
-      createNode('A-A', 'A-A label', 'other', 1),
-      createNode('A-A A', 'A-A A label', 'missing', 2),
-      createNode('A_virtual2', '', 'virtual_error', 3),
+      createNode('A_virtual', '<b></b>', 'virtual', 0),
+      createNode('A-A', '<b>A-A label</b>', 'other', 1),
+      createNode('A-A A', '<b>A-A A label</b>', 'missing', 2),
+      createNode('A_virtual2', '<b></b>', 'virtual_error', 3),
     ],
     edges: [
       createEdge('A_virtual', 'A-A'),
@@ -293,11 +293,11 @@ test('Missing subtasks have proper transition to virtual composite node', () => 
 test('Composites can be nested', () => {
   const expectedGraph = {
     nodes: [
-      createNode('A_virtual', '', 'virtual', 0),
-      createNode('A-A_virtual', '', 'virtual', 1),
-      createNode('A-A-A', 'A-A-A label', 'error', 2),
-      createNode('A-A_virtual2', '', 'virtual_error', 3),
-      createNode('A_virtual2', '', 'virtual_error', 4),
+      createNode('A_virtual', '<b></b>', 'virtual', 0),
+      createNode('A-A_virtual', '<b></b>', 'virtual', 1),
+      createNode('A-A-A', '<b>A-A-A label</b>', 'error', 2),
+      createNode('A-A_virtual2', '<b></b>', 'virtual_error', 3),
+      createNode('A_virtual2', '<b></b>', 'virtual_error', 4),
     ],
     edges: [
       createEdge('A_virtual', 'A-A_virtual'),
