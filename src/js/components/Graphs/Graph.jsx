@@ -20,7 +20,7 @@ import React, { useEffect, useState, useRef } from 'react';
 import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTimes, faInfoCircle } from '@fortawesome/free-solid-svg-icons';
+import { faTimes, faInfoCircle, faCheck } from '@fortawesome/free-solid-svg-icons';
 import { drawGraph } from '../../helpers/graph/drawingHelper';
 import { constructGraph } from '../../helpers/graph/declarationHelper';
 import {
@@ -38,6 +38,7 @@ import {
   GraphAdditionalPanelContent,
   LegendIcon,
   GraphContent,
+  DisplayOptionCheckbox,
 } from './graph.style';
 import NodePerformanceTimeline from './Timeline/Timeline';
 import Legend from './Legend/Legend';
@@ -60,6 +61,7 @@ const Graph = ({
   const [displayLegend, setDisplayLegend] = useState(false);
   const [nodeInfo, setNodeInfo] = useState(null);
   const [displayNodeInfo, setDisplayNodeInfo] = useState(false);
+  const [showUnprocessed, setShowUnprocessed] = useState(true);
   const graphRef = useRef(null);
 
   const graphData = useSelector(({ pageData }) => (
@@ -68,8 +70,17 @@ const Graph = ({
   const sidePanelExpanded = useSelector(({ pageData }) => pageData[tabId].sidebarExpanded);
 
   useEffect(() => {
+    console.log(graphData);
     const graphDeclaration = constructGraph(graphData);
-    const network = drawGraph(graphDeclaration, graphRef.current);
+
+    const filteredGraphDeclaration = showUnprocessed
+      ? graphDeclaration
+      : {
+        nodes: graphDeclaration.nodes.filter((node) => node.group !== 'unprocessed'),
+        edges: graphDeclaration.edges,
+      };
+
+    const network = drawGraph(filteredGraphDeclaration, graphRef.current);
     const visNetwork = graphRef.current.children?.[0];
     if (visNetwork) visNetwork.tabIndex = 0;
 
@@ -84,7 +95,7 @@ const Graph = ({
         setNodeInfo(info);
       }
     });
-  }, [fragmentId]);
+  }, [fragmentId, showUnprocessed]);
 
   const handleSwitchView = (option) => {
     setDisplayOption(option);
@@ -118,6 +129,23 @@ const Graph = ({
       <GraphContent shouldDisplay={displayOption}>
         <GraphContainer shouldDisplay={displayOption}>
           <NodesGraph ref={graphRef} />
+          <DisplayOptionCheckbox type="button">
+            <span>show unprocessed</span>
+            <div
+              className="checkbox"
+              tabIndex="0"
+              role="checkbox"
+              aria-checked={showUnprocessed}
+              onClick={() => (setShowUnprocessed(!showUnprocessed))}
+              onKeyDown={(e) => {
+                if (e.keyCode === ENTER_KEY_CODE) {
+                  setShowUnprocessed(!showUnprocessed);
+                }
+              }}
+            >
+              <FontAwesomeIcon icon={faCheck} />
+            </div>
+          </DisplayOptionCheckbox>
           <LegendIcon onClick={() => setDisplayLegend(!displayLegend)}>
             <FontAwesomeIcon icon={faInfoCircle} />
           </LegendIcon>

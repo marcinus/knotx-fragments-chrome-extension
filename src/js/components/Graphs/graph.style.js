@@ -161,3 +161,33 @@ export const GraphAdditionalPanelCloseButton = styled.div`
         cursor: pointer;
     }
 `;
+
+export const DisplayOptionCheckbox = styled.div`
+    position: absolute;
+    top: 110px;
+    right: 10px;
+    display: flex;
+    align-items: center;
+    color: white;
+
+    span {
+        font-weight: bold;
+        padding: 0 5px;
+    }
+
+    .checkbox {
+        width: 15px;
+        height: 15px;
+        border: 3px solid white;
+        border-radius: 5px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 13px;
+
+        &:hover {
+            cursor: pointer;
+        }
+    }
+
+`;
