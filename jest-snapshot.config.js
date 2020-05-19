@@ -14,11 +14,16 @@
  * limitations under the License.
  */
 
-import initStoryshots, { snapshotWithOptions } from '@storybook/addon-storyshots';
-
-initStoryshots({
-  test: snapshotWithOptions({
-    // eslint-disable-next-line consistent-return
-    createNodeMock: () => document.createElement('div'),
-  }),
-});
+process.env.TEST_REPORT_PATH = 'build/test';
+module.exports = {
+  bail: true,
+  verbose: true,
+  errorOnDeprecated: true,
+  testResultsProcessor: './node_modules/jest-junit-reporter',
+  setupFilesAfterEnv: ['jest-extended', './jest.setup.js'],
+  moduleNameMapper: {
+    '\\.css$': 'identity-obj-proxy',
+  },
+  preset: 'jest-puppeteer',
+  testRegex: './*\\.snapshot\\.js$',
+};

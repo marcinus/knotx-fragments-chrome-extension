@@ -32,6 +32,7 @@ dist/*
 test-report.xml
 package-lock.json
 yarn-error.log
+__diff_output__
 
 # Node               #
 ######################
@@ -41,3 +42,4 @@ node_modules
 # Other               #
 ######################
 packages/*
+
