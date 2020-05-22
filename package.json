@@ -1,6 +1,6 @@
 {
   "name": "knotx-chrome-devtool-extension",
-  "version": "1.0.0",
+  "version": "2.2.1-SNAPSHOT",
   "description": "Extends the Developer Tools, adding a sidebar that displays the Knotx Fragments data associated with the selected DOM element.",
   "private": true,
   "browserslist": [
@@ -20,12 +20,17 @@
     "storybook": "start-storybook -p 6006 --ci",
     "build-storybook": "build-storybook"
   },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  },
   "keywords": [
     "knot.x",
+    "integrations",
+    "configurable integrations",
     "debug",
-    "chrome plugin"
+    "chrome extension"
   ],
-  "author": "Knot.x community",
+  "author": "Knot.x Community",
   "license": "Apache License 2.0",
   "devDependencies": {
     "@babel/core": "^7.8.3",

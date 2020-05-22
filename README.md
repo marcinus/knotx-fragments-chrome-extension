@@ -424,3 +424,17 @@ The example below presents how data is stored in Redux:
 ```
 
 The pageData entry is created on page load and destroyed when we close the tab. If the page does not contain Knot.x fragments, fragments property is empty.
+
+## Release
+The application version is configured in `/package.json` file. Please note that the master branch 
+should contain SNAPSHOT version. 
+
+Executing scripts below:
+```shell script
+yarn run dev
+yarn release minor
+```
+
+we produce the ZIP file in `./build` containing all required distribution files. In the `./manifest.json` file 
+there is the released version.
+
