@@ -17,18 +17,18 @@ See the main benefits:
 |:------------|:------------------|:---------|
 | - Easier debugging.​ <br> - New developers can quickly understand the backend data flow. <br>​ - Developers can easier identify the bug root cause (service/backend/frontend layer).​ <br> - Tool can be helpful during QA demo sessions.​ |  - Easier to analyse weak points in the backend logic​ <br> - Enable inspecting for root causes of page rendering performance issues | - Business can easily analyse/verify the business logic implementation <br> - Visualization can be used in always up-to-date documentation.​ |
 
-## How to start?
-You can easily build the extension and select `dist` directory from Chrome extensions page. Follow
-the instructions below:
-
-- Build the extension:
-  - go to the project folder
-  - run command: `yarn install`
-  - run command: `yarn run dev` or `yarn run watch` if you want to enable auto detect changes in code.
+## How to use?
+We are going to publish the extension on the [Chrome Web Store](https://chrome.google.com/webstore) 
+platform. The acceptance process will take some time. In meanwhile, please follow the instructions below:
+- Download the extension from [GitHub releases](https://github.com/Knotx/knotx-fragments-chrome-extension/releases),
+the latest version is available [here](https://github.com/Knotx/knotx-fragments-chrome-extension/releases/download/2.2.0/knotx-chrome-extension-2.2.0.zip).
+- Unzip the downloaded file
 - Load the extension from disk (more details [here](https://developer.chrome.com/extensions/getstarted) )
   - open the Chrome Extension Management page by navigating to `chrome://extensions`.
   - enable Developer Mode by clicking the toggle switch next to *Developer mode*.
-  - click the *LOAD UNPACKED* button and select the `dist` directory.
+  - click the *LOAD UNPACKED* button and select the unzipped `knotx-chrome-extension-SVERSION` directory.
+
+If you want to play with the extension using sample HTML Knot.x responses, see the instructions below:
 - Run `samples`
   - go to the `assets/samples` folder
   - run command: `npm install http-server -g`
