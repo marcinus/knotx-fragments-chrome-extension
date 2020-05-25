@@ -14,16 +14,10 @@
  * limitations under the License.
  */
 
-import Adapter from 'enzyme-adapter-react-16';
-import { toBeVisible } from '@testing-library/jest-dom/matchers';
-import { configure } from 'enzyme';
-import { configureToMatchImageSnapshot } from 'jest-image-snapshot';
+import initStoryshots, { snapshotWithOptions } from '@storybook/addon-storyshots';
 
-configure({ adapter: new Adapter() });
-
-const toMatchImageSnapshot = configureToMatchImageSnapshot({
-  failureThreshold: 0.02,
-  failureThresholdType: 'percent',
+initStoryshots({
+  test: snapshotWithOptions({
+    createNodeMock: () => document.createElement('div'),
+  }),
 });
-
-expect.extend({ toBeVisible, toMatchImageSnapshot });

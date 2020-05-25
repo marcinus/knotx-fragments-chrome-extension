@@ -1,14 +1,14 @@
 # Knot.x Fragments Chrome Extension
-Extends the Developer Tools, adding a sidebar that displays [Fragments](https://github.com/Knotx/knotx-fragments) 
+Extends the Developer Tools, adding a sidebar that displays [Fragments](https://github.com/Knotx/knotx-fragments)
 data associated with the selected DOM element.
 
 <p align="center">
   <img src="assets/images/preview.gif" alt="Knot.x Fragments Chrome Extension"/>
 </p>
 
-It is a bridge between the business logic (domain) and the solution. Domain experts can 
-easily verify the implementation of business logic, define new scenarios and deal with network problems 
-(defining fallbacks) gradually. Developers and QAs can easily learn business logic, verify API 
+It is a bridge between the business logic (domain) and the solution. Domain experts can
+easily verify the implementation of business logic, define new scenarios and deal with network problems
+(defining fallbacks) gradually. Developers and QAs can easily learn business logic, verify API
 responses/delays, and check page rendering performance issues.
 
 See the main benefits:
@@ -17,18 +17,18 @@ See the main benefits:
 |:------------|:------------------|:---------|
 | - Easier debugging.​ <br> - New developers can quickly understand the backend data flow. <br>​ - Developers can easier identify the bug root cause (service/backend/frontend layer).​ <br> - Tool can be helpful during QA demo sessions.​ |  - Easier to analyse weak points in the backend logic​ <br> - Enable inspecting for root causes of page rendering performance issues | - Business can easily analyse/verify the business logic implementation <br> - Visualization can be used in always up-to-date documentation.​ |
 
-## How to start?
-You can easily build the extension and select `dist` directory from Chrome extensions page. Follow
-the instructions below:
-
-- Build the extension:
-  - go to the project folder
-  - run command: `yarn install`
-  - run command: `yarn run dev` or `yarn run watch` if you want to enable auto detect changes in code.
+## How to use?
+We are going to publish the extension on the [Chrome Web Store](https://chrome.google.com/webstore) 
+platform. The acceptance process will take some time. In meanwhile, please follow the instructions below:
+- Download the extension from [GitHub releases](https://github.com/Knotx/knotx-fragments-chrome-extension/releases),
+the latest version is available [here](https://github.com/Knotx/knotx-fragments-chrome-extension/releases/download/2.2.0/knotx-chrome-extension-2.2.0.zip).
+- Unzip the downloaded file
 - Load the extension from disk (more details [here](https://developer.chrome.com/extensions/getstarted) )
   - open the Chrome Extension Management page by navigating to `chrome://extensions`.
   - enable Developer Mode by clicking the toggle switch next to *Developer mode*.
-  - click the *LOAD UNPACKED* button and select the `dist` directory.
+  - click the *LOAD UNPACKED* button and select the unzipped `knotx-chrome-extension-SVERSION` directory.
+
+If you want to play with the extension using sample HTML Knot.x responses, see the instructions below:
 - Run `samples`
   - go to the `assets/samples` folder
   - run command: `npm install http-server -g`
@@ -318,6 +318,20 @@ When tests are executed, then we generate the report (test-report.xml) file in t
 ### How to run tests?
 1. run command to fire all tests: `yarn run test`
 2. run command to fire the specific test: `yarn run test [path_to_test]`
+3. run command to fire snapshot tests: `yarn run snapshot`
+
+### Snapshots
+We use 2 kinds of snapshot tests: 
+- markup 
+- visual (image) 
+
+Both of them are implemented using [storybook](#components). You can find the config and diff output 
+in `src/js/snapshots/`. To add new or update patterns (images or HTML markups) you have to remove old 
+snapshots and create new by:
+- `yarn run snapshot` (in case of image snapshots)
+- `yarn run test` (in case of markup snapshots)
+
+Visual snapshots use the dedicated jest config file (`jest-snapshot.config.js`).
 
 ## Implementation details
 
@@ -410,3 +424,17 @@ The example below presents how data is stored in Redux:
 ```
 
 The pageData entry is created on page load and destroyed when we close the tab. If the page does not contain Knot.x fragments, fragments property is empty.
+
+## Release
+The application version is configured in `/package.json` file. Please note that the master branch 
+should contain SNAPSHOT version. 
+
+Executing scripts below:
+```shell script
+yarn run dev
+yarn release minor
+```
+
+we produce the ZIP file in `./build` containing all required distribution files. In the `./manifest.json` file 
+there is the released version.
+
