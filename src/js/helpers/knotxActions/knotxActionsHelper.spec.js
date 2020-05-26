@@ -15,27 +15,56 @@
  */
 
 import { detectActionType } from './knotxActionsHelper';
+import { ICONS } from '../constants';
+import { http } from './http';
 
 const mock = (factory, actionFactory) => ({
   operation: {
     data: {
       actionFactory,
+      actionConfig: {
+        httpMethod: 'get',
+      },
     },
     factory,
   },
 });
 
 describe('Graph component', () => {
-  it('action detect function should return http action obj', () => {
+  it('action detect function should choose and return http action obj', () => {
     expect(detectActionType(mock('action', 'http'))).toEqual({
       condition: true,
-      icon: '',
+      icon: ICONS.GET,
     });
   });
 
   it('action detect function should return default value for unrecognized action', () => {
     expect(detectActionType(mock('action', 'custom'))).toEqual({
       icon: '',
+    });
+  });
+
+  it('action detect function should return default value for node which has any action ', () => {
+    expect(detectActionType({})).toEqual({
+      icon: '',
+    });
+  });
+  it('action detect function should write  an error in console, if find more then one matching action', () => {
+    const action1 = http;
+    const action2 = http;
+    const actions = [action1, action2];
+
+    const error = jest.spyOn(global.console, 'error');
+
+    const result = detectActionType(mock('action', 'http'), actions);
+
+    expect(error).toHaveBeenCalledWith(
+      'Node action recognize error. Probably node match to two or more action conditions',
+    );
+
+    expect(result).toEqual({
+      condition: true,
+      icon: ICONS.GET,
     });
   });
 });

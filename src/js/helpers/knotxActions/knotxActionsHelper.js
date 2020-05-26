@@ -18,18 +18,20 @@ import { http } from './http';
 import { cache } from './cache';
 import { defaultAction } from './defaulAction';
 
-const actions = [
+const defaultActions = [
   http,
   cache,
 ];
 
-export const detectActionType = (obj) => {
+export const detectActionType = (obj, actions = defaultActions) => {
+  if (!obj.operation) return defaultAction();
+
   const detectedActions = actions
     .map((action) => action(obj))
     .filter((item) => item !== false);
 
   if (detectedActions && detectedActions.length > 1) {
-    console.error('Node action recognize error. Probably two or more node match to one condition');
+    console.error('Node action recognize error. Probably node match to two or more action conditions');
   }
 
 

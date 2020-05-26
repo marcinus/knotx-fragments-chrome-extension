@@ -16,11 +16,12 @@
 
 export const cache = (obj) => {
   const condition = (obj.operation.factory === 'action' && obj.operation.data.actionFactory === 'cache');
+  if (!condition) return false;
 
-  return condition
-    ? {
-      condition,
-      icon: '',
-    }
-    : false;
+  const icon = '\ue901';
+
+  return {
+    condition,
+    icon,
+  };
 };

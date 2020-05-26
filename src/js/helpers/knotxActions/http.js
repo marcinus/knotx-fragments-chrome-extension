@@ -14,13 +14,32 @@
  * limitations under the License.
  */
 
+import { ICONS } from '../constants';
+
+const getIcon = (method) => {
+  switch (method) {
+    case 'get':
+      return ICONS.GET;
+    case 'post':
+      return ICONS.POST;
+    case 'put':
+      return ICONS.PUT;
+    case 'delete':
+      return ICONS.DELETE;
+    default:
+      return ICONS.HTTP;
+  }
+};
+
 export const http = (obj) => {
   const condition = (obj.operation.factory === 'action' && obj.operation.data.actionFactory === 'http');
+  if (!condition) return false;
 
-  return condition
-    ? {
-      condition,
-      icon: '',
-    }
-    : false;
+  const method = obj.operation.data.actionConfig.httpMethod || 'get';
+  const icon = getIcon(method);
+
+  return {
+    condition,
+    icon,
+  };
 };

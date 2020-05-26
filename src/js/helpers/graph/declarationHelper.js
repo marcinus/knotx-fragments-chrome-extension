@@ -19,6 +19,7 @@ import {
   isReference, hasTransitions, hasPreDefinedTransitions, hasTransition, isComposite, getReference,
 } from './nodeRecognitionHelper';
 import { postProcessNode } from './nodePostProcessor';
+import { detectActionType } from '../knotxActions/knotxActionsHelper';
 
 export const getNodeGroup = (node) => {
   if (node.type === 'virtual_start') {
@@ -32,14 +33,18 @@ export const getNodeGroup = (node) => {
   return node.status.toLowerCase();
 };
 
-const createVisNode = (node) => ({
-  id: node.id,
-  label: `<b>${node.label}</b>`,
-  group: getNodeGroup(node),
-  info: {
-    ...node.info,
-  },
-});
+const createVisNode = (node) => {
+  const nodeAction = detectActionType(node.info);
+
+  return {
+    id: node.id,
+    label: `<b>${node.label}</b> ${nodeAction.icon}`,
+    group: getNodeGroup(node),
+    info: {
+      ...node.info,
+    },
+  };
+};
 
 const getEndNodes = (root, depth = 0) => {
   if (!hasTransitions(root)) {

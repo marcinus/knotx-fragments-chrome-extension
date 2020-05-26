@@ -20,6 +20,14 @@ export const status = {
   succes: 'succes',
   error: 'error',
 };
+export const ICONS = {
+  HTTP: '\ue90d',
+  GET: '\ue90c',
+  POST: '\ue90f',
+  PUT: '\ue910',
+  DELETE: '\ue90b',
+};
+
 export const ENTER_KEY_CODE = 13;
 export const PAGE_BREAK = 1024;
 
