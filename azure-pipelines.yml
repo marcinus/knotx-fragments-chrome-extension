@@ -47,6 +47,8 @@ steps:
     displayName: "Build"
   - script: yarn run test
     displayName: "Test"
+  - script: yarn run snapshot
+    displayName: "Snapshots"
   - task: PublishTestResults@2
     displayName: 'Publish Test Results'
     condition: succeededOrFailed()

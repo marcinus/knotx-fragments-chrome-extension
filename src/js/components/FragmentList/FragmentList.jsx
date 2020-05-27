@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import propTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -30,26 +30,24 @@ import {
 import FragmentListItem from './FragmentListItem/FragmentListItem';
 import { FRAGMENT_LIST_HEADER, fragmentListTablesHeaders } from '../../helpers/constants';
 
-export function mapDataToComponents(fragments, tabId) {
-  return fragments.map(({ debug, nodes }) => {
-    const { fragment } = debug;
-    const duration = debug.finishTime - debug.startTime;
-    return (
-      <FragmentListItem
-        key={fragment.id}
-        id={fragment.id}
-        status={debug.status.toLowerCase()}
-        type={fragment.type}
-        nodes={nodes}
-        tabId={tabId}
-        time={duration}
-      />
-    );
-  });
-}
+export const mapDataToComponents = (fragments, tabId) => fragments.map(({ debug, nodes }) => {
+  const { fragment } = debug;
+  const duration = debug.finishTime - debug.startTime;
+  return (
+    <FragmentListItem
+      key={fragment.id}
+      id={fragment.id}
+      status={debug.status.toLowerCase()}
+      type={fragment.type}
+      nodes={nodes}
+      tabId={tabId}
+      time={duration}
+    />
+  );
+});
 
-export function sortFragmentsByStatus(fragments) {
-  const sortOrder = ['success', 'other', 'missing', 'unprocessed', 'error'];
+export const sortFragmentsByStatus = (fragments) => {
+  const sortOrder = ['success', 'other', 'missing', 'unprocessed', 'failure'];
   const ordering = sortOrder.reduce((result, current, index) => (
     {
       ...result,
@@ -61,7 +59,7 @@ export function sortFragmentsByStatus(fragments) {
     ordering[a.props.status] - ordering[b.props.status] || a.props.status.localeCompare(b.props.status)
   ));
   return sortedFragments;
-}
+};
 
 const sortingOptions = {
   status: 'status',
@@ -72,13 +70,24 @@ const sortingOptions = {
 
 const FragmentList = ({ tabId }) => {
   const data = useSelector((state) => state.pageData[tabId].fragments);
-  const parsedData = mapDataToComponents(data, tabId);
+
+  let parsedData = mapDataToComponents(data, tabId);
   const [fragments, setFragments] = useState(parsedData);
   const [currentSorting, setCurrentSorting] = useState(null);
+
+  const resetState = () => {
+    setFragments(parsedData);
+    setCurrentSorting(null);
+  };
 
   const typeSortComparator = (a, b) => a.props.type.localeCompare(b.props.type);
   const idSortComparator = (a, b) => a.props.id.localeCompare(b.props.id);
   const timeSortComparator = (a, b) => a.props.time - b.props.time;
+
+  useEffect(() => {
+    parsedData = mapDataToComponents(data, tabId);
+    resetState();
+  }, [data]);
 
   return (
     <FragmentListWrapper>
@@ -91,8 +100,7 @@ const FragmentList = ({ tabId }) => {
               setFragments(sortFragmentsByStatus(fragments));
               setCurrentSorting(sortingOptions.status);
             } else {
-              setFragments(parsedData);
-              setCurrentSorting(null);
+              resetState();
             }
           }}
         >
@@ -107,8 +115,7 @@ const FragmentList = ({ tabId }) => {
               setFragments(fragments.concat().sort(idSortComparator));
               setCurrentSorting(sortingOptions.id);
             } else {
-              setFragments(parsedData);
-              setCurrentSorting(null);
+              resetState();
             }
           }}
         >
@@ -126,8 +133,7 @@ const FragmentList = ({ tabId }) => {
               setFragments(fragments.concat().sort(typeSortComparator));
               setCurrentSorting(sortingOptions.type);
             } else {
-              setFragments(parsedData);
-              setCurrentSorting(null);
+              resetState();
             }
           }}
         >
@@ -145,8 +151,7 @@ const FragmentList = ({ tabId }) => {
               setFragments(fragments.concat().sort(timeSortComparator));
               setCurrentSorting(sortingOptions.time);
             } else {
-              setFragments(parsedData);
-              setCurrentSorting(null);
+              resetState();
             }
           }}
         >

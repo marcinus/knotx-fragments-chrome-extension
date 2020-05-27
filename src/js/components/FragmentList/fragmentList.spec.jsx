@@ -54,7 +54,7 @@ describe('<FragmentList /> unit test', () => {
     const wrapper = getWrapper();
     expect(wrapper
       .findWhere(
-        (n) => n.name() === 'FragmentListItem' && n.prop('status') === 'error',
+        (n) => n.name() === 'FragmentListItem' && n.prop('status') === 'failure',
       ))
       .toHaveLength(1);
   });
@@ -191,7 +191,7 @@ describe('<FragmentList /> unit test', () => {
     expect(wrapper
       .find(FragmentListItem)
       .first()
-      .prop('status')).toEqual('error');
+      .prop('status')).toEqual('failure');
 
     sortingButton.simulate('click');
 
@@ -205,7 +205,7 @@ describe('<FragmentList /> unit test', () => {
     expect(wrapper
       .find(FragmentListItem)
       .first()
-      .prop('status')).toEqual('error');
+      .prop('status')).toEqual('failure');
   });
 
   it('sorting by type works', () => {

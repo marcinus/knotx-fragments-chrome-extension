@@ -24,7 +24,7 @@ export default {
             type: 'E',
             time: 5,
           },
-          status: 'ERROR',
+          status: 'FAILURE',
           finishTime: 10,
           startTime: 5,
         },
