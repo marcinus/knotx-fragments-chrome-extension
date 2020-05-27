@@ -14,16 +14,26 @@
  * limitations under the License.
  */
 
+import { cache } from './cache';
 import { ICONS } from '../constants';
 
-export const cache = (obj) => {
-  const condition = (obj.operation.factory === 'action' && obj.operation.data.actionFactory === 'cache');
-  if (!condition) return false;
+const mock = (factory, actionFactory) => ({
+  operation: {
+    data: {
+      actionFactory,
+    },
+    factory,
+  },
+});
 
-  const icon = ICONS.CACHE;
-
-  return {
-    condition,
-    icon,
-  };
-};
+describe('cache action', () => {
+  it('Return false if condition not match', () => {
+    expect(cache(mock('action', 'custom'))).toEqual(false);
+  });
+  it('Return correctly object for cache action', () => {
+    expect(cache(mock('action', 'cache'))).toEqual({
+      condition: true,
+      icon: ICONS.CACHE,
+    });
+  });
+});

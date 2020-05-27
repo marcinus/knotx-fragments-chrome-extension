@@ -40,6 +40,12 @@ describe('http action', () => {
       icon: ICONS.HTTP,
     });
   });
+  it('Set get method if httpMethod prop is undefined', () => {
+    expect(http(mock('action', 'http', undefined))).toEqual({
+      condition: true,
+      icon: ICONS.GET,
+    });
+  });
   it('Return correctly object for http get action', () => {
     expect(http(mock('action', 'http', 'get'))).toEqual({
       condition: true,

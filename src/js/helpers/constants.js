@@ -26,6 +26,7 @@ export const ICONS = {
   POST: '\ue90f',
   PUT: '\ue910',
   DELETE: '\ue90b',
+  CACHE: '\ue901',
 };
 
 export const ENTER_KEY_CODE = 13;
