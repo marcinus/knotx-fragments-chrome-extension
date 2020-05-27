@@ -14,30 +14,58 @@
  * limitations under the License.
  */
 
-import React, { useLayoutEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import renderjson from 'renderjson';
 import { NodeIndoContainer, NodeInfoOptionsBar, NodeInfoOption } from './nodeInfo.style';
+import Raw from './displayOptions/raw/Raw';
 
-renderjson.set_icons('+', '-');
-renderjson.set_show_to_level(1);
 
 const NodeInfo = ({ nodeJson }) => {
-  const nodeInfo = useRef(null);
+  const displayOptions = {
+    raw: (<Raw nodeJson={nodeJson} />),
+    preview: 'preview',
+    payload: 'payload',
+    body: 'body',
+  };
 
-  useLayoutEffect(() => {
-    nodeInfo.current.innerHTML = '';
-    nodeInfo.current.appendChild(renderjson(nodeJson));
+  const [displayOption, setDisplayOption] = useState(displayOptions.raw);
+
+  useEffect(() => {
+    setDisplayOption(displayOptions.raw);
   }, [nodeJson]);
+
 
   return (
     <>
-      <NodeIndoContainer ref={nodeInfo} />
+      <NodeIndoContainer>
+        {displayOption}
+      </NodeIndoContainer>
       <NodeInfoOptionsBar>
-        <NodeInfoOption type="button">RAW</NodeInfoOption>
-        <NodeInfoOption type="button">PREVIEW</NodeInfoOption>
-        <NodeInfoOption type="button" active>PAYLOAD</NodeInfoOption>
-        <NodeInfoOption type="button">BODY</NodeInfoOption>
+        <NodeInfoOption
+          onClick={() => setDisplayOption(displayOptions.raw)}
+          type="button"
+        >
+          RAW
+        </NodeInfoOption>
+        <NodeInfoOption
+          type="button"
+          onClick={() => setDisplayOption(displayOptions.preview)}
+        >
+          PREVIEW
+        </NodeInfoOption>
+        <NodeInfoOption
+          type="button"
+          active
+          onClick={() => setDisplayOption(displayOptions.payload)}
+        >
+          PAYLOAD
+        </NodeInfoOption>
+        <NodeInfoOption
+          type="button"
+          onClick={() => setDisplayOption(displayOptions.body)}
+        >
+          BODY
+        </NodeInfoOption>
       </NodeInfoOptionsBar>
     </>
   );

@@ -56,6 +56,7 @@ export const ToggleSidePanelButton = styled.button`
     color: ${({ theme }) => theme.MENU_TOGGLE_BUTTON};
     display: flex;
     justify-content: center;
+    align-items: center;
 
     &:hover {
         cursor: pointer;
