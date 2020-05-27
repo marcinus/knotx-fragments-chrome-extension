@@ -18,6 +18,28 @@ import styled from 'styled-components';
 
 export const NodeIndoContainer = styled.div`
     padding: 5px;
-    height: 100%;
+    height: calc(100% - 25px);
     box-sizing: border-box;
+`;
+
+export const NodeInfoOptionsBar = styled.div`
+    height: 25px;
+    width: 100%;
+    background-color: ${({ theme }) => theme.ADDITIONAL_PANEL_HEADER_BG};
+    display: flex;
+    flex-direction: row;
+`;
+
+export const NodeInfoOption = styled.button`
+    border: 0;
+    width: 80px;
+    background-color: ${({ theme }) => theme.ADDITIONAL_PANEL_HEADER_BG};
+    font-weight: ${({ active }) => (active ? 'bold' : 'normal')};;
+    color: ${({ theme }) => theme.TEXT};
+    border-right: ${({ theme }) => `1px solid ${theme.BORDER}`};
+    font-family: 'Lato',sans-serif;
+
+    &:hover {
+        cursor: pointer;
+    }
 `;
