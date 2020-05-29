@@ -18,12 +18,13 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { NodeIndoContainer, NodeInfoOptionsBar, NodeInfoOption } from './nodeInfo.style';
 import Raw from './displayOptions/raw/Raw';
+import { detectActionType } from '../../../helpers/knotxActions/knotxActionsHelper';
 
 
 const NodeInfo = ({ nodeJson }) => {
   const displayOptions = {
     raw: (<Raw nodeJson={nodeJson} />),
-    preview: 'preview',
+    preview: detectActionType(nodeJson).template(nodeJson),
     payload: 'payload',
     body: 'body',
   };

@@ -14,7 +14,9 @@
  * limitations under the License.
  */
 
+import React from 'react';
 import { ICONS } from '../constants';
+import HttpPreview from '../../components/Graphs/NodeInfo/displayOptions/preview/http/HttpPreview';
 
 const getIcon = (method) => {
   switch (method) {
@@ -32,14 +34,22 @@ const getIcon = (method) => {
 };
 
 export const http = (obj) => {
-  const condition = (obj.operation.factory === 'action' && obj.operation.data.actionFactory === 'http');
+  const condition = (
+    obj.operation.factory === 'action'
+    && obj.operation.data.actionFactory === 'http'
+  );
   if (!condition) return false;
 
   const method = obj.operation.data.actionConfig.httpMethod || 'get';
   const icon = getIcon(method);
 
+  const unprocessed = obj.status === 'UNPROCESSED';
+  const template = unprocessed
+    ? () => ''
+    : (nodeJson) => (<HttpPreview nodeJson={nodeJson} />);
+
   return {
-    condition,
     icon,
+    template,
   };
 };

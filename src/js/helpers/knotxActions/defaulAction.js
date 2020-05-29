@@ -16,4 +16,5 @@
 
 export const defaultAction = () => ({
   icon: '',
+  template: () => '',
 });

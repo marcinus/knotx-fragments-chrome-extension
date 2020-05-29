@@ -24,7 +24,7 @@ const defaultActions = [
 ];
 
 export const detectActionType = (obj, actions = defaultActions) => {
-  if (!obj.operation) return defaultAction();
+  if (!obj || !obj.operation) return defaultAction();
 
   const detectedActions = actions
     .map((action) => action(obj))
