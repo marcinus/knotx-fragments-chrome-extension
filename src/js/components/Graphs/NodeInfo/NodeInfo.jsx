@@ -22,48 +22,80 @@ import { detectActionType } from '../../../helpers/knotxActions/knotxActionsHelp
 
 
 const NodeInfo = ({ nodeJson }) => {
-  const displayOptions = {
+  const displayOptionsTemplates = {
     raw: (<Raw nodeJson={nodeJson} />),
-    preview: detectActionType(nodeJson).template(nodeJson),
+    preview: detectActionType(nodeJson).previewTemplate(nodeJson),
+    payload: 'payload',
+    body: detectActionType(nodeJson).bodyTemplate(nodeJson),
+  };
+
+  const displayOptions = {
+    raw: 'raw',
+    preview: 'preview',
     payload: 'payload',
     body: 'body',
   };
 
-  const [displayOption, setDisplayOption] = useState(displayOptions.raw);
+  const [displayOptionTemplate, setDisplayOptionTemplate] = useState(displayOptionsTemplates.preview);
+  const [activeOption, setActiveOption] = useState(displayOptions.preview);
+
+  const setDisplayOptionHandler = (displayName) => {
+    switch (displayName) {
+      case displayOptions.preview:
+        setActiveOption(displayOptions.preview);
+        setDisplayOptionTemplate(displayOptionsTemplates.preview);
+        break;
+      case displayOptions.payload:
+        setActiveOption(displayOptions.payload);
+        setDisplayOptionTemplate(displayOptionsTemplates.payload);
+        break;
+      case displayOptions.body:
+        setActiveOption(displayOptions.body);
+        setDisplayOptionTemplate(displayOptionsTemplates.body);
+        break;
+      default:
+        setActiveOption(displayOptions.raw);
+        setDisplayOptionTemplate(displayOptionsTemplates.raw);
+        break;
+    }
+  };
 
   useEffect(() => {
-    setDisplayOption(displayOptions.raw);
+    setDisplayOptionHandler('raw');
   }, [nodeJson]);
 
 
   return (
     <>
       <NodeIndoContainer>
-        {displayOption}
+        {displayOptionTemplate}
       </NodeIndoContainer>
       <NodeInfoOptionsBar>
         <NodeInfoOption
-          onClick={() => setDisplayOption(displayOptions.raw)}
+          onClick={() => setDisplayOptionHandler('raw')}
           type="button"
+          active={activeOption === 'raw'}
         >
           RAW
         </NodeInfoOption>
         <NodeInfoOption
           type="button"
-          onClick={() => setDisplayOption(displayOptions.preview)}
+          active={activeOption === 'preview'}
+          onClick={() => setDisplayOptionHandler('preview')}
         >
           PREVIEW
         </NodeInfoOption>
         <NodeInfoOption
           type="button"
-          active
-          onClick={() => setDisplayOption(displayOptions.payload)}
+          active={activeOption === 'payload'}
+          onClick={() => setDisplayOptionHandler('payload')}
         >
           PAYLOAD
         </NodeInfoOption>
         <NodeInfoOption
           type="button"
-          onClick={() => setDisplayOption(displayOptions.body)}
+          onClick={() => setDisplayOptionHandler('body')}
+          active={activeOption === 'body'}
         >
           BODY
         </NodeInfoOption>

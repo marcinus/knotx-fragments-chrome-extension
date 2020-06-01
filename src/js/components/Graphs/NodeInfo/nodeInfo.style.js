@@ -37,6 +37,7 @@ export const NodeInfoOption = styled.button`
     font-weight: ${({ active }) => (active ? 'bold' : 'normal')};;
     color: ${({ theme }) => theme.TEXT};
     border-right: ${({ theme }) => `1px solid ${theme.BORDER}`};
+    border-top: ${({ theme, active }) => (active ? `1px solid ${theme.BORDER}` : 0)};
     font-family: 'Lato',sans-serif;
 
     &:hover {

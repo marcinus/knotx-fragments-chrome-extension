@@ -22,7 +22,7 @@ import { RawContainer } from './raw.styled';
 renderjson.set_icons('+', '-');
 renderjson.set_show_to_level(1);
 
-const NodeInfo = ({ nodeJson }) => {
+const Raw = ({ nodeJson }) => {
   const nodeInfo = useRef(null);
 
   useLayoutEffect(() => {
@@ -35,12 +35,12 @@ const NodeInfo = ({ nodeJson }) => {
   );
 };
 
-NodeInfo.defaultProps = {
+Raw.defaultProps = {
   nodeJson: null,
 };
 
-NodeInfo.propTypes = {
+Raw.propTypes = {
   nodeJson: PropTypes.instanceOf(Object),
 };
 
-export default NodeInfo;
+export default Raw;

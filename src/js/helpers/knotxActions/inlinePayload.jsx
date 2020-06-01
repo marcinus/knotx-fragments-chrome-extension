@@ -14,16 +14,27 @@
  * limitations under the License.
  */
 
-import { ICONS } from '../constants';
+import React from 'react';
+import Raw from '../../components/Graphs/NodeInfo/displayOptions/raw/Raw';
 
-export const cache = (obj) => {
-  const condition = (obj.operation.factory === 'action' && obj.operation.data.actionFactory === 'cache');
+export const inlinePayload = (obj) => {
+  const condition = (obj.operation.factory === 'action' && obj.operation.data.actionFactory === 'inline-payload');
   if (!condition) return false;
 
-  const icon = ICONS.CACHE;
+  const icon = '\ue90e';
+
+  const unprocessed = obj.status === 'UNPROCESSED';
+  const previewTemplate = unprocessed
+    ? () => ''
+    : (nodeJson) => {
+      const invocationsLength = nodeJson.response.invocations.length;
+      const info = nodeJson.response.invocations[invocationsLength - 1].logs.value;
+      return (<Raw nodeJson={info} />);
+    };
 
   return {
-    condition,
     icon,
+    previewTemplate,
+    bodyTemplate: () => '',
   };
 };

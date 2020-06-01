@@ -1,10 +1,10 @@
 @font-face {
   font-family: 'KnotxIcons';
-  src:  url('KnotxIcons.eot?h2avha');
-  src:  url('KnotxIcons.eot?h2avha#iefix') format('embedded-opentype'),
-    url('KnotxIcons.ttf?h2avha') format('truetype'),
-    url('KnotxIcons.woff?h2avha') format('woff'),
-    url('KnotxIcons.svg?h2avha#KnotxIcons') format('svg');
+  src:  url('KnotxIcons.eot?k82s8g');
+  src:  url('KnotxIcons.eot?k82s8g#iefix') format('embedded-opentype'),
+    url('KnotxIcons.ttf?k82s8g') format('truetype'),
+    url('KnotxIcons.woff?k82s8g') format('woff'),
+    url('KnotxIcons.svg?k82s8g#KnotxIcons') format('svg');
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -31,30 +31,6 @@
 .icon-cache:before {
   content: "\e901";
 }
-.icon-cb_cache:before {
-  content: "\e902";
-}
-.icon-cb_custom:before {
-  content: "\e903";
-}
-.icon-cb_delete:before {
-  content: "\e904";
-}
-.icon-cb_get:before {
-  content: "\e905";
-}
-.icon-cb_http:before {
-  content: "\e906";
-}
-.icon-cb_payload:before {
-  content: "\e907";
-}
-.icon-cb_post:before {
-  content: "\e908";
-}
-.icon-cb_put:before {
-  content: "\e909";
-}
 .icon-cb:before {
   content: "\e90a";
 }
@@ -67,7 +43,7 @@
 .icon-http:before {
   content: "\e90d";
 }
-.icon-Path-12:before {
+.icon-payload:before {
   content: "\e90e";
 }
 .icon-post:before {

@@ -35,31 +35,25 @@ const HttpPreview = ({ nodeJson }) => {
   const [loopIndex, setLoopIndex] = useState(0);
   const [requestInfo, setRequestInfo] = useState(nodeJson.response.invocations[0].logs.request);
   const [responseInfo, setResponseInfo] = useState(nodeJson.response.invocations[0].logs.response);
-  const [responseBodyInfo, setResponseBodyInfo] = useState(nodeJson.response.invocations[0].logs.responseBody);
 
 
   const setInfo = (index) => {
     setLoopIndex(index);
     setRequestInfo(nodeJson.response.invocations[loopIndex].logs.request);
     setResponseInfo(nodeJson.response.invocations[loopIndex].logs.response);
-    setResponseBodyInfo(nodeJson.response.invocations[loopIndex].logs.responseBody);
   };
 
   useLayoutEffect(() => {
     request.current.innerHTML = '';
     request.current.appendChild(renderjson(requestInfo));
     response.current.innerHTML = '';
-    response.current.appendChild(renderjson({
-      responseStatus: responseInfo,
-      responseBody: responseBodyInfo,
-    }));
+    response.current.appendChild(renderjson(responseInfo));
   }, [nodeJson]);
 
   const createInvocationButtons = () => {
     const { invocations } = nodeJson.response;
 
     return invocations.map((_, index) => (
-      // TODO add unique key
       // eslint-disable-next-line react/jsx-key
       <button type="button" onClick={() => setInfo(index)}>
         {index + 1}
@@ -83,7 +77,6 @@ const HttpPreview = ({ nodeJson }) => {
         </ResponseContainer>
       </PreviewContainer>
     </PreviewWrapper>
-
   );
 };
 

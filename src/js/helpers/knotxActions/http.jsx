@@ -17,6 +17,7 @@
 import React from 'react';
 import { ICONS } from '../constants';
 import HttpPreview from '../../components/Graphs/NodeInfo/displayOptions/preview/http/HttpPreview';
+import Raw from '../../components/Graphs/NodeInfo/displayOptions/raw/Raw';
 
 const getIcon = (method) => {
   switch (method) {
@@ -44,12 +45,23 @@ export const http = (obj) => {
   const icon = getIcon(method);
 
   const unprocessed = obj.status === 'UNPROCESSED';
-  const template = unprocessed
+  const previewTemplate = unprocessed
     ? () => ''
     : (nodeJson) => (<HttpPreview nodeJson={nodeJson} />);
 
+  const bodyTemplate = unprocessed
+    ? () => ''
+    : (nodeJson) => {
+      const invocationsLength = nodeJson.response.invocations.length;
+      const info = nodeJson.response.invocations[invocationsLength - 1].logs.responseBody;
+
+      return (<Raw nodeJson={info} />);
+    };
+
+
   return {
     icon,
-    template,
+    previewTemplate,
+    bodyTemplate,
   };
 };

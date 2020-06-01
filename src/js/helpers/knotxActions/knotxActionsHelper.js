@@ -16,14 +16,16 @@
 
 import { http } from './http';
 import { cache } from './cache';
+import { inlinePayload } from './inlinePayload';
 import { defaultAction } from './defaulAction';
 
-const defaultActions = [
+const definedActions = [
   http,
   cache,
+  inlinePayload,
 ];
 
-export const detectActionType = (obj, actions = defaultActions) => {
+export const detectActionType = (obj, actions = definedActions) => {
   if (!obj || !obj.operation) return defaultAction();
 
   const detectedActions = actions
