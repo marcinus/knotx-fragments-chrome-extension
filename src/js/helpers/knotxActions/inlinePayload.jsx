@@ -19,13 +19,13 @@ import Raw from '../../components/Graphs/NodeInfo/displayOptions/raw/Raw';
 import { ICONS } from '../constants';
 
 
-export const inlinePayload = (obj) => {
-  const condition = (obj.operation.factory === 'action' && obj.operation.data.actionFactory === 'inline-payload');
+export const inlinePayload = (logObj) => {
+  const condition = (logObj.operation.factory === 'action' && logObj.operation.data.actionFactory === 'inline-payload');
   if (!condition) return false;
 
   const icon = ICONS.PAYLOAD;
 
-  const unprocessed = obj.status === 'UNPROCESSED';
+  const unprocessed = logObj.status === 'UNPROCESSED';
   const previewTemplate = unprocessed
     ? () => ''
     : (nodeJson) => {

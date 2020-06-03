@@ -34,17 +34,17 @@ const getIcon = (method) => {
   }
 };
 
-export const http = (obj) => {
+export const http = (logObj) => {
   const condition = (
-    obj.operation.factory === 'action'
-    && obj.operation.data.actionFactory === 'http'
+    logObj.operation.factory === 'action'
+    && logObj.operation.data.actionFactory === 'http'
   );
   if (!condition) return false;
 
-  const method = obj.operation.data.actionConfig.httpMethod || 'get';
+  const method = logObj.operation.data.actionConfig.httpMethod || 'get';
   const icon = getIcon(method);
 
-  const unprocessed = obj.status === 'UNPROCESSED';
+  const unprocessed = logObj.status === 'UNPROCESSED';
   const previewTemplate = unprocessed
     ? () => ''
     : (nodeJson) => (<HttpPreview nodeJson={nodeJson} />);
