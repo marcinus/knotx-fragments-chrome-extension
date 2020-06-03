@@ -41,29 +41,21 @@ describe('inline-payload action', () => {
     const inlinePayloadObj = inlinePayload(mock('action', 'inline-payload', 'UNPROCESSED'));
     expect(inlinePayloadObj).toEqual({
       previewTemplate: expect.any(Function),
-      bodyTemplate: expect.any(Function),
       icon: ICONS.PAYLOAD,
     });
 
     const previewTemplateWrapper = '';
     expect(inlinePayloadObj.previewTemplate(inlinePayloadObjMock)).toEqual(previewTemplateWrapper);
-
-    const bodyTemplateWrapper = '';
-    expect(inlinePayloadObj.bodyTemplate(inlinePayloadObjMock)).toEqual(bodyTemplateWrapper);
   });
 
   it('Return correctly object for payload action', () => {
     const inlinePayloadObj = inlinePayload(mock('action', 'inline-payload'));
     expect(inlinePayloadObj).toEqual({
       previewTemplate: expect.any(Function),
-      bodyTemplate: expect.any(Function),
       icon: ICONS.PAYLOAD,
     });
 
     const previewTemplateWrapper = mount(<Raw nodeJson={inlinePayloadObjMock.response.invocations[0].logs.value} />);
     expect(previewTemplateWrapper.matchesElement(inlinePayloadObj.previewTemplate(inlinePayloadObjMock))).toEqual(true);
-
-    const bodyTemplateWrapper = '';
-    expect(inlinePayloadObj.bodyTemplate(inlinePayloadObjMock)).toEqual(bodyTemplateWrapper);
   });
 });

@@ -130,7 +130,7 @@ exports[`Storyshots Logic Components | MainPanel.Graph Graph 1`] = `
         display={false}
         id="payload-container"
       >
-        payload
+        
       </div>
       <div
         className="nodeInfostyled__NodeInfoContainer-jone1x-0 hmrLkO"
@@ -735,7 +735,7 @@ Array [
     display={false}
     id="payload-container"
   >
-    payload
+    
   </div>,
   <div
     className="nodeInfostyled__NodeInfoContainer-jone1x-0 hmrLkO"
