@@ -17,7 +17,7 @@
 import styled from 'styled-components';
 
 
-export const PreviewWrapper = styled.div`
+export const HttpPreviewWrapper = styled.div`
     height: 100%;
     width: 100%;
     display: flex;

@@ -16,7 +16,7 @@
 
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { NodeIndoContainer, NodeInfoOptionsBar, NodeInfoOption } from './nodeInfo.style';
+import { NodeInfoContainer, NodeInfoOptionsBar, NodeInfoOption } from './nodeInfo.styled';
 import Raw from './displayOptions/raw/Raw';
 import { detectActionType } from '../../../helpers/knotxActions/knotxActionsHelper';
 
@@ -67,9 +67,9 @@ const NodeInfo = ({ nodeJson }) => {
 
   return (
     <>
-      <NodeIndoContainer>
+      <NodeInfoContainer>
         {displayOptionTemplate}
-      </NodeIndoContainer>
+      </NodeInfoContainer>
       <NodeInfoOptionsBar>
         <NodeInfoOption
           onClick={() => setDisplayOptionHandler('raw')}

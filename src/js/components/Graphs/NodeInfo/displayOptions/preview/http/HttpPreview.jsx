@@ -22,7 +22,7 @@ import {
   RequestContainer,
   ResponseContainer,
   LoopBar,
-  PreviewWrapper,
+  HttpPreviewWrapper,
 } from './httpPreview.styled';
 
 renderjson.set_icons('+', '-');
@@ -62,7 +62,7 @@ const HttpPreview = ({ nodeJson }) => {
   };
 
   return (
-    <PreviewWrapper>
+    <HttpPreviewWrapper>
       <LoopBar>
         {createInvocationButtons()}
       </LoopBar>
@@ -76,7 +76,7 @@ const HttpPreview = ({ nodeJson }) => {
           <div ref={response} />
         </ResponseContainer>
       </PreviewContainer>
-    </PreviewWrapper>
+    </HttpPreviewWrapper>
   );
 };
 
