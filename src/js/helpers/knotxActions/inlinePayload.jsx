@@ -37,6 +37,5 @@ export const inlinePayload = (logObj) => {
   return {
     icon,
     previewTemplate,
-    bodyTemplate: () => '',
   };
 };

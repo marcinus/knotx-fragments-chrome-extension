@@ -53,6 +53,8 @@ const NodeInfo = ({ nodeJson }) => {
   }, [nodeJson]);
 
 
+  const actionObj = detectActionType(nodeJson);
+
   return (
     <>
       <NodeInfoContainer
@@ -65,19 +67,25 @@ const NodeInfo = ({ nodeJson }) => {
         id="preview-container"
         display={activeOption === displayOptions.preview}
       >
-        {detectActionType(nodeJson).previewTemplate(nodeJson)}
+        {actionObj.previewTemplate
+          ? actionObj.previewTemplate(nodeJson)
+          : '' }
       </NodeInfoContainer>
       <NodeInfoContainer
         id="payload-container"
         display={activeOption === displayOptions.payload}
       >
-        payload
+        {actionObj.payloadTemplate
+          ? actionObj.payloadTemplate(nodeJson)
+          : '' }
       </NodeInfoContainer>
       <NodeInfoContainer
         id="body-container"
         display={activeOption === displayOptions.body}
       >
-        {detectActionType(nodeJson).bodyTemplate(nodeJson)}
+        {actionObj.bodyTemplate
+          ? actionObj.bodyTemplate(nodeJson)
+          : '' }
       </NodeInfoContainer>
 
       <NodeInfoOptionsBar>
