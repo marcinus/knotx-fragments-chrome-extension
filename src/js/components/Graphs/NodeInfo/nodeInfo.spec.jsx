@@ -19,12 +19,8 @@ import React from 'react';
 import { mount } from 'enzyme';
 import NodeInfo from './NodeInfo';
 import { httpObjMock } from '../../../helpers/knotxActions/http.mock';
-import Raw from './displayOptions/raw/Raw';
-import HttpPreview from './displayOptions/preview/http/HttpPreview';
-import { NodeInfoContainer, NodeInfoOption } from './nodeInfo.styled';
-import { HttpPreviewWrapper } from './displayOptions/preview/http/httpPreview.styled';
 
-describe('Graph component', () => {
+describe('NodeInfo component', () => {
   const reactapp = document.createElement('div');
   document.body.appendChild(reactapp);
 
@@ -33,11 +29,34 @@ describe('Graph component', () => {
     { attachTo: reactapp },
   );
 
-  it('Correctly switch between http action views.', () => {
-    expect(wrapper.find(Raw).getDOMNode()).toBeVisible();
+  it('Correctly switch between action views.', () => {
+    expect(wrapper.find('#raw-container').at(0).getDOMNode()).toBeVisible();
     expect(wrapper.find(NodeInfoOption).at(1).text()).toEqual('PREVIEW');
     wrapper.find(NodeInfoOption).at(1).simulate('click');
     expect(wrapper.find(NodeInfoOption).at(1).prop('active')).toEqual(true);
-    expect(wrapper.find(HttpPreview).getDOMNode()).toBeVisible();
+
+    expect(wrapper.find('#raw-container').at(0).getDOMNode()).not.toBeVisible();
+    expect(wrapper.find('#preview-container').at(0).getDOMNode()).toBeVisible();
+
+    expect(wrapper.find(NodeInfoOption).at(2).text()).toEqual('PAYLOAD');
+    wrapper.find(NodeInfoOption).at(2).simulate('click');
+    expect(wrapper.find(NodeInfoOption).at(2).prop('active')).toEqual(true);
+
+    expect(wrapper.find('#preview-container').at(0).getDOMNode()).not.toBeVisible();
+    expect(wrapper.find('#payload-container').at(0).getDOMNode()).toBeVisible();
+
+    expect(wrapper.find(NodeInfoOption).at(3).text()).toEqual('BODY');
+    wrapper.find(NodeInfoOption).at(3).simulate('click');
+    expect(wrapper.find(NodeInfoOption).at(3).prop('active')).toEqual(true);
+
+    expect(wrapper.find('#payload-container').at(0).getDOMNode()).not.toBeVisible();
+    expect(wrapper.find('#body-container').at(0).getDOMNode()).toBeVisible();
+
+    expect(wrapper.find(NodeInfoOption).at(0).text()).toEqual('RAW');
+    wrapper.find(NodeInfoOption).at(0).simulate('click');
+    expect(wrapper.find(NodeInfoOption).at(0).prop('active')).toEqual(true);
+
+    expect(wrapper.find('#body-container').at(0).getDOMNode()).not.toBeVisible();
+    expect(wrapper.find('#raw-container').at(0).getDOMNode()).toBeVisible();
   });
 });

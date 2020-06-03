@@ -20,6 +20,7 @@ export const NodeInfoContainer = styled.div`
     padding: 5px;
     height: calc(100% - 25px);
     box-sizing: border-box;
+    display:${({ display }) => (display ? 'inherit' : 'none')};
 `;
 
 export const NodeInfoOptionsBar = styled.div`

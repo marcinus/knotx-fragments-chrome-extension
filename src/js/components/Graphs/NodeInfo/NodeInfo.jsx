@@ -22,13 +22,6 @@ import { detectActionType } from '../../../helpers/knotxActions/knotxActionsHelp
 
 
 const NodeInfo = ({ nodeJson }) => {
-  const displayOptionsTemplates = {
-    raw: (<Raw nodeJson={nodeJson} />),
-    preview: detectActionType(nodeJson).previewTemplate(nodeJson),
-    payload: 'payload',
-    body: detectActionType(nodeJson).bodyTemplate(nodeJson),
-  };
-
   const displayOptions = {
     raw: 'raw',
     preview: 'preview',
@@ -36,26 +29,21 @@ const NodeInfo = ({ nodeJson }) => {
     body: 'body',
   };
 
-  const [displayOptionTemplate, setDisplayOptionTemplate] = useState(displayOptionsTemplates.preview);
   const [activeOption, setActiveOption] = useState(displayOptions.preview);
 
   const setDisplayOptionHandler = (displayName) => {
     switch (displayName) {
       case displayOptions.preview:
         setActiveOption(displayOptions.preview);
-        setDisplayOptionTemplate(displayOptionsTemplates.preview);
         break;
       case displayOptions.payload:
         setActiveOption(displayOptions.payload);
-        setDisplayOptionTemplate(displayOptionsTemplates.payload);
         break;
       case displayOptions.body:
         setActiveOption(displayOptions.body);
-        setDisplayOptionTemplate(displayOptionsTemplates.body);
         break;
       default:
         setActiveOption(displayOptions.raw);
-        setDisplayOptionTemplate(displayOptionsTemplates.raw);
         break;
     }
   };
@@ -67,9 +55,31 @@ const NodeInfo = ({ nodeJson }) => {
 
   return (
     <>
-      <NodeInfoContainer>
-        {displayOptionTemplate}
+      <NodeInfoContainer
+        id="raw-container"
+        display={activeOption === displayOptions.raw}
+      >
+        <Raw nodeJson={nodeJson} />
       </NodeInfoContainer>
+      <NodeInfoContainer
+        id="preview-container"
+        display={activeOption === displayOptions.preview}
+      >
+        {detectActionType(nodeJson).previewTemplate(nodeJson)}
+      </NodeInfoContainer>
+      <NodeInfoContainer
+        id="payload-container"
+        display={activeOption === displayOptions.payload}
+      >
+        payload
+      </NodeInfoContainer>
+      <NodeInfoContainer
+        id="body-container"
+        display={activeOption === displayOptions.body}
+      >
+        {detectActionType(nodeJson).bodyTemplate(nodeJson)}
+      </NodeInfoContainer>
+
       <NodeInfoOptionsBar>
         <NodeInfoOption
           onClick={() => setDisplayOptionHandler('raw')}
