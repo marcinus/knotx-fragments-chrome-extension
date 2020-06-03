@@ -110,36 +110,61 @@ exports[`Storyshots Logic Components | MainPanel.Graph Graph 1`] = `
       className="graphstyle__GraphAdditionalPanelContent-q2z1zw-12 heAnFu"
     >
       <div
-        className="nodeInfostyle__NodeIndoContainer-sc-9f2nme-0 FwBrH"
+        className="nodeInfostyled__NodeInfoContainer-jone1x-0 hmrLkO"
+        display={false}
+        id="raw-container"
+      >
+        <div
+          className="rawstyled__RawContainer-spwng0-0 fAARLc"
+        />
+      </div>
+      <div
+        className="nodeInfostyled__NodeInfoContainer-jone1x-0 hoRVhZ"
+        display={true}
+        id="preview-container"
       >
         
       </div>
       <div
-        className="nodeInfostyle__NodeInfoOptionsBar-sc-9f2nme-1 iypEZl"
+        className="nodeInfostyled__NodeInfoContainer-jone1x-0 hmrLkO"
+        display={false}
+        id="payload-container"
+      >
+        payload
+      </div>
+      <div
+        className="nodeInfostyled__NodeInfoContainer-jone1x-0 hmrLkO"
+        display={false}
+        id="body-container"
+      >
+        
+      </div>
+      <div
+        className="nodeInfostyled__NodeInfoOptionsBar-jone1x-1 bWMUdw"
       >
         <button
-          className="nodeInfostyle__NodeInfoOption-sc-9f2nme-2 cwKiFR"
+          className="nodeInfostyled__NodeInfoOption-jone1x-2 gEFcIA"
           onClick={[Function]}
           type="button"
         >
           RAW
         </button>
         <button
-          className="nodeInfostyle__NodeInfoOption-sc-9f2nme-2 bYRUrD"
+          className="nodeInfostyled__NodeInfoOption-jone1x-2 kTCDsS"
           onClick={[Function]}
           type="button"
         >
           PREVIEW
         </button>
         <button
-          className="nodeInfostyle__NodeInfoOption-sc-9f2nme-2 cwKiFR"
+          className="nodeInfostyled__NodeInfoOption-jone1x-2 gEFcIA"
           onClick={[Function]}
           type="button"
         >
           PAYLOAD
         </button>
         <button
-          className="nodeInfostyle__NodeInfoOption-sc-9f2nme-2 cwKiFR"
+          className="nodeInfostyled__NodeInfoOption-jone1x-2 gEFcIA"
           onClick={[Function]}
           type="button"
         >
@@ -690,36 +715,61 @@ exports[`Storyshots Logic Components | MainPanel.Graph.Legend Legend 1`] = `
 exports[`Storyshots Logic Components | MainPanel.Graph.NodeInfo NodeInfo 1`] = `
 Array [
   <div
-    className="nodeInfostyle__NodeIndoContainer-sc-9f2nme-0 FwBrH"
+    className="nodeInfostyled__NodeInfoContainer-jone1x-0 hmrLkO"
+    display={false}
+    id="raw-container"
+  >
+    <div
+      className="rawstyled__RawContainer-spwng0-0 fAARLc"
+    />
+  </div>,
+  <div
+    className="nodeInfostyled__NodeInfoContainer-jone1x-0 hoRVhZ"
+    display={true}
+    id="preview-container"
   >
     
   </div>,
   <div
-    className="nodeInfostyle__NodeInfoOptionsBar-sc-9f2nme-1 iypEZl"
+    className="nodeInfostyled__NodeInfoContainer-jone1x-0 hmrLkO"
+    display={false}
+    id="payload-container"
+  >
+    payload
+  </div>,
+  <div
+    className="nodeInfostyled__NodeInfoContainer-jone1x-0 hmrLkO"
+    display={false}
+    id="body-container"
+  >
+    
+  </div>,
+  <div
+    className="nodeInfostyled__NodeInfoOptionsBar-jone1x-1 bWMUdw"
   >
     <button
-      className="nodeInfostyle__NodeInfoOption-sc-9f2nme-2 cwKiFR"
+      className="nodeInfostyled__NodeInfoOption-jone1x-2 gEFcIA"
       onClick={[Function]}
       type="button"
     >
       RAW
     </button>
     <button
-      className="nodeInfostyle__NodeInfoOption-sc-9f2nme-2 bYRUrD"
+      className="nodeInfostyled__NodeInfoOption-jone1x-2 kTCDsS"
       onClick={[Function]}
       type="button"
     >
       PREVIEW
     </button>
     <button
-      className="nodeInfostyle__NodeInfoOption-sc-9f2nme-2 cwKiFR"
+      className="nodeInfostyled__NodeInfoOption-jone1x-2 gEFcIA"
       onClick={[Function]}
       type="button"
     >
       PAYLOAD
     </button>
     <button
-      className="nodeInfostyle__NodeInfoOption-sc-9f2nme-2 cwKiFR"
+      className="nodeInfostyled__NodeInfoOption-jone1x-2 gEFcIA"
       onClick={[Function]}
       type="button"
     >

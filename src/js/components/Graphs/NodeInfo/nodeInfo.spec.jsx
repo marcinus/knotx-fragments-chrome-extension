@@ -19,6 +19,7 @@ import React from 'react';
 import { mount } from 'enzyme';
 import NodeInfo from './NodeInfo';
 import { httpObjMock } from '../../../helpers/knotxActions/http.mock';
+import { NodeInfoOption } from './nodeInfo.styled';
 
 describe('NodeInfo component', () => {
   const reactapp = document.createElement('div');
