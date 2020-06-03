@@ -31,19 +31,19 @@ describe('NodeInfo component', () => {
   );
 
   it('Correctly switch between action views.', () => {
-    expect(wrapper.find('#raw-container').at(0).getDOMNode()).toBeVisible();
-    expect(wrapper.find(NodeInfoOption).at(1).text()).toEqual('PREVIEW');
-    wrapper.find(NodeInfoOption).at(1).simulate('click');
-    expect(wrapper.find(NodeInfoOption).at(1).prop('active')).toEqual(true);
-
-    expect(wrapper.find('#raw-container').at(0).getDOMNode()).not.toBeVisible();
     expect(wrapper.find('#preview-container').at(0).getDOMNode()).toBeVisible();
+    expect(wrapper.find(NodeInfoOption).at(0).text()).toEqual('RAW');
+    wrapper.find(NodeInfoOption).at(0).simulate('click');
+    expect(wrapper.find(NodeInfoOption).at(0).prop('active')).toEqual(true);
+
+    expect(wrapper.find('#preview-container').at(0).getDOMNode()).not.toBeVisible();
+    expect(wrapper.find('#raw-container').at(0).getDOMNode()).toBeVisible();
 
     expect(wrapper.find(NodeInfoOption).at(2).text()).toEqual('PAYLOAD');
     wrapper.find(NodeInfoOption).at(2).simulate('click');
     expect(wrapper.find(NodeInfoOption).at(2).prop('active')).toEqual(true);
 
-    expect(wrapper.find('#preview-container').at(0).getDOMNode()).not.toBeVisible();
+    expect(wrapper.find('#raw-container').at(0).getDOMNode()).not.toBeVisible();
     expect(wrapper.find('#payload-container').at(0).getDOMNode()).toBeVisible();
 
     expect(wrapper.find(NodeInfoOption).at(3).text()).toEqual('BODY');
@@ -53,11 +53,11 @@ describe('NodeInfo component', () => {
     expect(wrapper.find('#payload-container').at(0).getDOMNode()).not.toBeVisible();
     expect(wrapper.find('#body-container').at(0).getDOMNode()).toBeVisible();
 
-    expect(wrapper.find(NodeInfoOption).at(0).text()).toEqual('RAW');
-    wrapper.find(NodeInfoOption).at(0).simulate('click');
-    expect(wrapper.find(NodeInfoOption).at(0).prop('active')).toEqual(true);
+    expect(wrapper.find(NodeInfoOption).at(1).text()).toEqual('PREVIEW');
+    wrapper.find(NodeInfoOption).at(1).simulate('click');
+    expect(wrapper.find(NodeInfoOption).at(1).prop('active')).toEqual(true);
 
     expect(wrapper.find('#body-container').at(0).getDOMNode()).not.toBeVisible();
-    expect(wrapper.find('#raw-container').at(0).getDOMNode()).toBeVisible();
+    expect(wrapper.find('#preview-container').at(0).getDOMNode()).toBeVisible();
   });
 });

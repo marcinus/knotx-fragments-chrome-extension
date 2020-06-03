@@ -49,7 +49,7 @@ const NodeInfo = ({ nodeJson }) => {
   };
 
   useEffect(() => {
-    setDisplayOptionHandler('raw');
+    setDisplayOptionHandler(displayOptions.preview);
   }, [nodeJson]);
 
 
