@@ -33,20 +33,25 @@ const mock = (factory, actionFactory) => ({
 describe('Graph component', () => {
   it('action detect function should choose and return http action obj', () => {
     expect(detectActionType(mock('action', 'http'))).toEqual({
-      condition: true,
       icon: ICONS.GET,
+      previewTemplate: expect.any(Function),
+      bodyTemplate: expect.any(Function),
     });
   });
 
   it('action detect function should return default value for unrecognized action', () => {
     expect(detectActionType(mock('action', 'custom'))).toEqual({
       icon: '',
+      previewTemplate: expect.any(Function),
+      bodyTemplate: expect.any(Function),
     });
   });
 
   it('action detect function should return default value for node which has any action ', () => {
     expect(detectActionType({})).toEqual({
       icon: '',
+      previewTemplate: expect.any(Function),
+      bodyTemplate: expect.any(Function),
     });
   });
   it('action detect function should write  an error in console, if find more then one matching action', () => {
@@ -63,8 +68,9 @@ describe('Graph component', () => {
     );
 
     expect(result).toEqual({
-      condition: true,
       icon: ICONS.GET,
+      previewTemplate: expect.any(Function),
+      bodyTemplate: expect.any(Function),
     });
   });
 });

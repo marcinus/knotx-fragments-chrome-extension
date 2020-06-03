@@ -110,8 +110,42 @@ exports[`Storyshots Logic Components | MainPanel.Graph Graph 1`] = `
       className="graphstyle__GraphAdditionalPanelContent-q2z1zw-12 heAnFu"
     >
       <div
-        className="nodeInfostyle__NodeIndoContainer-sc-9f2nme-0 ldCgLh"
-      />
+        className="nodeInfostyle__NodeIndoContainer-sc-9f2nme-0 FwBrH"
+      >
+        
+      </div>
+      <div
+        className="nodeInfostyle__NodeInfoOptionsBar-sc-9f2nme-1 iypEZl"
+      >
+        <button
+          className="nodeInfostyle__NodeInfoOption-sc-9f2nme-2 cwKiFR"
+          onClick={[Function]}
+          type="button"
+        >
+          RAW
+        </button>
+        <button
+          className="nodeInfostyle__NodeInfoOption-sc-9f2nme-2 bYRUrD"
+          onClick={[Function]}
+          type="button"
+        >
+          PREVIEW
+        </button>
+        <button
+          className="nodeInfostyle__NodeInfoOption-sc-9f2nme-2 cwKiFR"
+          onClick={[Function]}
+          type="button"
+        >
+          PAYLOAD
+        </button>
+        <button
+          className="nodeInfostyle__NodeInfoOption-sc-9f2nme-2 cwKiFR"
+          onClick={[Function]}
+          type="button"
+        >
+          BODY
+        </button>
+      </div>
     </div>
   </div>
   <div
@@ -654,9 +688,45 @@ exports[`Storyshots Logic Components | MainPanel.Graph.Legend Legend 1`] = `
 `;
 
 exports[`Storyshots Logic Components | MainPanel.Graph.NodeInfo NodeInfo 1`] = `
-<div
-  className="nodeInfostyle__NodeIndoContainer-sc-9f2nme-0 ldCgLh"
-/>
+Array [
+  <div
+    className="nodeInfostyle__NodeIndoContainer-sc-9f2nme-0 FwBrH"
+  >
+    
+  </div>,
+  <div
+    className="nodeInfostyle__NodeInfoOptionsBar-sc-9f2nme-1 iypEZl"
+  >
+    <button
+      className="nodeInfostyle__NodeInfoOption-sc-9f2nme-2 cwKiFR"
+      onClick={[Function]}
+      type="button"
+    >
+      RAW
+    </button>
+    <button
+      className="nodeInfostyle__NodeInfoOption-sc-9f2nme-2 bYRUrD"
+      onClick={[Function]}
+      type="button"
+    >
+      PREVIEW
+    </button>
+    <button
+      className="nodeInfostyle__NodeInfoOption-sc-9f2nme-2 cwKiFR"
+      onClick={[Function]}
+      type="button"
+    >
+      PAYLOAD
+    </button>
+    <button
+      className="nodeInfostyle__NodeInfoOption-sc-9f2nme-2 cwKiFR"
+      onClick={[Function]}
+      type="button"
+    >
+      BODY
+    </button>
+  </div>,
+]
 `;
 
 exports[`Storyshots Logic Components | MainPanel.Graph.NodePerformanceTimeline NodePerformanceTimeline 1`] = `

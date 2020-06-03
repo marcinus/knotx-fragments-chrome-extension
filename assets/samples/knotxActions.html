@@ -1,0 +1,568 @@
+<!--
+  Copyright (C) 2019 Knot.x Project
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Knot.x Functional Test: Payments</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="http://cognifide.com/favicon.ico?v=2" />
+    <link href="https://bootswatch.com/4/simplex/bootstrap.min.css" rel="stylesheet" />
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="jumbotron">
+                    <h2>
+                        Hello Knot.x - a reactive integration framework!
+                    </h2>
+                    <p>
+                        This page combines dynamic data with a template. A template may consist of many independent fragments defining the data they require. Dynamic data may come from external web APIs, databases etc.
+                    </p>
+                    <p>
+                        <a class="btn btn-primary btn-large" href="https://github.com/Knotx/knotx">Learn more</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="row" style="margin-left: 10px">
+            <!-- data-knotx-id="6fca5f51-680e-4f97-90a6-3a3f4f8fb6f6" -->
+            <script data-knotx-debug="log" data-knotx-id="6fca5f51-680e-4f97-90a6-3a3f4f8fb6f6" type="application/json">
+                {
+                    "finishTime": 1591093202072,
+                    "fragment": {
+                        "id": "6fca5f51-680e-4f97-90a6-3a3f4f8fb6f6",
+                        "type": "snippet",
+                        "configuration": {
+                            "data-knotx-task": "actions-task"
+                        },
+                        "body": "Replaced fragment body",
+                        "payload": {
+                            "http-head": {
+                                "_request": {
+                                    "type": "HTTP",
+                                    "source": "/service/mock/http-head.json",
+                                    "metadata": {
+                                        "headers": {}
+                                    }
+                                },
+                                "_response": {
+                                    "success": true,
+                                    "metadata": {
+                                        "statusCode": "200",
+                                        "headers": {
+                                            "Server": ["Jetty(9.2.24.v20180105)"]
+                                        }
+                                    }
+                                },
+                                "_result": ""
+                            },
+                            "http-post": {
+                                "_request": {
+                                    "type": "HTTP",
+                                    "source": "/service/mock/http-post.json",
+                                    "metadata": {
+                                        "headers": {}
+                                    }
+                                },
+                                "_response": {
+                                    "success": true,
+                                    "metadata": {
+                                        "statusCode": "200",
+                                        "headers": {
+                                            "Content-Type": ["application/json"],
+                                            "Transfer-Encoding": ["chunked"],
+                                            "Server": ["Jetty(9.2.24.v20180105)"]
+                                        }
+                                    }
+                                },
+                                "_result": {
+                                    "type": "POST"
+                                }
+                            },
+                            "http-put": {
+                                "_request": {
+                                    "type": "HTTP",
+                                    "source": "/service/mock/http-put.json",
+                                    "metadata": {
+                                        "headers": {
+                                            "content-type": ["application/json"]
+                                        }
+                                    }
+                                },
+                                "_response": {
+                                    "success": true,
+                                    "metadata": {
+                                        "statusCode": "200",
+                                        "headers": {
+                                            "Content-Type": ["application/json"],
+                                            "Transfer-Encoding": ["chunked"],
+                                            "Server": ["Jetty(9.2.24.v20180105)"]
+                                        }
+                                    }
+                                },
+                                "_result": {
+                                    "type": "PUT"
+                                }
+                            },
+                            "http-delete": {
+                                "_request": {
+                                    "type": "HTTP",
+                                    "source": "/service/mock/http-delete.json",
+                                    "metadata": {
+                                        "headers": {}
+                                    }
+                                },
+                                "_response": {
+                                    "success": true,
+                                    "metadata": {
+                                        "statusCode": "200",
+                                        "headers": {
+                                            "Content-Type": ["application/json"],
+                                            "Transfer-Encoding": ["chunked"],
+                                            "Server": ["Jetty(9.2.24.v20180105)"]
+                                        }
+                                    }
+                                },
+                                "_result": {
+                                    "type": "DELETE"
+                                }
+                            },
+                            "http-patch": {
+                                "_request": {
+                                    "type": "HTTP",
+                                    "source": "/service/mock/http-patch.json",
+                                    "metadata": {
+                                        "headers": {}
+                                    }
+                                },
+                                "_response": {
+                                    "success": true,
+                                    "metadata": {
+                                        "statusCode": "200",
+                                        "headers": {
+                                            "Content-Type": ["application/json"],
+                                            "Transfer-Encoding": ["chunked"],
+                                            "Server": ["Jetty(9.2.24.v20180105)"]
+                                        }
+                                    }
+                                },
+                                "_result": {
+                                    "type": "PATCH"
+                                }
+                            },
+                            "http-get": {
+                                "_request": {
+                                    "type": "HTTP",
+                                    "source": "/service/mock/http-get.json",
+                                    "metadata": {
+                                        "headers": {}
+                                    }
+                                },
+                                "_response": {
+                                    "success": true,
+                                    "metadata": {
+                                        "statusCode": "200",
+                                        "headers": {
+                                            "Content-Type": ["application/json"],
+                                            "Transfer-Encoding": ["chunked"],
+                                            "Server": ["Jetty(9.2.24.v20180105)"]
+                                        }
+                                    }
+                                },
+                                "_result": {
+                                    "status": "ok"
+                                }
+                            },
+                            "append-payload": {
+                                "_payload": {
+                                    "data": "appended payload"
+                                }
+                            }
+                        }
+                    },
+                    "graph": {
+                        "finished": 1591093201908,
+                        "id": "9c80612d-0665-4117-84fe-7bbe9d4b6876",
+                        "label": "composite",
+                        "on": {
+                            "_success": {
+                                "finished": 1591093201960,
+                                "id": "a33375e1-8167-4b99-ada4-6711709c89ec",
+                                "label": "get-with-cache",
+                                "on": {
+                                    "_success": {
+                                        "finished": 1591093201962,
+                                        "id": "203851a2-2d5b-47fd-8cfe-f37a7db0bd2a",
+                                        "label": "append-payload",
+                                        "on": {
+                                            "_success": {
+                                                "finished": 1591093201962,
+                                                "id": "c78c1e65-9e3f-43b8-ad45-dedeeeba439b",
+                                                "label": "replace-body",
+                                                "on": {
+                                                    "_success": {
+                                                        "finished": 1591093202072,
+                                                        "id": "b64e506c-19c0-40d1-bf5e-502443ff231c",
+                                                        "label": "te-hbs",
+                                                        "on": {},
+                                                        "operation": {
+                                                            "data": {
+                                                                "alias": "te-hbs",
+                                                                "actionFactory": "knot",
+                                                                "actionConfig": {
+                                                                    "address": "knotx.knot.te.handlebars",
+                                                                    "deliveryOptions": {
+                                                                        "sendTimeout": 3000
+                                                                    },
+                                                                    "logLevel": "error"
+                                                                }
+                                                            },
+                                                            "factory": "action"
+                                                        },
+                                                        "response": {
+                                                            "invocations": [],
+                                                            "transition": "_success"
+                                                        },
+                                                        "started": 1591093201963,
+                                                        "status": "SUCCESS",
+                                                        "subtasks": [],
+                                                        "type": "SINGLE"
+                                                    }
+                                                },
+                                                "operation": {
+                                                    "data": {
+                                                        "alias": "replace-body",
+                                                        "actionFactory": "inline-body",
+                                                        "actionConfig": {
+                                                            "body": "Replaced fragment body",
+                                                            "logLevel": "error"
+                                                        }
+                                                    },
+                                                    "factory": "action"
+                                                },
+                                                "response": {
+                                                    "invocations": [{
+                                                        "alias": "replace-body",
+                                                        "logs": {},
+                                                        "doActionLogs": []
+                                                    }],
+                                                    "transition": "_success"
+                                                },
+                                                "started": 1591093201962,
+                                                "status": "SUCCESS",
+                                                "subtasks": [],
+                                                "type": "SINGLE"
+                                            }
+                                        },
+                                        "operation": {
+                                            "data": {
+                                                "alias": "append-payload",
+                                                "actionFactory": "inline-payload",
+                                                "actionConfig": {
+                                                    "alias": "append-payload",
+                                                    "payload": {
+                                                        "_payload": {
+                                                            "data": "appended payload"
+                                                        }
+                                                    },
+                                                    "logLevel": "error"
+                                                }
+                                            },
+                                            "factory": "action"
+                                        },
+                                        "response": {
+                                            "invocations": [{
+                                                "alias": "append-payload",
+                                                "logs": {},
+                                                "doActionLogs": []
+                                            }],
+                                            "transition": "_success"
+                                        },
+                                        "started": 1591093201961,
+                                        "status": "SUCCESS",
+                                        "subtasks": [],
+                                        "type": "SINGLE"
+                                    }
+                                },
+                                "operation": {
+                                    "data": {
+                                        "alias": "get-with-cache",
+                                        "actionFactory": "in-memory-cache",
+                                        "actionConfig": {
+                                            "cache": {
+                                                "maximumSize": 1000,
+                                                "ttl": 1000
+                                            },
+                                            "cacheKey": "product-{param.id}",
+                                            "payloadKey": "product",
+                                            "logLevel": "error"
+                                        }
+                                    },
+                                    "factory": "action"
+                                },
+                                "response": {
+                                    "invocations": [{
+                                        "alias": "get-with-cache",
+                                        "logs": {
+                                            "cache_pass": {
+                                                "cache_key": "product-"
+                                            }
+                                        },
+                                        "doActionLogs": []
+                                    }],
+                                    "transition": "_success"
+                                },
+                                "started": 1591093201909,
+                                "status": "SUCCESS",
+                                "subtasks": [],
+                                "type": "SINGLE"
+                            }
+                        },
+                        "operation": {
+                            "data": {},
+                            "factory": "subtasks"
+                        },
+                        "response": {
+                            "invocations": [],
+                            "transition": "_success"
+                        },
+                        "started": 1591093201778,
+                        "status": "SUCCESS",
+                        "subtasks": [{
+                            "finished": 1591093201907,
+                            "id": "fdf55c75-3df1-410b-b256-cecb730f9db7",
+                            "label": "get-with-cb",
+                            "on": {},
+                            "operation": {
+                                "data": {
+                                    "alias": "get-with-cb",
+                                    "actionFactory": "cb",
+                                    "actionConfig": {
+                                        "circuitBreakerName": "get-cb",
+                                        "circuitBreakerOptions": {
+                                            "maxRetries": 3,
+                                            "timeout": 50
+                                        },
+                                        "logLevel": "error"
+                                    }
+                                },
+                                "factory": "action"
+                            },
+                            "response": {
+                                "invocations": [{
+                                    "alias": "get-with-cb",
+                                    "logs": {},
+                                    "doActionLogs": []
+                                }],
+                                "transition": "_success"
+                            },
+                            "started": 1591093201790,
+                            "status": "SUCCESS",
+                            "subtasks": [],
+                            "type": "SINGLE"
+                        }, {
+                            "finished": 1591093201869,
+                            "id": "0ed186c1-b780-4cca-a4f9-60b7eaad42af",
+                            "label": "http-post",
+                            "on": {},
+                            "operation": {
+                                "data": {
+                                    "alias": "http-post",
+                                    "actionFactory": "http",
+                                    "actionConfig": {
+                                        "endpointOptions": {
+                                            "allowedRequestHeaders": ["Content-Type"],
+                                            "body": "{\"password\": \"pazzword\"}",
+                                            "domain": "localhost",
+                                            "path": "/service/mock/http-post.json",
+                                            "port": 61184
+                                        },
+                                        "httpMethod": "post",
+                                        "logLevel": "error"
+                                    }
+                                },
+                                "factory": "action"
+                            },
+                            "response": {
+                                "invocations": [{
+                                    "alias": "http-post",
+                                    "logs": {},
+                                    "doActionLogs": []
+                                }],
+                                "transition": "_success"
+                            },
+                            "started": 1591093201833,
+                            "status": "SUCCESS",
+                            "subtasks": [],
+                            "type": "SINGLE"
+                        }, {
+                            "finished": 1591093201871,
+                            "id": "74b01d79-89d0-4850-87ba-f8b1f781b07c",
+                            "label": "http-put",
+                            "on": {},
+                            "operation": {
+                                "data": {
+                                    "alias": "http-put",
+                                    "actionFactory": "http",
+                                    "actionConfig": {
+                                        "endpointOptions": {
+                                            "allowedRequestHeaders": ["Content-Type"],
+                                            "bodyJson": {
+                                                "password": "pazzword"
+                                            },
+                                            "domain": "localhost",
+                                            "interpolateBody": true,
+                                            "path": "/service/mock/http-put.json",
+                                            "port": 61184
+                                        },
+                                        "httpMethod": "put",
+                                        "logLevel": "error"
+                                    }
+                                },
+                                "factory": "action"
+                            },
+                            "response": {
+                                "invocations": [{
+                                    "alias": "http-put",
+                                    "logs": {},
+                                    "doActionLogs": []
+                                }],
+                                "transition": "_success"
+                            },
+                            "started": 1591093201837,
+                            "status": "SUCCESS",
+                            "subtasks": [],
+                            "type": "SINGLE"
+                        }, {
+                            "finished": 1591093201872,
+                            "id": "2e0a5acb-f6d4-4940-af7c-2797c4e92c97",
+                            "label": "http-delete",
+                            "on": {},
+                            "operation": {
+                                "data": {
+                                    "alias": "http-delete",
+                                    "actionFactory": "http",
+                                    "actionConfig": {
+                                        "endpointOptions": {
+                                            "allowedRequestHeaders": ["Content-Type"],
+                                            "domain": "localhost",
+                                            "path": "/service/mock/http-delete.json",
+                                            "port": 61184
+                                        },
+                                        "httpMethod": "delete",
+                                        "logLevel": "error"
+                                    }
+                                },
+                                "factory": "action"
+                            },
+                            "response": {
+                                "invocations": [{
+                                    "alias": "http-delete",
+                                    "logs": {},
+                                    "doActionLogs": []
+                                }],
+                                "transition": "_success"
+                            },
+                            "started": 1591093201840,
+                            "status": "SUCCESS",
+                            "subtasks": [],
+                            "type": "SINGLE"
+                        }, {
+                            "finished": 1591093201863,
+                            "id": "c9266d59-d048-4021-a0d2-d98220115c21",
+                            "label": "http-head",
+                            "on": {},
+                            "operation": {
+                                "data": {
+                                    "alias": "http-head",
+                                    "actionFactory": "http",
+                                    "actionConfig": {
+                                        "endpointOptions": {
+                                            "allowedRequestHeaders": ["Content-Type"],
+                                            "domain": "localhost",
+                                            "path": "/service/mock/http-head.json",
+                                            "port": 61184
+                                        },
+                                        "httpMethod": "head",
+                                        "logLevel": "error"
+                                    }
+                                },
+                                "factory": "action"
+                            },
+                            "response": {
+                                "invocations": [{
+                                    "alias": "http-head",
+                                    "logs": {},
+                                    "doActionLogs": []
+                                }],
+                                "transition": "_success"
+                            },
+                            "started": 1591093201841,
+                            "status": "SUCCESS",
+                            "subtasks": [],
+                            "type": "SINGLE"
+                        }, {
+                            "finished": 1591093201873,
+                            "id": "25d21049-aa77-4b92-ae27-7bd272b2a01c",
+                            "label": "http-patch",
+                            "on": {},
+                            "operation": {
+                                "data": {
+                                    "alias": "http-patch",
+                                    "actionFactory": "http",
+                                    "actionConfig": {
+                                        "endpointOptions": {
+                                            "allowedRequestHeaders": ["Content-Type"],
+                                            "body": "{\"password\": \"pazzword\"}",
+                                            "domain": "localhost",
+                                            "path": "/service/mock/http-patch.json",
+                                            "port": 61184
+                                        },
+                                        "httpMethod": "patch",
+                                        "logLevel": "error"
+                                    }
+                                },
+                                "factory": "action"
+                            },
+                            "response": {
+                                "invocations": [{
+                                    "alias": "http-patch",
+                                    "logs": {},
+                                    "doActionLogs": []
+                                }],
+                                "transition": "_success"
+                            },
+                            "started": 1591093201841,
+                            "status": "SUCCESS",
+                            "subtasks": [],
+                            "type": "SINGLE"
+                        }],
+                        "type": "COMPOSITE"
+                    },
+                    "startTime": 1591093201778,
+                    "status": "SUCCESS"
+                }
+            </script>Replaced fragment body
+            <!-- data-knotx-id="6fca5f51-680e-4f97-90a6-3a3f4f8fb6f6" -->
+        </div>
+    </div>
+</body>
+
+</html>

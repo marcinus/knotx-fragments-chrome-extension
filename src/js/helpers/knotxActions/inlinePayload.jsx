@@ -16,12 +16,14 @@
 
 import React from 'react';
 import Raw from '../../components/Graphs/NodeInfo/displayOptions/raw/Raw';
+import { ICONS } from '../constants';
+
 
 export const inlinePayload = (obj) => {
   const condition = (obj.operation.factory === 'action' && obj.operation.data.actionFactory === 'inline-payload');
   if (!condition) return false;
 
-  const icon = '\ue90e';
+  const icon = ICONS.PAYLOAD;
 
   const unprocessed = obj.status === 'UNPROCESSED';
   const previewTemplate = unprocessed

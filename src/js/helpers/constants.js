@@ -27,6 +27,7 @@ export const ICONS = {
   PUT: '\ue910',
   DELETE: '\ue90b',
   CACHE: '\ue901',
+  PAYLOAD: '\ue90e',
 };
 
 export const ENTER_KEY_CODE = 13;

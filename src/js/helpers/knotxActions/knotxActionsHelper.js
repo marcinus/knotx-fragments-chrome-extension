@@ -15,13 +15,11 @@
  */
 
 import { http } from './http';
-import { cache } from './cache';
 import { inlinePayload } from './inlinePayload';
 import { defaultAction } from './defaulAction';
 
 const definedActions = [
   http,
-  cache,
   inlinePayload,
 ];
 
