@@ -34,24 +34,35 @@ describe('Graph component', () => {
   it('action detect function should choose and return http action obj', () => {
     expect(detectActionType(mock('action', 'http'))).toEqual({
       icon: ICONS.GET,
-      previewTemplate: expect.any(Function),
-      bodyTemplate: expect.any(Function),
+      templates: [
+        {
+          name: 'execution',
+          template: expect.any(Function),
+          default: true,
+        },
+        {
+          name: 'options',
+          template: expect.any(Function),
+          default: false,
+        },
+      ],
+      defaultTemplate: 'execution',
     });
   });
 
   it('action detect function should return default value for unrecognized action', () => {
     expect(detectActionType(mock('action', 'custom'))).toEqual({
       icon: '',
-      previewTemplate: expect.any(Function),
-      bodyTemplate: expect.any(Function),
+      templates: [],
+      defaultTemplate: 'raw',
     });
   });
 
   it('action detect function should return default value for node which has any action ', () => {
     expect(detectActionType({})).toEqual({
       icon: '',
-      previewTemplate: expect.any(Function),
-      bodyTemplate: expect.any(Function),
+      templates: [],
+      defaultTemplate: 'raw',
     });
   });
   it('action detect function should write  an error in console, if find more then one matching action', () => {
@@ -69,8 +80,19 @@ describe('Graph component', () => {
 
     expect(result).toEqual({
       icon: ICONS.GET,
-      previewTemplate: expect.any(Function),
-      bodyTemplate: expect.any(Function),
+      templates: [
+        {
+          name: 'execution',
+          template: expect.any(Function),
+          default: true,
+        },
+        {
+          name: 'options',
+          template: expect.any(Function),
+          default: false,
+        },
+      ],
+      defaultTemplate: 'execution',
     });
   });
 });

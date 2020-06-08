@@ -15,6 +15,15 @@
  */
 
 export const httpObjMock = {
+  operation: {
+    factory: 'action',
+    data: {
+      actionFactory: 'http',
+      actionConfig: {
+        logLevel: 'info',
+      },
+    },
+  },
   response: {
     invocations: [
       {

@@ -17,4 +17,5 @@
 export const defaultAction = () => ({
   icon: '',
   templates: [],
+  defaultTemplate: 'raw',
 });

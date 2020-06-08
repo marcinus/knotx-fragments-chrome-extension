@@ -21,7 +21,7 @@ import { mount } from 'enzyme';
 import { http } from './http';
 import { ICONS } from '../constants';
 import { httpObjMock } from './http.mock';
-import HttpPreview from '../../components/Graphs/NodeInfo/displayOptions/preview/http/HttpPreview';
+import HttpPreview from '../../components/Graphs/NodeInfo/displayOptions/http/HttpExecution';
 import Raw from '../../components/Graphs/NodeInfo/displayOptions/raw/Raw';
 
 
@@ -46,103 +46,172 @@ describe('http action', () => {
     const httpObj = http(mock('action', 'http', 'custom'));
 
     expect(httpObj).toEqual({
-      previewTemplate: expect.any(Function),
-      bodyTemplate: expect.any(Function),
       icon: ICONS.HTTP,
+      templates: [
+        {
+          name: 'execution',
+          template: expect.any(Function),
+          default: true,
+        },
+        {
+          name: 'options',
+          template: expect.any(Function),
+          default: false,
+        },
+      ],
+      defaultTemplate: 'execution',
     });
 
-    const previewTemplateWrapper = mount(<HttpPreview nodeJson={httpObjMock} />);
-    expect(previewTemplateWrapper.matchesElement(httpObj.previewTemplate(httpObjMock))).toEqual(true);
+    const executionTemplateWrapper = mount(<HttpPreview nodeJson={httpObjMock} />);
+    expect(executionTemplateWrapper.matchesElement(httpObj.templates[0].template(httpObjMock))).toEqual(true);
 
-    const bodyTemplateWrapper = mount(<Raw nodeJson={httpObjMock.response.invocations[0].logs.responseBody} />);
-    expect(bodyTemplateWrapper.matchesElement(httpObj.bodyTemplate(httpObjMock))).toEqual(true);
+    const optionsTemplateWrapper = mount(<Raw nodeJson={httpObjMock.operation.data.actionConfig} />);
+    expect(optionsTemplateWrapper.matchesElement(httpObj.templates[1].template(httpObjMock))).toEqual(true);
   });
   it('Set get method if httpMethod prop is undefined', () => {
     const httpObj = http(mock('action', 'http', undefined));
 
     expect(httpObj).toEqual({
       icon: ICONS.GET,
-      previewTemplate: expect.any(Function),
-      bodyTemplate: expect.any(Function),
+      templates: [
+        {
+          name: 'execution',
+          template: expect.any(Function),
+          default: true,
+        },
+        {
+          name: 'options',
+          template: expect.any(Function),
+          default: false,
+        },
+      ],
+      defaultTemplate: 'execution',
     });
 
-    const previewTemplateWrapper = mount(<HttpPreview nodeJson={httpObjMock} />);
-    expect(previewTemplateWrapper.matchesElement(httpObj.previewTemplate(httpObjMock))).toEqual(true);
+    const executionTemplateWrapper = mount(<HttpPreview nodeJson={httpObjMock} />);
+    expect(executionTemplateWrapper.matchesElement(httpObj.templates[0].template(httpObjMock))).toEqual(true);
 
-    const bodyTemplateWrapper = mount(<Raw nodeJson={httpObjMock.response.invocations[0].logs.responseBody} />);
-    expect(bodyTemplateWrapper.matchesElement(httpObj.bodyTemplate(httpObjMock))).toEqual(true);
+    const optionsTemplateWrapper = mount(<Raw nodeJson={httpObjMock.operation.data.actionConfig} />);
+    expect(optionsTemplateWrapper.matchesElement(httpObj.templates[1].template(httpObjMock))).toEqual(true);
   });
   it('Return correctly object for http get action', () => {
     const httpObj = http(mock('action', 'http', 'get'));
 
     expect(httpObj).toEqual({
       icon: ICONS.GET,
-      previewTemplate: expect.any(Function),
-      bodyTemplate: expect.any(Function),
+      templates: [
+        {
+          name: 'execution',
+          template: expect.any(Function),
+          default: true,
+        },
+        {
+          name: 'options',
+          template: expect.any(Function),
+          default: false,
+        },
+      ],
+      defaultTemplate: 'execution',
     });
 
-    const previewTemplateWrapper = mount(<HttpPreview nodeJson={httpObjMock} />);
-    expect(previewTemplateWrapper.matchesElement(httpObj.previewTemplate(httpObjMock))).toEqual(true);
+    const executionTemplateWrapper = mount(<HttpPreview nodeJson={httpObjMock} />);
+    expect(executionTemplateWrapper.matchesElement(httpObj.templates[0].template(httpObjMock))).toEqual(true);
 
-    const bodyTemplateWrapper = mount(<Raw nodeJson={httpObjMock.response.invocations[0].logs.responseBody} />);
-    expect(bodyTemplateWrapper.matchesElement(httpObj.bodyTemplate(httpObjMock))).toEqual(true);
+    const optionsTemplateWrapper = mount(<Raw nodeJson={httpObjMock.operation.data.actionConfig} />);
+    expect(optionsTemplateWrapper.matchesElement(httpObj.templates[1].template(httpObjMock))).toEqual(true);
   });
   it('Return correctly object for http post action', () => {
     const httpObj = http(mock('action', 'http', 'post'));
 
     expect(httpObj).toEqual({
       icon: ICONS.POST,
-      previewTemplate: expect.any(Function),
-      bodyTemplate: expect.any(Function),
+      templates: [
+        {
+          name: 'execution',
+          template: expect.any(Function),
+          default: true,
+        },
+        {
+          name: 'options',
+          template: expect.any(Function),
+          default: false,
+        },
+      ],
+      defaultTemplate: 'execution',
     });
 
-    const previewTemplateWrapper = mount(<HttpPreview nodeJson={httpObjMock} />);
-    expect(previewTemplateWrapper.matchesElement(httpObj.previewTemplate(httpObjMock))).toEqual(true);
+    const executionTemplateWrapper = mount(<HttpPreview nodeJson={httpObjMock} />);
+    expect(executionTemplateWrapper.matchesElement(httpObj.templates[0].template(httpObjMock))).toEqual(true);
 
-    const bodyTemplateWrapper = mount(<Raw nodeJson={httpObjMock.response.invocations[0].logs.responseBody} />);
-    expect(bodyTemplateWrapper.matchesElement(httpObj.bodyTemplate(httpObjMock))).toEqual(true);
+    const optionsTemplateWrapper = mount(<Raw nodeJson={httpObjMock.operation.data.actionConfig} />);
+    expect(optionsTemplateWrapper.matchesElement(httpObj.templates[1].template(httpObjMock))).toEqual(true);
   });
   it('Return correctly object for http put action', () => {
-    const httpObj = http(mock('action', 'http', 'put'))
+    const httpObj = http(mock('action', 'http', 'put'));
     expect(httpObj).toEqual({
       icon: ICONS.PUT,
-      previewTemplate: expect.any(Function),
-      bodyTemplate: expect.any(Function),
+      templates: [
+        {
+          name: 'execution',
+          template: expect.any(Function),
+          default: true,
+        },
+        {
+          name: 'options',
+          template: expect.any(Function),
+          default: false,
+        },
+      ],
+      defaultTemplate: 'execution',
     });
 
-    const previewTemplateWrapper = mount(<HttpPreview nodeJson={httpObjMock} />);
-    expect(previewTemplateWrapper.matchesElement(httpObj.previewTemplate(httpObjMock))).toEqual(true);
+    const executionTemplateWrapper = mount(<HttpPreview nodeJson={httpObjMock} />);
+    expect(executionTemplateWrapper.matchesElement(httpObj.templates[0].template(httpObjMock))).toEqual(true);
 
-    const bodyTemplateWrapper = mount(<Raw nodeJson={httpObjMock.response.invocations[0].logs.responseBody} />);
-    expect(bodyTemplateWrapper.matchesElement(httpObj.bodyTemplate(httpObjMock))).toEqual(true);
+    const optionsTemplateWrapper = mount(<Raw nodeJson={httpObjMock.operation.data.actionConfig} />);
+    expect(optionsTemplateWrapper.matchesElement(httpObj.templates[1].template(httpObjMock))).toEqual(true);
   });
   it('Return correctly object for http delete action', () => {
-    const httpObj = http(mock('action', 'http', 'delete'))
+    const httpObj = http(mock('action', 'http', 'delete'));
     expect(httpObj).toEqual({
-      previewTemplate: expect.any(Function),
-      bodyTemplate: expect.any(Function),
+      templates: [
+        {
+          name: 'execution',
+          template: expect.any(Function),
+          default: true,
+        },
+        {
+          name: 'options',
+          template: expect.any(Function),
+          default: false,
+        },
+      ],
+      defaultTemplate: 'execution',
       icon: ICONS.DELETE,
     });
 
-    const previewTemplateWrapper = mount(<HttpPreview nodeJson={httpObjMock} />);
-    expect(previewTemplateWrapper.matchesElement(httpObj.previewTemplate(httpObjMock))).toEqual(true);
+    const executionTemplateWrapper = mount(<HttpPreview nodeJson={httpObjMock} />);
+    expect(executionTemplateWrapper.matchesElement(httpObj.templates[0].template(httpObjMock))).toEqual(true);
 
-    const bodyTemplateWrapper = mount(<Raw nodeJson={httpObjMock.response.invocations[0].logs.responseBody} />);
-    expect(bodyTemplateWrapper.matchesElement(httpObj.bodyTemplate(httpObjMock))).toEqual(true);
+    const optionsTemplateWrapper = mount(<Raw nodeJson={httpObjMock.operation.data.actionConfig} />);
+    expect(optionsTemplateWrapper.matchesElement(httpObj.templates[1].template(httpObjMock))).toEqual(true);
   });
 
   it('Return correctly object for unprocessed nodes.', () => {
     const httpObj = http(mock('action', 'http', 'delete', 'UNPROCESSED'));
     expect(httpObj).toEqual({
-      previewTemplate: expect.any(Function),
-      bodyTemplate: expect.any(Function),
+      templates: [
+        {
+          name: 'options',
+          template: expect.any(Function),
+          default: true,
+        },
+      ],
       icon: ICONS.DELETE,
+      defaultTemplate: 'options',
     });
 
-    const previewTemplateWrapper = '';
-    expect(httpObj.previewTemplate(httpObjMock)).toEqual(previewTemplateWrapper);
-
-    const bodyTemplateWrapper = '';
-    expect(httpObj.bodyTemplate(httpObjMock)).toEqual(bodyTemplateWrapper);
+    const optionsTemplateWrapper = mount(<Raw nodeJson={httpObjMock.operation.data.actionConfig} />);
+    expect(optionsTemplateWrapper.matchesElement(httpObj.templates[0].template(httpObjMock))).toEqual(true);
   });
 });
