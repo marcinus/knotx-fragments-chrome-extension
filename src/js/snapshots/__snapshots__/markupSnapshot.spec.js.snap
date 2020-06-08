@@ -110,8 +110,8 @@ exports[`Storyshots Logic Components | MainPanel.Graph Graph 1`] = `
       className="graphstyle__GraphAdditionalPanelContent-q2z1zw-12 heAnFu"
     >
       <div
-        className="nodeInfostyled__NodeInfoContainer-jone1x-0 hmrLkO"
-        display={false}
+        className="nodeInfostyled__NodeInfoContainer-jone1x-0 hoRVhZ"
+        display="true"
         id="raw-container"
       >
         <div
@@ -119,56 +119,14 @@ exports[`Storyshots Logic Components | MainPanel.Graph Graph 1`] = `
         />
       </div>
       <div
-        className="nodeInfostyled__NodeInfoContainer-jone1x-0 hoRVhZ"
-        display={true}
-        id="preview-container"
-      >
-        
-      </div>
-      <div
-        className="nodeInfostyled__NodeInfoContainer-jone1x-0 hmrLkO"
-        display={false}
-        id="payload-container"
-      >
-        
-      </div>
-      <div
-        className="nodeInfostyled__NodeInfoContainer-jone1x-0 hmrLkO"
-        display={false}
-        id="body-container"
-      >
-        
-      </div>
-      <div
         className="nodeInfostyled__NodeInfoOptionsBar-jone1x-1 bWMUdw"
       >
         <button
-          className="nodeInfostyled__NodeInfoOption-jone1x-2 gEFcIA"
+          className="nodeInfostyled__NodeInfoOption-jone1x-2 cGSFpH"
           onClick={[Function]}
           type="button"
         >
           RAW
-        </button>
-        <button
-          className="nodeInfostyled__NodeInfoOption-jone1x-2 kTCDsS"
-          onClick={[Function]}
-          type="button"
-        >
-          PREVIEW
-        </button>
-        <button
-          className="nodeInfostyled__NodeInfoOption-jone1x-2 gEFcIA"
-          onClick={[Function]}
-          type="button"
-        >
-          PAYLOAD
-        </button>
-        <button
-          className="nodeInfostyled__NodeInfoOption-jone1x-2 gEFcIA"
-          onClick={[Function]}
-          type="button"
-        >
-          BODY
         </button>
       </div>
     </div>
@@ -715,8 +673,57 @@ exports[`Storyshots Logic Components | MainPanel.Graph.Legend Legend 1`] = `
 exports[`Storyshots Logic Components | MainPanel.Graph.NodeInfo NodeInfo 1`] = `
 Array [
   <div
+    className="nodeInfostyled__NodeInfoContainer-jone1x-0 hoRVhZ"
+    display="true"
+    id="execution"
+  >
+    <div
+      className="httpExecutionstyled__HttpExecutionWrapper-sc-1x3eob-0 hJuVdR"
+    >
+      <div
+        className="httpExecutionstyled__LoopBar-sc-1x3eob-4 dprQYV"
+      >
+        <button
+          onClick={[Function]}
+          type="button"
+        >
+          1
+        </button>
+      </div>
+      <div
+        className="httpExecutionstyled__ExecutionContainer-sc-1x3eob-1 iKVLMX"
+      >
+        <div
+          className="httpExecutionstyled__RequestContainer-sc-1x3eob-2 jpcqwZ"
+        >
+          <h2>
+            Request
+          </h2>
+          <div />
+        </div>
+        <div
+          className="httpExecutionstyled__ResponseContainer-sc-1x3eob-3 xByKp"
+        >
+          <h2>
+            Response
+          </h2>
+          <div />
+        </div>
+      </div>
+    </div>
+  </div>,
+  <div
     className="nodeInfostyled__NodeInfoContainer-jone1x-0 hmrLkO"
-    display={false}
+    display="false"
+    id="options"
+  >
+    <div
+      className="rawstyled__RawContainer-spwng0-0 fAARLc"
+    />
+  </div>,
+  <div
+    className="nodeInfostyled__NodeInfoContainer-jone1x-0 hmrLkO"
+    display="false"
     id="raw-container"
   >
     <div
@@ -724,56 +731,28 @@ Array [
     />
   </div>,
   <div
-    className="nodeInfostyled__NodeInfoContainer-jone1x-0 hoRVhZ"
-    display={true}
-    id="preview-container"
-  >
-    
-  </div>,
-  <div
-    className="nodeInfostyled__NodeInfoContainer-jone1x-0 hmrLkO"
-    display={false}
-    id="payload-container"
-  >
-    
-  </div>,
-  <div
-    className="nodeInfostyled__NodeInfoContainer-jone1x-0 hmrLkO"
-    display={false}
-    id="body-container"
-  >
-    
-  </div>,
-  <div
     className="nodeInfostyled__NodeInfoOptionsBar-jone1x-1 bWMUdw"
   >
     <button
-      className="nodeInfostyled__NodeInfoOption-jone1x-2 gEFcIA"
+      className="nodeInfostyled__NodeInfoOption-jone1x-2 cGSFpH"
+      onClick={[Function]}
+      type="button"
+    >
+      EXECUTION
+    </button>
+    <button
+      className="nodeInfostyled__NodeInfoOption-jone1x-2 YkSEd"
+      onClick={[Function]}
+      type="button"
+    >
+      OPTIONS
+    </button>
+    <button
+      className="nodeInfostyled__NodeInfoOption-jone1x-2 YkSEd"
       onClick={[Function]}
       type="button"
     >
       RAW
-    </button>
-    <button
-      className="nodeInfostyled__NodeInfoOption-jone1x-2 kTCDsS"
-      onClick={[Function]}
-      type="button"
-    >
-      PREVIEW
-    </button>
-    <button
-      className="nodeInfostyled__NodeInfoOption-jone1x-2 gEFcIA"
-      onClick={[Function]}
-      type="button"
-    >
-      PAYLOAD
-    </button>
-    <button
-      className="nodeInfostyled__NodeInfoOption-jone1x-2 gEFcIA"
-      onClick={[Function]}
-      type="button"
-    >
-      BODY
     </button>
   </div>,
 ]

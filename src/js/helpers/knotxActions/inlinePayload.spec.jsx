@@ -40,22 +40,27 @@ describe('inline-payload action', () => {
   it('Return correctly object if node is unprocessed', () => {
     const inlinePayloadObj = inlinePayload(mock('action', 'inline-payload', 'UNPROCESSED'));
     expect(inlinePayloadObj).toEqual({
-      previewTemplate: expect.any(Function),
+      templates: [],
       icon: ICONS.PAYLOAD,
+      defaultTemplate: 'raw',
     });
-
-    const previewTemplateWrapper = '';
-    expect(inlinePayloadObj.previewTemplate(inlinePayloadObjMock)).toEqual(previewTemplateWrapper);
   });
 
   it('Return correctly object for payload action', () => {
     const inlinePayloadObj = inlinePayload(mock('action', 'inline-payload'));
     expect(inlinePayloadObj).toEqual({
-      previewTemplate: expect.any(Function),
+      templates: [
+        {
+          name: 'execution',
+          template: expect.any(Function),
+          default: true,
+        },
+      ],
       icon: ICONS.PAYLOAD,
+      defaultTemplate: 'execution',
     });
 
     const previewTemplateWrapper = mount(<Raw nodeJson={inlinePayloadObjMock.response.invocations[0].logs.value} />);
-    expect(previewTemplateWrapper.matchesElement(inlinePayloadObj.previewTemplate(inlinePayloadObjMock))).toEqual(true);
+    expect(previewTemplateWrapper.matchesElement(inlinePayloadObj.templates[0].template(inlinePayloadObjMock))).toEqual(true);
   });
 });
