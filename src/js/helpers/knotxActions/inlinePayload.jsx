@@ -27,15 +27,28 @@ export const inlinePayload = (logObj) => {
 
   const unprocessed = logObj.status === 'UNPROCESSED';
   const previewTemplate = unprocessed
-    ? () => ''
+    ? false
     : (nodeJson) => {
       const invocationsLength = nodeJson.response.invocations.length;
       const info = nodeJson.response.invocations[invocationsLength - 1].logs.value;
       return (<Raw nodeJson={info} />);
     };
 
+  const templates = [
+    {
+      name: 'execution',
+      template: previewTemplate,
+      default: true,
+    },
+  ].filter((template) => template.template !== false);
+
+  const defaultTemplate = unprocessed
+    ? 'raw'
+    : 'execution';
+
   return {
     icon,
-    previewTemplate,
+    templates,
+    defaultTemplate,
   };
 };

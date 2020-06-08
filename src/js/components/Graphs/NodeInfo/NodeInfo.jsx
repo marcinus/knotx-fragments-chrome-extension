@@ -22,101 +22,71 @@ import { detectActionType } from '../../../helpers/knotxActions/knotxActionsHelp
 
 
 const NodeInfo = ({ nodeJson }) => {
-  const displayOptions = {
-    raw: 'raw',
-    preview: 'preview',
-    payload: 'payload',
-    body: 'body',
-  };
-
-  const [activeOption, setActiveOption] = useState(displayOptions.preview);
-
-  const setDisplayOptionHandler = (displayName) => {
-    switch (displayName) {
-      case displayOptions.preview:
-        setActiveOption(displayOptions.preview);
-        break;
-      case displayOptions.payload:
-        setActiveOption(displayOptions.payload);
-        break;
-      case displayOptions.body:
-        setActiveOption(displayOptions.body);
-        break;
-      default:
-        setActiveOption(displayOptions.raw);
-        break;
-    }
-  };
-
-  useEffect(() => {
-    setDisplayOptionHandler(displayOptions.preview);
-  }, [nodeJson]);
-
-
   const actionObj = detectActionType(nodeJson);
 
-  return (
-    <>
+  const [activeOption, setActiveOption] = useState(actionObj.defaultTemplate);
+
+  useEffect(() => {
+    setActiveOption(actionObj.defaultTemplate);
+  }, [nodeJson]);
+
+  const createViewTabs = (templatesList) => {
+    const rawTemplate = (
       <NodeInfoContainer
         id="raw-container"
-        display={activeOption === displayOptions.raw}
+        display={activeOption === 'raw' ? 'true' : 'false'}
       >
         <Raw nodeJson={nodeJson} />
       </NodeInfoContainer>
-      <NodeInfoContainer
-        id="preview-container"
-        display={activeOption === displayOptions.preview}
-      >
-        {actionObj.previewTemplate
-          ? actionObj.previewTemplate(nodeJson)
-          : '' }
-      </NodeInfoContainer>
-      <NodeInfoContainer
-        id="payload-container"
-        display={activeOption === displayOptions.payload}
-      >
-        {actionObj.payloadTemplate
-          ? actionObj.payloadTemplate(nodeJson)
-          : '' }
-      </NodeInfoContainer>
-      <NodeInfoContainer
-        id="body-container"
-        display={activeOption === displayOptions.body}
-      >
-        {actionObj.bodyTemplate
-          ? actionObj.bodyTemplate(nodeJson)
-          : '' }
-      </NodeInfoContainer>
+    );
 
+    const rawDisplayOptionBtn = (
+      <NodeInfoOption
+        onClick={() => setActiveOption('raw')}
+        type="button"
+        active={activeOption === 'raw'}
+      >
+      RAW
+      </NodeInfoOption>
+    );
+
+    const viewContainers = templatesList.map((template) => (
+      <NodeInfoContainer
+        key={template.name}
+        id={template.name}
+        display={activeOption === template.name ? 'true' : 'false'}
+      >
+        {template.template(nodeJson)}
+      </NodeInfoContainer>
+    ))
+      .concat([rawTemplate]);
+
+    const displayOptionButtons = templatesList.map((template) => (
+      <NodeInfoOption
+        key={template.name}
+        type="button"
+        active={activeOption === template.name}
+        onClick={() => setActiveOption(template.name)}
+      >
+        {template.name.toUpperCase()}
+      </NodeInfoOption>
+    ))
+      .concat([rawDisplayOptionBtn]);
+
+    return {
+      viewContainers,
+      displayOptionButtons,
+    };
+  };
+
+
+  const viewTabs = createViewTabs(actionObj.templates);
+
+  return (
+    <>
+      { viewTabs.viewContainers }
       <NodeInfoOptionsBar>
-        <NodeInfoOption
-          onClick={() => setDisplayOptionHandler('raw')}
-          type="button"
-          active={activeOption === 'raw'}
-        >
-          RAW
-        </NodeInfoOption>
-        <NodeInfoOption
-          type="button"
-          active={activeOption === 'preview'}
-          onClick={() => setDisplayOptionHandler('preview')}
-        >
-          PREVIEW
-        </NodeInfoOption>
-        <NodeInfoOption
-          type="button"
-          active={activeOption === 'payload'}
-          onClick={() => setDisplayOptionHandler('payload')}
-        >
-          PAYLOAD
-        </NodeInfoOption>
-        <NodeInfoOption
-          type="button"
-          onClick={() => setDisplayOptionHandler('body')}
-          active={activeOption === 'body'}
-        >
-          BODY
-        </NodeInfoOption>
+        { viewTabs.displayOptionButtons }
       </NodeInfoOptionsBar>
     </>
   );

@@ -20,7 +20,7 @@ export const NodeInfoContainer = styled.div`
     padding: 5px;
     height: calc(100% - 25px);
     box-sizing: border-box;
-    display:${({ display }) => (display ? 'inherit' : 'none')};
+    display:${({ display }) => (display === 'true' ? 'inherit' : 'none')};
 `;
 
 export const NodeInfoOptionsBar = styled.div`
@@ -33,7 +33,7 @@ export const NodeInfoOptionsBar = styled.div`
 
 export const NodeInfoOption = styled.button`
     border: 0;
-    width: 80px;
+    width: 100px;
     background-color: ${({ theme }) => theme.ADDITIONAL_PANEL_HEADER_BG};
     font-weight: ${({ active }) => (active ? 'bold' : 'normal')};;
     color: ${({ theme }) => theme.TEXT};

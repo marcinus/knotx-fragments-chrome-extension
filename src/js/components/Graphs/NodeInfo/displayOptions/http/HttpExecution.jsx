@@ -18,36 +18,38 @@ import React, { useLayoutEffect, useState, useRef } from 'react';
 import PropTypes from 'prop-types';
 import renderjson from 'renderjson';
 import {
-  PreviewContainer,
+  ExecutionContainer,
   RequestContainer,
   ResponseContainer,
   LoopBar,
-  HttpPreviewWrapper,
-} from './httpPreview.styled';
+  HttpExecutionWrapper,
+} from './httpExecution.styled';
 
 renderjson.set_icons('+', '-');
 renderjson.set_show_to_level(1);
 
-const HttpPreview = ({ nodeJson }) => {
+const HttpExecution = ({ nodeJson }) => {
   const request = useRef(null);
   const response = useRef(null);
 
   const [loopIndex, setLoopIndex] = useState(0);
   const [requestInfo, setRequestInfo] = useState(nodeJson.response.invocations[0].logs.request);
   const [responseInfo, setResponseInfo] = useState(nodeJson.response.invocations[0].logs.response);
+  const [responseBody, setResponseBody] = useState(nodeJson.response.invocations[0].logs.responseBody);
 
 
   const setInfo = (index) => {
     setLoopIndex(index);
     setRequestInfo(nodeJson.response.invocations[loopIndex].logs.request);
     setResponseInfo(nodeJson.response.invocations[loopIndex].logs.response);
+    setResponseBody(nodeJson.response.invocations[loopIndex].logs.responseBody);
   };
 
   useLayoutEffect(() => {
     request.current.innerHTML = '';
     request.current.appendChild(renderjson(requestInfo));
     response.current.innerHTML = '';
-    response.current.appendChild(renderjson(responseInfo));
+    response.current.appendChild(renderjson({ respone: responseInfo, responseBody }));
   }, [nodeJson]);
 
   const createInvocationButtons = () => {
@@ -62,11 +64,11 @@ const HttpPreview = ({ nodeJson }) => {
   };
 
   return (
-    <HttpPreviewWrapper>
+    <HttpExecutionWrapper>
       <LoopBar>
         {createInvocationButtons()}
       </LoopBar>
-      <PreviewContainer>
+      <ExecutionContainer>
         <RequestContainer>
           <h2>Request</h2>
           <div ref={request} />
@@ -75,17 +77,17 @@ const HttpPreview = ({ nodeJson }) => {
           <h2>Response</h2>
           <div ref={response} />
         </ResponseContainer>
-      </PreviewContainer>
-    </HttpPreviewWrapper>
+      </ExecutionContainer>
+    </HttpExecutionWrapper>
   );
 };
 
-HttpPreview.defaultProps = {
+HttpExecution.defaultProps = {
   nodeJson: null,
 };
 
-HttpPreview.propTypes = {
+HttpExecution.propTypes = {
   nodeJson: PropTypes.instanceOf(Object),
 };
 
-export default HttpPreview;
+export default HttpExecution;

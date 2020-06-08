@@ -17,14 +17,14 @@
 import styled from 'styled-components';
 
 
-export const HttpPreviewWrapper = styled.div`
+export const HttpExecutionWrapper = styled.div`
     height: 100%;
     width: 100%;
     display: flex;
     flex-direction: column;
 `;
 
-export const PreviewContainer = styled.div`
+export const ExecutionContainer = styled.div`
     height: calc(100% - 20px);
     width: 100%;
     display: flex;

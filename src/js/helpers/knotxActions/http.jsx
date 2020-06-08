@@ -16,7 +16,7 @@
 
 import React from 'react';
 import { ICONS } from '../constants';
-import HttpPreview from '../../components/Graphs/NodeInfo/displayOptions/preview/http/HttpPreview';
+import HttpExecution from '../../components/Graphs/NodeInfo/displayOptions/http/HttpExecution';
 import Raw from '../../components/Graphs/NodeInfo/displayOptions/raw/Raw';
 
 const getIcon = (method) => {
@@ -45,23 +45,36 @@ export const http = (logObj) => {
   const icon = getIcon(method);
 
   const unprocessed = logObj.status === 'UNPROCESSED';
-  const previewTemplate = unprocessed
-    ? () => ''
-    : (nodeJson) => (<HttpPreview nodeJson={nodeJson} />);
+  const executionTemplate = unprocessed
+    ? false
+    : (nodeJson) => (<HttpExecution nodeJson={nodeJson} />);
 
-  const bodyTemplate = unprocessed
-    ? () => ''
-    : (nodeJson) => {
-      const invocationsLength = nodeJson.response.invocations.length;
-      const info = nodeJson.response.invocations[invocationsLength - 1].logs.responseBody;
+  const optionTemplate = (nodeJson) => {
+    const info = nodeJson.operation.data.actionConfig;
 
-      return (<Raw nodeJson={info} />);
-    };
+    return (<Raw nodeJson={info} />);
+  };
 
+  const templates = [
+    {
+      name: 'execution',
+      template: executionTemplate,
+      default: true,
+    },
+    {
+      name: 'options',
+      template: optionTemplate,
+      default: unprocessed,
+    },
+  ].filter((template) => template.template !== false);
+
+  const defaultTemplate = unprocessed
+    ? 'options'
+    : 'execution';
 
   return {
     icon,
-    previewTemplate,
-    bodyTemplate,
+    templates,
+    defaultTemplate,
   };
 };
