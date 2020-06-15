@@ -17,11 +17,25 @@
 import { findFragmentsInContent } from '../helpers/nodes/nodesHelper';
 import { status } from '../helpers/constants';
 
-window.onload = () => {
-  chrome.runtime.sendMessage({ fragmentsData: findFragmentsInContent() }, (response) => {
-    if (response.status === status.succes) {
-      // eslint-disable-next-line no-console
-      console.log(response.msg);
-    }
-  });
+window.onload = async () => {
+  if (document.contentType === 'application/json') {
+    const url = window.location.href;
+    const data = await fetch(url)
+      .then((res) => res.json());
+
+    // eslint-disable-next-line no-underscore-dangle
+    chrome.runtime.sendMessage({ fragmentsData: [{ debug: data._knotx_fragment, nodes: [] }] }, (response) => {
+      if (response.status === status.succes) {
+        // eslint-disable-next-line no-console
+        console.log(response.msg);
+      }
+    });
+  } else {
+    chrome.runtime.sendMessage({ fragmentsData: findFragmentsInContent() }, (response) => {
+      if (response.status === status.succes) {
+        // eslint-disable-next-line no-console
+        console.log(response.msg);
+      }
+    });
+  }
 };
