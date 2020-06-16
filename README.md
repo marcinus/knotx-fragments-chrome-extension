@@ -18,7 +18,7 @@ See the main benefits:
 | - Easier debugging.​ <br> - New developers can quickly understand the backend data flow. <br>​ - Developers can easier identify the bug root cause (service/backend/frontend layer).​ <br> - Tool can be helpful during QA demo sessions.​ |  - Easier to analyse weak points in the backend logic​ <br> - Enable inspecting for root causes of page rendering performance issues | - Business can easily analyse/verify the business logic implementation <br> - Visualization can be used in always up-to-date documentation.​ |
 
 ## How to use?
-We are going to publish the extension on the [Chrome Web Store](https://chrome.google.com/webstore) 
+We are going to publish the extension on the [Chrome Web Store](https://chrome.google.com/webstore)
 platform. The acceptance process will take some time. In meanwhile, please follow the instructions below:
 - Download the extension from [GitHub releases](https://github.com/Knotx/knotx-fragments-chrome-extension/releases),
 the latest version is available [here](https://github.com/Knotx/knotx-fragments-chrome-extension/releases/download/2.2.0/knotx-chrome-extension-2.2.0.zip).
@@ -93,6 +93,9 @@ There are two parts of the debug information:
 - The data that was part of the Knot.x snippet is surrounded by special comments with auto-generated IDs. This is mainly used by the tool to provide highlighting functionality.
 - The script tag with a JSON inside precedes the fragment content.  All important data is stored here. It mainly contains information about the processing of the fragment nodes: which nodes were triggered, what transition they activated, how much time they took etc.
 
+### JSON parsing.
+Instead of html document, you can get json file. Our extension provide recognizing functionality, to support this type of data. In csase of json our extension wok exactly the same like in case of html file from user's point of view.
+
 ### HTML parsing
 
 The chrome extension uses 3 parsers to read the fragment data in HTML.
@@ -133,6 +136,9 @@ It then:
 - finds all top-level nodes in between (comments' siblings),
 - reads debug data from the first one (which is always a script tag with debug data),
 - and transforms the data into the above form
+
+##### JSON case
+In case of json file, our extension doesn't use this parser. Instead of this, we fetch data from current website, and pass them to Grph parser.
 
 #### Graph parser
 
@@ -321,12 +327,12 @@ When tests are executed, then we generate the report (test-report.xml) file in t
 3. run command to fire snapshot tests: `yarn run snapshot`
 
 ### Snapshots
-We use 2 kinds of snapshot tests: 
-- markup 
-- visual (image) 
+We use 2 kinds of snapshot tests:
+- markup
+- visual (image)
 
-Both of them are implemented using [storybook](#components). You can find the config and diff output 
-in `src/js/snapshots/`. To add new or update patterns (images or HTML markups) you have to remove old 
+Both of them are implemented using [storybook](#components). You can find the config and diff output
+in `src/js/snapshots/`. To add new or update patterns (images or HTML markups) you have to remove old
 snapshots and create new by:
 - `yarn run snapshot` (in case of image snapshots)
 - `yarn run test` (in case of markup snapshots)
@@ -426,8 +432,8 @@ The example below presents how data is stored in Redux:
 The pageData entry is created on page load and destroyed when we close the tab. If the page does not contain Knot.x fragments, fragments property is empty.
 
 ## Release
-The application version is configured in `/package.json` file. Please note that the master branch 
-should contain SNAPSHOT version. 
+The application version is configured in `/package.json` file. Please note that the master branch
+should contain SNAPSHOT version.
 
 Executing scripts below:
 ```shell script
@@ -435,6 +441,6 @@ yarn run dev
 yarn release minor
 ```
 
-we produce the ZIP file in `./build` containing all required distribution files. In the `./manifest.json` file 
+we produce the ZIP file in `./build` containing all required distribution files. In the `./manifest.json` file
 there is the released version.
 
