@@ -47,7 +47,7 @@ module.exports = {
       statements: 80,
     },
   },
-  setupFilesAfterEnv: ['jest-extended', './jest.setup.js'],
+  setupFilesAfterEnv: ['jest-extended', 'jest-webextension-mock', './jest.setup.js'],
   moduleNameMapper: {
     '\\.css$': 'identity-obj-proxy',
   },

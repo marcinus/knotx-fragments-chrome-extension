@@ -68,6 +68,7 @@
     "jest-image-snapshot": "^3.0.1",
     "jest-junit-reporter": "^1.1.0",
     "jest-puppeteer": "^4.4.0",
+    "jest-webextension-mock": "^3.6.0",
     "puppeteer": "^5.2.1",
     "react-test-renderer": "^16.13.1",
     "semver": "^7.1.2",
