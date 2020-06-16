@@ -17,8 +17,9 @@
 import { findFragmentsInContent } from '../helpers/nodes/nodesHelper';
 import { status } from '../helpers/constants';
 
-window.onload = async () => {
-  if (document.contentType === 'application/json') {
+
+export const getData = async (contentType) => {
+  if (contentType === 'application/json') {
     const url = window.location.href;
     const data = await fetch(url)
       .then((res) => res.json());
@@ -39,3 +40,5 @@ window.onload = async () => {
     });
   }
 };
+
+window.onload = getData(document.contentType);
