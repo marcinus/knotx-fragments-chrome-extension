@@ -31,7 +31,7 @@ compiler.run(() => {
   const releaseOption = process.argv[2] || 'patch';
 
   const releaseVersion = incrementSemver(currentVersion, releaseOption);
-  const nextDevVersion = `${incrementSemver(releaseVersion, 'patch')}`;
+  const nextDevVersion = `${incrementSemver(releaseVersion, 'patch')}-SNAPSHOT`;
 
   manifest.version = releaseVersion;
   pkg.version = nextDevVersion;
