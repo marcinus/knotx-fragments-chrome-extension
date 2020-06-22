@@ -21,11 +21,16 @@ import { status } from '../helpers/constants';
 export const getData = async (contentType) => {
   if (contentType === 'application/json') {
     const url = window.location.href;
-    const data = await fetch(url)
+    const fetchedData = await fetch(url)
       .then((res) => res.json());
 
-    // eslint-disable-next-line no-underscore-dangle
-    chrome.runtime.sendMessage({ fragmentsData: [{ debug: data._knotx_fragment, nodes: [] }] }, (response) => {
+    const fragmentsData = Array.isArray(fetchedData)
+      // eslint-disable-next-line no-underscore-dangle
+      ? fetchedData.map((item) => ({ debug: item._knotx_fragment, nodes: [] }))
+      // eslint-disable-next-line no-underscore-dangle
+      : [{ debug: fetchedData._knotx_fragment, nodes: [] }];
+
+    chrome.runtime.sendMessage({ fragmentsData }, (response) => {
       if (response.status === status.succes) {
         // eslint-disable-next-line no-console
         console.log(response.msg);
