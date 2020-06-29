@@ -14,20 +14,29 @@
  * limitations under the License.
  */
 
+import chrome from 'sinon-chrome/extensions';
 import { getData } from './content';
 
-
-describe('test ', () => {
-  beforeAll(async () => {
-    chrome.runtime.sendMessage = jest.fn(() => {});
+describe('content script ', () => {
+  beforeAll(() => {
+    global.chrome = chrome;
     global.fetch = jest.fn(() => Promise.resolve({
       json: () => Promise.resolve({}),
     }));
-    await getData('application/json');
-
-
   });
-  it('test 1', () => new Promise(() => {
+
+  it('getData should send message, and shouldn not fetch any datas for html data source', async () => {
+    await getData('text/html');
+    expect(chrome.runtime.sendMessage.calledOnce).toEqual(true);
+    expect(fetch).toHaveBeenCalledTimes(0);
+    chrome.flush();
+  });
+
+  it('getData should send message, and fetch data for json data source', async () => {
+    await getData('application/json');
+    expect(chrome.runtime.sendMessage.calledOnce).toEqual(true);
     expect(fetch).toHaveBeenCalledTimes(1);
-  }));
+    expect(fetch).toHaveBeenCalledWith(window.location.href);
+    chrome.flush();
+  });
 });
