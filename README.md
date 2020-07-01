@@ -6,9 +6,9 @@ data associated with the selected DOM element.
   <img src="assets/images/preview.gif" alt="Knot.x Fragments Chrome Extension"/>
 </p>
 
-It is a [bridge between the business logic (domain) and the solution](https://tech.cognifide.com/blog/2020/knotx-chrome-extension/). 
-Domain experts can easily verify the implementation of [business logic](https://knotx.io/blog/how-to-understand-business-logic/), 
-define new scenarios and deal with network problems (defining fallbacks) gradually. Developers and 
+It is a [bridge between the business logic (domain) and the solution](https://tech.cognifide.com/blog/2020/knotx-chrome-extension/).
+Domain experts can easily verify the implementation of [business logic](https://knotx.io/blog/how-to-understand-business-logic/),
+define new scenarios and deal with network problems (defining fallbacks) gradually. Developers and
 QAs can easily learn business logic, verify API responses/delays, and check page rendering performance issues.
 
 See the [tutorial](https://knotx.io/tutorials/chrome-extension/2_2/) and watch the [live demo](https://www.youtube.com/watch?v=EWoHqzYGv0w)
@@ -32,20 +32,20 @@ If you want to play with the extension using sample HTML Knot.x responses, see t
   - run command: `npm install http-server -g`
   - run command: `npx http-server`
 - See the extension in action
-  - open the sample pate by navigating to [127.0.0.1:8080/payments.html](http://127.0.0.1:8080/payments.html)
+  - open the sample pate by navigating to [127.0.0.1:8080/payments.html](http://127.0.0.1:8080/payments.html) or [127.0.0.1:8080/payments.json](http://127.0.0.1:8080/payments.json)
   - activate the Chrome Dev Tools (`F12`)
   - select the Knot.x panel
 
 ## How does it work?
-Knot.x Fragments, when run in [debug mode](#knotx-http-server-debug-mode), injects information about fragments into 
-the output. This information can then be read, parsed and displayed by various tools. Knot.x 
+Knot.x Fragments, when run in [debug mode](#knotx-http-server-debug-mode), injects information about fragments into
+the output. This information can then be read, parsed and displayed by various tools. Knot.x
 Fragments Chrome Extension is the official tool for this purpose.
 
-Of course fragments' outputs can have various formats. Currently, Knot.x supports injecting debug 
-information into both `JSON` and `HTML` responses. 
+Of course fragments' outputs can have various formats. Currently, Knot.x supports injecting debug
+information into both `JSON` and `HTML` responses.
 
 When Knot.x HTTP response content type is `application/json` then it is parsed as JSON (according to
-[RFC-4627](https://www.ietf.org/rfc/rfc4627.txt)). Otherwise, the extension interprets the response 
+[RFC-4627](https://www.ietf.org/rfc/rfc4627.txt)). Otherwise, the extension interprets the response
 as an HTML.
 
 ### Knot.x HTTP Server debug mode
@@ -58,12 +58,12 @@ implementations that write a [fragment execution log](https://github.com/Knotx/k
 This section contains implementation details. **We strongly encourage you to contribute!**
 
 ### Extension components
-> Extensions are made of different, but cohesive, components. Components can include background 
+> Extensions are made of different, but cohesive, components. Components can include background
 > scripts, content scripts, an options page, UI elements and various logic files.
-([source](https://developer.chrome.com/extensions/getstarted)) 
+([source](https://developer.chrome.com/extensions/getstarted))
 
 Knot.x extension is made of such components as:
-- `content script` that reads the HTTP response body that has been loaded in the browser and send 
+- `content script` that reads the HTTP response body that has been loaded in the browser and send
 - `background script` that listens for browser events and communicates with a durable storage.
 
 > Extension components are created with web development technologies: HTML, CSS, and JavaScript.
@@ -73,8 +73,8 @@ Knot.x extension is a single page application written in [React](https://reactjs
 with [Redux](https://redux.js.org/) as storage.
 
 The `src/js/content/content.js` script parses the HTTP response body (per browser tab) and sends
-the message with fragments debug data to the `src/js/background/background.js` (which wraps 
-the [`Redux` storage](#storage-redux)). Then [React components](#react-components) read the data directly from the `Redux` 
+the message with fragments debug data to the `src/js/background/background.js` (which wraps
+the [`Redux` storage](#storage-redux)). Then [React components](#react-components) read the data directly from the `Redux`
 storage. See the diagram below.
 
 ```
@@ -288,7 +288,7 @@ To open the storybook follow the steps below:
 - go to [localhost:6006](http://localhost:6006/)
 
 #### Graph && timelines
-We use `vis.js` library: 
+We use `vis.js` library:
 * [vis-network](https://visjs.github.io/vis-network/docs/network/)
 * [vis-timeline](https://visjs.github.io/vis-timeline/docs/timeline/)
 
@@ -298,11 +298,11 @@ to visualise fragments task execution data. The following `vis.js` components ar
 - `Timeline` showing the processing times of all steps performed while processing a specific fragment (`MainPanel `: `Timeline` component)
 
 #### Styling
-We don't use any grid system to make our app beautiful. Everything is flex. To show and hide elements 
-we try to use a react state, without saving this information in the redux store. SidePanelExpanded 
+We don't use any grid system to make our app beautiful. Everything is flex. To show and hide elements
+we try to use a react state, without saving this information in the redux store. SidePanelExpanded
 info is currently the only one exception.
 
-To create styles we use [styled-components](https://styled-components.com/). We follow the convention 
+To create styles we use [styled-components](https://styled-components.com/). We follow the convention
 to create a style file next to js file.
  ```
 •
@@ -316,7 +316,7 @@ some global styling and styling for render json markup we store in
 ```
 
 ### Storage (Redux)
-We use Redux as storage. It keeps details about:
+We use [Redux](https://redux.js.org/) as storage. It keeps details about:
 - parsed list of fragments
 - application state such as details which panel was expanded/hidden etc.
 
@@ -343,16 +343,18 @@ The example below presents how data is stored in Redux:
 The pageData entry is created on page load and destroyed when we close the tab. If the page does not contain Knot.x fragments, fragments property is empty.
 
 ### CI
-The GitHub repository is integrated with Azure Pipelines (CI) to validate both new PRs and the master branch. Check the azure-pipelines.yml file for configuration details. So we check:
+The GitHub repository is integrated with Azure Pipelines (CI) to validate both new PRs and the master branch. Check the [azure-pipelines.yml](https://github.com/Knotx/knotx-fragments-chrome-extension/blob/master/azure-pipelines.yml) file for configuration details. So we check:
 
-* code conventions with Eslint
-* code logic with unit tests using Jest
-* test coverage level with preconfigured thresholds (see jest.config.js for more details).
+* code conventions with [Eslint](https://eslint.org/)
+* code logic with unit tests using [Jest](https://jestjs.io/docs/en/cli.html)
+* test coverage level with preconfigured thresholds (see [jest.config.js](https://github.com/Knotx/knotx-fragments-chrome-extension/blob/master/jest.config.js) for more details).
+
+Azure pipline dashboard is avaiable [here](https://dev.azure.com/knotx/Knotx/_build?definitionId=16).
 
 ### Testing
-We believe that unit tests remain the best documentation. All React components, processing logic 
-(helpers) and actions (such as a button click) are validated with unit tests. We use [Jest](https://jestjs.io/docs/en/cli.html) 
-and [Enzyme](https://enzymejs.github.io/enzyme/) frameworks to validate both components (React) with 
+We believe that unit tests remain the best documentation. All React components, processing logic
+(helpers) and actions (such as a button click) are validated with unit tests. We use [Jest](https://jestjs.io/docs/en/cli.html)
+and [Enzyme](https://enzymejs.github.io/enzyme/) frameworks to validate both components (React) with
 combination with mocked storage (Redux).
 
 
@@ -361,7 +363,7 @@ All JS files (components & helpers) have their own tests that are placed next to
 * ```*.spec.jsx``` - it contains unit tests
 
 
-Additionally, we placed tests coverage verification in our CI. We use the jest-coverage tool for that. We decided to keep the coverage level at truly high levels (80 - 100%). It should enable future refactoring and code changes.
+Additionally, we placed tests coverage verification in our [CI](#ci). We use the jest-coverage tool for that. We decided to keep the coverage level at truly high levels (80 - 100%). It should enable future refactoring and code changes.
 
 When tests are executed, then we generate the report (test-report.xml) file in the build/test folder. Moreover, there is the coverage directory that contains the index.html file with unit tests coverage report.
 
