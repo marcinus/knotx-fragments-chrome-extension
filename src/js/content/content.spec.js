@@ -18,11 +18,9 @@ import { getData } from './content';
 import * as nodesHelper from '../helpers/nodes/nodesHelper';
 
 function setupFetchMock(result) {
-  global.fetch = jest.fn(() =>
-    Promise.resolve({
-      json: () => Promise.resolve(result),
-    })
-  );
+  global.fetch = jest.fn(() => Promise.resolve({
+    json: () => Promise.resolve(result),
+  }));
 }
 
 function setupHtmlMock(result) {
@@ -36,18 +34,19 @@ beforeEach(() => {
 it('getData passes no fragments for unsupported response type', async () => {
   await getData('text/plain');
 
-  expect(chrome.runtime.sendMessage).toHaveBeenCalledWith({fragmentsData: []}, expect.any(Function));
+  expect(chrome.runtime.sendMessage).toHaveBeenCalledWith({ fragmentsData: [] }, expect.any(Function));
 });
 
 it('getData passes one fragment with no nodes for JSON object in response', async () => {
   const mockedResponse = { _knotx_fragment: { id: '0' }, some_data: 42 };
-  setupFetchMock(mockedResponse)
+  setupFetchMock(mockedResponse);
 
   await getData('application/json');
 
   const expectedMessage = {
     fragmentsData: [
       {
+        // eslint-disable-next-line no-underscore-dangle
         debug: mockedResponse._knotx_fragment,
         nodes: [],
       },
@@ -59,7 +58,7 @@ it('getData passes one fragment with no nodes for JSON object in response', asyn
 
 it('getData passes no fragments for empty JSON array in response', async () => {
   const mockedResponse = [];
-  setupFetchMock(mockedResponse)
+  setupFetchMock(mockedResponse);
 
   await getData('application/json');
 
@@ -73,20 +72,22 @@ it('getData passes multiple fragments with no nodes for JSON array in response',
     { _knotx_fragment: { id: '0' }, some_data: 42 },
     { _knotx_fragment: { id: '1' }, some_other_data: 'lorem' },
   ];
-  setupFetchMock(mockedResponse)
+  setupFetchMock(mockedResponse);
 
   await getData('application/json');
 
   const expectedMessage = {
     fragmentsData: [
       {
+        // eslint-disable-next-line no-underscore-dangle
         debug: mockedResponse[0]._knotx_fragment,
         nodes: [],
       },
       {
+        // eslint-disable-next-line no-underscore-dangle
         debug: mockedResponse[1]._knotx_fragment,
         nodes: [],
-      }
+      },
     ],
   };
 
@@ -94,8 +95,8 @@ it('getData passes multiple fragments with no nodes for JSON array in response',
 });
 
 it('getData delegates processing to nodeHelper for HTML response', async () => {
-  const nodesHelperOutput = [{ id: '0' }, { id: '1'}];
-  setupHtmlMock(nodesHelperOutput)
+  const nodesHelperOutput = [{ id: '0' }, { id: '1' }];
+  setupHtmlMock(nodesHelperOutput);
 
   await getData('text/html');
 
