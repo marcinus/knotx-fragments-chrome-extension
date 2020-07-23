@@ -14,29 +14,94 @@
  * limitations under the License.
  */
 
-import chrome from 'sinon-chrome/extensions';
 import { getData } from './content';
+import * as nodesHelper from '../helpers/nodes/nodesHelper';
 
-describe('content script ', () => {
-  beforeAll(() => {
-    global.chrome = chrome;
-    global.fetch = jest.fn(() => Promise.resolve({
-      json: () => Promise.resolve({}),
-    }));
-  });
+function setupFetchMock(result) {
+  global.fetch = jest.fn(() =>
+    Promise.resolve({
+      json: () => Promise.resolve(result),
+    })
+  );
+}
 
-  it('getData should send message, and shouldn not fetch any datas for html data source', async () => {
-    await getData('text/html');
-    expect(chrome.runtime.sendMessage.calledOnce).toEqual(true);
-    expect(fetch).toHaveBeenCalledTimes(0);
-    chrome.flush();
-  });
+function setupHtmlMock(result) {
+  nodesHelper.findFragmentsInContent = jest.fn(() => result);
+}
 
-  it('getData should send message, and fetch data for json data source', async () => {
-    await getData('application/json');
-    expect(chrome.runtime.sendMessage.calledOnce).toEqual(true);
-    expect(fetch).toHaveBeenCalledTimes(1);
-    expect(fetch).toHaveBeenCalledWith(window.location.href);
-    chrome.flush();
-  });
+beforeEach(() => {
+  global.chrome = { runtime: { sendMessage: jest.fn() } };
+});
+
+it('getData passes no fragments for unsupported response type', async () => {
+  await getData('text/plain');
+
+  expect(chrome.runtime.sendMessage).toHaveBeenCalledWith({fragmentsData: []}, expect.any(Function));
+});
+
+it('getData passes one fragment with no nodes for JSON object in response', async () => {
+  const mockedResponse = { _knotx_fragment: { id: '0' }, some_data: 42 };
+  setupFetchMock(mockedResponse)
+
+  await getData('application/json');
+
+  const expectedMessage = {
+    fragmentsData: [
+      {
+        debug: mockedResponse._knotx_fragment,
+        nodes: [],
+      },
+    ],
+  };
+
+  expect(chrome.runtime.sendMessage).toHaveBeenCalledWith(expectedMessage, expect.any(Function));
+});
+
+it('getData passes no fragments for empty JSON array in response', async () => {
+  const mockedResponse = [];
+  setupFetchMock(mockedResponse)
+
+  await getData('application/json');
+
+  const expectedMessage = { fragmentsData: [] };
+
+  expect(chrome.runtime.sendMessage).toHaveBeenCalledWith(expectedMessage, expect.any(Function));
+});
+
+it('getData passes multiple fragments with no nodes for JSON array in response', async () => {
+  const mockedResponse = [
+    { _knotx_fragment: { id: '0' }, some_data: 42 },
+    { _knotx_fragment: { id: '1' }, some_other_data: 'lorem' },
+  ];
+  setupFetchMock(mockedResponse)
+
+  await getData('application/json');
+
+  const expectedMessage = {
+    fragmentsData: [
+      {
+        debug: mockedResponse[0]._knotx_fragment,
+        nodes: [],
+      },
+      {
+        debug: mockedResponse[1]._knotx_fragment,
+        nodes: [],
+      }
+    ],
+  };
+
+  expect(chrome.runtime.sendMessage).toHaveBeenCalledWith(expectedMessage, expect.any(Function));
+});
+
+it('getData delegates processing to nodeHelper for HTML response', async () => {
+  const nodesHelperOutput = [{ id: '0' }, { id: '1'}];
+  setupHtmlMock(nodesHelperOutput)
+
+  await getData('text/html');
+
+  const expectedMessage = {
+    fragmentsData: nodesHelperOutput,
+  };
+
+  expect(chrome.runtime.sendMessage).toHaveBeenCalledWith(expectedMessage, expect.any(Function));
 });
