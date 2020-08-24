@@ -1,0 +1,384 @@
+{
+  "_knotx_fragment" : {
+    "finishTime" : 1598265896266,
+    "fragment" : {
+      "id" : "bc61488f-2fb7-44c5-99e1-a88f87cfacea",
+      "type" : "json",
+      "configuration" : {
+        "data-knotx-task" : "web-api-test"
+      },
+      "body" : "{\n  \"fetch-user-info\" : {\n    \"_request\" : {\n      \"type\" : \"HTTP\",\n      \"source\" : \"/service/mock/userInfo.json\",\n      \"metadata\" : {\n        \"headers\" : { }\n      }\n    },\n    \"_response\" : {\n      \"success\" : true,\n      \"metadata\" : {\n        \"statusCode\" : \"200\",\n        \"headers\" : {\n          \"Content-Type\" : [ \"application/json; charset=UTF-8\" ],\n          \"Transfer-Encoding\" : [ \"chunked\" ],\n          \"Server\" : [ \"Jetty(9.2.24.v20180105)\" ]\n        }\n      }\n    },\n    \"_result\" : {\n      \"id\" : 3214232,\n      \"first_name\" : \"Redford\",\n      \"last_name\" : \"Cornborough\",\n      \"email\" : \"rcornborough0@theatlantic.com\",\n      \"gender\" : \"Male\",\n      \"credit_card_type\" : \"visa\",\n      \"credit_card_number\" : \"3562444175055197\",\n      \"user_group\" : \"premium\"\n    }\n  },\n  \"fetch-payment-providers\" : {\n    \"_request\" : {\n      \"type\" : \"HTTP\",\n      \"source\" : \"/service/mock/paymentProviders.json\",\n      \"metadata\" : {\n        \"headers\" : { }\n      }\n    },\n    \"_response\" : {\n      \"success\" : true,\n      \"metadata\" : {\n        \"statusCode\" : \"200\",\n        \"headers\" : {\n          \"Content-Type\" : [ \"application/json; charset=UTF-8\" ],\n          \"Transfer-Encoding\" : [ \"chunked\" ],\n          \"Server\" : [ \"Jetty(9.2.24.v20180105)\" ]\n        }\n      }\n    },\n    \"_result\" : [ {\n      \"verified\" : true,\n      \"paymentUrl\" : \"https://paypal-example.com/payment?id=1983247919hv9sa398f\",\n      \"name\" : \"PayPal premium\"\n    }, {\n      \"verified\" : true,\n      \"paymentUrl\" : \"https://payu-example.com/tr?id=afj08aw398gha0we9ge\",\n      \"name\" : \"PayU\"\n    }, {\n      \"verified\" : true,\n      \"paymentUrl\" : \"https://cc-example.com/pay/19g8esry9se8rgyse90r8ug4\",\n      \"name\" : \"Credit Card\"\n    } ]\n  },\n  \"fetch-offers-json\" : {\n    \"_request\" : {\n      \"type\" : \"HTTP\",\n      \"source\" : \"/service/mock/specialOffers.json\",\n      \"metadata\" : {\n        \"headers\" : { }\n      }\n    },\n    \"_response\" : {\n      \"success\" : true,\n      \"metadata\" : {\n        \"statusCode\" : \"200\",\n        \"headers\" : {\n          \"Content-Type\" : [ \"application/json; charset=UTF-8\" ],\n          \"Transfer-Encoding\" : [ \"chunked\" ],\n          \"Server\" : [ \"Jetty(9.2.24.v20180105)\" ]\n        }\n      }\n    },\n    \"_result\" : [ {\n      \"id\" : 1,\n      \"product\" : \"Knot.x Basics - Paperback\",\n      \"price\" : \"$5.92\",\n      \"isbn13\" : 9781234567897\n    }, {\n      \"id\" : 2,\n      \"product\" : \"Hello Knot.x - Paperback\",\n      \"price\" : \"$2.74\",\n      \"isbn13\" : 3456789797812\n    }, {\n      \"id\" : 3,\n      \"product\" : \"Knot.x for Dummies - Paperback\",\n      \"price\" : \"$3.79\",\n      \"isbn13\" : 8123456977897\n    }, {\n      \"id\" : 4,\n      \"product\" : \"Knot.x for Dummies - Ebook\",\n      \"price\" : \"$2.72\",\n      \"isbn13\" : 7897129785634\n    }, {\n      \"id\" : 5,\n      \"product\" : \"Knot.x Starter Kit - Paperback\",\n      \"price\" : \"$2.77\",\n      \"isbn13\" : 8156797892347\n    } ]\n  }\n}",
+      "payload" : {
+        "fetch-user-info" : {
+          "_request" : {
+            "type" : "HTTP",
+            "source" : "/service/mock/userInfo.json",
+            "metadata" : {
+              "headers" : { }
+            }
+          },
+          "_response" : {
+            "success" : true,
+            "metadata" : {
+              "statusCode" : "200",
+              "headers" : {
+                "Content-Type" : [ "application/json; charset=UTF-8" ],
+                "Transfer-Encoding" : [ "chunked" ],
+                "Server" : [ "Jetty(9.2.24.v20180105)" ]
+              }
+            }
+          },
+          "_result" : {
+            "id" : 3214232,
+            "first_name" : "Redford",
+            "last_name" : "Cornborough",
+            "email" : "rcornborough0@theatlantic.com",
+            "gender" : "Male",
+            "credit_card_type" : "visa",
+            "credit_card_number" : "3562444175055197",
+            "user_group" : "premium"
+          }
+        },
+        "fetch-payment-providers" : {
+          "_request" : {
+            "type" : "HTTP",
+            "source" : "/service/mock/paymentProviders.json",
+            "metadata" : {
+              "headers" : { }
+            }
+          },
+          "_response" : {
+            "success" : true,
+            "metadata" : {
+              "statusCode" : "200",
+              "headers" : {
+                "Content-Type" : [ "application/json; charset=UTF-8" ],
+                "Transfer-Encoding" : [ "chunked" ],
+                "Server" : [ "Jetty(9.2.24.v20180105)" ]
+              }
+            }
+          },
+          "_result" : [ {
+            "verified" : true,
+            "paymentUrl" : "https://paypal-example.com/payment?id=1983247919hv9sa398f",
+            "name" : "PayPal premium"
+          }, {
+            "verified" : true,
+            "paymentUrl" : "https://payu-example.com/tr?id=afj08aw398gha0we9ge",
+            "name" : "PayU"
+          }, {
+            "verified" : true,
+            "paymentUrl" : "https://cc-example.com/pay/19g8esry9se8rgyse90r8ug4",
+            "name" : "Credit Card"
+          } ]
+        },
+        "fetch-offers-json" : {
+          "_request" : {
+            "type" : "HTTP",
+            "source" : "/service/mock/specialOffers.json",
+            "metadata" : {
+              "headers" : { }
+            }
+          },
+          "_response" : {
+            "success" : true,
+            "metadata" : {
+              "statusCode" : "200",
+              "headers" : {
+                "Content-Type" : [ "application/json; charset=UTF-8" ],
+                "Transfer-Encoding" : [ "chunked" ],
+                "Server" : [ "Jetty(9.2.24.v20180105)" ]
+              }
+            }
+          },
+          "_result" : [ {
+            "id" : 1,
+            "product" : "Knot.x Basics - Paperback",
+            "price" : "$5.92",
+            "isbn13" : 9781234567897
+          }, {
+            "id" : 2,
+            "product" : "Hello Knot.x - Paperback",
+            "price" : "$2.74",
+            "isbn13" : 3456789797812
+          }, {
+            "id" : 3,
+            "product" : "Knot.x for Dummies - Paperback",
+            "price" : "$3.79",
+            "isbn13" : 8123456977897
+          }, {
+            "id" : 4,
+            "product" : "Knot.x for Dummies - Ebook",
+            "price" : "$2.72",
+            "isbn13" : 7897129785634
+          }, {
+            "id" : 5,
+            "product" : "Knot.x Starter Kit - Paperback",
+            "price" : "$2.77",
+            "isbn13" : 8156797892347
+          } ]
+        }
+      }
+    },
+    "graph" : {
+      "finished" : 1598265896225,
+      "id" : "01226146-457d-4570-9f48-046d8603bd41",
+      "label" : "fetch-user-info",
+      "on" : {
+        "_success" : {
+          "finished" : 1598265896249,
+          "id" : "6714d92e-5d90-489c-8128-6b102308f36e",
+          "label" : "composite",
+          "on" : {
+            "_success" : {
+              "finished" : 1598265896266,
+              "id" : "2d91d31e-fda1-447b-bdab-d9fa63197668",
+              "label" : "create-response",
+              "on" : { },
+              "operation" : {
+                "data" : {
+                  "alias" : "create-response",
+                  "actionFactory" : "payload-to-body",
+                  "actionConfig" : {
+                    "logLevel" : "error"
+                  }
+                },
+                "factory" : "action"
+              },
+              "response" : {
+                "errors" : [ ],
+                "log" : { },
+                "transition" : "_success"
+              },
+              "started" : 1598265896252,
+              "status" : "SUCCESS",
+              "subtasks" : [ ],
+              "type" : "SINGLE"
+            }
+          },
+          "operation" : {
+            "data" : { },
+            "factory" : "subtasks"
+          },
+          "response" : {
+            "errors" : [ ],
+            "log" : { },
+            "transition" : "_success"
+          },
+          "started" : 1598265896226,
+          "status" : "SUCCESS",
+          "subtasks" : [ {
+            "finished" : 1598265896245,
+            "id" : "be4c3db5-fc75-4187-80ca-e8e9e89a4e26",
+            "label" : "fetch-payment-providers",
+            "on" : { },
+            "operation" : {
+              "data" : {
+                "alias" : "fetch-payment-providers",
+                "actionFactory" : "http",
+                "actionConfig" : {
+                  "endpointOptions" : {
+                    "allowedRequestHeaders" : [ "Content-Type" ],
+                    "domain" : "localhost",
+                    "path" : "/service/mock/paymentProviders.json",
+                    "port" : 59305
+                  },
+                  "logLevel" : "error"
+                }
+              },
+              "factory" : "action"
+            },
+            "response" : {
+              "errors" : [ ],
+              "log" : {
+                "alias" : "fetch-payment-providers",
+                "logs" : { },
+                "doActionLogs" : [ ]
+              },
+              "transition" : "_success"
+            },
+            "started" : 1598265896230,
+            "status" : "SUCCESS",
+            "subtasks" : [ ],
+            "type" : "SINGLE"
+          }, {
+            "finished" : 1598265896248,
+            "id" : "90f5111f-e9bf-4759-ad56-0c15a5fcf4a4",
+            "label" : "fetch-offers-json",
+            "on" : { },
+            "operation" : {
+              "data" : {
+                "alias" : "fetch-offers-json",
+                "actionFactory" : "http",
+                "actionConfig" : {
+                  "endpointOptions" : {
+                    "allowedRequestHeaders" : [ "Content-Type" ],
+                    "domain" : "localhost",
+                    "path" : "/service/mock/specialOffers.json",
+                    "port" : 59305
+                  },
+                  "logLevel" : "error"
+                }
+              },
+              "factory" : "action"
+            },
+            "response" : {
+              "errors" : [ ],
+              "log" : {
+                "alias" : "fetch-offers-json",
+                "logs" : { },
+                "doActionLogs" : [ ]
+              },
+              "transition" : "_success"
+            },
+            "started" : 1598265896232,
+            "status" : "SUCCESS",
+            "subtasks" : [ ],
+            "type" : "SINGLE"
+          } ],
+          "type" : "COMPOSITE"
+        }
+      },
+      "operation" : {
+        "data" : {
+          "alias" : "fetch-user-info",
+          "actionFactory" : "http",
+          "actionConfig" : {
+            "endpointOptions" : {
+              "allowedRequestHeaders" : [ "Content-Type" ],
+              "domain" : "localhost",
+              "path" : "/service/mock/userInfo.json",
+              "port" : 59305
+            },
+            "logLevel" : "error"
+          }
+        },
+        "factory" : "action"
+      },
+      "response" : {
+        "errors" : [ ],
+        "log" : {
+          "alias" : "fetch-user-info",
+          "logs" : { },
+          "doActionLogs" : [ ]
+        },
+        "transition" : "_success"
+      },
+      "started" : 1598265896135,
+      "status" : "SUCCESS",
+      "subtasks" : [ ],
+      "type" : "SINGLE"
+    },
+    "startTime" : 1598265896135,
+    "status" : "SUCCESS"
+  },
+  "fetch-user-info" : {
+    "_request" : {
+      "type" : "HTTP",
+      "source" : "/service/mock/userInfo.json",
+      "metadata" : {
+        "headers" : { }
+      }
+    },
+    "_response" : {
+      "success" : true,
+      "metadata" : {
+        "statusCode" : "200",
+        "headers" : {
+          "Content-Type" : [ "application/json; charset=UTF-8" ],
+          "Transfer-Encoding" : [ "chunked" ],
+          "Server" : [ "Jetty(9.2.24.v20180105)" ]
+        }
+      }
+    },
+    "_result" : {
+      "id" : 3214232,
+      "first_name" : "Redford",
+      "last_name" : "Cornborough",
+      "email" : "rcornborough0@theatlantic.com",
+      "gender" : "Male",
+      "credit_card_type" : "visa",
+      "credit_card_number" : "3562444175055197",
+      "user_group" : "premium"
+    }
+  },
+  "fetch-payment-providers" : {
+    "_request" : {
+      "type" : "HTTP",
+      "source" : "/service/mock/paymentProviders.json",
+      "metadata" : {
+        "headers" : { }
+      }
+    },
+    "_response" : {
+      "success" : true,
+      "metadata" : {
+        "statusCode" : "200",
+        "headers" : {
+          "Content-Type" : [ "application/json; charset=UTF-8" ],
+          "Transfer-Encoding" : [ "chunked" ],
+          "Server" : [ "Jetty(9.2.24.v20180105)" ]
+        }
+      }
+    },
+    "_result" : [ {
+      "verified" : true,
+      "paymentUrl" : "https://paypal-example.com/payment?id=1983247919hv9sa398f",
+      "name" : "PayPal premium"
+    }, {
+      "verified" : true,
+      "paymentUrl" : "https://payu-example.com/tr?id=afj08aw398gha0we9ge",
+      "name" : "PayU"
+    }, {
+      "verified" : true,
+      "paymentUrl" : "https://cc-example.com/pay/19g8esry9se8rgyse90r8ug4",
+      "name" : "Credit Card"
+    } ]
+  },
+  "fetch-offers-json" : {
+    "_request" : {
+      "type" : "HTTP",
+      "source" : "/service/mock/specialOffers.json",
+      "metadata" : {
+        "headers" : { }
+      }
+    },
+    "_response" : {
+      "success" : true,
+      "metadata" : {
+        "statusCode" : "200",
+        "headers" : {
+          "Content-Type" : [ "application/json; charset=UTF-8" ],
+          "Transfer-Encoding" : [ "chunked" ],
+          "Server" : [ "Jetty(9.2.24.v20180105)" ]
+        }
+      }
+    },
+    "_result" : [ {
+      "id" : 1,
+      "product" : "Knot.x Basics - Paperback",
+      "price" : "$5.92",
+      "isbn13" : 9781234567897
+    }, {
+      "id" : 2,
+      "product" : "Hello Knot.x - Paperback",
+      "price" : "$2.74",
+      "isbn13" : 3456789797812
+    }, {
+      "id" : 3,
+      "product" : "Knot.x for Dummies - Paperback",
+      "price" : "$3.79",
+      "isbn13" : 8123456977897
+    }, {
+      "id" : 4,
+      "product" : "Knot.x for Dummies - Ebook",
+      "price" : "$2.72",
+      "isbn13" : 7897129785634
+    }, {
+      "id" : 5,
+      "product" : "Knot.x Starter Kit - Paperback",
+      "price" : "$2.77",
+      "isbn13" : 8156797892347
+    } ]
+  }
+}

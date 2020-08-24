@@ -1,6 +1,6 @@
 {
   "name": "knotx-chrome-devtool-extension",
-  "version": "2.2.1-SNAPSHOT",
+  "version": "2.2.1",
   "description": "Extends the Developer Tools, adding a sidebar that displays the Knotx Fragments data associated with the selected DOM element.",
   "private": true,
   "browserslist": [
