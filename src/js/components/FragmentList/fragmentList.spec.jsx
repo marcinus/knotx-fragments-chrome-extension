@@ -22,9 +22,9 @@ import data from './fragmentList.mock';
 import reducer from '../../state/reducers/index';
 import FragmentList, { mapDataToComponents } from './FragmentList';
 import FragmentListItem from './FragmentListItem/FragmentListItem';
-import { TableItemId } from './FragmentListItem/fragmentListItem.style';
+import { TableNameItem } from './FragmentListItem/fragmentListItem.style';
 import NodeList from './NodeList/NodeList';
-import { SortingButton, StatusSortingButton } from './fragmentList.style';
+import { SortingButton, NarrowSortingButton } from './fragmentList.style';
 import { NodeButton } from './NodeList/nodeList.style';
 
 describe('<FragmentList /> unit test', () => {
@@ -104,7 +104,7 @@ describe('<FragmentList /> unit test', () => {
   it('nodelist should be displayed after first click on expand node list button', () => {
     const wrapper = getWrapper();
     wrapper
-      .find(TableItemId)
+      .find(TableNameItem)
       .find('.tableItemIcon')
       .first()
       .simulate('click');
@@ -119,7 +119,7 @@ describe('<FragmentList /> unit test', () => {
   it('nodelist should be displayed after first Enter press on expand node list button', () => {
     const wrapper = getWrapper();
     wrapper
-      .find(TableItemId)
+      .find(TableNameItem)
       .find('.tableItemIcon')
       .first()
       .simulate('keydown', { keyCode: 13 });
@@ -134,7 +134,7 @@ describe('<FragmentList /> unit test', () => {
   it('nodelist should not be displayed after second click', () => {
     const wrapper = getWrapper();
     wrapper
-      .find(TableItemId)
+      .find(TableNameItem)
       .find('.tableItemIcon')
       .first()
       .simulate('click')
@@ -150,7 +150,7 @@ describe('<FragmentList /> unit test', () => {
   it('nodelist should not be displayed after second Enter press', () => {
     const wrapper = getWrapper();
     wrapper
-      .find(TableItemId)
+      .find(TableNameItem)
       .find('.tableItemIcon')
       .first()
       .simulate('keydown', { keyCode: 13 })
@@ -176,7 +176,8 @@ describe('<FragmentList /> unit test', () => {
     expect(generatedComponents).toHaveLength(5);
     generatedComponents.forEach((element) => {
       expect(element).toHaveProperty('props');
-      expect(element.props).toHaveProperty('id');
+      expect(element.props).toHaveProperty('number');
+      expect(element.props).toHaveProperty('name');
       expect(element.props).toHaveProperty('type');
       expect(element.props).toHaveProperty('status');
     });
@@ -184,7 +185,7 @@ describe('<FragmentList /> unit test', () => {
 
   it('sorting by status works', () => {
     const wrapper = getWrapper();
-    const sortingButton = wrapper.find(StatusSortingButton).at(0);
+    const sortingButton = wrapper.find(NarrowSortingButton).at(0);
 
     expect(wrapper
       .find(FragmentListItem)
@@ -213,44 +214,44 @@ describe('<FragmentList /> unit test', () => {
     expect(wrapper
       .find(FragmentListItem)
       .first()
-      .prop('type')).toEqual('E');
+      .prop('type')).toEqual('E [type]');
 
     sortingButton.simulate('click');
 
     expect(wrapper
       .find(FragmentListItem)
       .first()
-      .prop('type')).toEqual('A');
+      .prop('type')).toEqual('A [type]');
 
     sortingButton.simulate('click');
 
     expect(wrapper
       .find(FragmentListItem)
       .first()
-      .prop('type')).toEqual('E');
+      .prop('type')).toEqual('E [type]');
   });
 
-  it('sorting by id works', () => {
+  it('sorting by name works', () => {
     const wrapper = getWrapper();
     const sortingButton = wrapper.find(SortingButton).at(0);
     expect(wrapper
       .find(FragmentListItem)
       .first()
-      .prop('id')).toEqual('E');
+      .prop('name')).toEqual('E [name]');
 
     sortingButton.simulate('click');
 
     expect(wrapper
       .find(FragmentListItem)
       .first()
-      .prop('id')).toEqual('A');
+      .prop('name')).toEqual('A [name]');
 
     sortingButton.simulate('click');
 
     expect(wrapper
       .find(FragmentListItem)
       .first()
-      .prop('id')).toEqual('E');
+      .prop('name')).toEqual('E [name]');
   });
 
   it('sorting by time works', () => {

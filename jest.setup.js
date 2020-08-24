@@ -23,7 +23,7 @@ import crypto from 'crypto';
 configure({ adapter: new Adapter() });
 
 const toMatchImageSnapshot = configureToMatchImageSnapshot({
-  failureThreshold: 0.02,
+  failureThreshold: 0.03,
   failureThresholdType: 'percent',
 });
 

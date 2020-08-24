@@ -20,9 +20,12 @@ export default {
       {
         debug: {
           fragment: {
-            id: 'E',
-            type: 'E',
+            id: 'E [id]',
+            type: 'E [type]',
             time: 5,
+            configuration: {
+              'data-knotx-task': 'E [name]',
+            },
           },
           status: 'FAILURE',
           finishTime: 10,
@@ -42,9 +45,12 @@ export default {
       {
         debug: {
           fragment: {
-            id: 'D',
-            type: 'D',
+            id: 'D [id]',
+            type: 'D [type]',
             time: 1,
+            configuration: {
+              'data-knotx-task': 'D [name]',
+            },
           },
           status: 'SUCCESS',
           finishTime: 2,
@@ -64,9 +70,12 @@ export default {
       {
         debug: {
           fragment: {
-            id: 'C',
-            type: 'C',
+            id: 'C [id]',
+            type: 'C [type]',
             time: 3,
+            configuration: {
+              'data-knotx-task': 'C [name]',
+            },
           },
           status: 'OTHER',
           finishTime: 4,
@@ -86,9 +95,12 @@ export default {
       {
         debug: {
           fragment: {
-            id: 'B',
-            type: 'B',
+            id: 'B [id]',
+            type: 'B [type]',
             time: 2,
+            configuration: {
+              'data-knotx-task': 'B [name]',
+            },
           },
           status: 'UNPROCESSED',
           finishTime: 4,
@@ -108,9 +120,12 @@ export default {
       {
         debug: {
           fragment: {
-            id: 'A',
-            type: 'A',
+            id: 'A [id]',
+            type: 'A [type]',
             time: 4,
+            configuration: {
+              'data-knotx-task': 'A [name]',
+            },
           },
           status: 'MISSING',
           finishTime: 8,

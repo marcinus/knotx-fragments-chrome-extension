@@ -95,7 +95,7 @@ export const findFragmentsInContent = () => parseFragments(document.body);
 
 const createVisItem = ({ debug }) => ({
   id: debug.fragment.id,
-  content: debug.fragment.id,
+  content: debug.fragment.configuration['data-knotx-task'],
   start: debug.startTime,
   end: debug.finishTime,
   group: 1,
