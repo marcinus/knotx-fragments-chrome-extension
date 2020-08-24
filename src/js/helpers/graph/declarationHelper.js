@@ -32,14 +32,27 @@ export const getNodeGroup = (node) => {
   return node.status.toLowerCase();
 };
 
-const createVisNode = (node) => ({
-  id: node.id,
-  label: node.label,
-  group: getNodeGroup(node),
-  info: {
-    ...node.info,
-  },
-});
+const createVisNode = (node) => {
+  const info = node.status.toLowerCase() === 'missing'
+    ? {
+      id: node.id,
+      label: node.label,
+      status: node.status,
+      type: node.type,
+    }
+    : { ...node.info };
+
+  if (node.type === 'SINGLE') {
+    delete info.subtasks;
+  }
+
+  return {
+    id: node.id,
+    label: node.label,
+    group: getNodeGroup(node),
+    info,
+  };
+};
 
 const getEndNodes = (root, depth = 0) => {
   if (!hasTransitions(root)) {
