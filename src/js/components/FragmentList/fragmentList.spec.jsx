@@ -27,7 +27,6 @@ import NodeList from './NodeList/NodeList';
 import { SortingButton, StatusSortingButton } from './fragmentList.style';
 import { NodeButton } from './NodeList/nodeList.style';
 
-
 describe('<FragmentList /> unit test', () => {
   const getWrapper = () => mount(
     <Provider store={createStore(reducer, { pageData: data })}>
@@ -163,7 +162,6 @@ describe('<FragmentList /> unit test', () => {
       .find(NodeList)
       .prop('expanded')).toEqual(false);
   });
-
 
   it('first fragment should render exactly 2 nodes in nodelist', () => {
     const wrapper = getWrapper();

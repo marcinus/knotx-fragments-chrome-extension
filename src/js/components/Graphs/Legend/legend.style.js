@@ -47,7 +47,6 @@ export const LegendSectionContainer = styled.div`
     }
 `;
 
-
 export const LegendItem = styled.div`
     display: flex;
     align-items: center;

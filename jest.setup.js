@@ -18,6 +18,7 @@ import Adapter from 'enzyme-adapter-react-16';
 import { toBeVisible } from '@testing-library/jest-dom/matchers';
 import { configure } from 'enzyme';
 import { configureToMatchImageSnapshot } from 'jest-image-snapshot';
+import crypto from 'crypto';
 
 configure({ adapter: new Adapter() });
 
@@ -27,3 +28,12 @@ const toMatchImageSnapshot = configureToMatchImageSnapshot({
 });
 
 expect.extend({ toBeVisible, toMatchImageSnapshot });
+
+const cryptoPolyfill = {
+  ...crypto,
+  getRandomValues: function (buffer) {
+    return crypto.randomFillSync(buffer);
+  }
+};
+
+global.crypto = cryptoPolyfill;

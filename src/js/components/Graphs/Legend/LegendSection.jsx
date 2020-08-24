@@ -28,7 +28,6 @@ import {
   LegendSectionContainer,
 } from './legend.style';
 
-
 /* eslint-disable react/display-name */
 const getIcon = {
   square: (color) => (<SquareIcon color={color} />),

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import { DataSet } from 'vis-timeline';
+import { DataSet } from 'vis-data';
 import uniqueSelector from 'unique-selector';
 
 export const isFragmentBoundary = (node) => node.nodeType === Node.COMMENT_NODE

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import { DataSet } from 'vis-timeline';
+import { DataSet } from 'vis-data';
 import { constructTimeline } from './declarationHelper';
 import * as mock from './declerationHelper.mock';
 
