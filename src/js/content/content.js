@@ -17,7 +17,6 @@
 import { findFragmentsInContent } from '../helpers/nodes/nodesHelper';
 import { status } from '../helpers/constants';
 
-
 export const getData = async (contentType) => {
   if (contentType === 'application/json') {
     const url = window.location.href;
