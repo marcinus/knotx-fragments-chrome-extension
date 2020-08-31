@@ -25,26 +25,31 @@ export const legendArrays = {
       desc: 'missing',
       color: COLOR_MISSING,
       shape: 'square',
+      docs: 'http://stackoverflow.com/',
     },
     {
       desc: 'unprocessed',
       color: COLOR_UNPROCESSED,
       shape: 'square',
+      docs: '',
     },
     {
       desc: 'success',
       color: COLOR_SUCCESS,
       shape: 'square',
+      docs: '',
     },
     {
       desc: 'error',
       color: COLOR_ERROR,
       shape: 'square',
+      docs: '',
     },
     {
       desc: 'other',
       color: COLOR_OTHER,
       shape: 'square',
+      docs: '',
     },
   ],
   composites: [
@@ -52,11 +57,13 @@ export const legendArrays = {
       desc: 'startNode',
       color: 'white',
       shape: 'circle',
+      docs: '',
     },
     {
       desc: 'endNode',
       color: 'multi',
       shape: 'circle',
+      docs: '',
     },
   ],
   labels: [
@@ -64,16 +71,19 @@ export const legendArrays = {
       desc: '_success',
       color: COLOR_SUCCESS,
       shape: 'rectangle',
+      docs: '',
     },
     {
       desc: '_error',
       color: COLOR_ERROR,
       shape: 'rectangle',
+      docs: '',
     },
     {
       desc: '_[custom]',
       color: COLOR_OTHER,
       shape: 'rectangle',
+      docs: '',
     },
   ],
   edges: [
@@ -81,11 +91,13 @@ export const legendArrays = {
       desc: 'processed',
       color: 'black',
       shape: 'solid',
+      docs: '',
     },
     {
       desc: 'unprocessed',
       color: 'grey',
       shape: 'dashed',
+      docs: '',
     },
   ],
 };

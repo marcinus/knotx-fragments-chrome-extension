@@ -89,8 +89,13 @@ export const LineIcon = styled.div`
     margin-top: 50%;
 `;
 
-export const LegendItemDescription = styled.span`
+export const LegendItemDescription = styled.a`
     font-size: 12px;
     margin-left: 5px;
     color: ${({ theme }) => theme.TEXT};
+    text-decoration: none;
+
+    &:hover {
+        font-weight: bold;
+    }
 `;

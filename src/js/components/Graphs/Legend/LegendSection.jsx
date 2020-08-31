@@ -40,12 +40,17 @@ const getIcon = {
 /* eslint-enable react/display-name */
 
 const LegendSection = ({ title, items }) => {
-  const sectionItems = items.map(({ desc, shape, color }) => (
+  const sectionItems = items.map(({
+    desc,
+    shape,
+    color,
+    docs,
+  }) => (
     <LegendItem key={desc}>
       <LegendItemIcon>
         {getIcon[shape] ? getIcon[shape](color) : ''}
       </LegendItemIcon>
-      <LegendItemDescription>
+      <LegendItemDescription href={docs} target="_blank">
         {desc}
       </LegendItemDescription>
     </LegendItem>
