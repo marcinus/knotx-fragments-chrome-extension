@@ -89,11 +89,12 @@ export const LineIcon = styled.div`
     margin-top: 50%;
 `;
 
-export const LegendItemDescription = styled.a`
+export const LegendItemDescription = styled.span`
     font-size: 12px;
     margin-left: 5px;
     color: ${({ theme }) => theme.TEXT};
     text-decoration: none;
+    cursor: pointer;
 
     &:hover {
         font-weight: bold;

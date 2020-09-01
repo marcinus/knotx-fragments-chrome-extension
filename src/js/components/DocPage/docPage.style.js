@@ -14,8 +14,23 @@
  * limitations under the License.
  */
 
-export const SET_PAGE_DATA = 'SET_PAGE_DATA';
-export const REMOVE_PAGE_DATA = 'REMOVE_PAGE_DATA';
-export const SET_RENDERED_GRAPH = 'SET_RENDERED_GRAPH';
-export const SET_SIDEPANEL_EXPANDED = 'SET_SIDEBAR_EXPANDED';
-export const SET_DOC_PAGE_LINK = 'SET_DOC_PAGE_LINK';
+import styled from 'styled-components';
+
+export const Container = styled.div`
+    width: calc(100vw - 100px);
+    height: calc(100% - 100px);
+    padding: 50px;
+    position: fixed;
+    z-index: 10;
+    overflow: scroll;
+    color: ${({ theme }) => theme.DOC_TEXT};
+    background-color: ${({ theme }) => theme.DOC_BG};
+    /* color: black;
+    background-color: white; */
+    display: ${({ display }) => (display !== '' ? 'block' : 'none')};
+`;
+
+export const CloseButon = styled.div`
+
+
+`;

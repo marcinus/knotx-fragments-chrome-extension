@@ -83,4 +83,5 @@ export const GlobalStyle = createGlobalStyle`
   .renderjson .array.syntax {
     color: #FAC05E;
   }
+
 `;

@@ -19,6 +19,7 @@ import {
   REMOVE_PAGE_DATA,
   SET_RENDERED_GRAPH,
   SET_SIDEPANEL_EXPANDED,
+  SET_DOC_PAGE_LINK,
 } from '../actionTypes/pageData';
 
 export const initState = {};
@@ -33,6 +34,7 @@ export default (state = initState, { type, pageData }) => {
           url: pageData.url,
           sidebarExpanded: true,
           renderedGraph: null,
+          docPageLink: '',
         },
       };
 
@@ -59,6 +61,16 @@ export default (state = initState, { type, pageData }) => {
           sidebarExpanded: pageData.sidebarExpanded,
         },
       };
+
+    case SET_DOC_PAGE_LINK:
+      return {
+        ...state,
+        [pageData.id]: {
+          ...state[pageData.id],
+          docPageLink: pageData.docPageLink,
+        },
+      };
+
     default:
       return state;
   }

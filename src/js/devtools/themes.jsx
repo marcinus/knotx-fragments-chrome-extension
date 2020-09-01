@@ -29,6 +29,8 @@ export const defaultTheme = {
   NODE_LIST_ITEM_BG: '#E8E8E8',
   ADDITIONAL_PANEL_CONTENT_BG: '#F5F5F5',
   ADDITIONAL_PANEL_HEADER_BG: '#FFF',
+  DOC_TEXT: '#000',
+  DOC_BG: '#FFF',
 };
 
 export const darkTheme = {
@@ -46,4 +48,6 @@ export const darkTheme = {
   NODE_LIST_ITEM_BG: '#9A9A9A',
   ADDITIONAL_PANEL_CONTENT_BG: '#242424',
   ADDITIONAL_PANEL_HEADER_BG: '#3A3A3A',
+  DOC_TEXT: '#F0F8FF',
+  DOC_BG: '#3A3A3A',
 };

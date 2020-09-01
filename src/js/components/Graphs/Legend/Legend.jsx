@@ -15,17 +15,22 @@
  */
 
 import React from 'react';
+import PropTypes from 'prop-types';
 import LegendSection from './LegendSection';
 import { LegendContainer } from './legend.style';
 import { legendArrays } from './legendHelper';
 
-const Legend = () => (
+const Legend = ({ tabId }) => (
   <LegendContainer id="legend">
-    <LegendSection title="Nodes" items={legendArrays.nodes} />
-    <LegendSection title="Composites" items={legendArrays.composites} />
-    <LegendSection title="Labels" items={legendArrays.labels} />
-    <LegendSection title="Edges" items={legendArrays.edges} />
+    <LegendSection tabId={tabId} title="Nodes" items={legendArrays.nodes} />
+    <LegendSection tabId={tabId} title="Composites" items={legendArrays.composites} />
+    <LegendSection tabId={tabId} title="Labels" items={legendArrays.labels} />
+    <LegendSection tabId={tabId} title="Edges" items={legendArrays.edges} />
   </LegendContainer>
 );
+
+Legend.propTypes = {
+  tabId: PropTypes.number.isRequired,
+};
 
 export default Legend;

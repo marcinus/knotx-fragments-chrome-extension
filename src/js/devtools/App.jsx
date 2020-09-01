@@ -21,6 +21,7 @@ import PropTypes from 'prop-types';
 import { defaultTheme, darkTheme } from './themes';
 import SidePanel from '../components/SidePanel/SidePanel';
 import MainPanel from '../components/MainPanel/MainPanel';
+import DocPage from '../components/DocPage/DocPage';
 import 'vis-timeline/dist/vis-timeline-graph2d.min.css';
 import { NoKnotxPage } from './app.style';
 import { NO_KNOTX_PAGE_MSG } from '../helpers/constants';
@@ -38,6 +39,7 @@ const App = ({ tabId }) => {
       <ThemeProvider theme={theme}>
         <SidePanel tabId={tabId} />
         <MainPanel tabId={tabId} />
+        <DocPage tabId={tabId} />
       </ThemeProvider>
     )
     : (

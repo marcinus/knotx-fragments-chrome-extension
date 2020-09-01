@@ -166,7 +166,7 @@ const Graph = ({
           <h2>{LEGEND_PANEL_HEADER }</h2>
         </GraphAdditionalPanelHeader>
         <GraphAdditionalPanelContent>
-          <Legend />
+          <Legend tabId={tabId} />
         </GraphAdditionalPanelContent>
       </GraphAdditionalPanel>
 

@@ -19,6 +19,7 @@ import {
   REMOVE_PAGE_DATA,
   SET_RENDERED_GRAPH,
   SET_SIDEPANEL_EXPANDED,
+  SET_DOC_PAGE_LINK,
 } from '../actionTypes/pageData';
 
 export const setPageData = (pageData) => ({
@@ -38,5 +39,10 @@ export const setRenderedGraph = (pageData) => ({
 
 export const setSidePanelExpanded = (pageData) => ({
   type: SET_SIDEPANEL_EXPANDED,
+  pageData,
+});
+
+export const setDocPageLink = (pageData) => ({
+  type: SET_DOC_PAGE_LINK,
   pageData,
 });
