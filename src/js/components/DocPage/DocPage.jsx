@@ -16,11 +16,12 @@
 
 import React, { useEffect } from 'react';
 // import MarkdownIt from 'markdown-it';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
-import { Container, CloseButon } from './docPage.style';
+import { Container, CloseButon, Wrapper } from './docPage.style';
+import { setDocPageLink } from '../../state/actions/pageData';
 import '../../styling/markdown.css';
 
 const showdown = require('showdown');
@@ -49,6 +50,7 @@ const loadMarkdown = (path) => {
 };
 
 const DocPage = ({ tabId }) => {
+  const dispatch = useDispatch();
   const docPageLink = useSelector(({ pageData }) => pageData[tabId].docPageLink);
 
   useEffect(() => {
@@ -56,16 +58,15 @@ const DocPage = ({ tabId }) => {
   }, [docPageLink]);
 
   return (
-    <>
-      <CloseButon>
+    <Wrapper display={docPageLink}>
+      <CloseButon onClick={() => dispatch(setDocPageLink({ id: tabId, docPageLink: '' }))}>
         <FontAwesomeIcon icon={faTimes} />
       </CloseButon>
       <Container
         id="doc-page-container"
         className={`markdown-body ${theme}`}
-        display={docPageLink}
       />
-    </>
+    </Wrapper>
   );
 };
 

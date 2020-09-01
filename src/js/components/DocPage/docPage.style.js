@@ -16,6 +16,30 @@
 
 import styled from 'styled-components';
 
+export const Wrapper = styled.div`
+    width: 100vw;
+    height: 100%;
+    position: fixed;
+    z-index: 10;
+    display: ${({ display }) => (display !== '' ? 'block' : 'none')};
+`;
+
+export const CloseButon = styled.div`
+    position: absolute;
+    z-index: 100;
+    height: 30px;
+    width: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: center;
+    top: 30px;
+    right: 50px;
+    color: ${({ theme }) => theme.DOC_TEXT};
+    font-size: 30px;
+    cursor: pointer;
+`;
+
 export const Container = styled.div`
     width: calc(100vw - 100px);
     height: calc(100% - 100px);
@@ -25,12 +49,4 @@ export const Container = styled.div`
     overflow: scroll;
     color: ${({ theme }) => theme.DOC_TEXT};
     background-color: ${({ theme }) => theme.DOC_BG};
-    /* color: black;
-    background-color: white; */
-    display: ${({ display }) => (display !== '' ? 'block' : 'none')};
-`;
-
-export const CloseButon = styled.div`
-
-
 `;

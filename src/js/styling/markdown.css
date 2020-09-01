@@ -998,8 +998,8 @@
     color: #A9A9A9;
   }
 
-  .markdown-body .highlight pre,
-  .markdown-body pre {
+  .markdown-body.dark .highlight pre,
+  .markdown-body.dark pre {
     background-color: #242424;
   }
 
