@@ -15,17 +15,26 @@
  */
 
 import React from 'react';
-import { storiesOf } from '@storybook/react';
 import addons from '@storybook/addons';
 import withRedux from 'addon-redux/withRedux';
-import { withKnobs, number } from '@storybook/addon-knobs';
 import data from './fragmentList.mock';
 import FragmentList from './FragmentList';
 import { withReduxSettings } from '../../../../.storybook/storiesHelper';
 
 const withReduxDecorator = withRedux(addons)(withReduxSettings({ pageData: data }));
 
-storiesOf('Logic Components | SidePanel.FragmentList', module)
-  .addDecorator(withReduxDecorator)
-  .addDecorator(withKnobs)
-  .add('FragmentList', () => <FragmentList tabId={number('tabId', 777)} />);
+export default {
+  title: 'Logic Components | SidePanel.FragmentList',
+  decorators: [withReduxDecorator],
+};
+
+// eslint-disable-next-line react/jsx-props-no-spreading
+export const FragmentListStory = (args) => <FragmentList {...args} />;
+
+FragmentListStory.story = {
+  name: 'FragmentList',
+};
+
+FragmentListStory.args = {
+  tabId: 777,
+};

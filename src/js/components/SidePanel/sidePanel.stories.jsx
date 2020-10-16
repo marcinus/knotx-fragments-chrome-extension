@@ -15,17 +15,26 @@
  */
 
 import React from 'react';
-import { storiesOf } from '@storybook/react';
 import addons from '@storybook/addons';
 import withRedux from 'addon-redux/withRedux';
-import { withKnobs, number } from '@storybook/addon-knobs';
 import SidePanel from './SidePanel';
 import data from '../FragmentList/fragmentList.mock';
 import { withReduxSettings } from '../../../../.storybook/storiesHelper';
 
 const withReduxDecorator = withRedux(addons)(withReduxSettings({ pageData: data }));
 
-storiesOf('Logic Components | SidePanel', module)
-  .addDecorator(withReduxDecorator)
-  .addDecorator(withKnobs)
-  .add('SidePanel', () => <SidePanel tabId={number('tabId', 777)} />);
+export default {
+  title: 'Logic Components | SidePanel',
+  decorators: [withReduxDecorator],
+};
+
+// eslint-disable-next-line react/jsx-props-no-spreading
+export const SidePanelStory = (args) => <SidePanel {...args} />;
+
+SidePanelStory.story = {
+  name: 'SidePanel',
+};
+
+SidePanelStory.args = {
+  tabId: 777,
+};

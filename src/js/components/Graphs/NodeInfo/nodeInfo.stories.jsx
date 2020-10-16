@@ -15,11 +15,20 @@
  */
 
 import React from 'react';
-import { storiesOf } from '@storybook/react';
-import { withKnobs, object } from '@storybook/addon-knobs';
 import NodeInfo from './NodeInfo';
 import { singleNodeWithTransitions } from '../../../helpers/graph/declarationHelper.mock';
 
-storiesOf('Logic Components | MainPanel.Graph.NodeInfo', module)
-  .addDecorator(withKnobs)
-  .add('NodeInfo', () => <NodeInfo nodeJson={object('nodeJson', singleNodeWithTransitions)} />);
+export default {
+  title: 'Logic Components | MainPanel.Graph.NodeInfo',
+};
+
+// eslint-disable-next-line react/jsx-props-no-spreading
+export const NodeInfoStory = (args) => <NodeInfo {...args} />;
+
+NodeInfoStory.story = {
+  name: 'NodeInfo',
+};
+
+NodeInfoStory.args = {
+  nodeJson: singleNodeWithTransitions,
+};

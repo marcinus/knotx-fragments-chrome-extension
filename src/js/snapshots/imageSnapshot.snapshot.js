@@ -25,7 +25,7 @@ const snapshot = async (url) => {
 
 describe('SidePanel', () => {
   it('is visually correct', async () => {
-    const image = await snapshot('http://localhost:6006/iframe.html?id=logic-components-sidepanel--sidepanel');
+    const image = await snapshot('http://localhost:6006/iframe.html?id=logic-components-sidepanel--side-panel-story');
     expect(image).toMatchImageSnapshot();
   });
 });
@@ -33,7 +33,7 @@ describe('SidePanel', () => {
 describe('FragmentGantt', () => {
   it('is visually correct', async () => {
     const image = await snapshot(
-      'http://localhost:6006/iframe.html?id=logic-components-sidepanel-fragmentgantt--fragmentgantt',
+      'http://localhost:6006/iframe.html?id=logic-components-sidepanel-fragmentgantt--fragment-gantt-story',
     );
     expect(image).toMatchImageSnapshot();
   });
@@ -42,14 +42,14 @@ describe('FragmentGantt', () => {
 describe('FragmentList', () => {
   it('FragmentList is visually correct', async () => {
     const image = await snapshot(
-      'http://localhost:6006/iframe.html?id=logic-components-sidepanel-fragmentlist--fragmentlist',
+      'http://localhost:6006/iframe.html?id=logic-components-sidepanel-fragmentlist--fragment-list-story',
     );
     expect(image).toMatchImageSnapshot();
   });
 
   it('FragmentListItem is visually correct', async () => {
     // eslint-disable-next-line max-len
-    const image = await snapshot('http://localhost:6006/iframe.html?id=logic-components-sidepanel-fragmentlist-fragmentlistitem--fragmentlistitem');
+    const image = await snapshot('http://localhost:6006/iframe.html?id=logic-components-sidepanel-fragmentlist-fragmentlistitem--fragment-list-item-story');
     expect(image).toMatchImageSnapshot();
   });
 });
@@ -66,7 +66,7 @@ describe('Legend', () => {
 describe('NodeInfo', () => {
   it('is visually correct', async () => {
     const image = await snapshot(
-      'http://localhost:6006/iframe.html?id=logic-components-mainpanel-graph-nodeinfo--nodeinfo',
+      'http://localhost:6006/iframe.html?id=logic-components-mainpanel-graph-nodeinfo--node-info-story',
     );
     expect(image).toMatchImageSnapshot();
   });
@@ -76,7 +76,7 @@ describe('NodePerformanceTimeline', () => {
   it('is visually correct', async () => {
     const image = await snapshot(
       // eslint-disable-next-line max-len
-      'http://localhost:6006/iframe.html?id=logic-components-mainpanel-graph-nodeperformancetimeline--nodeperformancetimeline',
+      'http://localhost:6006/iframe.html?id=logic-components-mainpanel-graph-nodeperformancetimeline--node-performance-timeline-story',
     );
     expect(image).toMatchImageSnapshot();
   });

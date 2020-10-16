@@ -15,8 +15,18 @@
  */
 
 import React from 'react';
-import { storiesOf } from '@storybook/react';
 import Legend from './Legend';
 
-storiesOf('Logic Components | MainPanel.Graph.Legend', module)
-  .add('Legend', () => <Legend />);
+export default {
+  title: 'Logic Components | MainPanel.Graph.Legend',
+};
+
+export const LegendStory = () => <Legend />;
+
+LegendStory.story = {
+  name: 'Legend',
+};
+
+LegendStory.parameters = {
+  controls: { hideNoControlsWarning: true },
+};

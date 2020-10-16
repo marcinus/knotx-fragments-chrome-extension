@@ -15,13 +15,6 @@
  */
 
 import React from 'react';
-import { storiesOf } from '@storybook/react';
-import {
-  withKnobs,
-  array,
-  text,
-  number,
-} from '@storybook/addon-knobs';
 import addons from '@storybook/addons';
 import withRedux from 'addon-redux/withRedux';
 import FragmentListItem from './FragmentListItem';
@@ -30,22 +23,33 @@ import { withReduxSettings } from '../../../../../.storybook/storiesHelper';
 
 const withReduxDecorator = withRedux(addons)(withReduxSettings({ pageData: data }));
 
-storiesOf('Logic Components | SidePanel.FragmentList.FragmentListItem', module)
-  .addDecorator(withReduxDecorator)
-  .addDecorator(withKnobs)
-  .add('FragmentListItem', () => (
-    <FragmentListItem
-      status={text('status', 'success')}
-      number={text('number', '1')}
-      name={text('name', 'name')}
-      type={text('type', 'snippet')}
-      nodes={array('nodes', [
-        {
-          selector: '.container-fluid > :nth-child(2) > :nth-child(2)',
-          tag: 'DIV',
-        },
-      ])}
-      tabId={number('tabId', 777)}
-      time={text('time', 100)}
-    />
-  ));
+export default {
+  title: 'Logic Components | SidePanel.FragmentList.FragmentListItem',
+  decorators: [withReduxDecorator],
+};
+
+// eslint-disable-next-line react/jsx-props-no-spreading
+export const FragmentListItemStory = (args) => <FragmentListItem {...args} />;
+
+FragmentListItemStory.story = {
+  name: 'FragmentListItem',
+};
+
+FragmentListItemStory.args = {
+  status: 'success',
+  number: 1,
+  name: 'name',
+  type: 'snippet',
+  nodes: [
+    {
+      selector: '.container-fluid > :nth-child(2) > :nth-child(2)',
+      tag: 'DIV',
+    },
+  ],
+  tabId: 777,
+  time: 100,
+};
+
+FragmentListItemStory.argTypes = {
+  status: { control: { type: 'select', options: ['success', 'failure', 'unprocessed', 'missing', 'other'] } },
+};

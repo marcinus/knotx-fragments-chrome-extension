@@ -15,10 +15,8 @@
  */
 
 import React from 'react';
-import { storiesOf } from '@storybook/react';
 import addons from '@storybook/addons';
 import withRedux from 'addon-redux/withRedux';
-import { withKnobs, number } from '@storybook/addon-knobs';
 import FragmentGantt from './FragmentGantt';
 import data from '../FragmentList/fragmentList.mock';
 import 'vis-timeline/dist/vis-timeline-graph2d.min.css';
@@ -26,7 +24,18 @@ import { withReduxSettings } from '../../../../.storybook/storiesHelper';
 
 const withReduxDecorator = withRedux(addons)(withReduxSettings({ pageData: data }));
 
-storiesOf('Logic Components | SidePanel.FragmentGantt', module)
-  .addDecorator(withReduxDecorator)
-  .addDecorator(withKnobs)
-  .add('FragmentGantt', () => <FragmentGantt tabId={number('tabId', 777)} />);
+export default {
+  title: 'Logic Components | SidePanel.FragmentGantt',
+  decorators: [withReduxDecorator],
+};
+
+// eslint-disable-next-line react/jsx-props-no-spreading
+export const FragmentGanttStory = (args) => <FragmentGantt {...args} />;
+
+FragmentGanttStory.story = {
+  name: 'FragmentGantt',
+};
+
+FragmentGanttStory.args = {
+  tabId: 777,
+};

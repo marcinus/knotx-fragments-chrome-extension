@@ -16,10 +16,8 @@
 
 import React from 'react';
 import 'vis-timeline/dist/vis-timeline-graph2d.min.css';
-import { storiesOf } from '@storybook/react';
 import addons from '@storybook/addons';
 import withRedux from 'addon-redux/withRedux';
-import { withKnobs, number, text } from '@storybook/addon-knobs';
 import Graph from './Graph';
 import { compositeNodeWithTransitions } from '../../helpers/graph/declarationHelper.mock';
 import { withReduxSettings } from '../../../../.storybook/storiesHelper';
@@ -43,7 +41,19 @@ const state = {
 
 const withReduxDecorator = withRedux(addons)(withReduxSettings(state));
 
-storiesOf('Logic Components | MainPanel.Graph', module)
-  .addDecorator(withReduxDecorator)
-  .addDecorator(withKnobs)
-  .add('Graph', () => <Graph tabId={number('tabId', 1)} fragmentId={text('fragmentId', '1')} />);
+export default {
+  title: 'Logic Components | MainPanel.Graph',
+  decorators: [withReduxDecorator],
+};
+
+// eslint-disable-next-line react/jsx-props-no-spreading
+export const GraphStory = (args) => <Graph {...args} />;
+
+GraphStory.story = {
+  name: 'Graph',
+};
+
+GraphStory.args = {
+  tabId: 1,
+  fragmentId: '1',
+};
