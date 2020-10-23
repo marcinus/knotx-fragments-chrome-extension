@@ -33,6 +33,7 @@ test-report.xml
 package-lock.json
 yarn-error.log
 __diff_output__
+storybook-static
 
 # Node               #
 ######################
