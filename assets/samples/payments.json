@@ -1,13 +1,13 @@
 {
   "_knotx_fragment" : {
-    "finishTime" : 1598265896266,
+    "finishTime" : 1599056911856,
     "fragment" : {
-      "id" : "bc61488f-2fb7-44c5-99e1-a88f87cfacea",
+      "id" : "98ae19c4-d36c-475b-bdfd-c6e990cca057",
       "type" : "json",
       "configuration" : {
         "data-knotx-task" : "web-api-test"
       },
-      "body" : "{\n  \"fetch-user-info\" : {\n    \"_request\" : {\n      \"type\" : \"HTTP\",\n      \"source\" : \"/service/mock/userInfo.json\",\n      \"metadata\" : {\n        \"headers\" : { }\n      }\n    },\n    \"_response\" : {\n      \"success\" : true,\n      \"metadata\" : {\n        \"statusCode\" : \"200\",\n        \"headers\" : {\n          \"Content-Type\" : [ \"application/json; charset=UTF-8\" ],\n          \"Transfer-Encoding\" : [ \"chunked\" ],\n          \"Server\" : [ \"Jetty(9.2.24.v20180105)\" ]\n        }\n      }\n    },\n    \"_result\" : {\n      \"id\" : 3214232,\n      \"first_name\" : \"Redford\",\n      \"last_name\" : \"Cornborough\",\n      \"email\" : \"rcornborough0@theatlantic.com\",\n      \"gender\" : \"Male\",\n      \"credit_card_type\" : \"visa\",\n      \"credit_card_number\" : \"3562444175055197\",\n      \"user_group\" : \"premium\"\n    }\n  },\n  \"fetch-payment-providers\" : {\n    \"_request\" : {\n      \"type\" : \"HTTP\",\n      \"source\" : \"/service/mock/paymentProviders.json\",\n      \"metadata\" : {\n        \"headers\" : { }\n      }\n    },\n    \"_response\" : {\n      \"success\" : true,\n      \"metadata\" : {\n        \"statusCode\" : \"200\",\n        \"headers\" : {\n          \"Content-Type\" : [ \"application/json; charset=UTF-8\" ],\n          \"Transfer-Encoding\" : [ \"chunked\" ],\n          \"Server\" : [ \"Jetty(9.2.24.v20180105)\" ]\n        }\n      }\n    },\n    \"_result\" : [ {\n      \"verified\" : true,\n      \"paymentUrl\" : \"https://paypal-example.com/payment?id=1983247919hv9sa398f\",\n      \"name\" : \"PayPal premium\"\n    }, {\n      \"verified\" : true,\n      \"paymentUrl\" : \"https://payu-example.com/tr?id=afj08aw398gha0we9ge\",\n      \"name\" : \"PayU\"\n    }, {\n      \"verified\" : true,\n      \"paymentUrl\" : \"https://cc-example.com/pay/19g8esry9se8rgyse90r8ug4\",\n      \"name\" : \"Credit Card\"\n    } ]\n  },\n  \"fetch-offers-json\" : {\n    \"_request\" : {\n      \"type\" : \"HTTP\",\n      \"source\" : \"/service/mock/specialOffers.json\",\n      \"metadata\" : {\n        \"headers\" : { }\n      }\n    },\n    \"_response\" : {\n      \"success\" : true,\n      \"metadata\" : {\n        \"statusCode\" : \"200\",\n        \"headers\" : {\n          \"Content-Type\" : [ \"application/json; charset=UTF-8\" ],\n          \"Transfer-Encoding\" : [ \"chunked\" ],\n          \"Server\" : [ \"Jetty(9.2.24.v20180105)\" ]\n        }\n      }\n    },\n    \"_result\" : [ {\n      \"id\" : 1,\n      \"product\" : \"Knot.x Basics - Paperback\",\n      \"price\" : \"$5.92\",\n      \"isbn13\" : 9781234567897\n    }, {\n      \"id\" : 2,\n      \"product\" : \"Hello Knot.x - Paperback\",\n      \"price\" : \"$2.74\",\n      \"isbn13\" : 3456789797812\n    }, {\n      \"id\" : 3,\n      \"product\" : \"Knot.x for Dummies - Paperback\",\n      \"price\" : \"$3.79\",\n      \"isbn13\" : 8123456977897\n    }, {\n      \"id\" : 4,\n      \"product\" : \"Knot.x for Dummies - Ebook\",\n      \"price\" : \"$2.72\",\n      \"isbn13\" : 7897129785634\n    }, {\n      \"id\" : 5,\n      \"product\" : \"Knot.x Starter Kit - Paperback\",\n      \"price\" : \"$2.77\",\n      \"isbn13\" : 8156797892347\n    } ]\n  }\n}",
+      "body" : "{\n  \"fetch-user-info\" : {\n    \"_request\" : {\n      \"type\" : \"HTTP\",\n      \"source\" : \"/service/mock/userInfo.json\",\n      \"metadata\" : {\n        \"headers\" : { }\n      }\n    },\n    \"_response\" : {\n      \"success\" : true,\n      \"metadata\" : {\n        \"statusCode\" : \"200\",\n        \"headers\" : {\n          \"Content-Type\" : [ \"application/json; charset=UTF-8\" ],\n          \"Transfer-Encoding\" : [ \"chunked\" ],\n          \"Server\" : [ \"Jetty(9.2.24.v20180105)\" ]\n        }\n      }\n    },\n    \"_result\" : {\n      \"id\" : 3214232,\n      \"first_name\" : \"Redford\",\n      \"last_name\" : \"Cornborough\",\n      \"email\" : \"rcornborough0@theatlantic.com\",\n      \"gender\" : \"Male\",\n      \"credit_card_type\" : \"visa\",\n      \"credit_card_number\" : \"3562444175055197\",\n      \"user_group\" : \"premium\"\n    }\n  },\n  \"fetch-offers\" : {\n    \"_request\" : {\n      \"type\" : \"HTTP\",\n      \"source\" : \"/service/mock/specialOffers.xml\",\n      \"metadata\" : {\n        \"headers\" : { }\n      }\n    },\n    \"_response\" : {\n      \"success\" : false,\n      \"error\" : {\n        \"code\" : \"500 Internal Server Error\",\n        \"message\" : \"Server Error\"\n      },\n      \"metadata\" : {\n        \"statusCode\" : \"500\",\n        \"headers\" : {\n          \"Content-Type\" : [ \"text/html; charset=ISO-8859-1\" ],\n          \"Cache-Control\" : [ \"must-revalidate,no-cache,no-store\" ],\n          \"Content-Length\" : [ \"2606\" ],\n          \"Connection\" : [ \"close\" ],\n          \"Server\" : [ \"Jetty(9.2.24.v20180105)\" ]\n        }\n      }\n    },\n    \"_result\" : null\n  },\n  \"fetch-payment-providers\" : {\n    \"_request\" : {\n      \"type\" : \"HTTP\",\n      \"source\" : \"/service/mock/paymentProviders.json\",\n      \"metadata\" : {\n        \"headers\" : { }\n      }\n    },\n    \"_response\" : {\n      \"success\" : true,\n      \"metadata\" : {\n        \"statusCode\" : \"200\",\n        \"headers\" : {\n          \"Content-Type\" : [ \"application/json; charset=UTF-8\" ],\n          \"Transfer-Encoding\" : [ \"chunked\" ],\n          \"Server\" : [ \"Jetty(9.2.24.v20180105)\" ]\n        }\n      }\n    },\n    \"_result\" : [ {\n      \"verified\" : true,\n      \"paymentUrl\" : \"https://paypal-example.com/payment?id=1983247919hv9sa398f\",\n      \"name\" : \"PayPal premium\"\n    }, {\n      \"verified\" : true,\n      \"paymentUrl\" : \"https://payu-example.com/tr?id=afj08aw398gha0we9ge\",\n      \"name\" : \"PayU\"\n    }, {\n      \"verified\" : true,\n      \"paymentUrl\" : \"https://cc-example.com/pay/19g8esry9se8rgyse90r8ug4\",\n      \"name\" : \"Credit Card\"\n    } ]\n  },\n  \"notify-analytics\" : {\n    \"_request\" : {\n      \"type\" : \"HTTP\",\n      \"source\" : \"/mock/scenario/analytics\",\n      \"metadata\" : {\n        \"headers\" : {\n          \"content-type\" : [ \"application/json\" ]\n        }\n      }\n    },\n    \"_response\" : {\n      \"success\" : false,\n      \"error\" : {\n        \"code\" : \"500 Internal Server Error\",\n        \"message\" : \"Server Error\"\n      },\n      \"metadata\" : {\n        \"statusCode\" : \"500\",\n        \"headers\" : {\n          \"Transfer-Encoding\" : [ \"chunked\" ],\n          \"Server\" : [ \"Jetty(9.2.24.v20180105)\" ]\n        }\n      }\n    },\n    \"_result\" : null\n  },\n  \"fetch-offers-fallback\" : {\n    \"_request\" : {\n      \"type\" : \"HTTP\",\n      \"source\" : \"/service/mock/specialOffers.json\",\n      \"metadata\" : {\n        \"headers\" : { }\n      }\n    },\n    \"_response\" : {\n      \"success\" : true,\n      \"metadata\" : {\n        \"statusCode\" : \"200\",\n        \"headers\" : {\n          \"Content-Type\" : [ \"application/json; charset=UTF-8\" ],\n          \"Transfer-Encoding\" : [ \"chunked\" ],\n          \"Server\" : [ \"Jetty(9.2.24.v20180105)\" ]\n        }\n      }\n    },\n    \"_result\" : [ {\n      \"id\" : 1,\n      \"product\" : \"Knot.x Basics - Paperback\",\n      \"price\" : \"$5.92\",\n      \"isbn13\" : 9781234567897\n    }, {\n      \"id\" : 2,\n      \"product\" : \"Hello Knot.x - Paperback\",\n      \"price\" : \"$2.74\",\n      \"isbn13\" : 3456789797812\n    }, {\n      \"id\" : 3,\n      \"product\" : \"Knot.x for Dummies - Paperback\",\n      \"price\" : \"$3.79\",\n      \"isbn13\" : 8123456977897\n    }, {\n      \"id\" : 4,\n      \"product\" : \"Knot.x for Dummies - Ebook\",\n      \"price\" : \"$2.72\",\n      \"isbn13\" : 7897129785634\n    }, {\n      \"id\" : 5,\n      \"product\" : \"Knot.x Starter Kit - Paperback\",\n      \"price\" : \"$2.77\",\n      \"isbn13\" : 8156797892347\n    } ]\n  },\n  \"notify-analytics-fallback\" : {\n    \"_request\" : {\n      \"type\" : \"HTTP\",\n      \"source\" : \"/service/mock/placeholderFallback.json\",\n      \"metadata\" : {\n        \"headers\" : { }\n      }\n    },\n    \"_response\" : {\n      \"success\" : true,\n      \"metadata\" : {\n        \"statusCode\" : \"200\",\n        \"headers\" : {\n          \"Content-Type\" : [ \"application/json; charset=UTF-8\" ],\n          \"Transfer-Encoding\" : [ \"chunked\" ],\n          \"Server\" : [ \"Jetty(9.2.24.v20180105)\" ]\n        }\n      }\n    },\n    \"_result\" : {\n      \"id\" : 999,\n      \"method\" : \"Default\",\n      \"price\" : \"$10\"\n    }\n  },\n  \"fetch-delivery\" : {\n    \"_result\" : {\n      \"fallback\" : \"action ended with _timeout\"\n    }\n  }\n}",
       "payload" : {
         "fetch-user-info" : {
           "_request" : {
@@ -38,6 +38,33 @@
             "credit_card_number" : "3562444175055197",
             "user_group" : "premium"
           }
+        },
+        "fetch-offers" : {
+          "_request" : {
+            "type" : "HTTP",
+            "source" : "/service/mock/specialOffers.xml",
+            "metadata" : {
+              "headers" : { }
+            }
+          },
+          "_response" : {
+            "success" : false,
+            "error" : {
+              "code" : "500 Internal Server Error",
+              "message" : "Server Error"
+            },
+            "metadata" : {
+              "statusCode" : "500",
+              "headers" : {
+                "Content-Type" : [ "text/html; charset=ISO-8859-1" ],
+                "Cache-Control" : [ "must-revalidate,no-cache,no-store" ],
+                "Content-Length" : [ "2606" ],
+                "Connection" : [ "close" ],
+                "Server" : [ "Jetty(9.2.24.v20180105)" ]
+              }
+            }
+          },
+          "_result" : null
         },
         "fetch-payment-providers" : {
           "_request" : {
@@ -72,7 +99,33 @@
             "name" : "Credit Card"
           } ]
         },
-        "fetch-offers-json" : {
+        "notify-analytics" : {
+          "_request" : {
+            "type" : "HTTP",
+            "source" : "/mock/scenario/analytics",
+            "metadata" : {
+              "headers" : {
+                "content-type" : [ "application/json" ]
+              }
+            }
+          },
+          "_response" : {
+            "success" : false,
+            "error" : {
+              "code" : "500 Internal Server Error",
+              "message" : "Server Error"
+            },
+            "metadata" : {
+              "statusCode" : "500",
+              "headers" : {
+                "Transfer-Encoding" : [ "chunked" ],
+                "Server" : [ "Jetty(9.2.24.v20180105)" ]
+              }
+            }
+          },
+          "_result" : null
+        },
+        "fetch-offers-fallback" : {
           "_request" : {
             "type" : "HTTP",
             "source" : "/service/mock/specialOffers.json",
@@ -117,22 +170,52 @@
             "price" : "$2.77",
             "isbn13" : 8156797892347
           } ]
+        },
+        "notify-analytics-fallback" : {
+          "_request" : {
+            "type" : "HTTP",
+            "source" : "/service/mock/placeholderFallback.json",
+            "metadata" : {
+              "headers" : { }
+            }
+          },
+          "_response" : {
+            "success" : true,
+            "metadata" : {
+              "statusCode" : "200",
+              "headers" : {
+                "Content-Type" : [ "application/json; charset=UTF-8" ],
+                "Transfer-Encoding" : [ "chunked" ],
+                "Server" : [ "Jetty(9.2.24.v20180105)" ]
+              }
+            }
+          },
+          "_result" : {
+            "id" : 999,
+            "method" : "Default",
+            "price" : "$10"
+          }
+        },
+        "fetch-delivery" : {
+          "_result" : {
+            "fallback" : "action ended with _timeout"
+          }
         }
       }
     },
     "graph" : {
-      "finished" : 1598265896225,
-      "id" : "01226146-457d-4570-9f48-046d8603bd41",
+      "finished" : 1599056911749,
+      "id" : "4fba62ef-5b4a-4409-b0b9-39c7760949dd",
       "label" : "fetch-user-info",
       "on" : {
         "_success" : {
-          "finished" : 1598265896249,
-          "id" : "6714d92e-5d90-489c-8128-6b102308f36e",
+          "finished" : 1599056911855,
+          "id" : "5785772b-51af-4ac9-8e2e-1e22972f0b5f",
           "label" : "composite",
           "on" : {
             "_success" : {
-              "finished" : 1598265896266,
-              "id" : "2d91d31e-fda1-447b-bdab-d9fa63197668",
+              "finished" : 1599056911856,
+              "id" : "cb489ca4-d72f-450d-abff-bc1c56390243",
               "label" : "create-response",
               "on" : { },
               "operation" : {
@@ -150,7 +233,7 @@
                 "log" : { },
                 "transition" : "_success"
               },
-              "started" : 1598265896252,
+              "started" : 1599056911856,
               "status" : "SUCCESS",
               "subtasks" : [ ],
               "type" : "SINGLE"
@@ -165,13 +248,41 @@
             "log" : { },
             "transition" : "_success"
           },
-          "started" : 1598265896226,
+          "started" : 1599056911749,
           "status" : "SUCCESS",
           "subtasks" : [ {
-            "finished" : 1598265896245,
-            "id" : "be4c3db5-fc75-4187-80ca-e8e9e89a4e26",
+            "finished" : 1599056911770,
+            "id" : "b0aaafc5-3a73-4b1d-894a-f4115f7be872",
             "label" : "fetch-payment-providers",
-            "on" : { },
+            "on" : {
+              "_error" : {
+                "finished" : 0,
+                "id" : "0d2e4687-96ee-4cf9-89e1-b160d748ac74",
+                "label" : "fetch-payment-providers-fallback",
+                "on" : { },
+                "operation" : {
+                  "data" : {
+                    "alias" : "fetch-payment-providers-fallback",
+                    "actionFactory" : "http",
+                    "actionConfig" : {
+                      "endpointOptions" : {
+                        "allowedRequestHeaders" : [ "Content-Type" ],
+                        "domain" : "localhost",
+                        "path" : "/service/mock/placeholderFallback.json",
+                        "port" : 50745
+                      },
+                      "logLevel" : "error"
+                    }
+                  },
+                  "factory" : "action"
+                },
+                "response" : { },
+                "started" : 0,
+                "status" : "UNPROCESSED",
+                "subtasks" : [ ],
+                "type" : "SINGLE"
+              }
+            },
             "operation" : {
               "data" : {
                 "alias" : "fetch-payment-providers",
@@ -181,7 +292,7 @@
                     "allowedRequestHeaders" : [ "Content-Type" ],
                     "domain" : "localhost",
                     "path" : "/service/mock/paymentProviders.json",
-                    "port" : 59305
+                    "port" : 50745
                   },
                   "logLevel" : "error"
                 }
@@ -197,25 +308,65 @@
               },
               "transition" : "_success"
             },
-            "started" : 1598265896230,
+            "started" : 1599056911749,
             "status" : "SUCCESS",
             "subtasks" : [ ],
             "type" : "SINGLE"
           }, {
-            "finished" : 1598265896248,
-            "id" : "90f5111f-e9bf-4759-ad56-0c15a5fcf4a4",
-            "label" : "fetch-offers-json",
-            "on" : { },
+            "finished" : 1599056911769,
+            "id" : "4b11c51c-9470-4b38-abfb-f88995dbb509",
+            "label" : "fetch-offers",
+            "on" : {
+              "_error" : {
+                "finished" : 1599056911774,
+                "id" : "319f8bf2-95d7-4d49-b546-f5aa9942b780",
+                "label" : "fetch-offers-fallback",
+                "on" : { },
+                "operation" : {
+                  "data" : {
+                    "alias" : "fetch-offers-fallback",
+                    "actionFactory" : "http",
+                    "actionConfig" : {
+                      "endpointOptions" : {
+                        "allowedRequestHeaders" : [ "Content-Type" ],
+                        "domain" : "localhost",
+                        "path" : "/service/mock/specialOffers.json",
+                        "port" : 50745
+                      },
+                      "logLevel" : "error"
+                    }
+                  },
+                  "factory" : "action"
+                },
+                "response" : {
+                  "errors" : [ ],
+                  "log" : {
+                    "alias" : "fetch-offers-fallback",
+                    "logs" : { },
+                    "doActionLogs" : [ ]
+                  },
+                  "transition" : "_success"
+                },
+                "started" : 1599056911770,
+                "status" : "SUCCESS",
+                "subtasks" : [ ],
+                "type" : "SINGLE"
+              }
+            },
             "operation" : {
               "data" : {
-                "alias" : "fetch-offers-json",
+                "alias" : "fetch-offers",
                 "actionFactory" : "http",
                 "actionConfig" : {
                   "endpointOptions" : {
                     "allowedRequestHeaders" : [ "Content-Type" ],
                     "domain" : "localhost",
-                    "path" : "/service/mock/specialOffers.json",
-                    "port" : 59305
+                    "path" : "/service/mock/specialOffers.xml",
+                    "port" : 50745
+                  },
+                  "responseOptions" : {
+                    "forceJson" : true,
+                    "predicates" : [ ]
                   },
                   "logLevel" : "error"
                 }
@@ -225,18 +376,300 @@
             "response" : {
               "errors" : [ ],
               "log" : {
-                "alias" : "fetch-offers-json",
-                "logs" : { },
+                "alias" : "fetch-offers",
+                "logs" : {
+                  "request" : {
+                    "path" : "/service/mock/specialOffers.xml",
+                    "requestHeaders" : { },
+                    "requestBody" : ""
+                  },
+                  "response" : {
+                    "httpVersion" : "HTTP_1_1",
+                    "statusCode" : "500",
+                    "statusMessage" : "Server Error",
+                    "headers" : {
+                      "Content-Type" : [ "text/html; charset=ISO-8859-1" ],
+                      "Cache-Control" : [ "must-revalidate,no-cache,no-store" ],
+                      "Content-Length" : [ "2606" ],
+                      "Connection" : [ "close" ],
+                      "Server" : [ "Jetty(9.2.24.v20180105)" ]
+                    },
+                    "trailers" : { },
+                    "httpMethod" : "GET",
+                    "requestPath" : "localhost:50745/service/mock/specialOffers.xml"
+                  },
+                  "errors" : [ {
+                    "className" : "java.io.IOException",
+                    "message" : "The service responded with unsuccessful status code: 500"
+                  } ]
+                },
                 "doActionLogs" : [ ]
               },
-              "transition" : "_success"
+              "transition" : "_error"
             },
-            "started" : 1598265896232,
-            "status" : "SUCCESS",
+            "started" : 1599056911750,
+            "status" : "ERROR",
+            "subtasks" : [ ],
+            "type" : "SINGLE"
+          }, {
+            "finished" : 1599056911853,
+            "id" : "698763b6-9de7-4e31-aa42-5d68bb67bcfc",
+            "label" : "fetch-delivery-options-cb",
+            "on" : {
+              "_fallback" : {
+                "finished" : 1599056911855,
+                "id" : "1bd78142-a050-441a-a63a-aeaabd8a08b1",
+                "label" : "fetch-delivery-fallback",
+                "on" : { },
+                "operation" : {
+                  "data" : {
+                    "alias" : "fetch-delivery-fallback",
+                    "actionFactory" : "inline-payload",
+                    "actionConfig" : {
+                      "alias" : "fetch-delivery",
+                      "payload" : {
+                        "_result" : {
+                          "fallback" : "action ended with _timeout"
+                        }
+                      },
+                      "logLevel" : "error"
+                    }
+                  },
+                  "factory" : "action"
+                },
+                "response" : {
+                  "errors" : [ ],
+                  "log" : {
+                    "alias" : "fetch-delivery-fallback",
+                    "logs" : { },
+                    "doActionLogs" : [ ]
+                  },
+                  "transition" : "_success"
+                },
+                "started" : 1599056911855,
+                "status" : "SUCCESS",
+                "subtasks" : [ ],
+                "type" : "SINGLE"
+              }
+            },
+            "operation" : {
+              "data" : {
+                "alias" : "fetch-delivery-options-cb",
+                "actionFactory" : "cb",
+                "actionConfig" : {
+                  "circuitBreakerName" : "delivery-cb",
+                  "circuitBreakerOptions" : {
+                    "maxRetries" : 1,
+                    "timeout" : 50
+                  },
+                  "logLevel" : "error"
+                },
+                "doAction" : {
+                  "alias" : "fetch-delivery",
+                  "actionFactory" : "http",
+                  "actionConfig" : {
+                    "endpointOptions" : {
+                      "allowedRequestHeaders" : [ "Content-Type" ],
+                      "domain" : "localhost",
+                      "path" : "/mock/scenario/delayed",
+                      "port" : 61858
+                    },
+                    "logLevel" : "error"
+                  }
+                }
+              },
+              "factory" : "action"
+            },
+            "response" : {
+              "errors" : [ ],
+              "log" : {
+                "alias" : "fetch-delivery-options-cb",
+                "logs" : {
+                  "invocationCount" : "2",
+                  "error" : "Exception: class io.vertx.circuitbreaker.TimeoutException. operation timeout"
+                },
+                "doActionLogs" : [ ]
+              },
+              "transition" : "_fallback"
+            },
+            "started" : 1599056911751,
+            "status" : "OTHER",
+            "subtasks" : [ ],
+            "type" : "SINGLE"
+          }, {
+            "finished" : 1599056911772,
+            "id" : "a8a11023-30a9-434f-b744-325bdf3667a0",
+            "label" : "notify-analytics-cb",
+            "on" : {
+              "_fallback" : {
+                "finished" : 1599056911776,
+                "id" : "575fb588-cd59-4bd1-bb01-7415b445f2f4",
+                "label" : "notify-analytics-fallback",
+                "on" : { },
+                "operation" : {
+                  "data" : {
+                    "alias" : "notify-analytics-fallback",
+                    "actionFactory" : "http",
+                    "actionConfig" : {
+                      "endpointOptions" : {
+                        "allowedRequestHeaders" : [ "Content-Type" ],
+                        "domain" : "localhost",
+                        "path" : "/service/mock/placeholderFallback.json",
+                        "port" : 50745
+                      },
+                      "logLevel" : "error"
+                    }
+                  },
+                  "factory" : "action"
+                },
+                "response" : {
+                  "errors" : [ ],
+                  "log" : {
+                    "alias" : "notify-analytics-fallback",
+                    "logs" : { },
+                    "doActionLogs" : [ ]
+                  },
+                  "transition" : "_success"
+                },
+                "started" : 1599056911773,
+                "status" : "SUCCESS",
+                "subtasks" : [ ],
+                "type" : "SINGLE"
+              }
+            },
+            "operation" : {
+              "data" : {
+                "alias" : "notify-analytics-cb",
+                "actionFactory" : "cb",
+                "actionConfig" : {
+                  "circuitBreakerName" : "delivery-cb",
+                  "logLevel" : "error"
+                },
+                "doAction" : {
+                  "alias" : "notify-analytics",
+                  "actionFactory" : "http",
+                  "actionConfig" : {
+                    "endpointOptions" : {
+                      "allowedRequestHeaders" : [ "Content-Type" ],
+                      "bodyJson" : {
+                        "user-data-id" : "{payload.fetch-user-info._result.id}"
+                      },
+                      "domain" : "localhost",
+                      "interpolateBody" : true,
+                      "path" : "/mock/scenario/analytics",
+                      "port" : 64822
+                    },
+                    "httpMethod" : "POST",
+                    "logLevel" : "error"
+                  }
+                }
+              },
+              "factory" : "action"
+            },
+            "response" : {
+              "errors" : [ ],
+              "log" : {
+                "alias" : "notify-analytics-cb",
+                "logs" : {
+                  "invocationCount" : "1",
+                  "error" : "Exception: class io.knotx.fragments.action.library.exception.DoActionExecuteException. Action end up _error transition"
+                },
+                "doActionLogs" : [ {
+                  "duration" : 20,
+                  "success" : false,
+                  "doActionLog" : {
+                    "alias" : "notify-analytics",
+                    "logs" : {
+                      "request" : {
+                        "path" : "/mock/scenario/analytics",
+                        "requestHeaders" : {
+                          "content-type" : [ "application/json" ]
+                        },
+                        "requestBody" : "{\"user-data-id\":\"3214232\"}"
+                      },
+                      "response" : {
+                        "httpVersion" : "HTTP_1_1",
+                        "statusCode" : "500",
+                        "statusMessage" : "Server Error",
+                        "headers" : {
+                          "Transfer-Encoding" : [ "chunked" ],
+                          "Server" : [ "Jetty(9.2.24.v20180105)" ]
+                        },
+                        "trailers" : { },
+                        "httpMethod" : "POST",
+                        "requestPath" : "localhost:64822/mock/scenario/analytics"
+                      },
+                      "errors" : [ {
+                        "className" : "java.io.IOException",
+                        "message" : "The service responded with unsuccessful status code: 500"
+                      } ]
+                    },
+                    "doActionLogs" : [ ]
+                  }
+                } ]
+              },
+              "transition" : "_fallback"
+            },
+            "started" : 1599056911752,
+            "status" : "OTHER",
             "subtasks" : [ ],
             "type" : "SINGLE"
           } ],
           "type" : "COMPOSITE"
+        },
+        "_custom" : {
+          "finished" : 0,
+          "id" : "2ac03f22-81e6-4ce8-b7ba-b82123c2699d",
+          "label" : "fetch-user-info-custom",
+          "on" : { },
+          "operation" : {
+            "data" : {
+              "alias" : "fetch-user-info-custom",
+              "actionFactory" : "http",
+              "actionConfig" : {
+                "endpointOptions" : {
+                  "allowedRequestHeaders" : [ "Content-Type" ],
+                  "domain" : "localhost",
+                  "path" : "/service/mock/placeholderFallback.json",
+                  "port" : 50745
+                },
+                "logLevel" : "error"
+              }
+            },
+            "factory" : "action"
+          },
+          "response" : { },
+          "started" : 0,
+          "status" : "UNPROCESSED",
+          "subtasks" : [ ],
+          "type" : "SINGLE"
+        },
+        "_error" : {
+          "finished" : 0,
+          "id" : "2c4cc900-be3f-4893-9038-54d0e0bbb544",
+          "label" : "fetch-user-info-fallback",
+          "on" : { },
+          "operation" : {
+            "data" : {
+              "alias" : "fetch-user-info-fallback",
+              "actionFactory" : "http",
+              "actionConfig" : {
+                "endpointOptions" : {
+                  "allowedRequestHeaders" : [ "Content-Type" ],
+                  "domain" : "localhost",
+                  "path" : "/service/mock/placeholderFallback.json",
+                  "port" : 50745
+                },
+                "logLevel" : "error"
+              }
+            },
+            "factory" : "action"
+          },
+          "response" : { },
+          "started" : 0,
+          "status" : "UNPROCESSED",
+          "subtasks" : [ ],
+          "type" : "SINGLE"
         }
       },
       "operation" : {
@@ -248,7 +681,7 @@
               "allowedRequestHeaders" : [ "Content-Type" ],
               "domain" : "localhost",
               "path" : "/service/mock/userInfo.json",
-              "port" : 59305
+              "port" : 50745
             },
             "logLevel" : "error"
           }
@@ -264,12 +697,12 @@
         },
         "transition" : "_success"
       },
-      "started" : 1598265896135,
+      "started" : 1599056911744,
       "status" : "SUCCESS",
       "subtasks" : [ ],
       "type" : "SINGLE"
     },
-    "startTime" : 1598265896135,
+    "startTime" : 1599056911744,
     "status" : "SUCCESS"
   },
   "fetch-user-info" : {
@@ -301,6 +734,33 @@
       "credit_card_number" : "3562444175055197",
       "user_group" : "premium"
     }
+  },
+  "fetch-offers" : {
+    "_request" : {
+      "type" : "HTTP",
+      "source" : "/service/mock/specialOffers.xml",
+      "metadata" : {
+        "headers" : { }
+      }
+    },
+    "_response" : {
+      "success" : false,
+      "error" : {
+        "code" : "500 Internal Server Error",
+        "message" : "Server Error"
+      },
+      "metadata" : {
+        "statusCode" : "500",
+        "headers" : {
+          "Content-Type" : [ "text/html; charset=ISO-8859-1" ],
+          "Cache-Control" : [ "must-revalidate,no-cache,no-store" ],
+          "Content-Length" : [ "2606" ],
+          "Connection" : [ "close" ],
+          "Server" : [ "Jetty(9.2.24.v20180105)" ]
+        }
+      }
+    },
+    "_result" : null
   },
   "fetch-payment-providers" : {
     "_request" : {
@@ -335,7 +795,33 @@
       "name" : "Credit Card"
     } ]
   },
-  "fetch-offers-json" : {
+  "notify-analytics" : {
+    "_request" : {
+      "type" : "HTTP",
+      "source" : "/mock/scenario/analytics",
+      "metadata" : {
+        "headers" : {
+          "content-type" : [ "application/json" ]
+        }
+      }
+    },
+    "_response" : {
+      "success" : false,
+      "error" : {
+        "code" : "500 Internal Server Error",
+        "message" : "Server Error"
+      },
+      "metadata" : {
+        "statusCode" : "500",
+        "headers" : {
+          "Transfer-Encoding" : [ "chunked" ],
+          "Server" : [ "Jetty(9.2.24.v20180105)" ]
+        }
+      }
+    },
+    "_result" : null
+  },
+  "fetch-offers-fallback" : {
     "_request" : {
       "type" : "HTTP",
       "source" : "/service/mock/specialOffers.json",
@@ -380,5 +866,35 @@
       "price" : "$2.77",
       "isbn13" : 8156797892347
     } ]
+  },
+  "notify-analytics-fallback" : {
+    "_request" : {
+      "type" : "HTTP",
+      "source" : "/service/mock/placeholderFallback.json",
+      "metadata" : {
+        "headers" : { }
+      }
+    },
+    "_response" : {
+      "success" : true,
+      "metadata" : {
+        "statusCode" : "200",
+        "headers" : {
+          "Content-Type" : [ "application/json; charset=UTF-8" ],
+          "Transfer-Encoding" : [ "chunked" ],
+          "Server" : [ "Jetty(9.2.24.v20180105)" ]
+        }
+      }
+    },
+    "_result" : {
+      "id" : 999,
+      "method" : "Default",
+      "price" : "$10"
+    }
+  },
+  "fetch-delivery" : {
+    "_result" : {
+      "fallback" : "action ended with _timeout"
+    }
   }
 }

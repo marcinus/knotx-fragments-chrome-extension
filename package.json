@@ -12,13 +12,15 @@
     "test": "jest -c jest.config.js",
     "test:snapshot": "jest -c jest-snapshot.config.js",
     "snapshot": "start-server-and-test storybook http-get://localhost:6006 test:snapshot",
-    "lint": "eslint -c .eslintrc.json src/js/**",
+    "lint": "eslint -c .eslintrc.json ./src/js/**",
+    "lint:fix": "eslint -c .eslintrc.json --fix ./src/js/**",
     "release": "node ./scripts/build.js",
     "release:minor": "node ./scripts/build.js minor",
     "release:major": "node ./scripts/build.js major",
     "clean:artifacts": "rm -rf packages/*.zip",
     "storybook": "start-storybook -p 6006 --ci",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook",
+    "samples": "http-server ./assets/samples/"
   },
   "publishConfig": {
     "registry": "https://npm.pkg.github.com/"
@@ -63,6 +65,7 @@
     "eslint-plugin-jsx-a11y": "^6.2.3",
     "eslint-plugin-react": "^7.18.0",
     "eslint-plugin-react-hooks": "^1.7.0",
+    "http-server": "^0.12.3",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^25.3.0",
     "jest-extended": "^0.11.5",
