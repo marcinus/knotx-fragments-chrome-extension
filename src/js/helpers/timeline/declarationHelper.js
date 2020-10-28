@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import { DataSet } from 'vis-timeline';
+import { DataSet } from 'vis-data';
 
 const RADIX = 10;
 const EMPTY_LABEL = '';

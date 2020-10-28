@@ -51,12 +51,12 @@ export const SortingButton = styled.button`
     }
 `;
 
-export const StatusSortingButton = styled(SortingButton)`
+export const NarrowSortingButton = styled(SortingButton)`
     flex: none;
     width: 30px;
 `;
 
-export const EmptySortingCell = styled(StatusSortingButton)``;
+export const EmptySortingCell = styled(NarrowSortingButton)``;
 
 export const ListItemContainer = styled.div`
     height: 100%;

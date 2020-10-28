@@ -25,7 +25,7 @@ pool:
 
 variables:
   YARN_CACHE_FOLDER: $(Pipeline.Workspace)/.yarn
-  NODE_VERSION: 12.16.3
+  NODE_VERSION: 12.x
 
 steps:
   - task: NodeTool@0

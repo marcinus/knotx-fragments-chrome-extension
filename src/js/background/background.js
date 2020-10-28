@@ -54,7 +54,9 @@ chrome.runtime.onMessage.addListener(
 
       const { pageData } = store.getState();
       const currentPageData = pageData[pageDataObj.id];
-
+      if (process.env.NODE_ENV === 'development') {
+        console.debug(store.getState());
+      }
       if (currentPageData?.fragments?.length && currentPageData.url) {
         sendResponse({
           status: status.succes,
