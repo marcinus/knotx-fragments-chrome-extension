@@ -1,4 +1,3 @@
-
 /*
  * Copyright (C) 2020 Knot.x Project
  *
@@ -38,11 +37,9 @@ const reloadAllPages = () => {
 chrome.runtime.onInstalled.addListener(() => reloadAllPages());
 chrome.management.onEnabled.addListener(() => reloadAllPages());
 
-
 chrome.tabs.onRemoved.addListener((tabId) => {
   store.dispatch(removePageData({ id: tabId }));
 });
-
 
 chrome.runtime.onMessage.addListener(
   (request, sender, sendResponse) => {
@@ -68,7 +65,6 @@ chrome.runtime.onMessage.addListener(
     }
   },
 );
-
 
 chrome.runtime.onConnect.addListener((port) => {
   if (port.name !== chromeConnections.KNOTX_DEVTOOL_CONNECTION) return;

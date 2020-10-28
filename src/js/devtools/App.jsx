@@ -31,7 +31,6 @@ const App = ({ tabId }) => {
 
   const detectKnotxFragments = useSelector(({ pageData }) => (pageData[tabId]?.fragments || false));
 
-
   /* eslint-disable react/no-danger */
   return detectKnotxFragments.length
     ? (
