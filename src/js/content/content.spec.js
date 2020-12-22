@@ -17,12 +17,6 @@
 import { getData } from './content';
 import * as nodesHelper from '../helpers/nodes/nodesHelper';
 
-function setupFetchMock(result) {
-  global.fetch = jest.fn(() => Promise.resolve({
-    json: () => Promise.resolve(result),
-  }));
-}
-
 function setupHtmlMock(result) {
   nodesHelper.findFragmentsInContent = jest.fn(() => result);
 }
@@ -39,7 +33,9 @@ it('getData passes no fragments for unsupported response type', async () => {
 
 it('getData passes one fragment with no nodes for JSON object in response', async () => {
   const mockedResponse = { _knotx_fragment: { id: '0' }, some_data: 42 };
-  setupFetchMock(mockedResponse);
+  const mockElement = document.createElement('pre');
+  document.body.appendChild(mockElement);
+  document.querySelector('pre').innerHTML = '{ "_knotx_fragment": { "id": "0" }, "some_data": 42 }';
 
   await getData('application/json');
 
@@ -57,8 +53,9 @@ it('getData passes one fragment with no nodes for JSON object in response', asyn
 });
 
 it('getData passes no fragments for empty JSON array in response', async () => {
-  const mockedResponse = [];
-  setupFetchMock(mockedResponse);
+  const mockElement = document.createElement('pre');
+  document.body.appendChild(mockElement);
+  document.querySelector('pre').innerHTML = '[]';
 
   await getData('application/json');
 
@@ -72,7 +69,14 @@ it('getData passes multiple fragments with no nodes for JSON array in response',
     { _knotx_fragment: { id: '0' }, some_data: 42 },
     { _knotx_fragment: { id: '1' }, some_other_data: 'lorem' },
   ];
-  setupFetchMock(mockedResponse);
+
+  const mockElement = document.createElement('pre');
+  document.body.appendChild(mockElement);
+  document.querySelector('pre').innerHTML = `
+  [
+    { "_knotx_fragment": { "id": "0" }, "some_data": 42 },
+    { "_knotx_fragment": { "id": "1" }, "some_other_data": "lorem" }
+  ]`;
 
   await getData('application/json');
 
