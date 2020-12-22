@@ -729,7 +729,7 @@ exports[`Storyshots Logic Components | SidePanel SidePanel 1`] = `
         className="fragmentListstyle__SortingWrapper-k1cyov-1 chmpju"
       >
         <button
-          className="fragmentListstyle__SortingButton-k1cyov-2 fragmentListstyle__StatusSortingButton-k1cyov-3 grLzTR"
+          className="fragmentListstyle__SortingButton-k1cyov-2 fragmentListstyle__NarrowSortingButton-k1cyov-3 eIhita"
           onClick={[Function]}
         >
           <svg
@@ -751,13 +751,22 @@ exports[`Storyshots Logic Components | SidePanel SidePanel 1`] = `
           </svg>
         </button>
         <button
+          className="fragmentListstyle__SortingButton-k1cyov-2 fragmentListstyle__NarrowSortingButton-k1cyov-3 eIhita"
+        >
+          <span
+            className="tableHeaderName"
+          >
+            #
+          </span>
+        </button>
+        <button
           className="fragmentListstyle__SortingButton-k1cyov-2 avWAN"
           onClick={[Function]}
         >
           <span
             className="tableHeaderName"
           >
-            ID
+            NAME
           </span>
           <span
             className="tableHeaderIcon"
@@ -844,7 +853,7 @@ exports[`Storyshots Logic Components | SidePanel SidePanel 1`] = `
           </span>
         </button>
         <button
-          className="fragmentListstyle__SortingButton-k1cyov-2 fragmentListstyle__StatusSortingButton-k1cyov-3 fragmentListstyle__EmptySortingCell-k1cyov-4 hbIlYh"
+          className="fragmentListstyle__SortingButton-k1cyov-2 fragmentListstyle__NarrowSortingButton-k1cyov-3 fragmentListstyle__EmptySortingCell-k1cyov-4 hbIlYh"
           tabIndex="-1"
         />
       </div>
@@ -858,14 +867,14 @@ exports[`Storyshots Logic Components | SidePanel SidePanel 1`] = `
           tabIndex="0"
         >
           <div
-            className="fragmentListItemstyle__StatusWrapper-sc-1leslat-1 honGAR"
+            className="fragmentListItemstyle__NarrowTableItem-sc-1leslat-1 kwCEIa"
           >
             <div
               className="fragmentListItemstyle__Status-sc-1leslat-3 bhyqIJ"
             />
           </div>
           <div
-            className="fragmentListItemstyle__TableItem-sc-1leslat-4 fragmentListItemstyle__TableItemId-sc-1leslat-5 hhvkgD"
+            className="fragmentListItemstyle__NarrowTableItem-sc-1leslat-1 kwCEIa"
           >
             <p
               className="fragmentListItemstyle__OverflowWrapper-sc-1leslat-6 cgCppH"
@@ -873,7 +882,20 @@ exports[`Storyshots Logic Components | SidePanel SidePanel 1`] = `
               <span
                 className="tableItemContent"
               >
-                E
+                1
+              </span>
+            </p>
+          </div>
+          <div
+            className="fragmentListItemstyle__TableItem-sc-1leslat-4 fragmentListItemstyle__TableNameItem-sc-1leslat-5 kLnmXl"
+          >
+            <p
+              className="fragmentListItemstyle__OverflowWrapper-sc-1leslat-6 cgCppH"
+            >
+              <span
+                className="tableItemContent"
+              >
+                E [name]
               </span>
             </p>
             <span
@@ -911,7 +933,7 @@ exports[`Storyshots Logic Components | SidePanel SidePanel 1`] = `
               <span
                 className="tableItemContent"
               >
-                E
+                E [type]
               </span>
             </p>
           </div>
@@ -929,7 +951,7 @@ exports[`Storyshots Logic Components | SidePanel SidePanel 1`] = `
             </p>
           </div>
           <div
-            className="fragmentListItemstyle__StatusWrapper-sc-1leslat-1 fragmentListItemstyle__ShowGraphButton-sc-1leslat-2 iVNrjR"
+            className="fragmentListItemstyle__NarrowTableItem-sc-1leslat-1 fragmentListItemstyle__ShowGraphButton-sc-1leslat-2 iVNrjR"
           >
             <svg
               aria-hidden="true"
@@ -978,14 +1000,14 @@ exports[`Storyshots Logic Components | SidePanel SidePanel 1`] = `
           tabIndex="0"
         >
           <div
-            className="fragmentListItemstyle__StatusWrapper-sc-1leslat-1 honGAR"
+            className="fragmentListItemstyle__NarrowTableItem-sc-1leslat-1 kwCEIa"
           >
             <div
               className="fragmentListItemstyle__Status-sc-1leslat-3 iAGZOE"
             />
           </div>
           <div
-            className="fragmentListItemstyle__TableItem-sc-1leslat-4 fragmentListItemstyle__TableItemId-sc-1leslat-5 hhvkgD"
+            className="fragmentListItemstyle__NarrowTableItem-sc-1leslat-1 kwCEIa"
           >
             <p
               className="fragmentListItemstyle__OverflowWrapper-sc-1leslat-6 cgCppH"
@@ -993,7 +1015,20 @@ exports[`Storyshots Logic Components | SidePanel SidePanel 1`] = `
               <span
                 className="tableItemContent"
               >
-                D
+                2
+              </span>
+            </p>
+          </div>
+          <div
+            className="fragmentListItemstyle__TableItem-sc-1leslat-4 fragmentListItemstyle__TableNameItem-sc-1leslat-5 kLnmXl"
+          >
+            <p
+              className="fragmentListItemstyle__OverflowWrapper-sc-1leslat-6 cgCppH"
+            >
+              <span
+                className="tableItemContent"
+              >
+                D [name]
               </span>
             </p>
             <span
@@ -1031,7 +1066,7 @@ exports[`Storyshots Logic Components | SidePanel SidePanel 1`] = `
               <span
                 className="tableItemContent"
               >
-                D
+                D [type]
               </span>
             </p>
           </div>
@@ -1049,7 +1084,7 @@ exports[`Storyshots Logic Components | SidePanel SidePanel 1`] = `
             </p>
           </div>
           <div
-            className="fragmentListItemstyle__StatusWrapper-sc-1leslat-1 fragmentListItemstyle__ShowGraphButton-sc-1leslat-2 iVNrjR"
+            className="fragmentListItemstyle__NarrowTableItem-sc-1leslat-1 fragmentListItemstyle__ShowGraphButton-sc-1leslat-2 iVNrjR"
           >
             <svg
               aria-hidden="true"
@@ -1098,14 +1133,14 @@ exports[`Storyshots Logic Components | SidePanel SidePanel 1`] = `
           tabIndex="0"
         >
           <div
-            className="fragmentListItemstyle__StatusWrapper-sc-1leslat-1 honGAR"
+            className="fragmentListItemstyle__NarrowTableItem-sc-1leslat-1 kwCEIa"
           >
             <div
               className="fragmentListItemstyle__Status-sc-1leslat-3 cufWfz"
             />
           </div>
           <div
-            className="fragmentListItemstyle__TableItem-sc-1leslat-4 fragmentListItemstyle__TableItemId-sc-1leslat-5 hhvkgD"
+            className="fragmentListItemstyle__NarrowTableItem-sc-1leslat-1 kwCEIa"
           >
             <p
               className="fragmentListItemstyle__OverflowWrapper-sc-1leslat-6 cgCppH"
@@ -1113,7 +1148,20 @@ exports[`Storyshots Logic Components | SidePanel SidePanel 1`] = `
               <span
                 className="tableItemContent"
               >
-                C
+                3
+              </span>
+            </p>
+          </div>
+          <div
+            className="fragmentListItemstyle__TableItem-sc-1leslat-4 fragmentListItemstyle__TableNameItem-sc-1leslat-5 kLnmXl"
+          >
+            <p
+              className="fragmentListItemstyle__OverflowWrapper-sc-1leslat-6 cgCppH"
+            >
+              <span
+                className="tableItemContent"
+              >
+                C [name]
               </span>
             </p>
             <span
@@ -1151,7 +1199,7 @@ exports[`Storyshots Logic Components | SidePanel SidePanel 1`] = `
               <span
                 className="tableItemContent"
               >
-                C
+                C [type]
               </span>
             </p>
           </div>
@@ -1169,7 +1217,7 @@ exports[`Storyshots Logic Components | SidePanel SidePanel 1`] = `
             </p>
           </div>
           <div
-            className="fragmentListItemstyle__StatusWrapper-sc-1leslat-1 fragmentListItemstyle__ShowGraphButton-sc-1leslat-2 iVNrjR"
+            className="fragmentListItemstyle__NarrowTableItem-sc-1leslat-1 fragmentListItemstyle__ShowGraphButton-sc-1leslat-2 iVNrjR"
           >
             <svg
               aria-hidden="true"
@@ -1218,14 +1266,14 @@ exports[`Storyshots Logic Components | SidePanel SidePanel 1`] = `
           tabIndex="0"
         >
           <div
-            className="fragmentListItemstyle__StatusWrapper-sc-1leslat-1 honGAR"
+            className="fragmentListItemstyle__NarrowTableItem-sc-1leslat-1 kwCEIa"
           >
             <div
               className="fragmentListItemstyle__Status-sc-1leslat-3 cIWurx"
             />
           </div>
           <div
-            className="fragmentListItemstyle__TableItem-sc-1leslat-4 fragmentListItemstyle__TableItemId-sc-1leslat-5 hhvkgD"
+            className="fragmentListItemstyle__NarrowTableItem-sc-1leslat-1 kwCEIa"
           >
             <p
               className="fragmentListItemstyle__OverflowWrapper-sc-1leslat-6 cgCppH"
@@ -1233,7 +1281,20 @@ exports[`Storyshots Logic Components | SidePanel SidePanel 1`] = `
               <span
                 className="tableItemContent"
               >
-                B
+                4
+              </span>
+            </p>
+          </div>
+          <div
+            className="fragmentListItemstyle__TableItem-sc-1leslat-4 fragmentListItemstyle__TableNameItem-sc-1leslat-5 kLnmXl"
+          >
+            <p
+              className="fragmentListItemstyle__OverflowWrapper-sc-1leslat-6 cgCppH"
+            >
+              <span
+                className="tableItemContent"
+              >
+                B [name]
               </span>
             </p>
             <span
@@ -1271,7 +1332,7 @@ exports[`Storyshots Logic Components | SidePanel SidePanel 1`] = `
               <span
                 className="tableItemContent"
               >
-                B
+                B [type]
               </span>
             </p>
           </div>
@@ -1289,7 +1350,7 @@ exports[`Storyshots Logic Components | SidePanel SidePanel 1`] = `
             </p>
           </div>
           <div
-            className="fragmentListItemstyle__StatusWrapper-sc-1leslat-1 fragmentListItemstyle__ShowGraphButton-sc-1leslat-2 iVNrjR"
+            className="fragmentListItemstyle__NarrowTableItem-sc-1leslat-1 fragmentListItemstyle__ShowGraphButton-sc-1leslat-2 iVNrjR"
           >
             <svg
               aria-hidden="true"
@@ -1338,14 +1399,14 @@ exports[`Storyshots Logic Components | SidePanel SidePanel 1`] = `
           tabIndex="0"
         >
           <div
-            className="fragmentListItemstyle__StatusWrapper-sc-1leslat-1 honGAR"
+            className="fragmentListItemstyle__NarrowTableItem-sc-1leslat-1 kwCEIa"
           >
             <div
               className="fragmentListItemstyle__Status-sc-1leslat-3 cKTGXu"
             />
           </div>
           <div
-            className="fragmentListItemstyle__TableItem-sc-1leslat-4 fragmentListItemstyle__TableItemId-sc-1leslat-5 hhvkgD"
+            className="fragmentListItemstyle__NarrowTableItem-sc-1leslat-1 kwCEIa"
           >
             <p
               className="fragmentListItemstyle__OverflowWrapper-sc-1leslat-6 cgCppH"
@@ -1353,7 +1414,20 @@ exports[`Storyshots Logic Components | SidePanel SidePanel 1`] = `
               <span
                 className="tableItemContent"
               >
-                A
+                5
+              </span>
+            </p>
+          </div>
+          <div
+            className="fragmentListItemstyle__TableItem-sc-1leslat-4 fragmentListItemstyle__TableNameItem-sc-1leslat-5 kLnmXl"
+          >
+            <p
+              className="fragmentListItemstyle__OverflowWrapper-sc-1leslat-6 cgCppH"
+            >
+              <span
+                className="tableItemContent"
+              >
+                A [name]
               </span>
             </p>
             <span
@@ -1391,7 +1465,7 @@ exports[`Storyshots Logic Components | SidePanel SidePanel 1`] = `
               <span
                 className="tableItemContent"
               >
-                A
+                A [type]
               </span>
             </p>
           </div>
@@ -1409,7 +1483,7 @@ exports[`Storyshots Logic Components | SidePanel SidePanel 1`] = `
             </p>
           </div>
           <div
-            className="fragmentListItemstyle__StatusWrapper-sc-1leslat-1 fragmentListItemstyle__ShowGraphButton-sc-1leslat-2 iVNrjR"
+            className="fragmentListItemstyle__NarrowTableItem-sc-1leslat-1 fragmentListItemstyle__ShowGraphButton-sc-1leslat-2 iVNrjR"
           >
             <svg
               aria-hidden="true"
@@ -1539,7 +1613,7 @@ exports[`Storyshots Logic Components | SidePanel.FragmentList FragmentList 1`] =
     className="fragmentListstyle__SortingWrapper-k1cyov-1 chmpju"
   >
     <button
-      className="fragmentListstyle__SortingButton-k1cyov-2 fragmentListstyle__StatusSortingButton-k1cyov-3 grLzTR"
+      className="fragmentListstyle__SortingButton-k1cyov-2 fragmentListstyle__NarrowSortingButton-k1cyov-3 eIhita"
       onClick={[Function]}
     >
       <svg
@@ -1561,13 +1635,22 @@ exports[`Storyshots Logic Components | SidePanel.FragmentList FragmentList 1`] =
       </svg>
     </button>
     <button
+      className="fragmentListstyle__SortingButton-k1cyov-2 fragmentListstyle__NarrowSortingButton-k1cyov-3 eIhita"
+    >
+      <span
+        className="tableHeaderName"
+      >
+        #
+      </span>
+    </button>
+    <button
       className="fragmentListstyle__SortingButton-k1cyov-2 avWAN"
       onClick={[Function]}
     >
       <span
         className="tableHeaderName"
       >
-        ID
+        NAME
       </span>
       <span
         className="tableHeaderIcon"
@@ -1654,7 +1737,7 @@ exports[`Storyshots Logic Components | SidePanel.FragmentList FragmentList 1`] =
       </span>
     </button>
     <button
-      className="fragmentListstyle__SortingButton-k1cyov-2 fragmentListstyle__StatusSortingButton-k1cyov-3 fragmentListstyle__EmptySortingCell-k1cyov-4 hbIlYh"
+      className="fragmentListstyle__SortingButton-k1cyov-2 fragmentListstyle__NarrowSortingButton-k1cyov-3 fragmentListstyle__EmptySortingCell-k1cyov-4 hbIlYh"
       tabIndex="-1"
     />
   </div>
@@ -1668,14 +1751,14 @@ exports[`Storyshots Logic Components | SidePanel.FragmentList FragmentList 1`] =
       tabIndex="0"
     >
       <div
-        className="fragmentListItemstyle__StatusWrapper-sc-1leslat-1 honGAR"
+        className="fragmentListItemstyle__NarrowTableItem-sc-1leslat-1 kwCEIa"
       >
         <div
           className="fragmentListItemstyle__Status-sc-1leslat-3 bhyqIJ"
         />
       </div>
       <div
-        className="fragmentListItemstyle__TableItem-sc-1leslat-4 fragmentListItemstyle__TableItemId-sc-1leslat-5 hhvkgD"
+        className="fragmentListItemstyle__NarrowTableItem-sc-1leslat-1 kwCEIa"
       >
         <p
           className="fragmentListItemstyle__OverflowWrapper-sc-1leslat-6 cgCppH"
@@ -1683,7 +1766,20 @@ exports[`Storyshots Logic Components | SidePanel.FragmentList FragmentList 1`] =
           <span
             className="tableItemContent"
           >
-            E
+            1
+          </span>
+        </p>
+      </div>
+      <div
+        className="fragmentListItemstyle__TableItem-sc-1leslat-4 fragmentListItemstyle__TableNameItem-sc-1leslat-5 kLnmXl"
+      >
+        <p
+          className="fragmentListItemstyle__OverflowWrapper-sc-1leslat-6 cgCppH"
+        >
+          <span
+            className="tableItemContent"
+          >
+            E [name]
           </span>
         </p>
         <span
@@ -1721,7 +1817,7 @@ exports[`Storyshots Logic Components | SidePanel.FragmentList FragmentList 1`] =
           <span
             className="tableItemContent"
           >
-            E
+            E [type]
           </span>
         </p>
       </div>
@@ -1739,7 +1835,7 @@ exports[`Storyshots Logic Components | SidePanel.FragmentList FragmentList 1`] =
         </p>
       </div>
       <div
-        className="fragmentListItemstyle__StatusWrapper-sc-1leslat-1 fragmentListItemstyle__ShowGraphButton-sc-1leslat-2 iVNrjR"
+        className="fragmentListItemstyle__NarrowTableItem-sc-1leslat-1 fragmentListItemstyle__ShowGraphButton-sc-1leslat-2 iVNrjR"
       >
         <svg
           aria-hidden="true"
@@ -1788,14 +1884,14 @@ exports[`Storyshots Logic Components | SidePanel.FragmentList FragmentList 1`] =
       tabIndex="0"
     >
       <div
-        className="fragmentListItemstyle__StatusWrapper-sc-1leslat-1 honGAR"
+        className="fragmentListItemstyle__NarrowTableItem-sc-1leslat-1 kwCEIa"
       >
         <div
           className="fragmentListItemstyle__Status-sc-1leslat-3 iAGZOE"
         />
       </div>
       <div
-        className="fragmentListItemstyle__TableItem-sc-1leslat-4 fragmentListItemstyle__TableItemId-sc-1leslat-5 hhvkgD"
+        className="fragmentListItemstyle__NarrowTableItem-sc-1leslat-1 kwCEIa"
       >
         <p
           className="fragmentListItemstyle__OverflowWrapper-sc-1leslat-6 cgCppH"
@@ -1803,7 +1899,20 @@ exports[`Storyshots Logic Components | SidePanel.FragmentList FragmentList 1`] =
           <span
             className="tableItemContent"
           >
-            D
+            2
+          </span>
+        </p>
+      </div>
+      <div
+        className="fragmentListItemstyle__TableItem-sc-1leslat-4 fragmentListItemstyle__TableNameItem-sc-1leslat-5 kLnmXl"
+      >
+        <p
+          className="fragmentListItemstyle__OverflowWrapper-sc-1leslat-6 cgCppH"
+        >
+          <span
+            className="tableItemContent"
+          >
+            D [name]
           </span>
         </p>
         <span
@@ -1841,7 +1950,7 @@ exports[`Storyshots Logic Components | SidePanel.FragmentList FragmentList 1`] =
           <span
             className="tableItemContent"
           >
-            D
+            D [type]
           </span>
         </p>
       </div>
@@ -1859,7 +1968,7 @@ exports[`Storyshots Logic Components | SidePanel.FragmentList FragmentList 1`] =
         </p>
       </div>
       <div
-        className="fragmentListItemstyle__StatusWrapper-sc-1leslat-1 fragmentListItemstyle__ShowGraphButton-sc-1leslat-2 iVNrjR"
+        className="fragmentListItemstyle__NarrowTableItem-sc-1leslat-1 fragmentListItemstyle__ShowGraphButton-sc-1leslat-2 iVNrjR"
       >
         <svg
           aria-hidden="true"
@@ -1908,14 +2017,14 @@ exports[`Storyshots Logic Components | SidePanel.FragmentList FragmentList 1`] =
       tabIndex="0"
     >
       <div
-        className="fragmentListItemstyle__StatusWrapper-sc-1leslat-1 honGAR"
+        className="fragmentListItemstyle__NarrowTableItem-sc-1leslat-1 kwCEIa"
       >
         <div
           className="fragmentListItemstyle__Status-sc-1leslat-3 cufWfz"
         />
       </div>
       <div
-        className="fragmentListItemstyle__TableItem-sc-1leslat-4 fragmentListItemstyle__TableItemId-sc-1leslat-5 hhvkgD"
+        className="fragmentListItemstyle__NarrowTableItem-sc-1leslat-1 kwCEIa"
       >
         <p
           className="fragmentListItemstyle__OverflowWrapper-sc-1leslat-6 cgCppH"
@@ -1923,7 +2032,20 @@ exports[`Storyshots Logic Components | SidePanel.FragmentList FragmentList 1`] =
           <span
             className="tableItemContent"
           >
-            C
+            3
+          </span>
+        </p>
+      </div>
+      <div
+        className="fragmentListItemstyle__TableItem-sc-1leslat-4 fragmentListItemstyle__TableNameItem-sc-1leslat-5 kLnmXl"
+      >
+        <p
+          className="fragmentListItemstyle__OverflowWrapper-sc-1leslat-6 cgCppH"
+        >
+          <span
+            className="tableItemContent"
+          >
+            C [name]
           </span>
         </p>
         <span
@@ -1961,7 +2083,7 @@ exports[`Storyshots Logic Components | SidePanel.FragmentList FragmentList 1`] =
           <span
             className="tableItemContent"
           >
-            C
+            C [type]
           </span>
         </p>
       </div>
@@ -1979,7 +2101,7 @@ exports[`Storyshots Logic Components | SidePanel.FragmentList FragmentList 1`] =
         </p>
       </div>
       <div
-        className="fragmentListItemstyle__StatusWrapper-sc-1leslat-1 fragmentListItemstyle__ShowGraphButton-sc-1leslat-2 iVNrjR"
+        className="fragmentListItemstyle__NarrowTableItem-sc-1leslat-1 fragmentListItemstyle__ShowGraphButton-sc-1leslat-2 iVNrjR"
       >
         <svg
           aria-hidden="true"
@@ -2028,14 +2150,14 @@ exports[`Storyshots Logic Components | SidePanel.FragmentList FragmentList 1`] =
       tabIndex="0"
     >
       <div
-        className="fragmentListItemstyle__StatusWrapper-sc-1leslat-1 honGAR"
+        className="fragmentListItemstyle__NarrowTableItem-sc-1leslat-1 kwCEIa"
       >
         <div
           className="fragmentListItemstyle__Status-sc-1leslat-3 cIWurx"
         />
       </div>
       <div
-        className="fragmentListItemstyle__TableItem-sc-1leslat-4 fragmentListItemstyle__TableItemId-sc-1leslat-5 hhvkgD"
+        className="fragmentListItemstyle__NarrowTableItem-sc-1leslat-1 kwCEIa"
       >
         <p
           className="fragmentListItemstyle__OverflowWrapper-sc-1leslat-6 cgCppH"
@@ -2043,7 +2165,20 @@ exports[`Storyshots Logic Components | SidePanel.FragmentList FragmentList 1`] =
           <span
             className="tableItemContent"
           >
-            B
+            4
+          </span>
+        </p>
+      </div>
+      <div
+        className="fragmentListItemstyle__TableItem-sc-1leslat-4 fragmentListItemstyle__TableNameItem-sc-1leslat-5 kLnmXl"
+      >
+        <p
+          className="fragmentListItemstyle__OverflowWrapper-sc-1leslat-6 cgCppH"
+        >
+          <span
+            className="tableItemContent"
+          >
+            B [name]
           </span>
         </p>
         <span
@@ -2081,7 +2216,7 @@ exports[`Storyshots Logic Components | SidePanel.FragmentList FragmentList 1`] =
           <span
             className="tableItemContent"
           >
-            B
+            B [type]
           </span>
         </p>
       </div>
@@ -2099,7 +2234,7 @@ exports[`Storyshots Logic Components | SidePanel.FragmentList FragmentList 1`] =
         </p>
       </div>
       <div
-        className="fragmentListItemstyle__StatusWrapper-sc-1leslat-1 fragmentListItemstyle__ShowGraphButton-sc-1leslat-2 iVNrjR"
+        className="fragmentListItemstyle__NarrowTableItem-sc-1leslat-1 fragmentListItemstyle__ShowGraphButton-sc-1leslat-2 iVNrjR"
       >
         <svg
           aria-hidden="true"
@@ -2148,14 +2283,14 @@ exports[`Storyshots Logic Components | SidePanel.FragmentList FragmentList 1`] =
       tabIndex="0"
     >
       <div
-        className="fragmentListItemstyle__StatusWrapper-sc-1leslat-1 honGAR"
+        className="fragmentListItemstyle__NarrowTableItem-sc-1leslat-1 kwCEIa"
       >
         <div
           className="fragmentListItemstyle__Status-sc-1leslat-3 cKTGXu"
         />
       </div>
       <div
-        className="fragmentListItemstyle__TableItem-sc-1leslat-4 fragmentListItemstyle__TableItemId-sc-1leslat-5 hhvkgD"
+        className="fragmentListItemstyle__NarrowTableItem-sc-1leslat-1 kwCEIa"
       >
         <p
           className="fragmentListItemstyle__OverflowWrapper-sc-1leslat-6 cgCppH"
@@ -2163,7 +2298,20 @@ exports[`Storyshots Logic Components | SidePanel.FragmentList FragmentList 1`] =
           <span
             className="tableItemContent"
           >
-            A
+            5
+          </span>
+        </p>
+      </div>
+      <div
+        className="fragmentListItemstyle__TableItem-sc-1leslat-4 fragmentListItemstyle__TableNameItem-sc-1leslat-5 kLnmXl"
+      >
+        <p
+          className="fragmentListItemstyle__OverflowWrapper-sc-1leslat-6 cgCppH"
+        >
+          <span
+            className="tableItemContent"
+          >
+            A [name]
           </span>
         </p>
         <span
@@ -2201,7 +2349,7 @@ exports[`Storyshots Logic Components | SidePanel.FragmentList FragmentList 1`] =
           <span
             className="tableItemContent"
           >
-            A
+            A [type]
           </span>
         </p>
       </div>
@@ -2219,7 +2367,7 @@ exports[`Storyshots Logic Components | SidePanel.FragmentList FragmentList 1`] =
         </p>
       </div>
       <div
-        className="fragmentListItemstyle__StatusWrapper-sc-1leslat-1 fragmentListItemstyle__ShowGraphButton-sc-1leslat-2 iVNrjR"
+        className="fragmentListItemstyle__NarrowTableItem-sc-1leslat-1 fragmentListItemstyle__ShowGraphButton-sc-1leslat-2 iVNrjR"
       >
         <svg
           aria-hidden="true"
@@ -2274,14 +2422,14 @@ Array [
     tabIndex="0"
   >
     <div
-      className="fragmentListItemstyle__StatusWrapper-sc-1leslat-1 honGAR"
+      className="fragmentListItemstyle__NarrowTableItem-sc-1leslat-1 kwCEIa"
     >
       <div
         className="fragmentListItemstyle__Status-sc-1leslat-3 iAGZOE"
       />
     </div>
     <div
-      className="fragmentListItemstyle__TableItem-sc-1leslat-4 fragmentListItemstyle__TableItemId-sc-1leslat-5 hhvkgD"
+      className="fragmentListItemstyle__NarrowTableItem-sc-1leslat-1 kwCEIa"
     >
       <p
         className="fragmentListItemstyle__OverflowWrapper-sc-1leslat-6 cgCppH"
@@ -2290,6 +2438,19 @@ Array [
           className="tableItemContent"
         >
           1
+        </span>
+      </p>
+    </div>
+    <div
+      className="fragmentListItemstyle__TableItem-sc-1leslat-4 fragmentListItemstyle__TableNameItem-sc-1leslat-5 kLnmXl"
+    >
+      <p
+        className="fragmentListItemstyle__OverflowWrapper-sc-1leslat-6 cgCppH"
+      >
+        <span
+          className="tableItemContent"
+        >
+          name
         </span>
       </p>
       <span
@@ -2345,7 +2506,7 @@ Array [
       </p>
     </div>
     <div
-      className="fragmentListItemstyle__StatusWrapper-sc-1leslat-1 fragmentListItemstyle__ShowGraphButton-sc-1leslat-2 iVNrjR"
+      className="fragmentListItemstyle__NarrowTableItem-sc-1leslat-1 fragmentListItemstyle__ShowGraphButton-sc-1leslat-2 iVNrjR"
     >
       <svg
         aria-hidden="true"

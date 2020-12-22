@@ -43,7 +43,7 @@ export const FragmentListItemContainer = styled.div`
     }
 `;
 
-export const StatusWrapper = styled.div`
+export const NarrowTableItem = styled.div`
     height: 30px;
     width: 30px;
     margin: 1px;
@@ -52,7 +52,7 @@ export const StatusWrapper = styled.div`
     justify-content: center;
 `;
 
-export const ShowGraphButton = styled(StatusWrapper)`
+export const ShowGraphButton = styled(NarrowTableItem)`
     cursor: pointer;
 `;
 
@@ -79,7 +79,7 @@ export const TableItem = styled.div`
     align-items: center;
 `;
 
-export const TableItemId = styled(TableItem)`
+export const TableNameItem = styled(TableItem)`
   justify-content: space-between;
 
   .tableItemIcon,

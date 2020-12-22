@@ -20,11 +20,24 @@ export const singleNode = {
   id: 'A',
   label: 'A label',
   status: 'success',
-  type: 'single',
+  type: 'SINGLE',
+  subtasks: [],
   response: {
     transition: '_success',
     invocations: [],
   },
+};
+
+export const singleMissingNode = {
+  id: 'M',
+  label: '!',
+  status: 'missing',
+  type: 'single',
+  on: {},
+  subtasks: [],
+  started: 0,
+  finished: 0,
+  response: {},
 };
 
 export const singleNodeWithTransitions = {

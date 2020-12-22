@@ -22,10 +22,10 @@ import { faArrowCircleRight, faArrowDown, faArrowUp } from '@fortawesome/free-so
 import {
   FragmentListItemContainer,
   Status,
-  StatusWrapper,
+  NarrowTableItem,
   OverflowWrapper,
   TableItem,
-  TableItemId,
+  TableNameItem,
   ShowGraphButton,
 } from './fragmentListItem.style';
 import NodeList from '../NodeList/NodeList';
@@ -33,7 +33,7 @@ import { ENTER_KEY_CODE, PAGE_BREAK } from '../../../helpers/constants';
 import { setRenderedGraph, setSidePanelExpanded } from '../../../state/actions/pageData';
 
 const FragmentListItem = ({
-  status, id, type, nodes, tabId, time,
+  status, number, name, type, nodes, tabId, time,
 }) => {
   const [expanded, setExpanded] = useState(false);
   const dispatch = useDispatch();
@@ -43,7 +43,7 @@ const FragmentListItem = ({
     dispatch(
       setRenderedGraph({
         id: tabId,
-        renderedGraph: id,
+        renderedGraph: name,
       }),
     );
     if (window.innerWidth < PAGE_BREAK) {
@@ -62,16 +62,24 @@ const FragmentListItem = ({
           }
         }}
         expanded={expanded}
-        isActive={id === activeFragment}
+        isActive={name === activeFragment}
       >
-        <StatusWrapper>
+        <NarrowTableItem>
           <Status status={status} />
-        </StatusWrapper>
+        </NarrowTableItem>
 
-        <TableItemId>
+        <NarrowTableItem>
           <OverflowWrapper>
             <span className="tableItemContent">
-              {id}
+              {number}
+            </span>
+          </OverflowWrapper>
+        </NarrowTableItem>
+
+        <TableNameItem>
+          <OverflowWrapper>
+            <span className="tableItemContent">
+              {name}
             </span>
           </OverflowWrapper>
 
@@ -94,7 +102,7 @@ const FragmentListItem = ({
               ? (<FontAwesomeIcon icon={faArrowUp} />)
               : (<FontAwesomeIcon icon={faArrowDown} />)}
           </span>
-        </TableItemId>
+        </TableNameItem>
 
         <TableItem>
           <OverflowWrapper>
@@ -128,7 +136,8 @@ FragmentListItem.defaultProps = {
 
 FragmentListItem.propTypes = {
   status: PropTypes.string.isRequired,
-  id: PropTypes.string.isRequired,
+  number: PropTypes.number.isRequired,
+  name: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
   nodes: PropTypes.arrayOf(PropTypes.object),
   tabId: PropTypes.number.isRequired,

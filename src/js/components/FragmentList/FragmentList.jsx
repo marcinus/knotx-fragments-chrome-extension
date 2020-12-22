@@ -23,20 +23,21 @@ import {
   FragmentListWrapper,
   SortingButton,
   SortingWrapper,
-  StatusSortingButton,
+  NarrowSortingButton,
   EmptySortingCell,
   ListItemContainer,
 } from './fragmentList.style';
 import FragmentListItem from './FragmentListItem/FragmentListItem';
 import { FRAGMENT_LIST_HEADER, fragmentListTablesHeaders } from '../../helpers/constants';
 
-export const mapDataToComponents = (fragments, tabId) => fragments.map(({ debug, nodes }) => {
+export const mapDataToComponents = (fragments, tabId) => fragments.map(({ debug, nodes }, number) => {
   const { fragment } = debug;
   const duration = debug.finishTime - debug.startTime;
   return (
     <FragmentListItem
       key={fragment.id}
-      id={fragment.id}
+      number={number + 1}
+      name={fragment.configuration['data-knotx-task']}
       status={debug.status.toLowerCase()}
       type={fragment.type}
       nodes={nodes}
@@ -63,7 +64,7 @@ export const sortFragmentsByStatus = (fragments) => {
 
 const sortingOptions = {
   status: 'status',
-  id: 'id',
+  name: 'name',
   type: 'type',
   time: 'time',
 };
@@ -81,7 +82,7 @@ const FragmentList = ({ tabId }) => {
   };
 
   const typeSortComparator = (a, b) => a.props.type.localeCompare(b.props.type);
-  const idSortComparator = (a, b) => a.props.id.localeCompare(b.props.id);
+  const nameSortComparator = (a, b) => a.props.name.localeCompare(b.props.name);
   const timeSortComparator = (a, b) => a.props.time - b.props.time;
 
   useEffect(() => {
@@ -94,7 +95,7 @@ const FragmentList = ({ tabId }) => {
       <h1>{FRAGMENT_LIST_HEADER}</h1>
 
       <SortingWrapper>
-        <StatusSortingButton
+        <NarrowSortingButton
           onClick={() => {
             if (currentSorting !== sortingOptions.status) {
               setFragments(sortFragmentsByStatus(fragments));
@@ -107,21 +108,25 @@ const FragmentList = ({ tabId }) => {
           {currentSorting === sortingOptions.status
             ? (<FontAwesomeIcon icon={faLongArrowAltUp} />)
             : (<FontAwesomeIcon icon={faLongArrowAltDown} />)}
-        </StatusSortingButton>
+        </NarrowSortingButton>
+
+        <NarrowSortingButton>
+          <span className="tableHeaderName">{fragmentListTablesHeaders.NUMBER}</span>
+        </NarrowSortingButton>
 
         <SortingButton
           onClick={() => {
-            if (currentSorting !== sortingOptions.id) {
-              setFragments(fragments.concat().sort(idSortComparator));
-              setCurrentSorting(sortingOptions.id);
+            if (currentSorting !== sortingOptions.name) {
+              setFragments(fragments.concat().sort(nameSortComparator));
+              setCurrentSorting(sortingOptions.name);
             } else {
               resetState();
             }
           }}
         >
-          <span className="tableHeaderName">{fragmentListTablesHeaders.ID}</span>
+          <span className="tableHeaderName">{fragmentListTablesHeaders.NAME}</span>
           <span className="tableHeaderIcon">
-            {currentSorting === sortingOptions.id
+            {currentSorting === sortingOptions.name
               ? (<FontAwesomeIcon icon={faLongArrowAltUp} />)
               : (<FontAwesomeIcon icon={faLongArrowAltDown} />)}
           </span>
