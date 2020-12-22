@@ -16,7 +16,14 @@
 
 import React from 'react';
 import { storiesOf } from '@storybook/react';
+import { withKnobs, number } from '@storybook/addon-knobs';
+import addons from '@storybook/addons';
+import withRedux from 'addon-redux/withRedux';
 import Legend from './Legend';
+import { withReduxSettings } from '../../../../../.storybook/storiesHelper';
 
+const withReduxDecorator = withRedux(addons)(withReduxSettings({ pageData: { 1: {} } }));
 storiesOf('Logic Components | MainPanel.Graph.Legend', module)
-  .add('Legend', () => <Legend />);
+  .addDecorator(withReduxDecorator)
+  .addDecorator(withKnobs)
+  .add('Legend', () => <Legend tabId={number('tabId', 1)} />);

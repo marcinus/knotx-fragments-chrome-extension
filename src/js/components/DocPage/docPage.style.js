@@ -27,17 +27,21 @@ export const Wrapper = styled.div`
 export const CloseButon = styled.div`
     position: absolute;
     z-index: 100;
-    height: 30px;
-    width: 30px;
+    height: 25px;
+    width: 25px;
     display: flex;
     justify-content: center;
     align-items: center;
     font-size: center;
-    top: 30px;
+    top: 10px;
     right: 50px;
     color: ${({ theme }) => theme.DOC_TEXT};
-    font-size: 30px;
+    font-size: 25px;
     cursor: pointer;
+    border: 3px solid ${({ theme }) => theme.DOC_TEXT};;
+    border-radius: 50%;
+    padding: 5px;
+    background-color: ${({ theme }) => theme.DOC_BG};
 `;
 
 export const Container = styled.div`
@@ -49,4 +53,20 @@ export const Container = styled.div`
     overflow: scroll;
     color: ${({ theme }) => theme.DOC_TEXT};
     background-color: ${({ theme }) => theme.DOC_BG};
+`;
+
+export const DocLink = styled.span`
+    position: absolute;
+    z-index: 100;
+    bottom: 0;
+    right: 50px;
+    background-color: ${({ theme }) => theme.DOC_BG};
+    color: ${({ theme }) => theme.DOC_TEXT};
+    font-weight: bold;
+    padding: 5px;
+    text-transform: uppercase;
+    font-size: 15px;
+    border: 3px solid ${({ theme }) => theme.DOC_TEXT};
+    border-bottom: 0px;
+    border-radius: 3px 3px 0 0;
 `;

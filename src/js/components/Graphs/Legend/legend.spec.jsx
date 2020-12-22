@@ -16,9 +16,12 @@
 
 import React from 'react';
 import { mount } from 'enzyme';
+import { Provider } from 'react-redux';
+import { createStore } from 'redux';
 import Legend from './Legend';
 import LegendSection from './LegendSection';
 import { legendArrays } from './legendHelper';
+import reducer from '../../../state/reducers/index';
 import {
   SquareIcon,
   CircleIcon,
@@ -28,8 +31,18 @@ import {
   LegendItem,
 } from './legend.style';
 
+const store = {
+  pageData: {
+    1: {},
+  },
+};
+
 describe('Legend section component', () => {
-  const wrapper = mount(<Legend />);
+  const wrapper = mount(
+    <Provider store={createStore(reducer, store)}>
+      <Legend tabId={1} />
+    </Provider>,
+  );
   const legendSections = wrapper.find(LegendSection);
 
   it('Legend comonent is visible and has correctly number of sections', () => {
