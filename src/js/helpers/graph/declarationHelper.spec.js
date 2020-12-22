@@ -154,6 +154,38 @@ test('Single node is parsed correctly', () => {
   expect(graph).toMatchObject(expectedGraph);
 });
 
+test('Missing node is parsed correctly', () => {
+  const info = {
+    id: 'M',
+    label: '!',
+    status: 'missing',
+    type: 'single',
+  };
+
+  const expectedGraph = {
+    nodes: [{ ...createNode('M', '!', 'missing', 0), info }],
+    edges: [],
+  };
+
+  const graph = constructGraph(mock.singleMissingNode);
+
+  expect(graph).toEqual(expectedGraph);
+});
+
+test('subtasks propertie should be removed from single nodes', () => {
+  const info = mock.singleNode;
+  delete info.subtasks;
+
+  const expectedGraph = {
+    nodes: [{ ...createNode('A', 'A label', 'success', 0), info }],
+    edges: [],
+  };
+
+  const graph = constructGraph(mock.singleNode);
+
+  expect(graph).toEqual(expectedGraph);
+});
+
 test('Single node can have multiple transitions', () => {
   const expectedEdges = [
     createEdge('A', 'A A', true, '_success', COLOR_SUCCESS),

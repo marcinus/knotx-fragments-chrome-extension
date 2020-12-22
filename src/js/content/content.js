@@ -14,36 +14,19 @@
  * limitations under the License.
  */
 
-import { findFragmentsInContent } from '../helpers/nodes/nodesHelper';
 import { status } from '../helpers/constants';
-
+import { chooseStrategy } from './contentStrategies';
 
 export const getData = async (contentType) => {
-  if (contentType === 'application/json') {
-    const url = window.location.href;
-    const fetchedData = await fetch(url)
-      .then((res) => res.json());
+  const getContent = chooseStrategy(contentType);
+  const fragmentsData = await getContent();
 
-    const fragmentsData = Array.isArray(fetchedData)
-      // eslint-disable-next-line no-underscore-dangle
-      ? fetchedData.map((item) => ({ debug: item._knotx_fragment, nodes: [] }))
-      // eslint-disable-next-line no-underscore-dangle
-      : [{ debug: fetchedData._knotx_fragment, nodes: [] }];
-
-    chrome.runtime.sendMessage({ fragmentsData }, (response) => {
-      if (response.status === status.succes) {
-        // eslint-disable-next-line no-console
-        console.log(response.msg);
-      }
-    });
-  } else {
-    chrome.runtime.sendMessage({ fragmentsData: findFragmentsInContent() }, (response) => {
-      if (response.status === status.succes) {
-        // eslint-disable-next-line no-console
-        console.log(response.msg);
-      }
-    });
-  }
+  chrome.runtime.sendMessage({ fragmentsData }, (response) => {
+    if (response.status === status.succes) {
+      // eslint-disable-next-line no-console
+      console.log(response.msg);
+    }
+  });
 };
 
 window.onload = getData(document.contentType);

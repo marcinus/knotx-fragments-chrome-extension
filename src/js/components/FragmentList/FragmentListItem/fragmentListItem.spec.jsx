@@ -19,7 +19,12 @@ import { mount } from 'enzyme';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 import FragmentListItem from './FragmentListItem';
-import { Status, TableItem, TableItemId } from './fragmentListItem.style';
+import {
+  Status,
+  TableItem,
+  TableNameItem,
+  NarrowTableItem,
+} from './fragmentListItem.style';
 import reducer from '../../../state/reducers/index';
 import { NodeButton } from '../NodeList/nodeList.style';
 
@@ -28,7 +33,8 @@ describe('<NodeList /> unit test', () => {
     <Provider store={createStore(reducer, { pageData: { 1: {} } })}>
       <FragmentListItem
         key={1}
-        id="1"
+        number={1}
+        name="name"
         status="success"
         type="snippet"
         nodes={[]}
@@ -44,19 +50,19 @@ describe('<NodeList /> unit test', () => {
     expect(wrapper.find(Status).prop('status')).toBe('success');
   });
 
-  it('Should have proper ID', () => {
+  it('Should have proper number', () => {
     const wrapper = getWrapper();
-    expect(wrapper.find(TableItemId).at(0).text()).toBe('1');
+    expect(wrapper.find(NarrowTableItem).at(1).text()).toBe('1');
+  });
+
+  it('Should have proper name', () => {
+    const wrapper = getWrapper();
+    expect(wrapper.find(TableNameItem).at(0).text()).toBe('name');
   });
 
   it('Should have proper type', () => {
     const wrapper = getWrapper();
     expect(wrapper.find(TableItem).at(0).text()).toBe('snippet');
-  });
-
-  it('Should have proper Id', () => {
-    const wrapper = getWrapper();
-    expect(wrapper.find(FragmentListItem).prop('id')).toBe('1');
   });
 
   it('Should have proper number of nodes', () => {

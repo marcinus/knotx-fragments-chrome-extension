@@ -20,9 +20,7 @@
 
 const snapshot = async (url) => {
   await page.goto(url);
-  await page.evaluateHandle('document.fonts.ready');
-  const image = await page.screenshot();
-  return image;
+  return page.screenshot();
 };
 
 describe('SidePanel', () => {

@@ -1,4 +1,3 @@
-
 /*
  * Copyright (C) 2020 Knot.x Project
  *
@@ -18,7 +17,6 @@
 import pageDataReducer, { initState } from './pageData';
 import { SET_PAGE_DATA, REMOVE_PAGE_DATA, SET_RENDERED_GRAPH } from '../actionTypes/pageData';
 
-
 const currentPageData = {
   id: 'example_id_0',
   url: 'www.exampleurl0.com',
@@ -34,7 +32,6 @@ const nextPageData = {
   renderedGraph: null,
   sidebarExpanded: true,
 };
-
 
 describe('pageData reducer', () => {
   test('Handles empty action', () => {

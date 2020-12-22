@@ -24,4 +24,6 @@ const options = {
   },
 };
 
-export const drawTimeline = (element, data) => new Timeline(element, data.items, data.groups, options);
+// Calls to the `.get()` method shouldn't be necessary once the following issue is resolved:
+// https://github.com/visjs/vis-timeline/issues/587
+export const drawTimeline = (element, data) => new Timeline(element, data.items.get(), data.groups.get(), options);

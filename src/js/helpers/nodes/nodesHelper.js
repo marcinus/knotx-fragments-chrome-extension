@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import { DataSet } from 'vis-timeline';
+import { DataSet } from 'vis-data';
 import uniqueSelector from 'unique-selector';
 
 export const isFragmentBoundary = (node) => node.nodeType === Node.COMMENT_NODE
@@ -95,7 +95,7 @@ export const findFragmentsInContent = () => parseFragments(document.body);
 
 const createVisItem = ({ debug }) => ({
   id: debug.fragment.id,
-  content: debug.fragment.id,
+  content: debug.fragment.configuration['data-knotx-task'],
   start: debug.startTime,
   end: debug.finishTime,
   group: 1,

@@ -257,10 +257,29 @@ test('Fragments need to be closed', () => {
 
 test('VisTimeline items are constructed correctly', () => {
   const fragments = [
-    { id: 'f1', debugData: { fragment: { id: 'f1' }, startTime: 1000, finishTime: 2000 }, nodes: '<div>F1</div>' },
-    { id: 'f1', debugData: { fragment: { id: 'f2' }, startTime: 2000, finishTime: 3000 }, nodes: '<div>F2</div>' },
-    { id: 'f1', debugData: { fragment: { id: 'f3' }, startTime: 3000, finishTime: 4000 }, nodes: '<div>F3</div>' },
-  ];
+    {
+      id: 'f1', name: 'F1', startTime: 1000, finishTime: 2000, content: '<div>F1</div>',
+    },
+    {
+      id: 'f2', name: 'F2', startTime: 2000, finishTime: 3000, content: '<div>F2</div>',
+    },
+    {
+      id: 'f3', name: 'F3', startTime: 3000, finishTime: 4000, content: '<div>F3</div>',
+    },
+  ].map((data) => ({
+    id: data.id,
+    debugData: {
+      fragment: {
+        id: data.id,
+        configuration: {
+          'data-knots-task': data.name,
+        },
+      },
+      startTime: data.startTime,
+      finishTime: data.finishTime,
+      nodes: data.content,
+    },
+  }));
 
   document.body.innerHTML = constructMarkupWithFragments(fragments[0], fragments[1], fragments[2]);
 
@@ -268,7 +287,7 @@ test('VisTimeline items are constructed correctly', () => {
 
   items.get().forEach((item, i) => {
     expect(item).toHaveProperty('id', fragments[i].debugData.fragment.id);
-    expect(item).toHaveProperty('content', fragments[i].debugData.fragment.id);
+    expect(item).toHaveProperty('content', fragments[i].debugData.fragment.configuration['data-knotx-task']);
     expect(item).toHaveProperty('start', fragments[i].debugData.startTime);
     expect(item).toHaveProperty('end', fragments[i].debugData.finishTime);
     expect(item).toHaveProperty('group', 1);

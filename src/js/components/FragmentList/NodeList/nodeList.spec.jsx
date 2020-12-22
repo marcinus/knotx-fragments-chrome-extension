@@ -20,7 +20,6 @@ import NodeList from './NodeList';
 import { nodes } from './nodeList.mock';
 import { NodeButton } from './nodeList.style';
 
-
 describe('<NodeList /> unit test', () => {
   const getWrapper = () => shallow(
     <NodeList expanded={false}>
