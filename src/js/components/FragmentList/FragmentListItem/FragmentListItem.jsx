@@ -33,7 +33,7 @@ import { ENTER_KEY_CODE, PAGE_BREAK } from '../../../helpers/constants';
 import { setRenderedGraph, setSidePanelExpanded } from '../../../state/actions/pageData';
 
 const FragmentListItem = ({
-  status, number, name, type, nodes, tabId, time,
+  status, number, fragmentId, taskName, type, nodes, tabId, time,
 }) => {
   const [expanded, setExpanded] = useState(false);
   const dispatch = useDispatch();
@@ -43,7 +43,7 @@ const FragmentListItem = ({
     dispatch(
       setRenderedGraph({
         id: tabId,
-        renderedGraph: name,
+        renderedGraph: fragmentId,
       }),
     );
     if (window.innerWidth < PAGE_BREAK) {
@@ -62,7 +62,7 @@ const FragmentListItem = ({
           }
         }}
         expanded={expanded}
-        isActive={name === activeFragment}
+        isActive={fragmentId === activeFragment}
       >
         <NarrowTableItem>
           <Status status={status} />
@@ -79,7 +79,7 @@ const FragmentListItem = ({
         <TableNameItem>
           <OverflowWrapper>
             <span className="tableItemContent">
-              {name}
+              {taskName}
             </span>
           </OverflowWrapper>
 
@@ -137,7 +137,8 @@ FragmentListItem.defaultProps = {
 FragmentListItem.propTypes = {
   status: PropTypes.string.isRequired,
   number: PropTypes.number.isRequired,
-  name: PropTypes.string.isRequired,
+  fragmentId: PropTypes.string.isRequired,
+  taskName: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
   nodes: PropTypes.arrayOf(PropTypes.object),
   tabId: PropTypes.number.isRequired,

@@ -37,7 +37,8 @@ export const mapDataToComponents = (fragments, tabId) => fragments.map(({ debug,
     <FragmentListItem
       key={fragment.id}
       number={number + 1}
-      name={fragment.configuration['data-knotx-task']}
+      fragmentId={fragment.id}
+      taskName={fragment.configuration['data-knotx-task']}
       status={debug.status.toLowerCase()}
       type={fragment.type}
       nodes={nodes}
